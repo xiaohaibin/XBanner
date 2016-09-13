@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="XBanner">
+        <attr name="isAutoPlay" format="boolean" />
+        <attr name="AutoPlayTime" format="integer|reference"/>
+        <attr name="pointNormal" format="color|reference"/>
+        <attr name="pointSelect" format="color|reference"/>
+        <attr name="pointsVisibility" format="boolean"/>
+        <attr name="pointsPosition" format="enum">
+            <enum name="LEFT" value="0"/>
+            <enum name="CENTER" value="1"/>
+            <enum name="RIGHT" value="2"/>
+        </attr>
+        <attr name="pointsContainerBackground" format="reference|color"/>
+    </declare-styleable>
+</resources>
