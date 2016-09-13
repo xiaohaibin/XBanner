@@ -305,7 +305,7 @@ public class XBanner extends RelativeLayout {
                 @Override
                 public void onClick(View view) {
                     if (mOnItemClickListener != null) {
-                        mOnItemClickListener.onItemClick(XBanner.this, toRealPosition(position));
+                        mOnItemClickListener.BannerItemClick(XBanner.this, toRealPosition(position));
                     }
                 }
             });
@@ -438,7 +438,7 @@ public class XBanner extends RelativeLayout {
     }
 
     public interface OnItemClickListener {
-        void onItemClick(XBanner banner, int position);
+        void BannerItemClick(XBanner banner, int position);
     }
 
     public interface XBannerAdapter {
