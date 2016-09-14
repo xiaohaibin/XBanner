@@ -41,6 +41,7 @@ dependencies {
 #### 3.在Activity或者Fragment中配置
 
 > 初始化:直接传入视图集合进行初始化
+
 ```
         imgesUrl = new ArrayList<>();
         imgesUrl.add("http://img3.fengniao.com/forum/attachpics/913/114/36502745.jpg");
@@ -53,7 +54,9 @@ dependencies {
 
 
 #### 4.加载广告
+
 > 可根据自己项目需要使用相应的图片加载工具进行加载图片，此处使用Glide，进行加载，可配置占位图等
+
 
 ```
  mBannerNet.setmAdapter(this);
