@@ -13,7 +13,7 @@
 
 ## 效果图
 
-![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/1.png)
+![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/gif.gif)
 
 ## 基本使用
 
