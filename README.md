@@ -27,7 +27,7 @@ dependencies {
 
 #### 2.在布局文件中添加XBanner
 ```xml
-    <com.stx.xhb.xbanner.XBanner
+    <com.xhb.xbanner.XBanner
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/banner_1"
         android:layout_width="match_parent"
