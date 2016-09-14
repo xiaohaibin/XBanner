@@ -13,6 +13,8 @@
 
 ## 效果图
 
+![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/1.png)
+
 ## 基本使用
 
 #### 1.添加Gradle依赖
