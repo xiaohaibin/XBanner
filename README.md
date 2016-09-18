@@ -92,6 +92,14 @@ dependencies {
 | pointsPosition| 指示点显示位置 | LEFT、CENTER、RIGHT类型，默认为CENTER |
 | pointsContainerBackground| 指示器背景 | 可自定义设置指示器背景 |
 
+## 混淆配置
+
+```
+##XBanner 图片轮播混淆配置
+-keep class com.stx.xhb.xbanner.**{*;}
+
+```
+
 ## 关于我
 个人邮箱：xhb_199409@163.com
 
