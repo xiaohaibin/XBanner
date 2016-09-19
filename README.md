@@ -45,7 +45,7 @@ dependencies {
 > 初始化:直接传入视图集合进行初始化
 
 ```
-        imgesUrl = new ArrayList<>();
+        List<String> imgesUrl = new ArrayList<>();
         imgesUrl.add("http://img3.fengniao.com/forum/attachpics/913/114/36502745.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/99381473502384338.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/77991473496077677.jpg");
@@ -125,4 +125,4 @@ License
     See the License for the specific language governing permissions and
     limitations under the License.
     
-#如果喜欢，还请statr或Fork进行支持，谢谢。#
+#如果喜欢，还请statr&Fork&follow进行支持，谢谢O(∩_∩)O~。#
