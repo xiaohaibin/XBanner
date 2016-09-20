@@ -12,5 +12,15 @@
             <enum name="RIGHT" value="2"/>
         </attr>
         <attr name="pointsContainerBackground" format="reference|color"/>
+        <attr name="pointContainerPosition" format="enum">
+            <enum name="TOP" value="10" />
+            <enum name="BOTTOM" value="12" />
+        </attr>
+        <!-- 指示点容器左右内间距 -->
+        <attr name="pointContainerLeftRightPadding" format="dimension" />
+        <!-- 指示点上下内间距 -->
+        <attr name="pointTopBottomPadding" format="dimension" />
+        <!-- 指示点左右内间距 -->
+        <attr name="pointLeftRightPadding" format="dimension" />
     </declare-styleable>
 </resources>

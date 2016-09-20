@@ -30,7 +30,6 @@ import java.util.List;
  *                   1.支持图片无限轮播控件
  *                   2.支持自定义指示器的背景和两种状态指示点
  *                   3.支持隐藏指示器、设置是否轮播、设置轮播时间间隔
- *                   4.支持自定义指示点显示位置：左、中、右
  */
 public class XBanner extends RelativeLayout {
     private static final int RMP = LayoutParams.MATCH_PARENT;
@@ -46,6 +45,15 @@ public class XBanner extends RelativeLayout {
     private LinearLayout mPointRealContainerLl;
 
     private static ViewPager mViewPager;
+
+    //指示点左右内间距
+    private int mPointLeftRightPading;
+
+    //指示点上下内间距
+    private int mPointTopBottomPading;
+
+    //指示点容器左右内间距
+    private int mPointContainerLeftRightPadding;
 
     //资源集合
     private List<? extends Object> mModels;
@@ -85,6 +93,12 @@ public class XBanner extends RelativeLayout {
     //指示点是否可见
     private boolean mPointsIsVisible = true;
 
+    //指示器容器位置
+    public static final int TOP=10;
+    public static final int BOTTOM=12;
+
+    private int mPointContainerPosition=BOTTOM;
+
     private XBannerAdapter mAdapter;
 
     public void setmAdapter(XBannerAdapter mAdapter) {
@@ -110,8 +124,15 @@ public class XBanner extends RelativeLayout {
 
     public XBanner(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        initDefaultAttrs(context);
         initCustomAttrs(context, attrs);
         initView(context);
+    }
+
+    private void initDefaultAttrs(Context context) {
+             mPointLeftRightPading= XBannerUtil.dp2px(context,3);
+             mPointTopBottomPading= XBannerUtil.dp2px(context,6);
+             mPointContainerLeftRightPadding= XBannerUtil.dp2px(context,10);
     }
 
     private void initCustomAttrs(Context context, AttributeSet attrs) {
@@ -122,6 +143,10 @@ public class XBanner extends RelativeLayout {
             mAutoPalyTime = typedArray.getInteger(R.styleable.XBanner_AutoPlayTime, 5000);
             mPointsIsVisible = typedArray.getBoolean(R.styleable.XBanner_pointsVisibility, true);
             mPointPosition = typedArray.getInt(R.styleable.XBanner_pointsPosition, CENTER);
+            mPointContainerLeftRightPadding=typedArray.getDimensionPixelSize(R.styleable.XBanner_pointContainerLeftRightPadding,mPointContainerLeftRightPadding);
+            mPointLeftRightPading=typedArray.getDimensionPixelSize(R.styleable.XBanner_pointLeftRightPadding,mPointLeftRightPading);
+            mPointTopBottomPading=typedArray.getDimensionPixelSize(R.styleable.XBanner_pointTopBottomPadding,mPointTopBottomPading);
+            mPointContainerPosition= typedArray.getInt(R.styleable.XBanner_pointContainerPosition, BOTTOM);
             mPointContainerBackgroundDrawable = typedArray.getDrawable(R.styleable.XBanner_pointsContainerBackground);
             mPointNoraml = typedArray.getDrawable(R.styleable.XBanner_pointNormal);
             mPointSelected = typedArray.getDrawable(R.styleable.XBanner_pointSelect);
@@ -148,11 +173,12 @@ public class XBanner extends RelativeLayout {
             pointContainerRl.setBackgroundDrawable(mPointContainerBackgroundDrawable);
         }
         //设置内边距
-        pointContainerRl.setPadding(0, 10, 0, 10);
+        pointContainerRl.setPadding(mPointContainerLeftRightPadding, mPointTopBottomPading, mPointContainerLeftRightPadding, mPointTopBottomPading);
         //设定指示器容器布局及位置
         LayoutParams pointContainerLp = new LayoutParams(RMP, RWC);
-        pointContainerLp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        pointContainerLp.addRule(mPointContainerPosition);
         addView(pointContainerRl, pointContainerLp);
+
         //设置指示器容器
         mPointRealContainerLl = new LinearLayout(context);
         mPointRealContainerLl.setOrientation(LinearLayout.HORIZONTAL);
@@ -305,7 +331,7 @@ public class XBanner extends RelativeLayout {
                 @Override
                 public void onClick(View view) {
                     if (mOnItemClickListener != null) {
-                        mOnItemClickListener.BannerItemClick(XBanner.this, toRealPosition(position));
+                        mOnItemClickListener.onItemClick(XBanner.this, toRealPosition(position));
                     }
                 }
             });
@@ -331,7 +357,7 @@ public class XBanner extends RelativeLayout {
     private void addPoints() {
         mPointRealContainerLl.removeAllViews();
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LWC, LWC);
-        lp.setMargins(10, 10, 10, 10);
+        lp.setMargins(mPointLeftRightPading, mPointTopBottomPading, mPointLeftRightPading, mPointTopBottomPading);
         ImageView imageView;
         for (int i = 0; i < mModels.size(); i++) {
             imageView = new ImageView(getContext());
@@ -438,7 +464,7 @@ public class XBanner extends RelativeLayout {
     }
 
     public interface OnItemClickListener {
-        void BannerItemClick(XBanner banner, int position);
+        void onItemClick(XBanner banner, int position);
     }
 
     public interface XBannerAdapter {
