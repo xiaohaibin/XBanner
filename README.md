@@ -1,7 +1,6 @@
 # XBanner
 支持图片无限轮播的控件，可进行自定义功能。
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.xhb/xbanner/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.xhb/xbanner)
 
 ## 主要功能：
 - 支持根据服务端返回的数据动态设置广告条的总页数
