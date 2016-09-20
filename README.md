@@ -21,7 +21,7 @@
 
 ```
 dependencies {
-    compile 'com.xhb:xbanner:1.0.0'
+    compile 'com.xhb:xbanner:1.0.1'
 }
 ```
 
