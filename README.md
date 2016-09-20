@@ -91,7 +91,9 @@ dependencies {
 | pointsVisibility| 是否显示指示器 | boolean类型，默认为true |
 | pointsPosition| 指示点显示位置 | LEFT、CENTER、RIGHT类型，默认为CENTER |
 | pointsContainerBackground| 指示器背景 | 可自定义设置指示器背景 |
-
+| pointContainerLeftRightPadding| 指示点容器左右内间距 | dimension，默认为10dp |
+| pointTopBottomPadding| 指示点上下内间距 | dimension，默认为6dp |
+| pointLeftRightPadding| 指示点左右内间距 | dimension，默认为3dp |
 ## 混淆配置
 
 ```
