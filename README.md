@@ -21,7 +21,7 @@
 
 ```
 dependencies {
-    compile 'com.xhb:xbanner:1.0.0'
+    compile 'com.xhb:xbanner:1.1.1'
 }
 ```
 
@@ -91,7 +91,10 @@ dependencies {
 | pointsVisibility| 是否显示指示器 | boolean类型，默认为true |
 | pointsPosition| 指示点显示位置 | LEFT、CENTER、RIGHT类型，默认为CENTER |
 | pointsContainerBackground| 指示器背景 | 可自定义设置指示器背景 |
-
+| pointContainerPosition| 指示器显示位置 | TOP、BOTTOM类型，默认未BOTTOM |
+| pointContainerLeftRightPadding| 指示点容器左右内间距 | dimension，默认为10dp |
+| pointTopBottomPadding| 指示点上下内间距 | dimension，默认为6dp |
+| pointLeftRightPadding| 指示点左右内间距 | dimension，默认为3dp |
 ## 混淆配置
 
 ```
@@ -99,6 +102,13 @@ dependencies {
 -keep class com.stx.xhb.xbanner.**{*;}
 
 ```
+
+## 版本更新
+
+| 版本号 | 更新说明 |
+| ------------ | ------------- | 
+| 1.0.1 | 新增自定义指示器显示位置、 指示点上下内间距、指示点左右内间距等功能| 
+| 1.1.1 | 修改可能引起内存泄漏的bug| 
 
 ## 关于我
 个人邮箱：xhb_199409@163.com
