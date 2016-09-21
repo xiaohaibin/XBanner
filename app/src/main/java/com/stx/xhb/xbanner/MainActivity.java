@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements XBanner.XBannerAd
         mBannerNet.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void BannerItemClick(XBanner banner, int position) {
-                Toast.makeText(MainActivity.this, "点击了第"+position+"图片", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "点击了第"+(position+1)+"图片", Toast.LENGTH_SHORT).show();
             }
         });
         mBannerNet.setmAdapter(this);

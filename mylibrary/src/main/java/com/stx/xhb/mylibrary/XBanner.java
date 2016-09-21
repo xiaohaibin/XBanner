@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
@@ -42,9 +43,11 @@ public class XBanner extends RelativeLayout {
     public static final int CENTER = 1;
     public static final int RIGHT = 2;
 
+    private Handler handler;
+
     private LinearLayout mPointRealContainerLl;
 
-    private static ViewPager mViewPager;
+    private ViewPager mViewPager;
 
     //指示点左右内间距
     private int mPointLeftRightPading;
@@ -65,9 +68,9 @@ public class XBanner extends RelativeLayout {
     //是否正在播放
     private boolean mIsAutoPlaying = false;
     //自动播放时间
-    private static int mAutoPalyTime = 5000;
+    private  int mAutoPalyTime = 5000;
     //当前页面位置
-    private static int mCurrentPositon;
+    private  int mCurrentPositon;
     //指示点位置
     private int mPointPosition = CENTER;
     //正常状态下的指示点
@@ -105,14 +108,6 @@ public class XBanner extends RelativeLayout {
         this.mAdapter = mAdapter;
     }
 
-    private static Handler mAutoPlayHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            mCurrentPositon++;
-            mViewPager.setCurrentItem(mCurrentPositon);
-            mAutoPlayHandler.sendEmptyMessageDelayed(WHAT_AUTO_PLAY, mAutoPalyTime);
-        }
-    };
 
     public XBanner(Context context) {
         this(context, null);
@@ -130,6 +125,7 @@ public class XBanner extends RelativeLayout {
     }
 
     private void initDefaultAttrs(Context context) {
+             handler= new MyHandler(this);
              mPointLeftRightPading= XBannerUtil.dp2px(context,3);
              mPointTopBottomPading= XBannerUtil.dp2px(context,6);
              mPointContainerLeftRightPadding= XBannerUtil.dp2px(context,10);
@@ -409,7 +405,7 @@ public class XBanner extends RelativeLayout {
     public void startAutoPlay() {
         if (mIsAutoPlay && !mIsAutoPlaying) {
             mIsAutoPlaying = true;
-            mAutoPlayHandler.sendEmptyMessageDelayed(WHAT_AUTO_PLAY, mAutoPalyTime);
+            sendScrollMessage(mAutoPalyTime);
         }
     }
 
@@ -419,7 +415,7 @@ public class XBanner extends RelativeLayout {
     public void stopAutoPlay() {
         if (mIsAutoPlay && mIsAutoPlaying) {
             mIsAutoPlaying = false;
-            mAutoPlayHandler.removeMessages(WHAT_AUTO_PLAY);
+            handler.removeMessages(WHAT_AUTO_PLAY);
         }
     }
 
@@ -437,8 +433,8 @@ public class XBanner extends RelativeLayout {
      *
      * @param mAutoPalyTime
      */
-    public static void setmAutoPalyTime(int mAutoPalyTime) {
-        XBanner.mAutoPalyTime = mAutoPalyTime;
+    public void setmAutoPalyTime(int mAutoPalyTime) {
+        this.mAutoPalyTime = mAutoPalyTime;
     }
 
     @Override
@@ -455,6 +451,38 @@ public class XBanner extends RelativeLayout {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         stopAutoPlay();
+    }
+
+    private static class MyHandler extends Handler  {
+
+        private final WeakReference<XBanner> mXBanner;
+
+        private MyHandler(XBanner mXBanner) {
+            this.mXBanner = new WeakReference<>(mXBanner);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case WHAT_AUTO_PLAY:
+                    XBanner banner = mXBanner.get();
+                    if (banner != null) {
+                        banner.mCurrentPositon++;
+                        banner.mViewPager.setCurrentItem(banner.mCurrentPositon);
+                        banner.sendScrollMessage(banner.mAutoPalyTime);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+    }
+
+    private void sendScrollMessage(long delayTimeInMills) {
+        handler.removeMessages(WHAT_AUTO_PLAY);
+        handler.sendEmptyMessageDelayed(WHAT_AUTO_PLAY, delayTimeInMills);
     }
 
     private OnItemClickListener mOnItemClickListener;
