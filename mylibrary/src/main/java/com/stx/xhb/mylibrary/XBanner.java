@@ -206,8 +206,11 @@ public class XBanner extends RelativeLayout {
      */
     public void setData(List<? extends Object> data) {
         this.mModels = data;
-        if (data.size() == 1)
+        if (data.size() <= 1){ 
             mIsOneImg = true;
+        }else{
+            mIsOneImg = false;
+        }
         //初始化ViewPager
         if (data.size() != 0)
             initViewPager();
