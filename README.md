@@ -24,8 +24,13 @@ dependencies {
     compile 'com.xhb:xbanner:1.1.2'
 }
 ```
+#### 2.在清单文件中添加网络权限
 
-#### 2.在布局文件中添加XBanner
+```
+<uses-permission android:name="android.permission.INTERNET" />
+```
+
+#### 3.在布局文件中添加XBanner
 ```xml
     <com.stx.xhb.xbanner.XBanner
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -40,7 +45,7 @@ dependencies {
 ```
 
 
-#### 3.在Activity或者Fragment中配置
+#### 4.在Activity或者Fragment中配置
 
 > 初始化:直接传入视图集合进行初始化
 
@@ -55,7 +60,7 @@ dependencies {
 ```
 
 
-#### 4.加载广告
+#### 5.加载广告
 
 > 可根据自己项目需要使用相应的图片加载工具进行加载图片，此处使用Glide，进行加载，可配置占位图等
 
@@ -69,7 +74,7 @@ dependencies {
     
 ```
 
-#### 5.监听广告 item 的单击事件
+#### 6.监听广告 item 的单击事件
 
 ```java
  mBannerNet.setOnItemClickListener(new XBanner.OnItemClickListener() {
