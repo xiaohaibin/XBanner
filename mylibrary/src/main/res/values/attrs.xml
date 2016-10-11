@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="XBanner">
-        <attr name="isAutoPlay" format="boolean" />
+        <attr name="isAutoPlay" format="boolean"/>
         <attr name="AutoPlayTime" format="integer|reference"/>
         <attr name="pointNormal" format="color|reference"/>
         <attr name="pointSelect" format="color|reference"/>
@@ -13,14 +13,20 @@
         </attr>
         <attr name="pointsContainerBackground" format="reference|color"/>
         <attr name="pointContainerPosition" format="enum">
-            <enum name="TOP" value="10" />
-            <enum name="BOTTOM" value="12" />
+            <enum name="TOP" value="10"/>
+            <enum name="BOTTOM" value="12"/>
         </attr>
         <!-- 指示点容器左右内间距 -->
-        <attr name="pointContainerLeftRightPadding" format="dimension" />
+        <attr name="pointContainerLeftRightPadding" format="dimension"/>
         <!-- 指示点上下内间距 -->
-        <attr name="pointTopBottomPadding" format="dimension" />
+        <attr name="pointTopBottomPadding" format="dimension"/>
         <!-- 指示点左右内间距 -->
-        <attr name="pointLeftRightPadding" format="dimension" />
+        <attr name="pointLeftRightPadding" format="dimension"/>
+        <!-- 提示文案的文字颜色 -->
+        <attr name="tipTextColor" format="reference|color"/>
+        <!-- 提示文案的文字大小 -->
+        <attr name="tipTextSize" format="dimension"/>
+        <!-- 是否循环轮播 -->
+        <attr name="bannerIsCycle" format="boolean"/>
     </declare-styleable>
 </resources>

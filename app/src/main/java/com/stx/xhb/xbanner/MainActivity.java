@@ -2,6 +2,7 @@ package com.stx.xhb.xbanner;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -16,10 +17,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements XBanner.XBannerAdapter{
     private XBanner mBannerNet;
-    private List<String> imgesUrl;
+    private List<banner> imgesUrl;
     private ListView lv;
     private List<String> data;
     private ArrayAdapter<String> adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,25 +66,24 @@ public class MainActivity extends AppCompatActivity implements XBanner.XBannerAd
      */
     private void initNetBanner() {
         mBannerNet = (XBanner) findViewById(R.id.banner_1);
-
         imgesUrl = new ArrayList<>();
-        imgesUrl.add("http://img3.fengniao.com/forum/attachpics/913/114/36502745.jpg");
-        imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/99381473502384338.jpg");
-        imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/77991473496077677.jpg");
-        imgesUrl.add("http://imageprocess.yitos.net/images/public/20160906/1291473163104906.jpg");
+        imgesUrl.add(new banner("http://img3.fengniao.com/forum/attachpics/913/114/36502745.jpg","1111"));
+        imgesUrl.add(new banner("http://imageprocess.yitos.net/images/public/20160910/99381473502384338.jpg","2222"));
+        imgesUrl.add(new banner("http://imageprocess.yitos.net/images/public/20160910/77991473496077677.jpg","3333"));
+        imgesUrl.add(new banner("http://imageprocess.yitos.net/images/public/20160906/1291473163104906.jpg","4444"));
         mBannerNet.setData(imgesUrl);
-
         mBannerNet.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
-            public void BannerItemClick(XBanner banner, int position) {
-                Toast.makeText(MainActivity.this, "点击了第"+(position+1)+"图片", Toast.LENGTH_SHORT).show();
+            public void onItemClick(XBanner banner, int position) {
+                Toast.makeText(MainActivity.this, "点击了第"+(position)+"图片", Toast.LENGTH_SHORT).show();
             }
         });
         mBannerNet.setmAdapter(this);
     }
 
     @Override
-    public void loadBanner(XBanner banner, View view, int position) {
-        Glide.with(this).load(imgesUrl.get(position)).into((ImageView) view);
+    public void loadBanner(XBanner banner, View view,int position) {
+        Log.i("---->position",position+"");
+        Glide.with(this).load(imgesUrl.get(position).getImageurl()).into((ImageView) view);
     }
 }
