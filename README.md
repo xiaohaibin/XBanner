@@ -21,11 +21,16 @@
 
 ```
 dependencies {
-    compile 'com.xhb:xbanner:1.1.1'
+    compile 'com.xhb:xbanner:1.1.2'
 }
 ```
+#### 2.在清单文件中添加网络权限
 
-#### 2.在布局文件中添加XBanner
+```
+<uses-permission android:name="android.permission.INTERNET" />
+```
+
+#### 3.在布局文件中添加XBanner
 ```xml
     <com.stx.xhb.xbanner.XBanner
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -40,7 +45,7 @@ dependencies {
 ```
 
 
-#### 3.在Activity或者Fragment中配置
+#### 4.在Activity或者Fragment中配置
 
 > 初始化:直接传入视图集合进行初始化
 
@@ -55,7 +60,7 @@ dependencies {
 ```
 
 
-#### 4.加载广告
+#### 5.加载广告
 
 > 可根据自己项目需要使用相应的图片加载工具进行加载图片，此处使用Glide，进行加载，可配置占位图等
 
@@ -69,7 +74,7 @@ dependencies {
     
 ```
 
-#### 5.监听广告 item 的单击事件
+#### 6.监听广告 item 的单击事件
 
 ```java
  mBannerNet.setOnItemClickListener(new XBanner.OnItemClickListener() {
@@ -91,7 +96,7 @@ dependencies {
 | pointsVisibility| 是否显示指示器 | boolean类型，默认为true |
 | pointsPosition| 指示点显示位置 | LEFT、CENTER、RIGHT类型，默认为CENTER |
 | pointsContainerBackground| 指示器背景 | 可自定义设置指示器背景 |
-| pointContainerPosition| 指示器显示位置 | TOP、BOTTOM类型，默认未BOTTOM |
+| pointContainerPosition| 指示器显示位置 | TOP、BOTTOM类型，默认为BOTTOM |
 | pointContainerLeftRightPadding| 指示点容器左右内间距 | dimension，默认为10dp |
 | pointTopBottomPadding| 指示点上下内间距 | dimension，默认为6dp |
 | pointLeftRightPadding| 指示点左右内间距 | dimension，默认为3dp |
@@ -109,7 +114,7 @@ dependencies {
 | ------------ | ------------- | 
 | 1.0.1 | 新增自定义指示器显示位置、 指示点上下内间距、指示点左右内间距等功能| 
 | 1.1.1 | 修改可能引起内存泄漏的bug| 
-
+| 1.1.2 | 修复当通过setData接口再次刷新数据后无效的问题|
 ## 关于我
 个人邮箱：xhb_199409@163.com
 
@@ -119,6 +124,8 @@ dependencies {
 
 [个人博客](http://blog.csdn.net/jxnk25)
 
+## 致谢
+感谢[tanweijiu](https://github.com/tanweijiu)修复版本1.1.2中bug，也欢迎各位感兴趣的开发者共同维护该项目。
 License
 --
     Copyright (C) 2016 xhb_199409@163.com
