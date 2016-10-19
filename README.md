@@ -10,6 +10,9 @@
 - 支持监听 item 点击事件
 - 支持设置图片轮播间隔
 - 支持指示器背景的修改及隐藏/显示
+- 支持显示s提示性文字功能
+- 支持图片切换动画
+- 支持设置图片切换速度
 
 ## 效果图
 
@@ -128,7 +131,7 @@ dependencies {
 [个人博客](http://blog.csdn.net/jxnk25)
 
 ## Thanks
-[bingoogolapple]https://github.com/bingoogolapple
+[bingoogolapple](https://github.com/bingoogolapple)
 感谢[tanweijiu](https://github.com/tanweijiu)修复版本1.1.2中bug，也欢迎各位感兴趣的开发者共同维护该项目。
 License
 --
