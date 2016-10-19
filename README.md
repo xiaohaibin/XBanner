@@ -21,7 +21,7 @@
 
 ```
 dependencies {
-    compile 'com.xhb:xbanner:1.1.2'
+    compile 'com.xhb:xbanner:1.2.0'
 }
 ```
 #### 2.在清单文件中添加网络权限
@@ -100,12 +100,14 @@ dependencies {
 | pointContainerLeftRightPadding| 指示点容器左右内间距 | dimension，默认为10dp |
 | pointTopBottomPadding| 指示点上下内间距 | dimension，默认为6dp |
 | pointLeftRightPadding| 指示点左右内间距 | dimension，默认为3dp |
+| tipTextColor| 提示文案的文字颜色 | reference|color，默认为white |
+| tipTextSize| 提示文案的文字大小| dimension，默认为10dp |
+
 ## 混淆配置
 
 ```
 ##XBanner 图片轮播混淆配置
 -keep class com.stx.xhb.xbanner.**{*;}
-
 ```
 
 ## 版本更新
@@ -115,6 +117,7 @@ dependencies {
 | 1.0.1 | 新增自定义指示器显示位置、 指示点上下内间距、指示点左右内间距等功能| 
 | 1.1.1 | 修改可能引起内存泄漏的bug| 
 | 1.1.2 | 修复当通过setData接口再次刷新数据后无效的问题|
+| 1.2.0| 修复issue中的问题y、新增支持显示提示文字、图片切换动画、设置图片切换速度的功能|
 ## 关于我
 个人邮箱：xhb_199409@163.com
 
@@ -124,7 +127,8 @@ dependencies {
 
 [个人博客](http://blog.csdn.net/jxnk25)
 
-## 致谢
+## Thanks
+[bingoogolapple]https://github.com/bingoogolapple
 感谢[tanweijiu](https://github.com/tanweijiu)修复版本1.1.2中bug，也欢迎各位感兴趣的开发者共同维护该项目。
 License
 --
