@@ -26,7 +26,5 @@
         <attr name="tipTextColor" format="reference|color"/>
         <!-- 提示文案的文字大小 -->
         <attr name="tipTextSize" format="dimension"/>
-        <!-- 是否循环轮播 -->
-        <attr name="bannerIsCycle" format="boolean"/>
     </declare-styleable>
 </resources>

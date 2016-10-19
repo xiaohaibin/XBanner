@@ -1,7 +1,6 @@
 package com.stx.xhb.mylibrary;
 
 import android.content.Context;
-import android.view.animation.Interpolator;
 import android.widget.Scroller;
 
 /**
@@ -14,28 +13,20 @@ import android.widget.Scroller;
  */
 public class XBannerScroller extends Scroller {
 
-    private int mScrollDuration = 800;// 滑动速度,值越大滑动越慢
+    private int mDuration = 800;//值越大，滑动越慢
 
-    public XBannerScroller(Context context) {
+    public XBannerScroller(Context context, int duration) {
         super(context);
-    }
-
-    public XBannerScroller(Context context, Interpolator interpolator) {
-        super(context, interpolator);
-    }
-
-    public void setScrollDuration(int scrollDuration) {
-        mScrollDuration = scrollDuration;
-    }
-
-    @Override
-    public void startScroll(int startX, int startY, int dx, int dy, int duration) {
-        super.startScroll(startX, startY, dx, dy, mScrollDuration);
+        mDuration = duration;
     }
 
     @Override
     public void startScroll(int startX, int startY, int dx, int dy) {
-        super.startScroll(startX, startY, dx, dy, mScrollDuration);
+        super.startScroll(startX, startY, dx, dy, mDuration);
     }
 
+    @Override
+    public void startScroll(int startX, int startY, int dx, int dy, int duration) {
+        super.startScroll(startX, startY, dx, dy, mDuration);
+    }
 }

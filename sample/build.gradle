@@ -27,4 +27,6 @@ dependencies {
     compile 'com.zhy:okhttputils:2.6.2'
     compile project(':mylibrary')
     compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
+    compile 'com.nineoldandroids:library:2.4.0'
 }
