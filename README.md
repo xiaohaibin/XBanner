@@ -132,7 +132,9 @@ dependencies {
 
 ## Thanks
 [bingoogolapple](https://github.com/bingoogolapple)
+
 感谢[tanweijiu](https://github.com/tanweijiu)修复版本1.1.2中bug，也欢迎各位感兴趣的开发者共同维护该项目。
+
 License
 --
     Copyright (C) 2016 xhb_199409@163.com
