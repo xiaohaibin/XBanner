@@ -25,6 +25,7 @@
 ```
 dependencies {
     compile 'com.xhb:xbanner:1.2.0'
+    compile 'com.nineoldandroids:library:2.4.0'
 }
 ```
 #### 2.在清单文件中添加网络权限
