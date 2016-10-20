@@ -58,7 +58,7 @@ dependencies {
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/99381473502384338.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/77991473496077677.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160906/1291473163104906.jpg");
-        mBannerNet.setData(imgesUrl);
+        mBannerNet.setData(imgesUrl,null);//第二个参数为提示文字资源集合
 
 ```
 
@@ -113,14 +113,18 @@ dependencies {
 -keep class com.stx.xhb.xbanner.**{*;}
 ```
 
-## 版本更新
+>## 更新说明
+>v1.0.1 新增自定义指示器显示位置、 指示点上下内间距、指示点左右内间距等功能  <br />
+>v1.1.1 修改可能引起内存泄漏的bug  <br />
 
-| 版本号 | 更新说明 |
-| ------------ | ------------- | 
-| 1.0.1 | 新增自定义指示器显示位置、 指示点上下内间距、指示点左右内间距等功能| 
-| 1.1.1 | 修改可能引起内存泄漏的bug| 
-| 1.1.2 | 修复当通过setData接口再次刷新数据后无效的问题|
-| 1.2.0| 修复issue中的问题y、新增支持显示提示文字、图片切换动画、设置图片切换速度的功能|
+>v1.1.2
+ - 修复当通过setData接口再次刷新数据后无效的问题  <br />
+ 
+>v1.2.0
+ - 新增支持显示提示文字  <br />
+ - 新增图片切换动画、设置图片切换速度的功能<br />
+ - 修复快速滑动出现卡顿的bug <br />
+
 ## 关于我
 个人邮箱：xhb_199409@163.com
 
