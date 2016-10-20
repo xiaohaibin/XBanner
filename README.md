@@ -58,6 +58,7 @@ dependencies {
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/99381473502384338.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/77991473496077677.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160906/1291473163104906.jpg");
+        //添加广告数据
         mBannerNet.setData(imgesUrl,null);//第二个参数为提示文字资源集合
 
 ```
@@ -86,6 +87,24 @@ dependencies {
                 Toast.makeText(MainActivity.this, "点击了第"+position+"图片", Toast.LENGTH_SHORT).show();
             }
         });
+```
+
+#### 7.为了更好的体验，建议j在添加以下代码
+
+```
+  /** 为了更好的体验效果建议在下面两个生命周期中调用下面的方法 **/
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mXBanner.startAutoPlay();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mXBanner.stopAutoPlay();
+    }
+
 ```
 
 ## 自定义属性说明
