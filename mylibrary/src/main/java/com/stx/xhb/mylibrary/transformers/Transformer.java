@@ -16,7 +16,6 @@ public enum Transformer {
     Flip,
     Accordion,
     ZoomFade,
-    Fade,
     ZoomCenter,
     ZoomStack,
     Stack,

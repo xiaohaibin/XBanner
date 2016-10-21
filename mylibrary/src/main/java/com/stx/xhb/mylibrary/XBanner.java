@@ -195,6 +195,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private void initView(Context context) {
 
         //添加ViewPager
+        if (mViewPager != null && this.equals(mViewPager.getParent())) {
+            this.removeView(mViewPager);
+            mViewPager = null;
+        }
         mViewPager = new XBannerViewPager(context);
 
         //设置指示器背景容器
@@ -385,13 +389,13 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         position = position % getRealCount();
         switchToPoint(position);
 
-        if (mOnPageChangeListener!=null)
+        if (mOnPageChangeListener != null)
             mOnPageChangeListener.onPageSelected(position);
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
-        if (mOnPageChangeListener!=null)
+        if (mOnPageChangeListener != null)
             mOnPageChangeListener.onPageScrollStateChanged(state);
 
     }
@@ -603,7 +607,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      */
     public void setPageTransformer(Transformer transformer) {
         if (transformer != null && mViewPager != null) {
-            mTransformer=transformer;
+            mTransformer = transformer;
             mViewPager.setPageTransformer(true, BasePageTransformer.getPageTransformer(transformer));
         }
     }
@@ -625,7 +629,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param duration
      */
     public void setPageChangeDuration(int duration) {
-        if (mViewPager!=null) {
+        if (mViewPager != null) {
             mViewPager.setScrollDuration(duration);
         }
     }
