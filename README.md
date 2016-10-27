@@ -24,7 +24,7 @@
 
 ```
 dependencies {
-    compile 'com.xhb:xbanner:1.2.0'
+    compile 'com.xhb:xbanner:1.2.2'
     compile 'com.nineoldandroids:library:2.4.0'
 }
 ```
@@ -140,7 +140,7 @@ dependencies {
 >v1.1.2
  - 修复当通过setData接口再次刷新数据后无效的问题  <br />
  
->v1.2.0
+>v1.2.2
  - 新增支持显示提示文字  <br />
  - 新增图片切换动画、设置图片切换速度的功能<br />
  - 修复快速滑动出现卡顿的bug <br />
