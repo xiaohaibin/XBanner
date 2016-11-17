@@ -22,11 +22,13 @@
 
 ## 基本使用
 
+[ ![XBanner](https://api.bintray.com/packages/jxnk25/maven/XBanner/images/download.svg) ](https://bintray.com/jxnk25/maven/XBanner/_latestVersion)
+
 #### 1.添加Gradle依赖
 
 ```
 dependencies {
-    compile 'com.xhb:xbanner:1.2.3'
+    compile 'com.xhb:xbanner:latestVersion'//将latestVersion替换成上面最新的版本号
     compile 'com.nineoldandroids:library:2.4.0'
 }
 ```
