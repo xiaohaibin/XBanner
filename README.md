@@ -22,7 +22,7 @@
 
 ## 基本使用
 
-[ ![XBanner](https://api.bintray.com/packages/jxnk25/maven/XBanner/images/download.svg) ](https://bintray.com/jxnk25/maven/XBanner/_latestVersion)
+[![latestVersion](https://api.bintray.com/packages/jxnk25/maven/XBanner/images/download.svg) ](https://bintray.com/jxnk25/maven/XBanner/_latestVersion)
 
 #### 1.添加Gradle依赖
 
