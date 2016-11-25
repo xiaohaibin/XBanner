@@ -53,7 +53,8 @@ dependencies {
         app:pointsPosition="RIGHT"
         app:tipTextSize="12sp"
         app:isShowNumberIndicator="true"
-        app:isShowIndicatorOnlyOne="true"/>
+        app:isShowIndicatorOnlyOne="true"
+        app:pageChangeDuration="800"/>
 ```
 
 
@@ -152,6 +153,7 @@ dependencies {
 | isShowNumberIndicator| 是否显示数字指示器| boolean,默认为false不显示 |
 | numberIndicatorBacgroud|数字指示器背景| reference |
 | isShowIndicatorOnlyOne|当只有一张图片的时候是否显示指示点| boolean，默认为false，不显示 |
+| pageChangeDuration|图片切换速度| int值，默认为1000ms |
 
 ## 混淆配置
 
