@@ -3,6 +3,7 @@ package com.stx.xhb.xbanner;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -40,8 +41,6 @@ public class MainActivity extends AppCompatActivity implements XBanner.XBannerAd
 
     private void initView() {
         mXBanner = (XBanner) findViewById(R.id.xbanner);
-        //设置图片切换速度
-        mXBanner.setPageChangeDuration(1000);
         mRadioGroup = (RadioGroup) findViewById(R.id.rgp);
         RadioButton rb= (RadioButton) mRadioGroup.getChildAt(3);
         rb.setChecked(true);
@@ -130,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements XBanner.XBannerAd
                             tips.add(mOthersList.get(i).getDescription());
                         }
                         mXBanner.setData(mOthersList, tips);
+                        mXBanner.setData(R.layout.xbanner_item_image,mOthersList,tips);
                     }
                 });
 
@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements XBanner.XBannerAd
 
     @Override
     public void loadBanner(XBanner banner, View view, int position) {
+        Log.i("--->position",position+"");
         Glide.with(this).load(mOthersList.get(position).getThumbnail()).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
     }
 
@@ -154,6 +155,6 @@ public class MainActivity extends AppCompatActivity implements XBanner.XBannerAd
     }
 
     public void onClick(View view) {
-        startActivity(new Intent(this,ListViewActivity.class));
+        startActivity(new Intent(this,ListView.class));
     }
 }

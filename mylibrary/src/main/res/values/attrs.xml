@@ -26,5 +26,13 @@
         <attr name="tipTextColor" format="reference|color"/>
         <!-- 提示文案的文字大小 -->
         <attr name="tipTextSize" format="dimension"/>
+        <!--是否是数字指示器-->
+        <attr name="isShowNumberIndicator" format="boolean"/>
+        <!-- 数字指示器背景 -->
+        <attr name="numberIndicatorBacgroud" format="reference" />
+        <!-- 当只有一页数据时是否显示指示器，默认值为false -->
+        <attr name="isShowIndicatorOnlyOne" format="boolean" />
+        <!-- 图片切换速度 -->
+        <attr name="pageChangeDuration" format="integer" />
     </declare-styleable>
 </resources>
