@@ -123,7 +123,8 @@ public class MainActivity extends AppCompatActivity implements XBanner.XBannerAd
                     @Override
                     public void onResponse(String response, int id) {
                         AdvertiseEntity advertiseEntity = new Gson().fromJson(response, AdvertiseEntity.class);
-                        mOthersList = advertiseEntity.getOthers();
+                        List<AdvertiseEntity.OthersBean> others = advertiseEntity.getOthers();
+                        mOthersList = others;
                         List<String> tips = new ArrayList<String>();
                         for (int i = 0; i < mOthersList.size(); i++) {
                             tips.add(mOthersList.get(i).getDescription());

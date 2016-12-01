@@ -377,12 +377,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     private void initViewPager() {
+
         //添加ViewPager
         if (mViewPager != null && this.equals(mViewPager.getParent())) {
             removeView(mViewPager);
             mViewPager = null;
         }
-
         mViewPager = new XBannerViewPager(getContext());
 
         //当图片多于1张时添加指示点
@@ -396,7 +396,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mViewPager.setOverScrollMode(mSlideScrollMode);
         mViewPager.setIsAllowUserScroll(mIsAllowUserScroll);
         setPageChangeDuration(mPageChangeDuration);
-        addView(mViewPager, 0, new LayoutParams(RMP, RMP));
+        addView(mViewPager,0,new LayoutParams(RMP, RMP));
 
         //当图片多于1张时开始轮播
         if (!mIsOneImg && mIsAutoPlay) {
@@ -499,10 +499,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         public Object instantiateItem(ViewGroup container, final int position) {
             final int realPosition = position % getRealCount();
             View view = null;
+
             view = mViews.get(realPosition);
             if (container.equals(view.getParent())) {
                 container.removeView(view);
             }
+
             if (mOnItemClickListener != null) {
                 view.setOnClickListener(new OnClickListener() {
                     @Override
@@ -523,7 +525,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
         }
 
         @Override
@@ -740,10 +741,17 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         public void run() {
             XBanner banner = mXBanner.get();
             if (banner != null) {
-                int currentItem = banner.mViewPager.getCurrentItem() + 1;
-                banner.mViewPager.setCurrentItem(currentItem);
+                banner.switchNextPage();
                 banner.postDelayed(banner.mAutoSwitchTask, banner.mAutoPalyTime);
             }
+        }
+    }
+
+
+    private void switchNextPage() {
+        if (mViewPager!=null) {
+            int currentItem =mViewPager.getCurrentItem() + 1;
+            mViewPager.setCurrentItem(currentItem);
         }
     }
 
