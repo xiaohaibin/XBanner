@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <com.stx.xhb.mylibrary.XBanner
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/banner_1"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         app:pointsPosition="RIGHT"
         app:AutoPlayTime="3000"
         app:tipTextSize="12sp"
-        app:pointsContainerBackground="#44aaaaaa"
+        app:isAutoPlay="false"
+        app:isShowNumberIndicator="true"
+        app:numberIndicatorBacgroud="@drawable/shape_number_indicator_background"
         app:pointNormal="@drawable/shape_noraml"
         app:pointSelect="@drawable/shape_selected"/>
 
