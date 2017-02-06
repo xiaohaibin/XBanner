@@ -45,7 +45,6 @@ dependencies {
         android:id="@+id/banner_1"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        app:pointsPosition="CENTER"
         app:AutoPlayTime="3000"
         app:pointsContainerBackground="#44aaaaaa"
         app:pointNormal="@drawable/shape_noraml"
