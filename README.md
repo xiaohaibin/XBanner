@@ -203,6 +203,7 @@ dependencies {
 
 ![欢迎关注“大话微信”公众号](http://upload-images.jianshu.io/upload_images/1956769-2f49dcb0dc5195b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
+![欢迎加入“大话安卓”技术交流群，互相学习提升](http://upload-images.jianshu.io/upload_images/1956769-300e0b68b8b46c8c.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 License
 --
