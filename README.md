@@ -29,7 +29,6 @@
 ```
 dependencies {
     compile 'com.xhb:xbanner:latestVersion'//将latestVersion替换成上面最新的版本号
-    compile 'com.nineoldandroids:library:2.4.0'
 }
 ```
 #### 2.在清单文件中添加网络权限
@@ -45,7 +44,6 @@ dependencies {
         android:id="@+id/banner_1"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        app:pointsPosition="CENTER"
         app:AutoPlayTime="3000"
         app:pointsContainerBackground="#44aaaaaa"
         app:pointNormal="@drawable/shape_noraml"
@@ -163,27 +161,33 @@ dependencies {
 ```
 
 >## 更新说明
->v1.0.1 新增自定义指示器显示位置、 指示点上下内间距、指示点左右内间距等功能  <br />
 
->v1.1.1 修改可能引起内存泄漏的bug  <br />
-
->v1.1.2
- - 修复当通过setData接口再次刷新数据后无效的问题  <br />
+>v1.2.8
+ - 剔除nineandroid依赖，优化代码<br />
+ 
+>v1.2.7
+ - 修复两张图片空白的bug<br />
+ 
+>v1.2.6
+ - 修复网络较差环境下空指针异常bug<br />
+ 
+>v1.2.4
+ - 新增在布局中设置图片切换速度<br />
+ - 修复猿友提到的下拉刷新的bug<br />
  
 >v1.2.2
  - 新增支持显示提示文字  <br />
  - 新增图片切换动画、设置图片切换速度的功能<br />
  - 修复快速滑动出现卡顿的bug <br />
+ 
+>v1.1.2
+ - 修复当通过setData接口再次刷新数据后无效的问题  <br />
 
->v1.2.4
- - 新增在布局中设置图片切换速度<br />
- - 修复猿友提到的下拉刷新的bug<br />
- 
- >v1.2.5
- - 修复两张图片空白的bug<br />
- 
-  >v1.2.6
- - 修复网络较差环境下空指针异常bug<br />
+>v1.1.1 
+ - 修改可能引起内存泄漏的bug  <br />
+
+>v1.0.1 
+ - 新增自定义指示器显示位置、 指示点上下内间距、指示点左右内间距等功能  <br />
 
 ## 关于我
 个人邮箱：xhb_199409@163.com
@@ -198,6 +202,14 @@ dependencies {
 [bingoogolapple](https://github.com/bingoogolapple)
 
 感谢[tanweijiu](https://github.com/tanweijiu)修复版本1.1.2中bug，也欢迎各位感兴趣的开发者共同维护该项目。
+
+
+##如果觉得文章帮到你，可以关注我的微信公众号，将会定期推送优质技术文章，求关注~~~##
+
+![欢迎关注“大话微信”公众号](http://upload-images.jianshu.io/upload_images/1956769-2f49dcb0dc5195b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+##欢迎加入“大话安卓”技术交流群，一起分享，共同进步##
+![欢迎加入“大话安卓”技术交流群，互相学习提升](http://upload-images.jianshu.io/upload_images/1956769-326c166b86ed8e94.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 License
 --
