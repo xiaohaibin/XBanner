@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.LayoutRes;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -21,7 +22,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.nineoldandroids.view.ViewHelper;
 import com.stx.xhb.mylibrary.transformers.BasePageTransformer;
 import com.stx.xhb.mylibrary.transformers.Transformer;
 
@@ -30,10 +30,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @link https://xiaohaibin.github.io/
- * @email： xhb_199409@163.com
- * @github: https://github.com/xiaohaibin
- * @description： 图片轮播控件
+ * link https://xiaohaibin.github.io/
+ * email： xhb_199409@163.com
+ * github: https://github.com/xiaohaibin
+ * description： 图片轮播控件
  * 1.支持图片无限轮播控件;
  * 2.支持自定义指示器的背景和两种状态指示点;
  * 3.支持隐藏指示器、设置是否轮播、设置轮播时间间隔;
@@ -446,10 +446,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (mTipTv != null && mTipData != null) {
             if (positionOffset > .5) {
                 mTipTv.setText(mTipData.get((position + 1) % mTipData.size()));
-                ViewHelper.setAlpha(mTipTv, positionOffset);
+                ViewCompat.setAlpha(mTipTv, positionOffset);
             } else {
                 mTipTv.setText(mTipData.get(position % mTipData.size()));
-                ViewHelper.setAlpha(mTipTv, 1 - positionOffset);
+                ViewCompat.setAlpha(mTipTv, 1 - positionOffset);
             }
         }
 

@@ -1,16 +1,15 @@
 package com.stx.xhb.mylibrary.transformers;
 
+import android.support.v4.view.ViewCompat;
 import android.view.View;
-
-import com.nineoldandroids.view.ViewHelper;
 
 /**
  * Created by jxnk25 on 2016/10/18.
  *
- * @link https://xiaohaibin.github.io/
- * @email： xhb_199409@163.com
- * @github: https://github.com/xiaohaibin
- * @description：
+ * link https://xiaohaibin.github.io/
+ * email： xhb_199409@163.com
+ * github: https://github.com/xiaohaibin
+ * description：
  */
 public class RotatePageTransformer extends BasePageTransformer {
     private float mMaxRotation = 15.0f;
@@ -24,17 +23,17 @@ public class RotatePageTransformer extends BasePageTransformer {
 
     @Override
     public void handleInvisiblePage(View view, float position) {
-        ViewHelper.setPivotX(view, view.getMeasuredWidth() * 0.5f);
-        ViewHelper.setPivotY(view, view.getMeasuredHeight());
-        ViewHelper.setRotation(view, 0);
+        ViewCompat.setPivotX(view, view.getMeasuredWidth() * 0.5f);
+        ViewCompat.setPivotY(view, view.getMeasuredHeight());
+        ViewCompat.setRotation(view, 0);
     }
 
     @Override
     public void handleLeftPage(View view, float position) {
         float rotation = (mMaxRotation * position);
-        ViewHelper.setPivotX(view, view.getMeasuredWidth() * 0.5f);
-        ViewHelper.setPivotY(view, view.getMeasuredHeight());
-        ViewHelper.setRotation(view, rotation);
+        ViewCompat.setPivotX(view, view.getMeasuredWidth() * 0.5f);
+        ViewCompat.setPivotY(view, view.getMeasuredHeight());
+        ViewCompat.setRotation(view, rotation);
     }
 
     @Override

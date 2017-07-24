@@ -6,10 +6,10 @@ import android.widget.Scroller;
 /**
  * Created by jxnk25 on 2016/10/7.
  *
- * @link https://xiaohaibin.github.io/
- * @email： xhb_199409@163.com
- * @github: https://github.com/xiaohaibin
- * @description：
+ * link https://xiaohaibin.github.io/
+ * email： xhb_199409@163.com
+ * github: https://github.com/xiaohaibin
+ * description：
  */
 public class XBannerScroller extends Scroller {
 

@@ -22,7 +22,7 @@ import java.util.List;
 
 import okhttp3.Call;
 
-public class MainActivity extends AppCompatActivity implements XBanner.XBannerAdapter {
+public class MainActivity extends AppCompatActivity {
 
     private XBanner mXBanner;
     private RadioGroup mRadioGroup;
@@ -104,7 +104,13 @@ public class MainActivity extends AppCompatActivity implements XBanner.XBannerAd
     }
     private void setAdapter() {
              //加载广告图片
-             mXBanner.setmAdapter(this);
+             mXBanner.setmAdapter(new XBanner.XBannerAdapter() {
+                 @Override
+                 public void loadBanner(XBanner banner, Object model, View view, int position) {
+                     Log.i("--->position",position+"");
+                     Glide.with(MainActivity.this).load(mOthersList.get(position).getThumbnail()).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
+                 }
+             });
     }
 
     private void RequestData() {
@@ -136,11 +142,6 @@ public class MainActivity extends AppCompatActivity implements XBanner.XBannerAd
 
     }
 
-    @Override
-    public void loadBanner(XBanner banner, View view, int position) {
-        Log.i("--->position",position+"");
-        Glide.with(this).load(mOthersList.get(position).getThumbnail()).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
-    }
 
     /** 为了更好的体验效果建议在下面两个生命周期中调用下面的方法 **/
     @Override
