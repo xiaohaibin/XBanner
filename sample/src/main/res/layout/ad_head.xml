@@ -12,7 +12,7 @@
         app:pointsPosition="RIGHT"
         app:AutoPlayTime="3000"
         app:tipTextSize="12sp"
-        app:isAutoPlay="false"
+        app:isAutoPlay="true"
         app:isShowNumberIndicator="true"
         app:numberIndicatorBacgroud="@drawable/shape_number_indicator_background"
         app:pointNormal="@drawable/shape_noraml"
