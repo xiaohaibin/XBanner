@@ -28,7 +28,7 @@
 
 ```
 dependencies {
-    compile 'com.xhb:xbanner:latestVersion'//将latestVersion替换成上面最新的版本号
+    compile 'com.xhb:mylibrary:latestVersion'//将latestVersion替换成上面最新的版本号
 }
 ```
 #### 2.在清单文件中添加网络权限
