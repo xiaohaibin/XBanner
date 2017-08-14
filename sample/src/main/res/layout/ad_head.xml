@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.stx.xhb.mylibrary.XBanner
+    <com.stx.xhb.xbanner.XBanner
         android:id="@+id/banner_1"
         android:layout_width="match_parent"
         android:layout_height="180dp"

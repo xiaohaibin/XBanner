@@ -25,7 +25,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.zhy:okhttputils:2.6.2'
-    compile project(':mylibrary')
+//    compile project(':xbanner')
+    compile 'com.xhb:xbanner:1.2.9'
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.nineoldandroids:library:2.4.0'
 }

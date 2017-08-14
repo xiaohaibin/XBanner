@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
-    tools:context="com.stx.xhb.xbanner.MainActivity">
+    tools:context="com.stx.xhb.demo.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.stx.xhb.mylibrary.XBanner
+        <com.stx.xhb.xbanner.XBanner
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/xbanner"
             android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.stx.xhb.xbanner;
+package com.stx.xhb.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.stx.xhb.mylibrary.XBanner;
+import com.stx.xhb.demo.XBanner;
 
 import java.util.ArrayList;
 import java.util.List;
