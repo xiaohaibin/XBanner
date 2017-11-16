@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
 
     <com.stx.xhb.xbanner.XBanner
         android:id="@+id/banner_1"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        app:pointsPosition="RIGHT"
         app:AutoPlayTime="3000"
-        app:tipTextSize="12sp"
         app:isAutoPlay="true"
         app:isShowNumberIndicator="true"
         app:numberIndicatorBacgroud="@drawable/shape_number_indicator_background"
         app:pointNormal="@drawable/shape_noraml"
-        app:pointSelect="@drawable/shape_selected"/>
+        app:pointSelect="@drawable/shape_selected"
+        app:pointsPosition="RIGHT"
+        app:tipTextSize="12sp"/>
 
 </LinearLayout>
