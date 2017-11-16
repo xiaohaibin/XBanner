@@ -162,6 +162,9 @@ dependencies {
 
 >## 更新说明
 
+>v1.3.0
+ - 优化代码，增加轮播图片防止重复点击事件<br />
+
 >v1.2.8
  - 剔除nineandroid依赖，优化代码<br />
  
@@ -209,6 +212,7 @@ dependencies {
 ![欢迎关注“大话微信”公众号](http://upload-images.jianshu.io/upload_images/1956769-2f49dcb0dc5195b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ##欢迎加入“大话安卓”技术交流群，一起分享，共同进步##
+#如果喜欢，还请statr&Fork&follow进行支持，谢谢O(∩_∩)O~。#
 ![欢迎加入“大话安卓”技术交流群，互相学习提升](http://upload-images.jianshu.io/upload_images/1956769-326c166b86ed8e94.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 License
@@ -226,5 +230,4 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-    
-#如果喜欢，还请statr&Fork&follow进行支持，谢谢O(∩_∩)O~。#
+   
