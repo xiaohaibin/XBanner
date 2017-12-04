@@ -15,7 +15,7 @@ public class XBannerScroller extends Scroller {
 
     private int mDuration = 800;//值越大，滑动越慢
 
-    public XBannerScroller(Context context, int duration) {
+    XBannerScroller(Context context, int duration) {
         super(context);
         mDuration = duration;
     }

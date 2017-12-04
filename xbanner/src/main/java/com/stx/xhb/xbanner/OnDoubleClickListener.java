@@ -11,6 +11,7 @@ import android.view.View;
  */
 
 public abstract class OnDoubleClickListener implements View.OnClickListener {
+
     private int mThrottleFirstTime = 1000;
     private long mLastClickTime = 0;
 

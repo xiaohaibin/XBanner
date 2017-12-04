@@ -14,7 +14,7 @@ import android.util.TypedValue;
  * github: https://github.com/xiaohaibin
  * description： XBanner轮播控件的工具类
  */
-public class XBannerUtil {
+public class XBannerUtils {
 
     /**
      * 设置背景选择器

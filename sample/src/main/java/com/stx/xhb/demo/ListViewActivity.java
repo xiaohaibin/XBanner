@@ -22,7 +22,7 @@ import okhttp3.Call;
 /**
  * listview 添加headview使用 RecycleView上也是同样的
  */
-public class ListView extends AppCompatActivity implements XBanner.XBannerAdapter, XBanner.OnItemClickListener {
+public class ListViewActivity extends AppCompatActivity implements XBanner.XBannerAdapter, XBanner.OnItemClickListener {
 
     private XBanner mBannerNet;
     private android.widget.ListView mLv;
@@ -68,7 +68,7 @@ public class ListView extends AppCompatActivity implements XBanner.XBannerAdapte
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Toast.makeText(ListView.this, "加载广告数据失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ListViewActivity.this, "加载广告数据失败", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -110,7 +110,7 @@ public class ListView extends AppCompatActivity implements XBanner.XBannerAdapte
 
     @Override
     public void onItemClick(XBanner banner, int position) {
-        Toast.makeText(ListView.this, "点击了第" + (position) + "图片", Toast.LENGTH_SHORT).show();
+        Toast.makeText(ListViewActivity.this, "点击了第" + (position) + "图片", Toast.LENGTH_SHORT).show();
     }
 
 

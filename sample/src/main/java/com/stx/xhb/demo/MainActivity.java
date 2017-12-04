@@ -158,6 +158,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        startActivity(new Intent(this,ListView.class));
+        startActivity(new Intent(this,ListViewActivity.class));
     }
 }

@@ -12,12 +12,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * Created by jxnk25 on 2016/9/13.
+ * @anthor：jxnk25
+ * @link https://xiaohaibin.github.io/
+ * @email： xhb_199409@163.com
+ * @github: https://github.com/xiaohaibin
+ * @description： 继承ViewPager
  *
- * link https://xiaohaibin.github.io/
- * email： xhb_199409@163.com
- * github: https://github.com/xiaohaibin
- * description： 继承ViewPager
  */
 public class XBannerViewPager extends ViewPager {
 
@@ -60,7 +60,7 @@ public class XBannerViewPager extends ViewPager {
             setCurrentItemInternalMethod.setAccessible(true);
             setCurrentItemInternalMethod.invoke(this, position, true, true);
             ViewCompat.postInvalidateOnAnimation(this);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -109,7 +109,7 @@ public class XBannerViewPager extends ViewPager {
 
             velocityTracker.computeCurrentVelocity(1000, maximumVelocity);
             xVelocity = VelocityTrackerCompat.getXVelocity(velocityTracker, activePointerIdField.getInt(this));
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return xVelocity;
     }

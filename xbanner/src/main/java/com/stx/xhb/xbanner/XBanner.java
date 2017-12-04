@@ -181,10 +181,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     private void initDefaultAttrs(Context context) {
         mAutoSwitchTask = new AutoSwitchTask(this);
-        mPointLeftRightPading = XBannerUtil.dp2px(context, 3);
-        mPointTopBottomPading = XBannerUtil.dp2px(context, 6);
-        mPointContainerLeftRightPadding = XBannerUtil.dp2px(context, 10);
-        mTipTextSize = XBannerUtil.sp2px(context, 10);
+        mPointLeftRightPading = XBannerUtils.dp2px(context, 3);
+        mPointTopBottomPading = XBannerUtils.dp2px(context, 6);
+        mPointContainerLeftRightPadding = XBannerUtils.dp2px(context, 10);
+        mTipTextSize = XBannerUtils.sp2px(context, 10);
         //设置默认提示语字体颜色
         mTipTextColor = Color.WHITE;
         //设置指示器背景
@@ -436,7 +436,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         return mViewPager;
     }
 
-
     @Override
     public void onPageScrolled(int position, float positionOffset,
                                int positionOffsetPixels) {
@@ -453,24 +452,25 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             }
         }
 
-        if (null != mOnPageChangeListener)
+        if (null != mOnPageChangeListener) {
             mOnPageChangeListener.onPageScrolled(position % getRealCount(), positionOffset, positionOffsetPixels);
+        }
     }
 
     @Override
     public void onPageSelected(int position) {
         position = position % getRealCount();
         switchToPoint(position);
-
-        if (mOnPageChangeListener != null)
+        if (mOnPageChangeListener != null) {
             mOnPageChangeListener.onPageSelected(position);
+        }
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
-        if (mOnPageChangeListener != null)
+        if (mOnPageChangeListener != null) {
             mOnPageChangeListener.onPageScrollStateChanged(state);
-
+        }
     }
 
     @Override
@@ -494,7 +494,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     private class XBannerPageAdapter extends PagerAdapter {
-
         @Override
         public int getCount() {
             //当只有一张图片时返回1
@@ -564,7 +563,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                 imageView = new ImageView(getContext());
                 imageView.setLayoutParams(lp);
                 if (mPointNoraml != null && mPointSelected != null) {
-                    imageView.setImageDrawable(XBannerUtil.getSelector(mPointNoraml, mPointSelected));
+                    imageView.setImageDrawable(XBannerUtils.getSelector(mPointNoraml, mPointSelected));
                 } else {
                     imageView.setImageResource(mPointDrawableResId);
                 }
