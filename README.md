@@ -193,13 +193,11 @@ dependencies {
  - 新增自定义指示器显示位置、 指示点上下内间距、指示点左右内间距等功能  <br />
 
 ## 关于我
-个人邮箱：xhb_199409@163.com
 
-[GitHub主页](https://github.com/xiaohaibin)
-
-[简书主页](http://www.jianshu.com/users/42aed90cf5af/latest_articles)
-
-[个人博客](http://blog.csdn.net/jxnk25)
+* **Email**: <xhb_199409@163.com>
+* **Home**: <http://www.jxnk25.club>
+* **掘金**: <https://juejin.im/user/56fcba0a71cfe4005ca1a57b>
+* **简书**: <http://www.jianshu.com/users/42aed90cf5af/latest_articles>
 
 ## Thanks
 [bingoogolapple](https://github.com/bingoogolapple)
