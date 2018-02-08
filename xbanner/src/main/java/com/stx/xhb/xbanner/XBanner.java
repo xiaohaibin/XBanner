@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
@@ -615,6 +616,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                 case MotionEvent.ACTION_OUTSIDE:
                     startAutoPlay();
                     break;
+                default:
+                    break;
             }
         }
         return super.dispatchTouchEvent(ev);
@@ -626,6 +629,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     public void startAutoPlay() {
         if (mIsAutoPlay && !mIsAutoPlaying) {
             mIsAutoPlaying = true;
+            removeCallbacks(mAutoSwitchTask);
             postDelayed(mAutoSwitchTask, mAutoPalyTime);
         }
     }
@@ -726,11 +730,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     @Override
-    protected void onVisibilityChanged(View changedView, int visibility) {
+    protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
         if (VISIBLE == visibility) {
             startAutoPlay();
-        } else if (INVISIBLE == visibility) {
+        } else if (GONE == visibility) {
             stopAutoPlay();
         }
     }
@@ -753,7 +757,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         private AutoSwitchTask(XBanner mXBanner) {
             this.mXBanner = new WeakReference<>(mXBanner);
         }
-
         @Override
         public void run() {
             XBanner banner = mXBanner.get();
