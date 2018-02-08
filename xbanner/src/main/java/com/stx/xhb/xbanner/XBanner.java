@@ -43,6 +43,7 @@ import java.util.List;
  * 6.支持设置提示性文字  不需要的时候直接设置提示性文字数据为null即可;
  */
 public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlayDelegate, ViewPager.OnPageChangeListener {
+
     private static final int RMP = LayoutParams.MATCH_PARENT;
     private static final int RWC = LayoutParams.WRAP_CONTENT;
     private static final int LWC = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -160,6 +161,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     //默认图片切换速度为1s
     private int mPageChangeDuration = 1000;
 
+    //是否支持提示文字跑马灯效果
+    private boolean mIsTipsMarquee = false;
+
     public void setmAdapter(XBannerAdapter mAdapter) {
         this.mAdapter = mAdapter;
     }
@@ -197,6 +201,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.XBanner);
         if (typedArray != null) {
             mIsAutoPlay = typedArray.getBoolean(R.styleable.XBanner_isAutoPlay, true);
+            mIsTipsMarquee = typedArray.getBoolean(R.styleable.XBanner_isTipsMarquee, false);
             mAutoPalyTime = typedArray.getInteger(R.styleable.XBanner_AutoPlayTime, 5000);
             mPointsIsVisible = typedArray.getBoolean(R.styleable.XBanner_pointsVisibility, true);
             mPointPosition = typedArray.getInt(R.styleable.XBanner_pointsPosition, CENTER);
@@ -240,7 +245,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (mIsNumberIndicator) {
             mNumberIndicatorTv = new TextView(context);
             mNumberIndicatorTv.setId(R.id.xbanner_pointId);
-            mNumberIndicatorTv.setGravity(Gravity.CENTER_VERTICAL);
+            mNumberIndicatorTv.setGravity(Gravity.CENTER);
             mNumberIndicatorTv.setSingleLine(true);
             mNumberIndicatorTv.setEllipsize(TextUtils.TruncateAt.END);
             mNumberIndicatorTv.setTextColor(mTipTextColor);
@@ -276,7 +281,13 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mTipTv = new TextView(context);
         mTipTv.setGravity(Gravity.CENTER_VERTICAL);
         mTipTv.setSingleLine(true);
-        mTipTv.setEllipsize(TextUtils.TruncateAt.END);
+        if (mIsTipsMarquee) {
+            mTipTv.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+            mTipTv.setMarqueeRepeatLimit(3);
+            mTipTv.setSelected(true);
+        } else {
+            mTipTv.setEllipsize(TextUtils.TruncateAt.END);
+        }
         mTipTv.setTextColor(mTipTextColor);
         mTipTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTipTextSize);
         pointContainerRl.addView(mTipTv, tipLp);
@@ -757,6 +768,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         private AutoSwitchTask(XBanner mXBanner) {
             this.mXBanner = new WeakReference<>(mXBanner);
         }
+
         @Override
         public void run() {
             XBanner banner = mXBanner.get();

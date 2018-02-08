@@ -77,7 +77,7 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
                         mOthersList = advertiseEntity.getOthers();
                         List<String> tips = new ArrayList<String>();
                         for (int i = 0; i < mOthersList.size(); i++) {
-                            tips.add(mOthersList.get(i).getDescription());
+                            tips.add(mOthersList.get(i).getDescription()+"哈哈哈哈或或或或或或或或或或或或");
                         }
                         mBannerNet.setData(mOthersList, tips);
                     }

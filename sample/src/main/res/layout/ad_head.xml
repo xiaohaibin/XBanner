@@ -11,6 +11,7 @@
         android:layout_height="180dp"
         app:AutoPlayTime="3000"
         app:isAutoPlay="true"
+        app:isTipsMarquee="true"
         app:isShowNumberIndicator="true"
         app:numberIndicatorBacgroud="@drawable/shape_number_indicator_background"
         app:pointNormal="@drawable/shape_noraml"
