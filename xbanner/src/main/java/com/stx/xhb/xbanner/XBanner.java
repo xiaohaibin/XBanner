@@ -92,9 +92,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     //是否开启自动轮播
     private boolean mIsAutoPlay = true;
 
-    //是否正在播放
-    private boolean mIsAutoPlaying = false;
-
     //自动播放时间
     private int mAutoPalyTime = 5000;
 
