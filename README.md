@@ -136,6 +136,7 @@ dependencies {
 | 属性名 | 属性说明 | 属性值 | 
 | ------------ | ------------- | ------------ |
 | isAutoPlay| 是否支持自动轮播 | boolean类型，默认为true |
+| isTipsMarquee| 是否支持提示性文字跑马灯效果 | boolean类型，默认为false|
 | AutoPlayTime| 图片轮播时间间隔 | int值，默认为5s |
 | pointNormal| 指示器未选中时状态点 | drawable，不设置的话为默认状态点 |
 | pointSelect| 指示器选中时状态点 | drawable，不设置的话为默认状态点 |
@@ -161,6 +162,12 @@ dependencies {
 ```
 
 >## 更新说明
+
+>v1.3.1
+
+ - 新增提示文字跑马灯效果<br />
+ - 修复列表页快速滑动图片切换卡顿问题<br />
+
 
 >v1.3.0
  - 优化代码，增加轮播图片防止重复点击事件<br />
