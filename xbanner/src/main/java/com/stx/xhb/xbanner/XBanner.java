@@ -164,6 +164,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     //是否支持提示文字跑马灯效果
     private boolean mIsTipsMarquee = false;
 
+    private boolean mIsFirstInvisible = true;
+
+
     public void setmAdapter(XBannerAdapter mAdapter) {
         this.mAdapter = mAdapter;
     }
@@ -455,7 +458,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mPageScrollPositionOffset = positionOffset;
 
         if (mTipTv != null && mTipData != null && !mTipData.isEmpty()) {
-            if (positionOffset > .5) {
+            if (positionOffset > 0.5) {
                 mTipTv.setText(mTipData.get((position + 1) % mTipData.size()));
                 ViewCompat.setAlpha(mTipTv, positionOffset);
             } else {
@@ -491,16 +494,16 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (mPageScrollPosition < mViewPager.getCurrentItem()) {
             // 往右滑
             if (xVelocity > VEL_THRESHOLD || (mPageScrollPositionOffset < 0.7f && xVelocity > -VEL_THRESHOLD)) {
-                mViewPager.setBannerCurrentItemInternal(mPageScrollPosition);
+                mViewPager.setBannerCurrentItemInternal(mPageScrollPosition, true);
             } else {
-                mViewPager.setBannerCurrentItemInternal(mPageScrollPosition + 1);
+                mViewPager.setBannerCurrentItemInternal(mPageScrollPosition + 1, true);
             }
         } else {
             // 往左滑
             if (xVelocity < -VEL_THRESHOLD || (mPageScrollPositionOffset > 0.3f && xVelocity < VEL_THRESHOLD)) {
-                mViewPager.setBannerCurrentItemInternal(mPageScrollPosition + 1);
+                mViewPager.setBannerCurrentItemInternal(mPageScrollPosition + 1, true);
             } else {
-                mViewPager.setBannerCurrentItemInternal(mPageScrollPosition);
+                mViewPager.setBannerCurrentItemInternal(mPageScrollPosition, true);
             }
         }
     }
@@ -638,9 +641,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 开始播放
      */
     public void startAutoPlay() {
-        if (mIsAutoPlay && !mIsAutoPlaying) {
-            mIsAutoPlaying = true;
-            removeCallbacks(mAutoSwitchTask);
+        stopAutoPlay();
+        if (mIsAutoPlay) {
             postDelayed(mAutoSwitchTask, mAutoPalyTime);
         }
     }
@@ -649,8 +651,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 停止播放
      */
     public void stopAutoPlay() {
-        if (mIsAutoPlay && mIsAutoPlaying) {
-            mIsAutoPlaying = false;
+        if (mIsAutoPlay) {
             removeCallbacks(mAutoSwitchTask);
         }
     }
@@ -712,7 +713,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param transformer
      */
     public void setPageTransformer(Transformer transformer) {
-        if (transformer != null && mViewPager != null) {
+        if (mViewPager != null && transformer != null) {
             mTransformer = transformer;
             mViewPager.setPageTransformer(true, BasePageTransformer.getPageTransformer(mTransformer));
         }
@@ -745,15 +746,15 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         super.onVisibilityChanged(changedView, visibility);
         if (VISIBLE == visibility) {
             startAutoPlay();
-        } else if (GONE == visibility) {
-            stopAutoPlay();
+        } else if (GONE == visibility || INVISIBLE == visibility) {
+            onInvisibleToUser();
         }
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        stopAutoPlay();
+        onInvisibleToUser();
     }
 
     @Override
@@ -777,9 +778,19 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                     int currentItem = banner.mViewPager.getCurrentItem() + 1;
                     banner.mViewPager.setCurrentItem(currentItem);
                 }
-                banner.postDelayed(banner.mAutoSwitchTask, banner.mAutoPalyTime);
+                banner.startAutoPlay();
             }
         }
+    }
+
+    private void onInvisibleToUser() {
+        stopAutoPlay();
+        // 处理 RecyclerView 中从对用户不可见变为可见时卡顿的问题
+        if (!mIsFirstInvisible && mIsAutoPlay && mViewPager != null && getRealCount() > 0 && mPageScrollPositionOffset != 0) {
+            mViewPager.setCurrentItem(mViewPager.getCurrentItem() - 1, false);
+            mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1, false);
+        }
+        mIsFirstInvisible = false;
     }
 
 

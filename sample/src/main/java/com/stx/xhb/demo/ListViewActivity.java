@@ -92,7 +92,7 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
         // 初始化HeaderView
         View headerView = View.inflate(this, R.layout.ad_head, null);
         mBannerNet = (XBanner) headerView.findViewById(R.id.banner_1);
-        mBannerNet.setPageTransformer(Transformer.Flip);
+        mBannerNet.setPageTransformer(Transformer.Accordion);
         mLv.addHeaderView(headerView);
     }
 
