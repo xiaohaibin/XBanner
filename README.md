@@ -41,7 +41,7 @@ dependencies {
 ```xml
     <com.stx.xhb.xbanner.XBanner
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/banner_1"
+        android:id="@+id/xbanner"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         app:AutoPlayTime="3000"
@@ -60,14 +60,18 @@ dependencies {
 
 > 初始化:直接传入视图集合进行初始化
 
-```
+```     
+        //获取控件
+        XBanner mXBanner = (XBanner) findViewById(R.id.xbanner);
+        
         List<String> imgesUrl = new ArrayList<>();
         imgesUrl.add("http://img3.fengniao.com/forum/attachpics/913/114/36502745.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/99381473502384338.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/77991473496077677.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160906/1291473163104906.jpg");
+
         //添加广告数据
-        mBannerNet.setData(imgesUrl,null);//第二个参数为提示文字资源集合
+        mXBanner.setData(imgesUrl,null);//第二个参数为提示文字资源集合
 
 ```
 
