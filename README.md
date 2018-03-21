@@ -61,7 +61,9 @@ dependencies {
 > 初始化:直接传入视图集合进行初始化
 
 ```     
+        //获取控件
         XBanner mXBanner = (XBanner) findViewById(R.id.xbanner);
+        
         List<String> imgesUrl = new ArrayList<>();
         imgesUrl.add("http://img3.fengniao.com/forum/attachpics/913/114/36502745.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/99381473502384338.jpg");
