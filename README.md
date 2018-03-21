@@ -157,6 +157,7 @@ dependencies {
 | numberIndicatorBacgroud|数字指示器背景| reference |
 | isShowIndicatorOnlyOne|当只有一张图片的时候是否显示指示点| boolean，默认为false，不显示 |
 | pageChangeDuration|图片切换速度| int值，默认为1000ms |
+| isHandLoop|是否支持手动无限循环切换图片| boolean类型，默认为false |
 
 ## 混淆配置
 
