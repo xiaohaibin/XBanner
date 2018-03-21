@@ -12,11 +12,10 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * @anthor：jxnk25
- * @link https://xiaohaibin.github.io/
- * @email： xhb_199409@163.com
- * @github: https://github.com/xiaohaibin
- * @description： 继承ViewPager
+ * author：jxnk25
+ * email： xhb_199409@163.com
+ * github: https://github.com/xiaohaibin
+ * description： 继承ViewPager
  *
  */
 public class XBannerViewPager extends ViewPager {

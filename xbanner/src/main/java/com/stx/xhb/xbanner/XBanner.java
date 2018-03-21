@@ -66,8 +66,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     private XBannerViewPager mViewPager;
 
-    private Transformer mTransformer;
-
     //指示点左右内间距
     private int mPointLeftRightPading;
 
@@ -161,13 +159,15 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     //是否支持提示文字跑马灯效果
     private boolean mIsTipsMarquee = false;
 
+    //是否是第一次不可见
     private boolean mIsFirstInvisible = true;
 
+    //非自动轮播状态下是否可以循环切换
+    private boolean mIsHandLoop = false;
 
     public void setmAdapter(XBannerAdapter mAdapter) {
         this.mAdapter = mAdapter;
     }
-
 
     public XBanner(Context context) {
         this(context, null);
@@ -201,6 +201,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.XBanner);
         if (typedArray != null) {
             mIsAutoPlay = typedArray.getBoolean(R.styleable.XBanner_isAutoPlay, true);
+            mIsHandLoop = typedArray.getBoolean(R.styleable.XBanner_isHandLoop, false);
             mIsTipsMarquee = typedArray.getBoolean(R.styleable.XBanner_isTipsMarquee, false);
             mAutoPalyTime = typedArray.getInteger(R.styleable.XBanner_AutoPlayTime, 5000);
             mPointsIsVisible = typedArray.getBoolean(R.styleable.XBanner_pointsVisibility, true);
@@ -431,6 +432,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mViewPager.setCurrentItem(zeroItem, false);
             startAutoPlay();
         } else {
+            if (mIsHandLoop) {
+                int zeroItem = Integer.MAX_VALUE / 2 - (Integer.MAX_VALUE / 2) % getRealCount();
+                mViewPager.setCurrentItem(zeroItem, false);
+            }
             switchToPoint(0);
         }
     }
@@ -512,7 +517,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             if (mIsOneImg) {
                 return 1;
             }
-            return mIsAutoPlay ? Integer.MAX_VALUE : getRealCount();
+            return mIsAutoPlay ? Integer.MAX_VALUE : (mIsHandLoop ? Integer.MAX_VALUE : getRealCount());
         }
 
         @Override
@@ -554,12 +559,14 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View) object);
         }
 
         @Override
         public int getItemPosition(Object object) {
             return POSITION_NONE;
         }
+
     }
 
     /**
@@ -711,8 +718,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      */
     public void setPageTransformer(Transformer transformer) {
         if (mViewPager != null && transformer != null) {
-            mTransformer = transformer;
-            mViewPager.setPageTransformer(true, BasePageTransformer.getPageTransformer(mTransformer));
+            mViewPager.setPageTransformer(true, BasePageTransformer.getPageTransformer(transformer));
         }
     }
 

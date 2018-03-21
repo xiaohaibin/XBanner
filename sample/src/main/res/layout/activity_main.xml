@@ -23,6 +23,8 @@
             app:pointsContainerBackground="#44aaaaaa"
             app:pointsPosition="RIGHT"
             app:tipTextSize="12sp"
+            app:isAutoPlay="false"
+            app:isHandLoop="false"
             app:isShowNumberIndicator="true"
             app:isShowIndicatorOnlyOne="true"
             app:pageChangeDuration="800"/>

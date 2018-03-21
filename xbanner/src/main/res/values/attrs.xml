@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="XBanner">
         <attr name="isAutoPlay" format="boolean"/>
+        <attr name="isHandLoop" format="boolean"/>
         <attr name="AutoPlayTime" format="integer|reference"/>
         <attr name="pointNormal" format="color|reference"/>
         <attr name="pointSelect" format="color|reference"/>
