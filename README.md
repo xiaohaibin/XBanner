@@ -69,6 +69,7 @@ dependencies {
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/99381473502384338.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/77991473496077677.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160906/1291473163104906.jpg");
+
         //添加广告数据
         mXBanner.setData(imgesUrl,null);//第二个参数为提示文字资源集合
 
