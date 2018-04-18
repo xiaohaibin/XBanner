@@ -165,6 +165,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     //非自动轮播状态下是否可以循环切换
     private boolean mIsHandLoop = false;
 
+    private Transformer mTransformer;
+
     public void setmAdapter(XBannerAdapter mAdapter) {
         this.mAdapter = mAdapter;
     }
@@ -190,6 +192,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mPointTopBottomPading = XBannerUtils.dp2px(context, 6);
         mPointContainerLeftRightPadding = XBannerUtils.dp2px(context, 10);
         mTipTextSize = XBannerUtils.sp2px(context, 10);
+        mTransformer = Transformer.Default;
         //设置默认提示语字体颜色
         mTipTextColor = Color.WHITE;
         //设置指示器背景
@@ -418,7 +421,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setOverScrollMode(mSlideScrollMode);
         mViewPager.setIsAllowUserScroll(mIsAllowUserScroll);
-        mViewPager.setPageTransformer(true,BasePageTransformer.getPageTransformer(Transformer.Default));
+        mViewPager.setPageTransformer(true, BasePageTransformer.getPageTransformer(mTransformer));
         setPageChangeDuration(mPageChangeDuration);
         addView(mViewPager, 0, new LayoutParams(RMP, RMP));
 
@@ -714,8 +717,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param transformer
      */
     public void setPageTransformer(Transformer transformer) {
+        mTransformer = transformer;
         if (mViewPager != null && transformer != null) {
-            mViewPager.setPageTransformer(true, BasePageTransformer.getPageTransformer(transformer));
+            mViewPager.setPageTransformer(true, BasePageTransformer.getPageTransformer(mTransformer));
         }
     }
 
