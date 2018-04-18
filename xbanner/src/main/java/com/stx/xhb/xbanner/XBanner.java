@@ -313,7 +313,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param data
      */
-    public void setData(List<View> views, List<? extends Object> data, List<String> tips) {
+    public void setData(@NonNull List<View> views, @NonNull List<? extends Object> data, List<String> tips) {
 
         if (mIsAutoPlay && views.size() < 3 && mLessViews == null) {
             mIsAutoPlay = false;
@@ -323,18 +323,14 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         this.mTipData = tips;
         this.mViews = views;
 
-        if (data.size() <= 1) {
-            mIsOneImg = true;
-        } else {
-            mIsOneImg = false;
-        }
+        mIsOneImg = data.size() <= 1;
 
-        //初始化ViewPager
-        if (data != null && !data.isEmpty())
+        if (!data.isEmpty()) {
             initViewPager();
+        }
     }
 
-    public void setData(@LayoutRes int layoutResId, List<? extends Object> models, List<String> tips) {
+    public void setData(@LayoutRes int layoutResId, @NonNull List<? extends Object> models, List<String> tips) {
         mViews = new ArrayList<>();
         for (int i = 0; i < models.size(); i++) {
             mViews.add(View.inflate(getContext(), layoutResId, null));
@@ -422,6 +418,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setOverScrollMode(mSlideScrollMode);
         mViewPager.setIsAllowUserScroll(mIsAllowUserScroll);
+        mViewPager.setPageTransformer(true,BasePageTransformer.getPageTransformer(Transformer.Default));
         setPageChangeDuration(mPageChangeDuration);
         addView(mViewPager, 0, new LayoutParams(RMP, RMP));
 
@@ -559,7 +556,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
+//            container.removeView((View) object);
         }
 
         @Override

@@ -6,6 +6,8 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.util.TypedValue;
 
+import java.util.Collection;
+
 /**
  * Created by jxnk25 on 2016/9/13.
  *

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.xbanner.transformers.Transformer;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.zhy.http.okhttp.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +77,7 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
                     public void onResponse(String response, int id) {
                         AdvertiseEntity advertiseEntity = new Gson().fromJson(response, AdvertiseEntity.class);
                         mOthersList = advertiseEntity.getOthers();
+                        mOthersList=new ArrayList<>();
                         List<String> tips = new ArrayList<String>();
                         for (int i = 0; i < mOthersList.size(); i++) {
                             tips.add(mOthersList.get(i).getDescription()+"哈哈哈哈或或或或或或或或或或或或");
@@ -92,7 +95,6 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
         // 初始化HeaderView
         View headerView = View.inflate(this, R.layout.ad_head, null);
         mBannerNet = (XBanner) headerView.findViewById(R.id.banner_1);
-        mBannerNet.setPageTransformer(Transformer.Accordion);
         mLv.addHeaderView(headerView);
     }
 
