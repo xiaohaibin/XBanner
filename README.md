@@ -14,6 +14,7 @@
 - 支持图片切换动画,目前支持10种切换动画，具体可看demo
 - 支持设置图片切换速度
 - 支持设置数字指示器
+- 支持设置图片框架整体占位图
 - 支持Glide/Fresco等主流图片加载框架加载图片
 
 ## 效果图
@@ -158,6 +159,7 @@ dependencies {
 | isShowIndicatorOnlyOne|当只有一张图片的时候是否显示指示点| boolean，默认为false，不显示 |
 | pageChangeDuration|图片切换速度| int值，默认为1000ms |
 | isHandLoop|是否支持手动无限循环切换图片| boolean类型，默认为false |
+| placeholderDrawable|设置整体轮播框架占位图| reference |
 
 ## 混淆配置
 
@@ -167,6 +169,10 @@ dependencies {
 ```
 
 >## 更新说明
+
+>v1.3.6
+
+- 新增支持设置轮播框架整体占位图<br />
 
 >v1.3.5
 
