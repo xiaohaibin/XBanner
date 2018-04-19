@@ -20,5 +20,5 @@ public enum Transformer {
     ZoomStack,
     Stack,
     Depth,
-    Zoom
+    Zoom,
 }

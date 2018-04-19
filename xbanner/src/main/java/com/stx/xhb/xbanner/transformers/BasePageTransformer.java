@@ -13,6 +13,7 @@ import android.view.View;
  */
 public abstract class BasePageTransformer implements ViewPager.PageTransformer {
 
+    @Override
     public void transformPage(View view, float position) {
         if (position < -1.0f) {
             handleInvisiblePage(view, position);

@@ -13,6 +13,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -151,7 +152,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private Drawable mNumberIndicatorBackground;
 
     //只有一张图片时是否显示指示点
-    private boolean isShowIndicatorOnlyOne = false;
+    private boolean mIsShowIndicatorOnlyOne = false;
 
     //默认图片切换速度为1s
     private int mPageChangeDuration = 1000;
@@ -166,6 +167,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private boolean mIsHandLoop = false;
 
     private Transformer mTransformer;
+
+    //轮播框架占位图资源Id
+    private int mPlaceholderDrawableResId = -1;
+
+    private ImageView mPlaceholderImg;
 
     public void setmAdapter(XBannerAdapter mAdapter) {
         this.mAdapter = mAdapter;
@@ -220,8 +226,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mTipTextSize = typedArray.getDimensionPixelSize(R.styleable.XBanner_tipTextSize, mTipTextSize);
             mIsNumberIndicator = typedArray.getBoolean(R.styleable.XBanner_isShowNumberIndicator, mIsNumberIndicator);
             mNumberIndicatorBackground = typedArray.getDrawable(R.styleable.XBanner_numberIndicatorBacgroud);
-            isShowIndicatorOnlyOne = typedArray.getBoolean(R.styleable.XBanner_isShowIndicatorOnlyOne, isShowIndicatorOnlyOne);
+            mIsShowIndicatorOnlyOne = typedArray.getBoolean(R.styleable.XBanner_isShowIndicatorOnlyOne, mIsShowIndicatorOnlyOne);
             mPageChangeDuration = typedArray.getInt(R.styleable.XBanner_pageChangeDuration, mPageChangeDuration);
+            mPlaceholderDrawableResId = typedArray.getResourceId(R.styleable.XBanner_placeholderDrawable, mPlaceholderDrawableResId);
             typedArray.recycle();
         }
 
@@ -309,6 +316,31 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             tipLp.addRule(RelativeLayout.LEFT_OF, R.id.xbanner_pointId);
         }
 
+        setBannerPlaceholderDrawable();
+
+    }
+
+    /**
+     * 设置图片轮播框架占位图
+     */
+    private void setBannerPlaceholderDrawable() {
+        if (mPlaceholderDrawableResId != -1 && mPlaceholderImg == null) {
+            mPlaceholderImg= new ImageView(getContext());
+            mPlaceholderImg.setScaleType(ImageView.ScaleType.FIT_XY);
+            mPlaceholderImg.setImageResource(mPlaceholderDrawableResId);
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RMP, RMP);
+            addView(mPlaceholderImg, layoutParams);
+        }
+    }
+
+    /**
+     * 移除图片轮播框架占位图
+     */
+    private void removeBannerPlaceHolderDrawable(){
+        if (mPlaceholderImg!=null&&this.equals(mPlaceholderImg.getParent())){
+            removeView(mPlaceholderImg);
+            mPlaceholderImg=null;
+        }
     }
 
     /**
@@ -330,6 +362,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         if (!data.isEmpty()) {
             initViewPager();
+            removeBannerPlaceHolderDrawable();
         }
     }
 
@@ -354,7 +387,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param models 每一页的数据模型集合
      * @param tips   每一页的提示文案集合
      */
-    public void setData(List<? extends Object> models, List<String> tips) {
+    public void setData(@NonNull List<? extends Object> models, List<String> tips) {
         setData(R.layout.xbanner_item_image, models, tips);
     }
 
@@ -411,8 +444,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
 
         mViewPager = new XBannerViewPager(getContext());
+
         //当图片多于1张时添加指示点
-        if (isShowIndicatorOnlyOne || (!isShowIndicatorOnlyOne && !mIsOneImg)) {
+        if (mIsShowIndicatorOnlyOne || !mIsOneImg) {
             addPoints();
         }
         //初始化ViewPager
@@ -527,7 +561,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
+
             final int realPosition = position % getRealCount();
+
             View view;
             if (mLessViews == null) {
                 view = mViews.get(realPosition);
@@ -548,8 +584,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                 });
             }
 
-            if (null != mAdapter && mModels.size() != 0) {
-                mAdapter.loadBanner(XBanner.this, mModels == null ? null : mModels.get(realPosition), view, realPosition);
+            if (null != mAdapter && !mModels.isEmpty()) {
+                mAdapter.loadBanner(XBanner.this, mModels.get(realPosition), view, realPosition);
             }
 
             container.addView(view);
@@ -591,7 +627,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
 
         if (mNumberIndicatorTv != null) {
-            if (isShowIndicatorOnlyOne || (!isShowIndicatorOnlyOne && !mIsOneImg)) {
+            if (mIsShowIndicatorOnlyOne || !mIsOneImg) {
                 mNumberIndicatorTv.setVisibility(View.VISIBLE);
             } else {
                 mNumberIndicatorTv.setVisibility(View.INVISIBLE);
@@ -616,8 +652,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mTipTv.setText(mTipData.get(currentPoint));
         }
 
-        if (mNumberIndicatorTv != null && mViews != null && (isShowIndicatorOnlyOne || (!isShowIndicatorOnlyOne && !mIsOneImg))) {
-            mNumberIndicatorTv.setText((currentPoint + 1) + "/" + mViews.size());
+        if (mNumberIndicatorTv != null && mViews != null && (mIsShowIndicatorOnlyOne || !mIsOneImg)) {
+            mNumberIndicatorTv.setText(String.valueOf((currentPoint + 1) + "/" + mViews.size()));
         }
 
     }
@@ -698,7 +734,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param mAutoPlayAble
      */
-    public void setmAutoPlayAble(boolean mAutoPlayAble) {
+    public void setAutoPlayAble(boolean mAutoPlayAble) {
         this.mIsAutoPlay = mAutoPlayAble;
     }
 
@@ -707,7 +743,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param mAutoPalyTime
      */
-    public void setmAutoPalyTime(int mAutoPalyTime) {
+    public void setAutoPalyTime(int mAutoPalyTime) {
         this.mAutoPalyTime = mAutoPalyTime;
     }
 

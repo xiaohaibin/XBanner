@@ -77,7 +77,7 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
                     public void onResponse(String response, int id) {
                         AdvertiseEntity advertiseEntity = new Gson().fromJson(response, AdvertiseEntity.class);
                         mOthersList = advertiseEntity.getOthers();
-                        List<String> tips = new ArrayList<String>();
+                        List<String> tips = new ArrayList<>();
                         for (int i = 0; i < mOthersList.size(); i++) {
                             tips.add(mOthersList.get(i).getDescription()+"哈哈哈哈或或或或或或或或或或或或");
                         }
