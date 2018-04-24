@@ -50,6 +50,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private static final int LWC = LinearLayout.LayoutParams.WRAP_CONTENT;
 
     private static final int VEL_THRESHOLD = 400;
+    public static final int NO_PLACE_HOLDER = -1;
     private int mPageScrollPosition;
     private float mPageScrollPositionOffset;
 
@@ -77,7 +78,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private int mPointContainerLeftRightPadding;
 
     //资源集合
-    private List<? extends Object> mModels;
+    private List<?> mModels;
 
     //处理少于三页时的无限轮播
     private List<View> mLessViews;
@@ -324,7 +325,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 设置图片轮播框架占位图
      */
     private void setBannerPlaceholderDrawable() {
-        if (mPlaceholderDrawableResId != -1 && mPlaceholderImg == null) {
+        if (mPlaceholderDrawableResId != NO_PLACE_HOLDER && mPlaceholderImg == null) {
             mPlaceholderImg= new ImageView(getContext());
             mPlaceholderImg.setScaleType(ImageView.ScaleType.FIT_XY);
             mPlaceholderImg.setImageResource(mPlaceholderDrawableResId);
@@ -348,7 +349,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param data
      */
-    public void setData(@NonNull List<View> views, @NonNull List<? extends Object> data, List<String> tips) {
+    public void setData(@NonNull List<View> views, @NonNull List<?> data, List<String> tips) {
 
         if (mIsAutoPlay && views.size() < 3 && mLessViews == null) {
             mIsAutoPlay = false;
@@ -366,7 +367,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
     }
 
-    public void setData(@LayoutRes int layoutResId, @NonNull List<? extends Object> models, List<String> tips) {
+    public void setData(@LayoutRes int layoutResId, @NonNull List<?> models, List<String> tips) {
         mViews = new ArrayList<>();
         for (int i = 0; i < models.size(); i++) {
             mViews.add(View.inflate(getContext(), layoutResId, null));
@@ -387,7 +388,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param models 每一页的数据模型集合
      * @param tips   每一页的提示文案集合
      */
-    public void setData(@NonNull List<? extends Object> models, List<String> tips) {
+    public void setData(@NonNull List<?> models, List<String> tips) {
         setData(R.layout.xbanner_item_image, models, tips);
     }
 
