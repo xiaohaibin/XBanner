@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -42,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         mXBanner = (XBanner) findViewById(R.id.xbanner);
         mRadioGroup = (RadioGroup) findViewById(R.id.rgp);
+        Button btn= (Button) findViewById(R.id.btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         RadioButton rb= (RadioButton) mRadioGroup.getChildAt(3);
         rb.setChecked(true);
     }

@@ -326,7 +326,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      */
     private void setBannerPlaceholderDrawable() {
         if (mPlaceholderDrawableResId != NO_PLACE_HOLDER && mPlaceholderImg == null) {
-            mPlaceholderImg= new ImageView(getContext());
+            mPlaceholderImg = new ImageView(getContext());
             mPlaceholderImg.setScaleType(ImageView.ScaleType.FIT_XY);
             mPlaceholderImg.setImageResource(mPlaceholderDrawableResId);
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RMP, RMP);
@@ -337,10 +337,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /**
      * 移除图片轮播框架占位图
      */
-    private void removeBannerPlaceHolderDrawable(){
-        if (mPlaceholderImg!=null&&this.equals(mPlaceholderImg.getParent())){
+    private void removeBannerPlaceHolderDrawable() {
+        if (mPlaceholderImg != null && this.equals(mPlaceholderImg.getParent())) {
             removeView(mPlaceholderImg);
-            mPlaceholderImg=null;
+            mPlaceholderImg = null;
         }
     }
 
@@ -446,10 +446,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         mViewPager = new XBannerViewPager(getContext());
 
-        //当图片多于1张时添加指示点
-        if (mIsShowIndicatorOnlyOne || !mIsOneImg) {
-            addPoints();
-        }
+        //添加指示器
+        addPoints();
+
         //初始化ViewPager
         mViewPager.setAdapter(new XBannerPageAdapter());
         mViewPager.setOffscreenPageLimit(1);
@@ -612,18 +611,21 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private void addPoints() {
         if (mPointRealContainerLl != null) {
             mPointRealContainerLl.removeAllViews();
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LWC, LWC);
-            lp.setMargins(mPointLeftRightPading, mPointTopBottomPading, mPointLeftRightPading, mPointTopBottomPading);
-            ImageView imageView;
-            for (int i = 0; i < getRealCount(); i++) {
-                imageView = new ImageView(getContext());
-                imageView.setLayoutParams(lp);
-                if (mPointNoraml != null && mPointSelected != null) {
-                    imageView.setImageDrawable(XBannerUtils.getSelector(mPointNoraml, mPointSelected));
-                } else {
-                    imageView.setImageResource(mPointDrawableResId);
+            //当图片多于1张时添加指示点
+            if (mIsShowIndicatorOnlyOne || !mIsOneImg) {
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LWC, LWC);
+                lp.setMargins(mPointLeftRightPading, mPointTopBottomPading, mPointLeftRightPading, mPointTopBottomPading);
+                ImageView imageView;
+                for (int i = 0; i < getRealCount(); i++) {
+                    imageView = new ImageView(getContext());
+                    imageView.setLayoutParams(lp);
+                    if (mPointNoraml != null && mPointSelected != null) {
+                        imageView.setImageDrawable(XBannerUtils.getSelector(mPointNoraml, mPointSelected));
+                    } else {
+                        imageView.setImageResource(mPointDrawableResId);
+                    }
+                    mPointRealContainerLl.addView(imageView);
                 }
-                mPointRealContainerLl.addView(imageView);
             }
         }
 
