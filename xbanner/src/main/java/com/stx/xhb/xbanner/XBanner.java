@@ -361,10 +361,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         mIsOneImg = data.size() <= 1;
 
-        if (!data.isEmpty()) {
-            initViewPager();
-            removeBannerPlaceHolderDrawable();
-        }
+        addPoints();
+        initViewPager();
+        removeBannerPlaceHolderDrawable();
     }
 
     public void setData(@LayoutRes int layoutResId, @NonNull List<?> models, List<String> tips) {
@@ -445,9 +444,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
 
         mViewPager = new XBannerViewPager(getContext());
-
-        //添加指示器
-        addPoints();
 
         //初始化ViewPager
         mViewPager.setAdapter(new XBannerPageAdapter());
