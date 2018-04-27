@@ -362,8 +362,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mIsOneImg = data.size() <= 1;
 
         addPoints();
-        initViewPager();
-        removeBannerPlaceHolderDrawable();
+
+        if (!data.isEmpty()) {
+            initViewPager();
+            removeBannerPlaceHolderDrawable();
+        }
     }
 
     public void setData(@LayoutRes int layoutResId, @NonNull List<?> models, List<String> tips) {
