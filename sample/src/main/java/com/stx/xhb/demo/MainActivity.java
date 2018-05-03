@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         //设置广告图片点击事件
         mXBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
-            public void onItemClick(XBanner banner, int position) {
+            public void onItemClick(XBanner banner, Object model, int position) {
                 Toast.makeText(MainActivity.this, "点击了第" + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
             }
         });
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void requestdata() {
-        //加载网络图片资源
+        //获取网络图片资源
         String url = "http://news-at.zhihu.com/api/4/themes";
         OkHttpUtils
                 .get()
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Toast.makeText(MainActivity.this, "加载广告数据失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "获取广告数据失败", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

@@ -29,8 +29,6 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
     private XBanner mBannerNet;
     private android.widget.ListView mLv;
     private List<String> mDataList;
-    private ArrayAdapter<String> mAdapter;
-    private List<AdvertiseEntity.OthersBean> mOthersList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +45,8 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
      * 设置适配器
      */
     private void setAdapter() {
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mDataList);
-        mLv.setAdapter(mAdapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mDataList);
+        mLv.setAdapter(adapter);
         mBannerNet.setmAdapter(this);
     }
 
@@ -76,12 +74,12 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
                     @Override
                     public void onResponse(String response, int id) {
                         AdvertiseEntity advertiseEntity = new Gson().fromJson(response, AdvertiseEntity.class);
-                        mOthersList = advertiseEntity.getOthers();
+                        List<AdvertiseEntity.OthersBean> others = advertiseEntity.getOthers();
                         List<String> tips = new ArrayList<>();
-                        for (int i = 0; i < mOthersList.size(); i++) {
-                            tips.add(mOthersList.get(i).getDescription()+"哈哈哈哈或或或或或或或或或或或或");
+                        for (int i = 0; i < others.size(); i++) {
+                            tips.add(others.get(i).getDescription()+"哈哈哈哈或或或或或或或或或或或或");
                         }
-                        mBannerNet.setData(mOthersList, tips);
+                        mBannerNet.setData(others, tips);
                     }
                 });
     }
@@ -106,14 +104,13 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
 
     @Override
     public void loadBanner(XBanner banner, Object model, View view, int position) {
-        Glide.with(this).load(mOthersList.get(position).getThumbnail()).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
+        Glide.with(this).load(((AdvertiseEntity.OthersBean)model).getThumbnail()).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
     }
 
     @Override
-    public void onItemClick(XBanner banner, int position) {
+    public void onItemClick(XBanner banner, Object model, int position) {
         Toast.makeText(ListViewActivity.this, "点击了第" + (position) + "图片", Toast.LENGTH_SHORT).show();
     }
-
 
     /** 为了更好的体验效果建议在下面两个生命周期中调用下面的方法 **/
     @Override

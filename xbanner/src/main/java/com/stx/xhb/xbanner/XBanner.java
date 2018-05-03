@@ -574,11 +574,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                 container.removeView(view);
             }
 
-            if (mOnItemClickListener != null) {
+            if (mOnItemClickListener != null && !mModels.isEmpty()) {
                 view.setOnClickListener(new OnDoubleClickListener() {
                     @Override
                     public void onNoDoubleClick(View v) {
-                        mOnItemClickListener.onItemClick(XBanner.this, realPosition);
+                        mOnItemClickListener.onItemClick(XBanner.this, mModels.get(realPosition), realPosition);
                     }
                 });
             }
@@ -841,7 +841,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     public interface OnItemClickListener {
-        void onItemClick(XBanner banner, int position);
+        void onItemClick(XBanner banner, Object model, int position);
     }
 
     public interface XBannerAdapter {
