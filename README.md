@@ -79,22 +79,26 @@ dependencies {
 
 #### 5.加载广告
 
-> 可根据自己项目需要使用相应的图片加载工具进行加载图片，此处使用Glide，进行加载，可配置占位图等
-
+> 可根据自己项目需要使用相应的图片加载工具进行加载图片，此处使用Glide，进行加载
 
 ```
- mBannerNet.setmAdapter(this);
- @Override
-    public void loadBanner(XBanner banner, View view, int position) {
-        Glide.with(this).load(imgesUrl.get(position)).into((ImageView) view);
-    }
-    
+        //加载广告图片
+        mXBanner.setmAdapter(new XBanner.XBannerAdapter() {
+            @Override
+            public void loadBanner(XBanner banner, Object model, View view, int position) {
+       //此处使用的Glide加载图片，可自行替换自己项目中的图片加载框架
+                Glide.with(MainActivity.this).load(((AdvertiseEntity.OthersBean)
+      model).getThumbnail()).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
+            }
+        });
+
 ```
 
 #### 6.监听广告 item 的单击事件
 
 ```java
- mBannerNet.setOnItemClickListener(new XBanner.OnItemClickListener() {
+
+ mXBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, int position) {
                 Toast.makeText(MainActivity.this, "点击了第"+position+"图片", Toast.LENGTH_SHORT).show();
@@ -260,4 +264,3 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-   

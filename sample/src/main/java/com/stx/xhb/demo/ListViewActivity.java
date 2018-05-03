@@ -53,13 +53,13 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
     }
 
     /**
-     * 初始化listview数据
+     * 初始化数据
      */
     private void initData() {
         //模拟网络列表数据
         mDataList = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            mDataList.add("小明" + i);
+            mDataList.add("XBanner");
         }
         //加载网络图片资源
         String url = "http://news-at.zhihu.com/api/4/themes";
