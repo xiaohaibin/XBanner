@@ -13,7 +13,6 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -78,7 +77,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private int mPointContainerLeftRightPadding;
 
     //资源集合
-    private List<?> mModels;
+    private List<?> mDatas;
 
     //处理少于三页时的无限轮播
     private List<View> mLessViews;
@@ -174,7 +173,17 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     private ImageView mPlaceholderImg;
 
+    /**
+     * 请使用 {@link #loadImage} 替换
+     *
+     * @param mAdapter
+     */
+    @Deprecated
     public void setmAdapter(XBannerAdapter mAdapter) {
+        this.mAdapter = mAdapter;
+    }
+
+    public void loadImage(XBannerAdapter mAdapter) {
         this.mAdapter = mAdapter;
     }
 
@@ -355,7 +364,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mIsAutoPlay = false;
         }
 
-        this.mModels = data;
+        this.mDatas = data;
         this.mTipData = tips;
         this.mViews = views;
 
@@ -479,7 +488,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @return
      */
     public int getRealCount() {
-        return mModels == null ? 0 : mModels.size();
+        return mDatas == null ? 0 : mDatas.size();
     }
 
     public XBannerViewPager getViewPager() {
@@ -574,17 +583,17 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                 container.removeView(view);
             }
 
-            if (mOnItemClickListener != null && !mModels.isEmpty()) {
+            if (mOnItemClickListener != null && !mDatas.isEmpty()) {
                 view.setOnClickListener(new OnDoubleClickListener() {
                     @Override
                     public void onNoDoubleClick(View v) {
-                        mOnItemClickListener.onItemClick(XBanner.this, mModels.get(realPosition), realPosition);
+                        mOnItemClickListener.onItemClick(XBanner.this, mDatas.get(realPosition), realPosition);
                     }
                 });
             }
 
-            if (null != mAdapter && !mModels.isEmpty()) {
-                mAdapter.loadBanner(XBanner.this, mModels.get(realPosition), view, realPosition);
+            if (null != mAdapter && !mDatas.isEmpty()) {
+                mAdapter.loadBanner(XBanner.this, mDatas.get(realPosition), view, realPosition);
             }
 
             container.addView(view);
@@ -643,7 +652,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param currentPoint
      */
     private void switchToPoint(final int currentPoint) {
-        if (mPointRealContainerLl != null & mModels != null && getRealCount() > 1) {
+        if (mPointRealContainerLl != null & mDatas != null && getRealCount() > 1) {
             for (int i = 0; i < mPointRealContainerLl.getChildCount(); i++) {
                 mPointRealContainerLl.getChildAt(i).setEnabled(false);
             }
@@ -679,9 +688,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         return super.dispatchTouchEvent(ev);
     }
 
-    /**
-     * 开始播放
-     */
+
     public void startAutoPlay() {
         stopAutoPlay();
         if (mIsAutoPlay) {
@@ -689,9 +696,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
     }
 
-    /**
-     * 停止播放
-     */
     public void stopAutoPlay() {
         if (mIsAutoPlay) {
             removeCallbacks(mAutoSwitchTask);
@@ -757,7 +761,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     public void setPageTransformer(Transformer transformer) {
         mTransformer = transformer;
         if (mViewPager != null && transformer != null) {
-            mViewPager.setPageTransformer(true, BasePageTransformer.getPageTransformer(mTransformer));
+            mViewPager.setPageTransformer(true, BasePageTransformer.getPageTransformer(transformer));
         }
     }
 

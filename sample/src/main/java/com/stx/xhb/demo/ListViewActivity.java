@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -24,9 +25,9 @@ import okhttp3.Call;
 /**
  * listview 添加headview使用 RecycleView上也是同样的
  */
-public class ListViewActivity extends AppCompatActivity implements XBanner.XBannerAdapter, XBanner.OnItemClickListener {
+public class ListViewActivity extends AppCompatActivity{
 
-    private XBanner mBannerNet;
+    private XBanner mXBanner;
     private android.widget.ListView mLv;
     private List<String> mDataList;
 
@@ -47,7 +48,6 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
     private void setAdapter() {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mDataList);
         mLv.setAdapter(adapter);
-        mBannerNet.setmAdapter(this);
     }
 
     /**
@@ -77,9 +77,9 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
                         List<AdvertiseEntity.OthersBean> others = advertiseEntity.getOthers();
                         List<String> tips = new ArrayList<>();
                         for (int i = 0; i < others.size(); i++) {
-                            tips.add(others.get(i).getDescription()+"哈哈哈哈或或或或或或或或或或或或");
+                            tips.add(others.get(i).getDescription() + "哈哈哈哈或或或或或或或或或或或或");
                         }
-                        mBannerNet.setData(others, tips);
+                        mXBanner.setData(others, tips);
                     }
                 });
     }
@@ -91,7 +91,8 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
         mLv = (android.widget.ListView) findViewById(R.id.lv);
         // 初始化HeaderView
         View headerView = View.inflate(this, R.layout.ad_head, null);
-        mBannerNet = (XBanner) headerView.findViewById(R.id.banner_1);
+        mXBanner = (XBanner) headerView.findViewById(R.id.banner_1);
+        mXBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2));
         mLv.addHeaderView(headerView);
     }
 
@@ -99,29 +100,32 @@ public class ListViewActivity extends AppCompatActivity implements XBanner.XBann
      * 初始化XBanner
      */
     private void setListener() {
-        mBannerNet.setOnItemClickListener(this);
+        mXBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
+            @Override
+            public void onItemClick(XBanner banner, Object model, int position) {
+                Toast.makeText(ListViewActivity.this, "点击了第" + (position) + "图片", Toast.LENGTH_SHORT).show();
+            }
+        });
+        mXBanner.loadImage(new XBanner.XBannerAdapter() {
+            @Override
+            public void loadBanner(XBanner banner, Object model, View view, int position) {
+                Glide.with(ListViewActivity.this).load(((AdvertiseEntity.OthersBean) model).getThumbnail()).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
+            }
+        });
     }
 
-    @Override
-    public void loadBanner(XBanner banner, Object model, View view, int position) {
-        Glide.with(this).load(((AdvertiseEntity.OthersBean)model).getThumbnail()).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
-    }
-
-    @Override
-    public void onItemClick(XBanner banner, Object model, int position) {
-        Toast.makeText(ListViewActivity.this, "点击了第" + (position) + "图片", Toast.LENGTH_SHORT).show();
-    }
-
-    /** 为了更好的体验效果建议在下面两个生命周期中调用下面的方法 **/
+    /**
+     * 为了更好的体验效果建议在下面两个生命周期中调用下面的方法
+     **/
     @Override
     protected void onResume() {
         super.onResume();
-        mBannerNet.startAutoPlay();
+        mXBanner.startAutoPlay();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mBannerNet.stopAutoPlay();
+        mXBanner.stopAutoPlay();
     }
 }

@@ -39,7 +39,7 @@ dependencies {
 ```
 
 #### 3.在布局文件中添加XBanner
-```xml
+```
     <com.stx.xhb.xbanner.XBanner
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/xbanner"
@@ -96,7 +96,7 @@ dependencies {
 
 #### 6.监听广告 item 的单击事件
 
-```java
+```
 
  mXBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
@@ -106,7 +106,7 @@ dependencies {
         });
 ```
 
-#### 7.为了更好的体验，建议j在添加以下代码
+#### 7.为了更好的体验，建议添加以下代码
 
 ```
   /** 为了更好的体验效果建议在下面两个生命周期中调用下面的方法 **/

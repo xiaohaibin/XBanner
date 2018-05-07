@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         mXBanner = (XBanner) findViewById(R.id.xbanner);
+        mXBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ScreenUtil.getScreenWidth(this)/2));
         mRadioGroup = (RadioGroup) findViewById(R.id.rgp);
         RadioButton rb = (RadioButton) mRadioGroup.getChildAt(3);
         rb.setChecked(true);
