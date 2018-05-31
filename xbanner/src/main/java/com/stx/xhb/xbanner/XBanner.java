@@ -359,7 +359,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param data
      */
     public void setData(@NonNull List<View> views, @NonNull List<?> data, List<String> tips) {
-
         if (mIsAutoPlay && views.size() < 3 && mLessViews == null) {
             mIsAutoPlay = false;
         }
@@ -370,11 +369,13 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         mIsOneImg = data.size() <= 1;
 
-        addPoints();
+        initPoints();
+        initViewPager();
 
         if (!data.isEmpty()) {
-            initViewPager();
             removeBannerPlaceHolderDrawable();
+        } else {
+            setBannerPlaceholderDrawable();
         }
     }
 
@@ -468,13 +469,13 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         addView(mViewPager, 0, new LayoutParams(RMP, RMP));
 
         //当图片多于1张时开始轮播
-        if (!mIsOneImg && mIsAutoPlay) {
+        if (!mIsOneImg && mIsAutoPlay && getRealCount() != 0) {
             mViewPager.setAutoPlayDelegate(this);
             int zeroItem = Integer.MAX_VALUE / 2 - (Integer.MAX_VALUE / 2) % getRealCount();
             mViewPager.setCurrentItem(zeroItem, false);
             startAutoPlay();
         } else {
-            if (mIsHandLoop) {
+            if (mIsHandLoop && getRealCount() != 0) {
                 int zeroItem = Integer.MAX_VALUE / 2 - (Integer.MAX_VALUE / 2) % getRealCount();
                 mViewPager.setCurrentItem(zeroItem, false);
             }
@@ -569,7 +570,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
-
+            if (getRealCount() == 0) {
+                return null;
+            }
             final int realPosition = position % getRealCount();
 
             View view;
@@ -616,11 +619,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /**
      * 添加指示点
      */
-    private void addPoints() {
+    private void initPoints() {
         if (mPointRealContainerLl != null) {
             mPointRealContainerLl.removeAllViews();
             //当图片多于1张时添加指示点
-            if (mIsShowIndicatorOnlyOne || !mIsOneImg) {
+            if (getRealCount() > 0 && (mIsShowIndicatorOnlyOne || !mIsOneImg)) {
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LWC, LWC);
                 lp.setMargins(mPointLeftRightPading, mPointTopBottomPading, mPointLeftRightPading, mPointTopBottomPading);
                 ImageView imageView;
@@ -638,10 +641,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
 
         if (mNumberIndicatorTv != null) {
-            if (mIsShowIndicatorOnlyOne || !mIsOneImg) {
+            if (getRealCount() > 0 && (mIsShowIndicatorOnlyOne || !mIsOneImg)) {
                 mNumberIndicatorTv.setVisibility(View.VISIBLE);
             } else {
-                mNumberIndicatorTv.setVisibility(View.INVISIBLE);
+                mNumberIndicatorTv.setVisibility(View.GONE);
             }
         }
     }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     private XBanner mXBanner;
     private RadioGroup mRadioGroup;
+    private List<AdvertiseEntity.OthersBean> mOthersBeans;
+    private boolean isClean=true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         mXBanner = (XBanner) findViewById(R.id.xbanner);
+        Button btn= (Button) findViewById(R.id.btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isClean) {
+                    mOthersBeans.clear();
+                    mXBanner.setData(mOthersBeans, null);
+                    isClean=false;
+                }else {
+                    requestdata();
+                }
+            }
+        });
         mXBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ScreenUtil.getScreenWidth(this)/2));
         mRadioGroup = (RadioGroup) findViewById(R.id.rgp);
         RadioButton rb = (RadioButton) mRadioGroup.getChildAt(3);
@@ -131,12 +147,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response, int id) {
                         AdvertiseEntity advertiseEntity = new Gson().fromJson(response, AdvertiseEntity.class);
-                        List<AdvertiseEntity.OthersBean> others = advertiseEntity.getOthers();
-                        List<String> tips = new ArrayList<String>();
-                        for (int i = 0; i < others.size(); i++) {
-                            tips.add(others.get(i).getDescription());
+                        mOthersBeans = advertiseEntity.getOthers();
+                        ArrayList<String> mTips = new ArrayList<>();
+                        for (int i = 0; i < mOthersBeans.size(); i++) {
+                            mTips.add(mOthersBeans.get(i).getDescription());
                         }
-                        mXBanner.setData(R.layout.xbanner_item_image, others, tips);
+                        mXBanner.setData(mOthersBeans, mTips);
                     }
                 });
 
