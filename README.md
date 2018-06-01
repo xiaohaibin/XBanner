@@ -71,7 +71,7 @@ dependencies {
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/77991473496077677.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160906/1291473163104906.jpg");
 
-        //添加广告数据
+        //添加广告数据  刷新数据也是调用该方法
         mXBanner.setData(imgesUrl,null);//第二个参数为提示文字资源集合
 
 ```
@@ -173,6 +173,10 @@ dependencies {
 ```
 
 >## 更新说明
+
+>v1.3.9
+
+- 修复刷新数据后，数据为空状态，占位图不显示<br />
 
 >v1.3.7
 
