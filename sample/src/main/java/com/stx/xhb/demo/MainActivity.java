@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private XBanner mXBanner;
     private RadioGroup mRadioGroup;
     private List<AdvertiseEntity.OthersBean> mOthersBeans;
-    private boolean isClean=true;
+    private boolean isClean = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,20 +45,21 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         mXBanner = (XBanner) findViewById(R.id.xbanner);
-        Button btn= (Button) findViewById(R.id.btn);
+        Button btn = (Button) findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isClean) {
                     mOthersBeans.clear();
-                    mXBanner.setData(mOthersBeans, null);
-                    isClean=false;
-                }else {
+                    mXBanner.setData(null, null);
+                    isClean = false;
+                } else {
+                    isClean = true;
                     requestdata();
                 }
             }
         });
-        mXBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,ScreenUtil.getScreenWidth(this)/2));
+        mXBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2));
         mRadioGroup = (RadioGroup) findViewById(R.id.rgp);
         RadioButton rb = (RadioButton) mRadioGroup.getChildAt(3);
         rb.setChecked(true);
@@ -152,6 +153,8 @@ public class MainActivity extends AppCompatActivity {
                         for (int i = 0; i < mOthersBeans.size(); i++) {
                             mTips.add(mOthersBeans.get(i).getDescription());
                         }
+                        //刷新数据之后，需要重新设置是否支持自动轮播
+                        mXBanner.setAutoPlayAble(mOthersBeans.size() > 1);
                         mXBanner.setData(mOthersBeans, mTips);
                     }
                 });

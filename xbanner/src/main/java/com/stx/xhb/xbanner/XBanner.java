@@ -359,6 +359,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param data
      */
     public void setData(@NonNull List<View> views, @NonNull List<?> data, List<String> tips) {
+
         if (mIsAutoPlay && views.size() < 3 && mLessViews == null) {
             mIsAutoPlay = false;
         }
@@ -371,7 +372,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         initPoints();
         initViewPager();
-
+        removeBannerPlaceHolderDrawable();
         if (!data.isEmpty()) {
             removeBannerPlaceHolderDrawable();
         } else {
@@ -381,8 +382,16 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     public void setData(@LayoutRes int layoutResId, @NonNull List<?> models, List<String> tips) {
         mViews = new ArrayList<>();
+
+        if(models==null){
+            models=new ArrayList<>();
+        }
+
         for (int i = 0; i < models.size(); i++) {
             mViews.add(View.inflate(getContext(), layoutResId, null));
+        }
+        if (mViews.isEmpty()) {
+            mIsAutoPlay = false;
         }
         if (mIsAutoPlay && mViews.size() < 3) {
             mLessViews = new ArrayList<>(mViews);
