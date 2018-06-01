@@ -1,4 +1,7 @@
+![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.png)
+
 # XBanner
+
 支持图片无限轮播的控件，可进行自定义功能。
 
 
