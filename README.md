@@ -70,7 +70,7 @@ dependencies {
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/77991473496077677.jpg");
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160906/1291473163104906.jpg");
 
-        //添加广告数据  刷新数据也是调用该方法
+        //添加轮播图片数据（图片数据不局限于网络图片、本地资源文件、View 都可以）,刷新数据也是调用该方法
         mXBanner.setData(imgesUrl,null);//第二个参数为提示文字资源集合
 
 ```
@@ -85,8 +85,10 @@ dependencies {
         mXBanner.setmAdapter(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
-       //此处使用的Glide加载图片，可自行替换自己项目中的图片加载框架
-                Glide.with(MainActivity.this).load(((AdvertiseEntity.OthersBean)
+            
+       //1、此处使用的Glide加载图片，可自行替换自己项目中的图片加载框架
+       //2、返回的图片路径为Object类型，你只需要强转成你传输的类型就行，切记不要胡乱强转！
+       Glide.with(MainActivity.this).load(((AdvertiseEntity.OthersBean)
       model).getThumbnail()).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
             }
         });
@@ -135,7 +137,7 @@ dependencies {
 ```
 2.使用setData()方法进行设置
 ```
-   mXBanner.setData(R.layout.image_fresco.layout,mOthersList,tips);
+   mXBanner.setData(R.layout.image_fresco.layout,“图片资源集合”,"提示文字集合，没有传null");
    
 ```
 
