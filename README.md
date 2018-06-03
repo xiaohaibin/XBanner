@@ -81,8 +81,8 @@ dependencies {
 > 可根据自己项目需要使用相应的图片加载工具进行加载图片，此处使用Glide，进行加载
 
 ```
-        //加载广告图片
-        mXBanner.setmAdapter(new XBanner.XBannerAdapter() {
+      //加载广告图片
+      mXBanner.loadImage(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
             
