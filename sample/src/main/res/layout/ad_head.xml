@@ -8,17 +8,17 @@
     <com.stx.xhb.xbanner.XBanner
         android:id="@+id/banner_1"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         app:AutoPlayTime="3000"
-        app:isAutoPlay="true"
-        app:isHandLoop="true"
-        app:isTipsMarquee="true"
-        app:placeholderDrawable="@drawable/banner_placeholder"
-        app:isShowNumberIndicator="true"
-        app:numberIndicatorBacgroud="@drawable/shape_number_indicator_background"
+        app:placeholderDrawable="@mipmap/xbanner_logo"
         app:pointNormal="@drawable/shape_noraml"
         app:pointSelect="@drawable/shape_selected"
+        app:pointsContainerBackground="#442e2e2e"
         app:pointsPosition="RIGHT"
-        app:tipTextSize="12sp"/>
+        app:tipTextSize="12sp"
+        app:isAutoPlay="true"
+        app:isShowNumberIndicator="true"
+        app:isShowIndicatorOnlyOne="true"
+        app:pageChangeDuration="800"/>
 
 </LinearLayout>

@@ -8,4 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="GuideTheme" parent="Theme.AppCompat.NoActionBar">
+
+    </style>
+
 </resources>

@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">XBanner</string>
+    <string-array name="transforms">
+        <item>Default</item>
+        <item>Alpha</item>
+        <item>Rotate</item>
+        <item>Cube</item>
+        <item>Flip</item>
+        <item>Accordion</item>
+        <item>ZoomFade</item>
+        <item>ZoomCenter</item>
+        <item>ZoomStack</item>
+        <item>Stack</item>
+        <item>Depth</item>
+        <item>Zoom</item>
+    </string-array>
 </resources>
