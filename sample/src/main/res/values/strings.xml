@@ -14,4 +14,10 @@
         <item>Depth</item>
         <item>Zoom</item>
     </string-array>
+
+    <string-array name="pages">
+        <item>BannerTransFormers</item>
+        <item>GuideActivity</item>
+        <item>CustomViews</item>
+    </string-array>
 </resources>

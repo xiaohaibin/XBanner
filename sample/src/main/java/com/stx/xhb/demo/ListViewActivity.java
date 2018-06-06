@@ -50,40 +50,40 @@ public class ListViewActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
-                    case 1://默认切换动画
+                    case 0://默认切换动画
                         mXBanner.setPageTransformer(Transformer.Default);
                         break;
-                    case 2:
+                    case 1:
                         mXBanner.setPageTransformer(Transformer.Alpha);
                         break;
-                    case 3:
+                    case 2:
                         mXBanner.setPageTransformer(Transformer.Rotate);
                         break;
-                    case 4:
+                    case 3:
                         mXBanner.setPageTransformer(Transformer.Cube);
                         break;
-                    case 5:
+                    case 4:
                         mXBanner.setPageTransformer(Transformer.Flip);
                         break;
-                    case 6:
+                    case 5:
                         mXBanner.setPageTransformer(Transformer.Accordion);
                         break;
-                    case 7:
+                    case 6:
                         mXBanner.setPageTransformer(Transformer.ZoomFade);
                         break;
-                    case 8:
+                    case 7:
                         mXBanner.setPageTransformer(Transformer.ZoomCenter);
                         break;
-                    case 9:
+                    case 8:
                         mXBanner.setPageTransformer(Transformer.ZoomStack);
                         break;
-                    case 10:
+                    case 9:
                         mXBanner.setPageTransformer(Transformer.Stack);
                         break;
-                    case 11:
+                    case 10:
                         mXBanner.setPageTransformer(Transformer.Depth);
                         break;
-                    case 12:
+                    case 11:
                         mXBanner.setPageTransformer(Transformer.Zoom);
                         break;
                     default:
@@ -132,7 +132,7 @@ public class ListViewActivity extends AppCompatActivity {
         mLv = (android.widget.ListView) findViewById(R.id.lv);
         // 初始化HeaderView
         View headerView = View.inflate(this, R.layout.ad_head, null);
-        mXBanner = (XBanner) headerView.findViewById(R.id.banner_1);
+        mXBanner = (XBanner) headerView.findViewById(R.id.banner);
         mXBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2));
         mLv.addHeaderView(headerView);
     }
@@ -145,7 +145,7 @@ public class ListViewActivity extends AppCompatActivity {
         mXBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model, int position) {
-                Toast.makeText(ListViewActivity.this, "点击了第" + (position) + "图片", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListViewActivity.this, "点击了第" + (position+1) + "图片", Toast.LENGTH_SHORT).show();
             }
         });
         //加载广告图片

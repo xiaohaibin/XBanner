@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '25.0.3'
 
     defaultConfig {
         applicationId "com.stx.xhb.xbanner"
@@ -26,7 +26,7 @@ dependencies {
     compile 'com.zhy:okhttputils:2.6.2'
     compile project(':xbanner')
 //    compile 'com.xhb:xbanner:1.3.1'
-    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.1.0'
 }

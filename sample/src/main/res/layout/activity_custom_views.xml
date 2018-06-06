@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.stx.xhb.demo.MainActivity">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.stx.xhb.demo.CustomViewsActivity">
     <com.stx.xhb.xbanner.XBanner
         android:id="@+id/banner"
         android:layout_width="match_parent"
@@ -14,17 +13,10 @@
         app:AutoPlayTime="3000"
         app:isAutoPlay="true"
         app:isShowIndicatorOnlyOne="true"
-        app:isShowNumberIndicator="true"
         app:pageChangeDuration="800"
         app:pointNormal="@drawable/shape_noraml"
         app:pointSelect="@drawable/shape_selected"
         app:pointsContainerBackground="#442e2e2e"
-        app:pointsPosition="RIGHT"
+        app:pointsPosition="CENTER"
         app:tipTextSize="12sp" />
-
-    <ListView
-        android:id="@+id/lv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
 </LinearLayout>
