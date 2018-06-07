@@ -145,7 +145,7 @@ public class ListViewActivity extends AppCompatActivity {
         mXBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model, int position) {
-                Toast.makeText(ListViewActivity.this, "点击了第" + (position+1) + "图片", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListViewActivity.this, "点击了第" + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
             }
         });
         //加载广告图片
