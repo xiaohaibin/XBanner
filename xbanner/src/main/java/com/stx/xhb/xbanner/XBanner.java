@@ -358,7 +358,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param data
      */
-    public void setData(@NonNull List<View> views, @NonNull List<?> data, List<String> tips) {
+    private void setData(@NonNull List<View> views, @NonNull List<?> data, List<String> tips) {
 
         if (mIsAutoPlay && views.size() < 3 && mLessViews == null) {
             mIsAutoPlay = false;
