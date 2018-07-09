@@ -139,7 +139,7 @@ dependencies {
 ```
 2.使用setData()方法进行设置
 ```
-   mXBanner.setData(R.layout.image_fresco.layout,“图片资源集合”,"提示文字集合，没有传null");
+   mXBanner.setData(R.layout.image_fresco,“图片资源集合”,"提示文字集合，没有传null");
    
 ```
 
