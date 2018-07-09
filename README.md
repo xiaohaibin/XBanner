@@ -127,7 +127,7 @@ dependencies {
 
 ```
 
-#### 8.当使用Fresco加载图片时，需要自定义布局文件
+#### 8.使用 Fresco 加载图片时，需要自定义布局文件
 1.自定义xml布局文件 image_fresco.layout
 ```
  <?xml version="1.0" encoding="utf-8"?>
@@ -137,7 +137,7 @@ dependencies {
     android:layout_height="match_parent"
   />
 ```
-2.使用setData()方法进行设置
+2.使用 setData() 方法进行设置
 ```
    mXBanner.setData(R.layout.image_fresco,“图片资源集合”,"提示文字集合，没有传null");
    
