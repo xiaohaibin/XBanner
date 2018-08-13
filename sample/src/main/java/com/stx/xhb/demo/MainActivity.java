@@ -1,5 +1,6 @@
 package com.stx.xhb.demo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         //设置广告图片点击事件
         mBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
-            public void onItemClick(XBanner banner, Object model, int position) {
+            public void onItemClick(XBanner banner, Object model,View view, int position) {
                 Toast.makeText(MainActivity.this, "点击了第" + (position+1) + "图片", Toast.LENGTH_SHORT).show();
             }
         });
