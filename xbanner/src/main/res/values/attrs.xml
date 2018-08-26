@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="XBanner">
-        <attr name="isAutoPlay" format="boolean" />
-        <attr name="isHandLoop" format="boolean" />
-        <attr name="AutoPlayTime" format="integer|reference" />
-        <attr name="pointNormal" format="color|reference" />
-        <attr name="pointSelect" format="color|reference" />
-        <attr name="pointsVisibility" format="boolean" />
-        <attr name="isTipsMarquee" format="boolean" />
+        <attr name="isAutoPlay" format="boolean"/>
+        <attr name="isHandLoop" format="boolean"/>
+        <attr name="AutoPlayTime" format="integer|reference"/>
+        <attr name="pointNormal" format="reference"/>
+        <attr name="pointSelect" format="reference"/>
+        <attr name="indicatorDrawable" format="reference"/>
+        <attr name="pointsVisibility" format="boolean"/>
+        <attr name="isTipsMarquee" format="boolean"/>
         <attr name="pointsPosition" format="enum">
-            <enum name="LEFT" value="0" />
-            <enum name="CENTER" value="1" />
-            <enum name="RIGHT" value="2" />
+            <enum name="LEFT" value="0"/>
+            <enum name="CENTER" value="1"/>
+            <enum name="RIGHT" value="2"/>
         </attr>
-        <attr name="pointsContainerBackground" format="reference|color" />
+        <attr name="pointsContainerBackground" format="reference|color"/>
         <attr name="pointContainerPosition" format="enum">
-            <enum name="TOP" value="10" />
-            <enum name="BOTTOM" value="12" />
+            <enum name="TOP" value="10"/>
+            <enum name="BOTTOM" value="12"/>
         </attr>
         <!-- 指示点容器左右内间距 -->
-        <attr name="pointContainerLeftRightPadding" format="dimension" />
+        <attr name="pointContainerLeftRightPadding" format="dimension"/>
         <!-- 指示点上下内间距 -->
-        <attr name="pointTopBottomPadding" format="dimension" />
+        <attr name="pointTopBottomPadding" format="dimension"/>
         <!-- 指示点左右内间距 -->
-        <attr name="pointLeftRightPadding" format="dimension" />
+        <attr name="pointLeftRightPadding" format="dimension"/>
         <!-- 提示文案的文字颜色 -->
-        <attr name="tipTextColor" format="reference|color" />
+        <attr name="tipTextColor" format="reference|color"/>
         <!-- 提示文案的文字大小 -->
-        <attr name="tipTextSize" format="dimension" />
+        <attr name="tipTextSize" format="dimension"/>
         <!--是否是数字指示器-->
-        <attr name="isShowNumberIndicator" format="boolean" />
+        <attr name="isShowNumberIndicator" format="boolean"/>
         <!-- 数字指示器背景 -->
-        <attr name="numberIndicatorBacgroud" format="reference" />
+        <attr name="numberIndicatorBacgroud" format="reference"/>
         <!-- 当只有一页数据时是否显示指示器，默认值为false -->
-        <attr name="isShowIndicatorOnlyOne" format="boolean" />
+        <attr name="isShowIndicatorOnlyOne" format="boolean"/>
         <!-- 图片切换速度 -->
-        <attr name="pageChangeDuration" format="integer" />
+        <attr name="pageChangeDuration" format="integer"/>
         <!--图片轮播框架展占位图-->
-        <attr name="placeholderDrawable" format="reference" />
+        <attr name="placeholderDrawable" format="reference"/>
     </declare-styleable>
 </resources>
