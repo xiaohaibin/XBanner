@@ -103,7 +103,7 @@ dependencies {
 
  mXBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
-            public void onItemClick(XBanner banner, int position) {
+            public void onItemClick(XBanner banner, Object model,View view, int position) {
                 Toast.makeText(MainActivity.this, "点击了第"+position+"图片", Toast.LENGTH_SHORT).show();
             }
         });
@@ -176,6 +176,11 @@ dependencies {
 ```
 
 >## 更新说明
+
+
+>v1.4.1
+
+- 点击事件回传当前点击View<br />
 
 >v1.3.9
 
