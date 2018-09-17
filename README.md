@@ -19,6 +19,7 @@
 - 支持设置数字指示器
 - 支持设置图片框架整体占位图
 - 支持Glide/Fresco等主流图片加载框架加载图片
+- 支持自定义布局
 
 ## 效果图
 
@@ -128,7 +129,8 @@ dependencies {
 ```
 
 #### 8.使用 Fresco 加载图片时，需要自定义布局文件
-1.自定义xml布局文件 image_fresco.layout
+
+1.自定义xml布局文件 R.layout.image_fresco
 ```
  <?xml version="1.0" encoding="utf-8"?>
  <com.facebook.drawee.view.SimpleDraweeView
@@ -142,6 +144,40 @@ dependencies {
    mXBanner.setData(R.layout.image_fresco,“图片资源集合”,"提示文字集合，没有传null");
    
 ```
+#### 9.自定义布局
+
+1.自定义自己需要展示的Banner显示布局，如：R.layout.customelayout
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:text="1"
+    android:textSize="40dp"
+    android:gravity="center"
+    android:textColor="@android:color/white"
+    android:background="@color/colorYellow"/>
+```
+
+2.使用 setData() 方法进行设置
+```
+   mXBanner.setData(R.layout.customelayout,“图片资源集合”,"提示文字集合，没有传null");
+```
+
+3.设置数据，通过loadImage方法回传的View根据自定义布局设置的Id找到相应的控件进行数据设置
+```
+mBanner.loadImage(new XBanner.XBannerAdapter() {
+               @Override
+               public void loadBanner(XBanner banner, Object model, View view, int position) {
+                   TextView tvContent = (TextView) view.findViewById(R.id.tv);
+                   tvContent.setText(String.valueOf(position + 1));
+                   view.setBackgroundColor(Color.parseColor((String) model));
+               }
+           });
+```
+
 
 ## 自定义属性说明
 
