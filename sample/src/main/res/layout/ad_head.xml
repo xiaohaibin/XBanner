@@ -11,8 +11,6 @@
         android:layout_height="200dp"
         app:AutoPlayTime="3000"
         app:placeholderDrawable="@mipmap/xbanner_logo"
-        app:pointNormal="@drawable/shape_noraml"
-        app:pointSelect="@drawable/shape_selected"
         app:pointsContainerBackground="#442e2e2e"
         app:pointsPosition="CENTER"
         app:tipTextSize="12sp"

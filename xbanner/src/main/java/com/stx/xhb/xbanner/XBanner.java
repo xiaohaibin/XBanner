@@ -56,7 +56,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private ViewPager.OnPageChangeListener mOnPageChangeListener;
     private OnItemClickListener mOnItemClickListener;
 
-    //指示点位置
+    /**
+     * 指示点位置
+     */
     public static final int LEFT = 0;
     public static final int CENTER = 1;
     public static final int RIGHT = 2;
@@ -67,22 +69,34 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     private XBannerViewPager mViewPager;
 
-    //指示点左右内间距
+    /**
+     * 指示点左右内间距
+     */
     private int mPointLeftRightPading;
 
-    //指示点上下内间距
+    /**
+     * 指示点上下内间距
+     */
     private int mPointTopBottomPading;
 
-    //指示点容器左右内间距
+    /**
+     * 指示点容器左右内间距
+     */
     private int mPointContainerLeftRightPadding;
 
-    //资源集合
+    /**
+     * 资源集合
+     */
     private List<?> mDatas;
 
-    //处理少于三页时的无限轮播
+    /**
+     * 处理少于三页时的无限轮播
+     */
     private List<View> mLessViews;
 
-    //视图集合
+    /**
+     * 视图集合
+     */
     private List<View> mViews;
 
     //是否只有一张图片
@@ -231,6 +245,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mPointContainerBackgroundDrawable = typedArray.getDrawable(R.styleable.XBanner_pointsContainerBackground);
             mPointNoraml = typedArray.getDrawable(R.styleable.XBanner_pointNormal);
             mPointSelected = typedArray.getDrawable(R.styleable.XBanner_pointSelect);
+            mPointDrawableResId=typedArray.getResourceId(R.styleable.XBanner_indicatorDrawable,mPointDrawableResId);
             mTipTextColor = typedArray.getColor(R.styleable.XBanner_tipTextColor, mTipTextColor);
             mTipTextSize = typedArray.getDimensionPixelSize(R.styleable.XBanner_tipTextSize, mTipTextSize);
             mIsNumberIndicator = typedArray.getBoolean(R.styleable.XBanner_isShowNumberIndicator, mIsNumberIndicator);
@@ -655,12 +670,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 切换指示器
      * @param currentPoint
      */
-    private void switchToPoint(final int currentPoint) {
+    private void switchToPoint(int currentPoint) {
         if (mPointRealContainerLl != null & mDatas != null && getRealCount() > 1) {
             for (int i = 0; i < mPointRealContainerLl.getChildCount(); i++) {
-                mPointRealContainerLl.getChildAt(i).setEnabled(false);
+                mPointRealContainerLl.getChildAt(i).setEnabled(i == currentPoint);
+                mPointRealContainerLl.getChildAt(i).requestLayout();
             }
-            mPointRealContainerLl.getChildAt(currentPoint).setEnabled(true);
         }
 
         if (mTipTv != null && mTipData != null) {
