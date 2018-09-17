@@ -40,7 +40,7 @@ dependencies {
 <uses-permission android:name="android.permission.INTERNET" />
 ```
 
-#### 3.在布局文件中添加XBanner
+#### 3.在布局文件中添加 XBanner
 ```
     <com.stx.xhb.xbanner.XBanner
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -59,7 +59,7 @@ dependencies {
 ```
 
 
-#### 4.在Activity或者Fragment中配置
+#### 4.在 Activity 或者 Fragment 中配置
 
 > 初始化:直接传入视图集合进行初始化
 
@@ -130,7 +130,7 @@ dependencies {
 
 #### 8.使用 Fresco 加载图片时，需要自定义布局文件
 
-1.自定义xml布局文件 R.layout.image_fresco
+1.自定义布局文件 R.layout.image_fresco
 ```
  <?xml version="1.0" encoding="utf-8"?>
  <com.facebook.drawee.view.SimpleDraweeView
@@ -166,7 +166,7 @@ dependencies {
    mXBanner.setData(R.layout.customelayout,“图片资源集合”,"提示文字集合，没有传null");
 ```
 
-3.设置数据，通过loadImage方法回传的View根据自定义布局设置的Id找到相应的控件进行数据设置，具体请看[CustomViewsActivity](https://github.com/xiaohaibin/XBanner/blob/master/sample/src/main/java/com/stx/xhb/demo/CustomViewsActivity.java)
+3.设置数据，通过 loadImage() 方法回传的 View 根据自定义布局设置的Id找到相应的控件进行数据设置，具体请看 [CustomViewsActivity](https://github.com/xiaohaibin/XBanner/blob/master/sample/src/main/java/com/stx/xhb/demo/CustomViewsActivity.java)
 ```
 mBanner.loadImage(new XBanner.XBannerAdapter() {
                @Override
