@@ -16,8 +16,6 @@ import java.util.List;
  */
 public class CustomViewsActivity extends AppCompatActivity {
 
-    private XBanner mBanner;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,14 +24,14 @@ public class CustomViewsActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mBanner = (XBanner) findViewById(R.id.banner);
+        XBanner banner = (XBanner) findViewById(R.id.banner);
         final List<String> data = new ArrayList<>();
         data.add("#FFA54F");
         data.add("#8EE5EE");
         data.add("#00FA9A");
         data.add("#CD8162");
-        mBanner.setData(R.layout.layout_custom_view,data, null);
-        mBanner.loadImage(new XBanner.XBannerAdapter() {
+        banner.setData(R.layout.layout_custom_view,data, null);
+        banner.loadImage(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
                 TextView tvContent = (TextView) view.findViewById(R.id.tv);

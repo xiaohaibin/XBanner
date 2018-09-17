@@ -166,7 +166,7 @@ dependencies {
    mXBanner.setData(R.layout.customelayout,“图片资源集合”,"提示文字集合，没有传null");
 ```
 
-3.设置数据，通过loadImage方法回传的View根据自定义布局设置的Id找到相应的控件进行数据设置
+3.设置数据，通过loadImage方法回传的View根据自定义布局设置的Id找到相应的控件进行数据设置，具体请看[CustomViewsActivity](https://github.com/xiaohaibin/XBanner/blob/master/sample/src/main/java/com/stx/xhb/demo/CustomViewsActivity.java)
 ```
 mBanner.loadImage(new XBanner.XBannerAdapter() {
                @Override
