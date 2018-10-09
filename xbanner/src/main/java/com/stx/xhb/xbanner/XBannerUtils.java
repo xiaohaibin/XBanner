@@ -1,8 +1,10 @@
 package com.stx.xhb.xbanner;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
 /**
@@ -36,5 +38,13 @@ public class XBannerUtils {
     public static int sp2px(Context context, float spValue) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, spValue, context.getResources().getDisplayMetrics());
     }
+
+    public static int getScreenWidth(Context context){
+        Resources resources = context.getResources();
+        DisplayMetrics dm = resources.getDisplayMetrics();
+        int width = dm.widthPixels;
+        return width;
+    }
+
 
 }

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.stx.xhb.demo.MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.stx.xhb.demo.ClipChildrenModeActivity">
 
     <com.stx.xhb.xbanner.XBanner
         android:id="@+id/banner"
@@ -16,13 +15,7 @@
         app:isShowIndicatorOnlyOne="true"
         app:isShowNumberIndicator="false"
         app:pageChangeDuration="800"
-        app:pointsContainerBackground="#442e2e2e"
-        app:pointsPosition="RIGHT"
-        app:tipTextSize="12sp" />
-
-    <ListView
-        android:id="@+id/lv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        app:isClipChildrenMode="true"
+        app:pointsContainerBackground="@android:color/transparent"
+        app:pointsPosition="LEFT" />
 </LinearLayout>

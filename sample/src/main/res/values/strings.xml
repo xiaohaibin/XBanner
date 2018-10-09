@@ -19,5 +19,6 @@
         <item>BannerTransFormers</item>
         <item>GuideActivity</item>
         <item>CustomViews</item>
+        <item>ClipChildrenMode</item>
     </string-array>
 </resources>

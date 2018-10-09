@@ -1,13 +1,13 @@
 package com.stx.xhb.demo;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         mBanner = (XBanner) findViewById(R.id.banner);
+        mBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2));
         ListView listView = (ListView) findViewById(R.id.lv);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.pages));
         listView.setAdapter(adapter);
@@ -45,13 +46,16 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        startActivity(new Intent(MainActivity.this,ListViewActivity.class));
+                        startActivity(new Intent(MainActivity.this, ListViewActivity.class));
                         break;
                     case 1:
-                        startActivity(new Intent(MainActivity.this,GuideActivity.class));
+                        startActivity(new Intent(MainActivity.this, GuideActivity.class));
                         break;
                     case 2:
-                        startActivity(new Intent(MainActivity.this,CustomViewsActivity.class));
+                        startActivity(new Intent(MainActivity.this, CustomViewsActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(MainActivity.this, ClipChildrenModeActivity.class));
                         break;
                     default:
                         break;
@@ -67,8 +71,8 @@ public class MainActivity extends AppCompatActivity {
         //设置广告图片点击事件
         mBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
-            public void onItemClick(XBanner banner, Object model,View view, int position) {
-                Toast.makeText(MainActivity.this, "点击了第" + (position+1) + "图片", Toast.LENGTH_SHORT).show();
+            public void onItemClick(XBanner banner, Object model, View view, int position) {
+                Toast.makeText(MainActivity.this, "点击了第" + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
             }
         });
         //加载广告图片

@@ -58,6 +58,8 @@ public abstract class BasePageTransformer implements ViewPager.PageTransformer {
                 return new DepthPageTransformer();
             case Zoom:
                 return new ZoomPageTransformer();
+            case Scale:
+                return new ScalePageTransformer();
             default:
                 return new DefaultPageTransformer();
         }

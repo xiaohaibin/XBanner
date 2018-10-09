@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.stx.xhb.xbanner.XBanner;
+import com.stx.xhb.xbanner.transformers.ScalePageTransformer;
 import com.stx.xhb.xbanner.transformers.Transformer;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -116,11 +117,11 @@ public class ListViewActivity extends AppCompatActivity {
                         List<AdvertiseEntity.OthersBean> others = advertiseEntity.getOthers();
                         List<String> tips = new ArrayList<>();
                         for (int i = 0; i < others.size(); i++) {
-                            tips.add(others.get(i).getDescription() + "哈哈哈哈或或或或或或或或或或或或");
+                            tips.add(others.get(i).getDescription());
                         }
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mXBanner.setAutoPlayAble(others.size() > 1);
-                        mXBanner.setData(others, tips);
+                        mXBanner.setData(others, null);
                     }
                 });
     }

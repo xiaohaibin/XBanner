@@ -2,14 +2,14 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 //提交到仓库中的版本号
-version = "1.4.1"
+version = "1.4.2"
 
 android {
     compileSdkVersion 23
     buildToolsVersion '27.0.3'
 
     defaultConfig {
-        minSdkVersion 12
+        minSdkVersion 14
         targetSdkVersion 23
     }
 }

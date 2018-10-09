@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomViewsActivity"></activity>
+        <activity android:name=".CustomViewsActivity" />
+        <activity android:name=".ClipChildrenModeActivity"></activity>
     </application>
 
 </manifest>
