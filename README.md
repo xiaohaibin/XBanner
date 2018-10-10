@@ -24,9 +24,7 @@
 
 ## 效果图
 
-![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.gif)
-
-|模式|效果
+|模式|效果图
 |---|---|
 |指示器模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_3.png)|
 |数字模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_6.png)|
@@ -34,6 +32,7 @@
 |指示器加标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_1.png)|
 |标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_2.png)|
 |一屏多个模式（类似魅族banner）|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_4.png)|
+|整体效果展示|![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.gif)|
 
 ## 基本使用
 
