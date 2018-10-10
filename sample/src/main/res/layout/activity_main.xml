@@ -17,7 +17,7 @@
         app:isShowIndicatorOnlyOne="true"
         app:isShowNumberIndicator="true"
         app:pageChangeDuration="800"
-        app:numberIndicatorBacgroud="@drawable/shape_number_indicator_background"
+        app:pointsContainerBackground="#442e2e2e"
         app:pointsPosition="RIGHT"
         app:tipTextSize="12sp" />
 
