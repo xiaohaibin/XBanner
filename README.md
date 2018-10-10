@@ -6,6 +6,7 @@
 ![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.png)
 
 ## 主要功能：
+- 支持一屏显示多个（类似魅族商店banner）
 - 支持根据服务端返回的数据动态设置广告条的总页数
 - 支持大于等于1页时的无限循环自动轮播、手指按下暂停轮播、抬起手指开始轮播
 - 支持自定义状态指示点位置  左 、中 、右
@@ -203,6 +204,10 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | pageChangeDuration|图片切换速度| int值，默认为1000ms |
 | isHandLoop|是否支持手动无限循环切换图片| boolean类型，默认为false |
 | placeholderDrawable|设置整体轮播框架占位图| reference |
+| isClipChildrenMode|是否开启一屏显示多个模式|  boolean类型，默认为false 默认不开启 |
+| clipChildrenLeftRightMargin|一屏显示多个左右间距| dimension ，默认为30dp|
+| clipChildrenTopBottomMargin|一屏显示多个上下间距| dimension ，默认为30dp|
+| viewpagerMargin|viewpager页面间距| dimension ，默认为10dp|
 
 ## 混淆配置
 
@@ -211,8 +216,16 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 -keep class com.stx.xhb.xbanner.**{*;}
 ```
 
+## 注意事项
+
+- 1.一屏显示多个模式默认使用ScalePageTransformer切换动画，也可以自定义
+
 >## 更新说明
 
+
+>v1.4.2
+
+- 新增支持一屏显示多个模式<br />
 
 >v1.4.1
 
