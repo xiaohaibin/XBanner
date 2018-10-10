@@ -341,22 +341,20 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (CENTER == mPointPosition) {
             mPointRealContainerLp.addRule(RelativeLayout.CENTER_HORIZONTAL);
             if (mIsClipChildrenMode) {
-                pointLp.bottomMargin = mClipChildrenTopBottomMargin;
+                mPointRealContainerLp.bottomMargin = mClipChildrenTopBottomMargin;
             }
             pointLp.addRule(RelativeLayout.LEFT_OF, R.id.xbanner_pointId);
         } else if (LEFT == mPointPosition) {
             mPointRealContainerLp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
             mTipTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
             if (mIsClipChildrenMode) {
-                pointLp.leftMargin = mClipChildrenLeftRightMargin+mViewPagerMargin;
-                pointLp.bottomMargin = mClipChildrenTopBottomMargin;
+                mPointRealContainerLp.setMargins(mClipChildrenLeftRightMargin,0,0,mClipChildrenTopBottomMargin);
             }
             pointLp.addRule(RelativeLayout.RIGHT_OF, R.id.xbanner_pointId);
         } else if (RIGHT == mPointPosition) {
             mPointRealContainerLp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             if (mIsClipChildrenMode) {
-                pointLp.rightMargin = mClipChildrenLeftRightMargin+mViewPagerMargin;
-                pointLp.bottomMargin = mClipChildrenTopBottomMargin;
+                mPointRealContainerLp.setMargins(0,0,mClipChildrenLeftRightMargin,mClipChildrenTopBottomMargin);
             }
             pointLp.addRule(RelativeLayout.LEFT_OF, R.id.xbanner_pointId);
         }
@@ -405,8 +403,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         mIsOneImg = data.size() <= 1;
 
-        initPoints();
         initViewPager();
+        initPoints();
         removeBannerPlaceHolderDrawable();
         if (!data.isEmpty()) {
             removeBannerPlaceHolderDrawable();

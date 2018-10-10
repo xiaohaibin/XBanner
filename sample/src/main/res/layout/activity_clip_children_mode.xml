@@ -17,5 +17,6 @@
         app:pageChangeDuration="800"
         app:isClipChildrenMode="true"
         app:pointsContainerBackground="@android:color/transparent"
-        app:pointsPosition="LEFT" />
+        app:pointsPosition="CENTER" />
+
 </LinearLayout>
