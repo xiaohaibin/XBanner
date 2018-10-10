@@ -26,6 +26,15 @@
 
 ![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.gif)
 
+|模式|效果
+|---|---|
+|指示器模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_3.png)|
+|数字模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_6.png)|
+|数字加标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_5.png)|
+|指示器加标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_1.png)|
+|标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_2.png)|
+|一屏多个模式（类似魅族banner）|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_4.png)|
+
 ## 基本使用
 
 #### 1.添加Gradle依赖
