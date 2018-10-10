@@ -405,8 +405,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         mIsOneImg = data.size() <= 1;
 
-        initViewPager();
         initPoints();
+        initViewPager();
         removeBannerPlaceHolderDrawable();
         if (!data.isEmpty()) {
             removeBannerPlaceHolderDrawable();
