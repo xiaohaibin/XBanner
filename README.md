@@ -25,7 +25,7 @@
 ## 效果图
 
 |模式|效果图
-|---|---|
+| :-: | :-: |
 |指示器模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_3.png)|
 |数字模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_6.png)|
 |数字加标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_5.png)|
