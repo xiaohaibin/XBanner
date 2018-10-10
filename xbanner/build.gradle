@@ -5,17 +5,17 @@ apply plugin: 'com.jfrog.bintray'
 version = "1.4.2"
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 26
     buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 26
     }
 }
 
 dependencies {
-    compileOnly 'com.android.support:support-v4:23+'
+    compileOnly 'com.android.support:support-v4:26+'
 }
 ///方法1
 def siteUrl = 'https://github.com/xiaohaibin/XBanner'      // 项目的主页   这个是说明，可随便填

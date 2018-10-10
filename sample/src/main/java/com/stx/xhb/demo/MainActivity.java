@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                         List<AdvertiseEntity.OthersBean> others = advertiseEntity.getOthers();
                         List<String> tips = new ArrayList<>();
                         for (int i = 0; i < others.size(); i++) {
-                            tips.add(others.get(i).getDescription() + "哈哈哈哈或或或或或或或或或或或或");
+                            tips.add(others.get(i).getDescription());
                         }
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner.setAutoPlayAble(others.size() > 1);

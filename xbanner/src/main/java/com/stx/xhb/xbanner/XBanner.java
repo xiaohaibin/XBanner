@@ -263,6 +263,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mPlaceholderDrawableResId = typedArray.getResourceId(R.styleable.XBanner_placeholderDrawable, mPlaceholderDrawableResId);
             mIsClipChildrenMode = typedArray.getBoolean(R.styleable.XBanner_isClipChildrenMode, false);
             mClipChildrenLeftRightMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_clipChildrenLeftRightMargin, mClipChildrenLeftRightMargin);
+            mClipChildrenTopBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_clipChildrenTopBottomMargin, mClipChildrenTopBottomMargin);
+            mViewPagerMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_viewpagerMargin, mViewPagerMargin);
             typedArray.recycle();
         }
 
@@ -348,13 +350,13 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mPointRealContainerLp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
             mTipTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
             if (mIsClipChildrenMode) {
-                mPointRealContainerLp.setMargins(mClipChildrenLeftRightMargin,0,0,mClipChildrenTopBottomMargin);
+                mPointRealContainerLp.setMargins(mClipChildrenLeftRightMargin, 0, 0, mClipChildrenTopBottomMargin);
             }
             pointLp.addRule(RelativeLayout.RIGHT_OF, R.id.xbanner_pointId);
         } else if (RIGHT == mPointPosition) {
             mPointRealContainerLp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             if (mIsClipChildrenMode) {
-                mPointRealContainerLp.setMargins(0,0,mClipChildrenLeftRightMargin,mClipChildrenTopBottomMargin);
+                mPointRealContainerLp.setMargins(0, 0, mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin);
             }
             pointLp.addRule(RelativeLayout.LEFT_OF, R.id.xbanner_pointId);
         }
@@ -818,6 +820,17 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     /**
+     * 设置viewpager间距
+     * @param viewPagerMargin 单位dp
+     */
+    public void setViewPagerMargin(int viewPagerMargin){
+        this.mViewPagerMargin=viewPagerMargin;
+        if(mViewPager!=null){
+            mViewPager.setPageMargin(XBannerUtils.dp2px(getContext(),viewPagerMargin));
+        }
+    }
+
+    /**
      * 自定义翻页动画效果
      * @param transformer
      */
@@ -830,7 +843,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     public void setClipChildrenLeftRightMargin(int clipChildrenLeftRightMargin) {
         mClipChildrenLeftRightMargin = clipChildrenLeftRightMargin;
     }
-
 
 
     /**

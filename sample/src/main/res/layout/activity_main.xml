@@ -13,10 +13,11 @@
         android:layout_height="wrap_content"
         app:AutoPlayTime="3000"
         app:isAutoPlay="true"
+        app:pointsVisibility="false"
         app:isShowIndicatorOnlyOne="true"
-        app:isShowNumberIndicator="false"
+        app:isShowNumberIndicator="true"
         app:pageChangeDuration="800"
-        app:pointsContainerBackground="#442e2e2e"
+        app:numberIndicatorBacgroud="@drawable/shape_number_indicator_background"
         app:pointsPosition="RIGHT"
         app:tipTextSize="12sp" />
 
