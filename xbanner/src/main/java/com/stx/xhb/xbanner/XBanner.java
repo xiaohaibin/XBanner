@@ -396,6 +396,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         if (mIsAutoPlay && views.size() < 3 && mLessViews == null) {
             mIsAutoPlay = false;
+        }
+
+        if (views.size()<3&&mLessViews==null){
             mIsClipChildrenMode = false;
         }
 
@@ -512,7 +515,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (mIsClipChildrenMode) {
             mViewPager.setClipChildren(false);
             mViewPager.setPageMargin(mViewPagerMargin);
-            mViewPager.setOffscreenPageLimit(3);
             setClipChildren(false);
             layoutParams.leftMargin = mClipChildrenLeftRightMargin;
             layoutParams.rightMargin = mClipChildrenLeftRightMargin;
