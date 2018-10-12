@@ -398,7 +398,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mIsAutoPlay = false;
         }
 
-        if (views.size()<3&&mLessViews==null){
+        if (views.size() < 3) {
             mIsClipChildrenMode = false;
         }
 
@@ -504,7 +504,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         mViewPager = new XBannerViewPager(getContext());
         mViewPager.setAdapter(new XBannerPageAdapter());
-        mViewPager.setOffscreenPageLimit(1);
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setOverScrollMode(mSlideScrollMode);
         mViewPager.setIsAllowUserScroll(mIsAllowUserScroll);
@@ -514,6 +513,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         if (mIsClipChildrenMode) {
             mViewPager.setClipChildren(false);
+            //添加缓存，本地资源图片加载会出问题
+            if (!(mDatas.get(0) instanceof Integer)) {
+                mViewPager.setOffscreenPageLimit(3);
+            }
             mViewPager.setPageMargin(mViewPagerMargin);
             setClipChildren(false);
             layoutParams.leftMargin = mClipChildrenLeftRightMargin;
@@ -825,10 +828,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 设置viewpager间距
      * @param viewPagerMargin 单位dp
      */
-    public void setViewPagerMargin(int viewPagerMargin){
-        this.mViewPagerMargin=viewPagerMargin;
-        if(mViewPager!=null){
-            mViewPager.setPageMargin(XBannerUtils.dp2px(getContext(),viewPagerMargin));
+    public void setViewPagerMargin(int viewPagerMargin) {
+        this.mViewPagerMargin = viewPagerMargin;
+        if (mViewPager != null) {
+            mViewPager.setPageMargin(XBannerUtils.dp2px(getContext(), viewPagerMargin));
         }
     }
 
