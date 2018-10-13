@@ -11,19 +11,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ListViewActivity" />
+        <activity android:name=".ListViewActivity" android:screenOrientation="portrait" />
         <activity
             android:name=".GuideActivity"
-            android:theme="@style/GuideTheme" />
-        <activity android:name=".MainActivity">
+            android:theme="@style/GuideTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomViewsActivity" />
-        <activity android:name=".ClipChildrenModeActivity"></activity>
+        <activity android:name=".CustomViewsActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ClipChildrenModeActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
