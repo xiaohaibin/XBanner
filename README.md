@@ -229,6 +229,10 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 
 >## 更新说明
 
+>v1.4.5
+
+- 修复一屏显示多个模式在手动轮播下，左右滑动高度不一致bug<br />
+
 >v1.4.4
 
 - 修复一屏显示多个模式在setOffscreenPageLimit(3)导致中间banner不显示bug<br />
