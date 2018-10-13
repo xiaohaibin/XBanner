@@ -6,7 +6,7 @@
 ![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.png)
 
 ## 主要功能：
-- 支持一屏显示多个（类似魅族商店banner）
+- 支持一屏显示多个
 - 支持根据服务端返回的数据动态设置广告条的总页数
 - 支持大于等于1页时的无限循环自动轮播、手指按下暂停轮播、抬起手指开始轮播
 - 支持自定义状态指示点位置  左 、中 、右
