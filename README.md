@@ -31,7 +31,7 @@
 |数字加标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_5.png)|
 |指示器加标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_1.png)|
 |标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_2.png)|
-|一屏多个模式（类似魅族banner）|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_4.png)|
+|一屏多个模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_4.png)|
 
 ## 基本使用
 
