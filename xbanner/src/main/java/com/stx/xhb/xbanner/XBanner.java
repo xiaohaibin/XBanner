@@ -571,13 +571,16 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             }
         }
 
-        if (null != mOnPageChangeListener) {
+        if (null != mOnPageChangeListener && getRealCount() != 0) {
             mOnPageChangeListener.onPageScrolled(position % getRealCount(), positionOffset, positionOffsetPixels);
         }
     }
 
     @Override
     public void onPageSelected(int position) {
+        if (getRealCount() == 0) {
+            return;
+        }
         position = position % getRealCount();
         switchToPoint(position);
         if (mOnPageChangeListener != null) {
