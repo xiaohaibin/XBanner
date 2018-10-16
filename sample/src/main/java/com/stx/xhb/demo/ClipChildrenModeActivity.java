@@ -14,6 +14,7 @@ import com.google.gson.Gson;
 import com.stx.xhb.xbanner.XBanner;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
+import com.zhy.http.okhttp.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
         mBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2));
         initBanner();
         initData();
+//        initLocalImage();
     }
 
 
@@ -54,6 +56,9 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                 //此处适用Fresco加载图片，可自行替换自己的图片加载框架
                 SimpleDraweeView draweeView = (SimpleDraweeView)view;
                 draweeView.setImageURI(Uri.parse(((AdvertiseEntity.OthersBean) model).getThumbnail()));
+
+//                加载本地图片展示
+//                ((ImageView)view).setImageResource((Integer) model);
             }
         });
     }
@@ -77,11 +82,27 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response, int id) {
                         AdvertiseEntity advertiseEntity = new Gson().fromJson(response, AdvertiseEntity.class);
-                        List<AdvertiseEntity.OthersBean> others = advertiseEntity.getOthers();
+//                        List<AdvertiseEntity.OthersBean> others = advertiseEntity.getOthers();
+                        List<AdvertiseEntity.OthersBean> others = new ArrayList<>();
+                        for (int i = 0; i < 3; i++) {
+                            others.add(advertiseEntity.getOthers().get(i));
+                        }
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner.setAutoPlayAble(others.size() > 1);
                         mBanner.setData(R.layout.layout_fresco_imageview,others, null);
                     }
                 });
+    }
+
+    /**
+     * 加载本地图片
+     */
+    private void initLocalImage(){
+        List<Integer> data=new ArrayList<>();
+        data.add(R.drawable.banner_placeholder);
+        data.add(R.drawable.banner_placeholder);
+        data.add(R.drawable.banner_placeholder);
+        data.add(R.drawable.banner_placeholder);
+        mBanner.setData(data, null);
     }
 }
