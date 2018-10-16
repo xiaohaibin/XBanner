@@ -1,12 +1,12 @@
 ## XBanner
 
 [![latestVersion](https://api.bintray.com/packages/jxnk25/maven/XBanner/images/download.svg) ](https://bintray.com/jxnk25/maven/XBanner/_latestVersion)
- [![License](https://img.shields.io/badge/License-Apache--2.0-green.svg)]()
+ [![License](https://img.shields.io/badge/License-Apache--2.0-green.svg)](https://github.com/xiaohaibin/XBanner/blob/master/LICENSE)
  
 ![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.png)
 
 ## 主要功能：
-- 支持一屏显示多个（类似魅族商店banner）
+- 支持一屏显示多个
 - 支持根据服务端返回的数据动态设置广告条的总页数
 - 支持大于等于1页时的无限循环自动轮播、手指按下暂停轮播、抬起手指开始轮播
 - 支持自定义状态指示点位置  左 、中 、右
@@ -31,7 +31,7 @@
 |数字加标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_5.png)|
 |指示器加标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_1.png)|
 |标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_2.png)|
-|一屏多个模式（类似魅族banner）|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_4.png)|
+|一屏多个模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot_4.png)|
 
 ## 基本使用
 
@@ -229,6 +229,10 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 
 >## 更新说明
 
+>v1.4.5
+
+- 修复一屏显示多个模式在手动轮播下，左右滑动高度不一致bug<br />
+
 >v1.4.4
 
 - 修复一屏显示多个模式在setOffscreenPageLimit(3)导致中间banner不显示bug<br />
@@ -318,7 +322,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 
 ![欢迎加入“大话安卓”技术交流群，互相学习提升](http://upload-images.jianshu.io/upload_images/1956769-326c166b86ed8e94.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-### 如果喜欢，还请statr&Fork&follow进行支持，谢谢O(∩_∩)O~。
+### 如果喜欢，还请statr&&follow支持一下，谢谢O(∩_∩)O~。
 
 License
 --
