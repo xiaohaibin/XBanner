@@ -229,6 +229,10 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 
 >## 更新说明
 
+>v1.4.7
+
+- 修复一屏多显模式加载3张网络图片中间显示空白bug
+ 
 >v1.4.5
 
 - 修复一屏显示多个模式在手动轮播下，左右滑动高度不一致bug<br />
