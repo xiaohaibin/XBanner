@@ -225,7 +225,8 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 
 ## 注意事项
 
-- 1.一屏显示多个模式默认使用ScalePageTransformer切换动画，也可以自定义
+- 1.一屏显示多个模式默认使用ScalePageTransformer切换动画，也可以自定义；
+- 2.一屏显示多个模式上下间距默认30dp，若想左右页面与中间页面保持一致，把clipChildrenTopBottomMargin 设置成0dp即可；
 
 >## 更新说明
 
