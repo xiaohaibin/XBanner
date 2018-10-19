@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
+import com.stx.xhb.demo.entity.MeiZhiEntity;
+import com.stx.xhb.demo.entity.TuchongEntity;
 import com.stx.xhb.xbanner.XBanner;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -55,7 +57,9 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
             public void loadBanner(XBanner banner, Object model, View view, int position) {
                 //此处适用Fresco加载图片，可自行替换自己的图片加载框架
                 SimpleDraweeView draweeView = (SimpleDraweeView)view;
-                draweeView.setImageURI(Uri.parse(((AdvertiseEntity.OthersBean) model).getThumbnail()));
+                TuchongEntity.FeedListBean.EntryBean listBean = ((TuchongEntity.FeedListBean) model).getEntry();
+                String url = "https://photo.tuchong.com/" + listBean.getImages().get(0).getUser_id() + "/f/" + listBean.getImages().get(0).getImg_id() + ".jpg";
+                draweeView.setImageURI(Uri.parse(url));
 
 //                加载本地图片展示
 //                ((ImageView)view).setImageResource((Integer) model);
@@ -68,7 +72,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
      */
     private void initData() {
         //加载网络图片资源
-        String url = "http://news-at.zhihu.com/api/4/themes";
+        String url = "https://api.tuchong.com/2/wall-paper/app";
         OkHttpUtils
                 .get()
                 .url(url)
@@ -81,15 +85,18 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        AdvertiseEntity advertiseEntity = new Gson().fromJson(response, AdvertiseEntity.class);
-//                        List<AdvertiseEntity.OthersBean> others = advertiseEntity.getOthers();
-                        List<AdvertiseEntity.OthersBean> others = new ArrayList<>();
-                        for (int i = 0; i < 3; i++) {
-                            others.add(advertiseEntity.getOthers().get(i));
+                        TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
+                        List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
+                        List<TuchongEntity.FeedListBean> data=new ArrayList<>();
+                        for (int i = 0; i < others.size(); i++) {
+                            TuchongEntity.FeedListBean feedListBean = others.get(i);
+                            if ("post".equals(feedListBean.getType())){
+                                data.add(feedListBean);
+                            }
                         }
                         //刷新数据之后，需要重新设置是否支持自动轮播
-                        mBanner.setAutoPlayAble(others.size() > 1);
-                        mBanner.setData(R.layout.layout_fresco_imageview,others, null);
+                        mBanner.setAutoPlayAble(data.size() > 1);
+                        mBanner.setData(R.layout.layout_fresco_imageview, data, null);
                     }
                 });
     }
