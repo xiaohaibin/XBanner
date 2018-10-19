@@ -117,15 +117,17 @@ public class ListViewActivity extends AppCompatActivity {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
                         List<TuchongEntity.FeedListBean> data=new ArrayList<>();
+                        List<String> tips=new ArrayList<>();
                         for (int i = 0; i < others.size(); i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
                             if ("post".equals(feedListBean.getType())){
                                 data.add(feedListBean);
+                                tips.add(feedListBean.getEntry().getTitle());
                             }
                         }
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mXBanner.setAutoPlayAble(data.size() > 1);
-                        mXBanner.setData(data, null);
+                        mXBanner.setData(data, tips);
                     }
                 });
     }
