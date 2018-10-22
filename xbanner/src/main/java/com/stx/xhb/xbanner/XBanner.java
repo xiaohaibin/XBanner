@@ -514,7 +514,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (mIsClipChildrenMode) {
             mViewPager.setClipChildren(false);
             /*fix 网络图片只有3张或加载本地资源图片的bug*/
-            if (!(mDatas.get(0) instanceof Integer) && mDatas.size() > 3) {
+            if (!(mDatas.get(0) instanceof Integer) && mDatas.size() > 4) {
                 mViewPager.setOffscreenPageLimit(3);
             }
             mViewPager.setPageMargin(mViewPagerMargin);

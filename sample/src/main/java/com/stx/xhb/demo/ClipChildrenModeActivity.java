@@ -1,22 +1,19 @@
 package com.stx.xhb.demo;
 
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
-import com.stx.xhb.demo.entity.MeiZhiEntity;
 import com.stx.xhb.demo.entity.TuchongEntity;
 import com.stx.xhb.xbanner.XBanner;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
-import com.zhy.http.okhttp.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
