@@ -231,6 +231,11 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 
 >## 更新说明
 
+
+>v1.4.8
+
+- 修复一屏多显模式加载4张网络图片右边显示空白bug
+
 >v1.4.7
 
 - 修复一屏多显模式加载3张网络图片中间显示空白bug
