@@ -128,6 +128,8 @@ public class ListViewActivity extends AppCompatActivity {
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mXBanner.setAutoPlayAble(data.size() > 1);
                         mXBanner.setData(data, tips);
+                        //从指定位置开始轮播
+                        mXBanner.getViewPager().setCurrentItem(2);
                     }
                 });
     }

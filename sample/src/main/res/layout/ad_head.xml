@@ -12,7 +12,7 @@
         app:AutoPlayTime="3000"
         app:placeholderDrawable="@mipmap/xbanner_logo"
         app:pointsContainerBackground="#442e2e2e"
-        app:pointsPosition="CENTER"
+        app:pointsPosition="RIGHT"
         app:tipTextSize="12sp"
         app:isAutoPlay="true"
         app:isShowNumberIndicator="false"

@@ -863,6 +863,14 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
     }
 
+    /**
+     * 设置非自动轮播状态下是否可以循环切换
+     * @param handLoop
+     */
+    public void setHandLoop(boolean handLoop) {
+        mIsHandLoop = handLoop;
+    }
+
     @Override
     protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
