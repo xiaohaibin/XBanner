@@ -1,6 +1,7 @@
 package com.stx.xhb.demo;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,9 +12,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.stx.xhb.demo.entity.TuchongEntity;
 import com.stx.xhb.xbanner.XBanner;
-import com.stx.xhb.xbanner.transformers.ScalePageTransformer;
 import com.stx.xhb.xbanner.transformers.Transformer;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -30,12 +33,13 @@ public class ListViewActivity extends AppCompatActivity {
 
     private XBanner mXBanner;
     private android.widget.ListView mLv;
+    private SwipeRefreshLayout mRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listview);
-        initData();
+        requsetData();
         initView();
         setAdapter();
         setListener();
@@ -97,9 +101,9 @@ public class ListViewActivity extends AppCompatActivity {
     }
 
     /**
-     * 初始化数据
+     * 加载网络数据
      */
-    private void initData() {
+    private void requsetData() {
         //加载网络图片资源
         String url = "https://api.tuchong.com/2/wall-paper/app";
         OkHttpUtils
@@ -128,8 +132,6 @@ public class ListViewActivity extends AppCompatActivity {
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mXBanner.setAutoPlayAble(data.size() > 1);
                         mXBanner.setData(data, tips);
-                        //从指定位置开始轮播
-                        mXBanner.getViewPager().setCurrentItem(2);
                     }
                 });
     }
@@ -138,12 +140,22 @@ public class ListViewActivity extends AppCompatActivity {
      * 初始化View
      */
     private void initView() {
-        mLv = (android.widget.ListView) findViewById(R.id.lv);
+        mLv = findViewById(R.id.lv);
+        mRefreshLayout = findViewById(R.id.refresh_layout);
+
         // 初始化HeaderView
         View headerView = View.inflate(this, R.layout.ad_head, null);
         mXBanner = (XBanner) headerView.findViewById(R.id.banner);
         mXBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2));
         mLv.addHeaderView(headerView);
+
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                requsetData();
+                mRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     /**

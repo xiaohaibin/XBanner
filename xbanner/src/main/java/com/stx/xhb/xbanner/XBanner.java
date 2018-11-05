@@ -735,7 +735,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (mIsAutoPlay && !mIsOneImg) {
+        if (mIsAutoPlay && !mIsOneImg & mViewPager != null) {
             switch (ev.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     float touchX = ev.getRawX();
