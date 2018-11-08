@@ -30,5 +30,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-4'
-
+    implementation 'me.relex:circleindicator:2.1.0'
 }

@@ -22,6 +22,7 @@ import com.zhy.http.okhttp.utils.L;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.relex.circleindicator.CircleIndicator;
 import okhttp3.Call;
 
 public class MainActivity extends AppCompatActivity {

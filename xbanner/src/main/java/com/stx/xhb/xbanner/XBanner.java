@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.IntDef;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
@@ -26,6 +27,8 @@ import android.widget.TextView;
 import com.stx.xhb.xbanner.transformers.BasePageTransformer;
 import com.stx.xhb.xbanner.transformers.Transformer;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +63,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     public static final int LEFT = 0;
     public static final int CENTER = 1;
     public static final int RIGHT = 2;
+    @IntDef({LEFT, CENTER, RIGHT})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface INDICATOR_GRAVITY { }
 
     private AutoSwitchTask mAutoSwitchTask;
 
@@ -137,8 +143,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     public static final int TOP = 10;
     public static final int BOTTOM = 12;
 
-    private int mPointContainerPosition = BOTTOM;
+    @IntDef({TOP, BOTTOM})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface INDICATOR_POSITION { }
 
+    private int mPointContainerPosition = BOTTOM;
     private XBannerAdapter mAdapter;
 
     /** 指示器容器 */
@@ -469,7 +478,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 对应三个位置 CENTER,RIGHT,LEFT
      * @param position
      */
-    public void setPoinstPosition(int position) {
+    public void setPoinstPosition(@INDICATOR_GRAVITY int position) {
         //设置指示器布局位置
         if (CENTER == position) {
             mPointRealContainerLp.addRule(RelativeLayout.CENTER_HORIZONTAL);
@@ -484,7 +493,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 设置指示器容器的位置  TOP,BOTTOM
      * @param position
      */
-    public void setPointContainerPosition(int position) {
+    public void setPointContainerPosition(@INDICATOR_POSITION int position) {
         if (BOTTOM == position) {
             mPointContainerLp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         } else if (TOP == position) {
@@ -668,7 +677,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
-//            container.removeView((View) object);
         }
 
         @Override
