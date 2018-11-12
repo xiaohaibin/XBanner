@@ -32,8 +32,8 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
         mBanner = (XBanner) findViewById(R.id.banner);
         mBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2));
         initBanner();
-//        initData();
-        initLocalImage();
+        initData();
+//        initLocalImage();
     }
 
 
@@ -53,13 +53,13 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
                 //此处适用Fresco加载图片，可自行替换自己的图片加载框架
-//                SimpleDraweeView draweeView = (SimpleDraweeView)view;
-//                TuchongEntity.FeedListBean.EntryBean listBean = ((TuchongEntity.FeedListBean) model).getEntry();
-//                String url = "https://photo.tuchong.com/" + listBean.getImages().get(0).getUser_id() + "/f/" + listBean.getImages().get(0).getImg_id() + ".jpg";
-//                draweeView.setImageURI(Uri.parse(url));
+                SimpleDraweeView draweeView = (SimpleDraweeView)view;
+                TuchongEntity.FeedListBean.EntryBean listBean = ((TuchongEntity.FeedListBean) model).getEntry();
+                String url = "https://photo.tuchong.com/" + listBean.getImages().get(0).getUser_id() + "/f/" + listBean.getImages().get(0).getImg_id() + ".jpg";
+                draweeView.setImageURI(Uri.parse(url));
 
 //                加载本地图片展示
-                ((ImageView)view).setImageResource((Integer) model);
+//                ((ImageView)view).setImageResource((Integer) model);
             }
         });
     }
@@ -85,7 +85,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
                         List<TuchongEntity.FeedListBean> data=new ArrayList<>();
-                        for (int i = 0; i < 5; i++) {
+                        for (int i = 0; i < others.size(); i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
                             if ("post".equals(feedListBean.getType())){
                                 data.add(feedListBean);
@@ -105,8 +105,8 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
         List<Integer> data=new ArrayList<>();
         data.add(R.drawable.banner_placeholder);
         data.add(R.drawable.banner_placeholder);
-//        data.add(R.drawable.banner_placeholder);
-//        data.add(R.drawable.banner_placeholder);
+        data.add(R.drawable.banner_placeholder);
+        data.add(R.drawable.banner_placeholder);
         mBanner.setData(data, null);
         mBanner.setAutoPlayAble(true);
     }
