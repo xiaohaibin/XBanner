@@ -59,7 +59,7 @@ allprojects {
 Step 2. Add the dependency
 ```
 dependencies {
-    implementation 'com.github.xiaohaibin:XBanner:Version'
+    implementation 'com.github.xiaohaibin:XBanner:latestVersion'//将latestVersion替换成上面 jitpack 后面的版本号
 }
 ```
 #### 2.在清单文件中添加网络权限
