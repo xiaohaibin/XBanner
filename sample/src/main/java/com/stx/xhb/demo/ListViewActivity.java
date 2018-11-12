@@ -12,9 +12,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.stx.xhb.demo.entity.TuchongEntity;
 import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.xbanner.transformers.Transformer;
