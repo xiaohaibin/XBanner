@@ -48,18 +48,18 @@ dependencies {
 Add it in your root build.gradle at the end of repositories:
 ```
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+     repositories {
+	...
+	maven { url 'https://jitpack.io' }
+     }
+}
 
 ```
 Step 2. Add the dependency
 ```
 dependencies {
-	        implementation 'com.github.xiaohaibin:XBanner:Tag'
-	}
+    implementation 'com.github.xiaohaibin:XBanner:latestVersion'
+}
 ```
 #### 2.在清单文件中添加网络权限
 
