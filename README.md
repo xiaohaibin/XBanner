@@ -1,6 +1,7 @@
 ## XBanner
 
 [![latestVersion](https://api.bintray.com/packages/jxnk25/maven/XBanner/images/download.svg) ](https://bintray.com/jxnk25/maven/XBanner/_latestVersion)
+[![Version](https://jitpack.io/v/xiaohaibin/XBanner.svg)](https://jitpack.io/#xiaohaibin/XBanner)
  [![License](https://img.shields.io/badge/License-Apache--2.0-green.svg)](https://github.com/xiaohaibin/XBanner/blob/master/LICENSE)
  
 ![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.png)
@@ -35,11 +36,32 @@
 
 ## 基本使用
 
-#### 1.添加Gradle依赖
+#### 1.添加 Gradle 依赖
+
+## Jcenter
 
 ```
 dependencies {
-    compile 'com.xhb:xbanner:latestVersion'//将latestVersion替换成上面最新的版本号
+    compile 'com.xhb:xbanner:latestVersion'//将latestVersion替换成上面 download 后面的版本号
+}
+```
+
+## Jitpack
+
+Add it in your root build.gradle at the end of repositories:
+```
+allprojects {
+     repositories {
+	...
+	maven { url 'https://jitpack.io' }
+     }
+}
+
+```
+Step 2. Add the dependency
+```
+dependencies {
+    implementation 'com.github.xiaohaibin:XBanner:latestVersion'//将latestVersion替换成上面 jitpack 后面的版本号
 }
 ```
 #### 2.在清单文件中添加网络权限
@@ -215,6 +237,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | clipChildrenLeftRightMargin|一屏显示多个左右间距| dimension ，默认为30dp|
 | clipChildrenTopBottomMargin|一屏显示多个上下间距| dimension ，默认为30dp|
 | viewpagerMargin|viewpager页面间距| dimension ，默认为10dp|
+| isClipChildrenModeLessThree|少于三张是否支持一屏多显模式|  boolean类型，默认为false 默认不开启 |
 
 ## 混淆配置
 
@@ -234,88 +257,6 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
   >1）确认是否实现了 **loadImage（）** 方法，需要使用自己的图片加载框架加载图片！！！
   >2）请把加载图片地址复制到浏览器看看是否打开图片，确认图片地址是否正确！！！
 
->## 更新说明
-
-
->v1.4.8
-
-- 修复一屏多显模式加载4张网络图片右边显示空白bug
-
->v1.4.7
-
-- 修复一屏多显模式加载3张网络图片中间显示空白bug
- 
->v1.4.5
-
-- 修复一屏显示多个模式在手动轮播下，左右滑动高度不一致bug<br />
-
->v1.4.4
-
-- 修复一屏显示多个模式在setOffscreenPageLimit(3)导致中间banner不显示bug<br />
-
->v1.4.2
-
-- 新增支持一屏显示多个模式<br />
-
->v1.4.1
-
-- 点击事件回传当前点击View<br />
-
->v1.3.9
-
-- 修复刷新数据后，数据为空状态，占位图不显示<br />
-
->v1.3.7
-
-- 修复轮播数据刷新为单张图片后，指示器视图未更新了<br />
-
->v1.3.6
-
-- 新增支持设置轮播框架整体占位图<br />
-
->v1.3.5
-
-- 修复图片数量低于4张滑动空白问题<br />
-
->v1.3.2
-
- - 新增支持手动无限循环切换图片功能<br />
-
->v1.3.1
-
- - 新增提示文字跑马灯效果<br />
- - 修复列表页快速滑动图片切换卡顿问题<br />
-
-
->v1.3.0
- - 优化代码，增加轮播图片防止重复点击事件<br />
-
->v1.2.8
- - 剔除nineandroid依赖，优化代码<br />
- 
->v1.2.7
- - 修复两张图片空白的bug<br />
- 
->v1.2.6
- - 修复网络较差环境下空指针异常bug<br />
- 
->v1.2.4
- - 新增在布局中设置图片切换速度<br />
- - 修复猿友提到的下拉刷新的bug<br />
- 
->v1.2.2
- - 新增支持显示提示文字  <br />
- - 新增图片切换动画、设置图片切换速度的功能<br />
- - 修复快速滑动出现卡顿的bug <br />
- 
->v1.1.2
- - 修复当通过setData接口再次刷新数据后无效的问题  <br />
-
->v1.1.1 
- - 修改可能引起内存泄漏的bug  <br />
-
->v1.0.1 
- - 新增自定义指示器显示位置、 指示点上下内间距、指示点左右内间距等功能  <br />
 
 ## 关于我
 
