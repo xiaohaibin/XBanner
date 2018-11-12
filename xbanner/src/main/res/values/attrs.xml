@@ -45,6 +45,9 @@
         <attr name="clipChildrenLeftRightMargin" format="dimension"/>
         <!--一屏显示多个上下间距-->
         <attr name="clipChildrenTopBottomMargin" format="dimension"/>
+        <!--设置viewpager间距-->
         <attr name="viewpagerMargin" format="dimension"/>
+        <!--少于三张是否支持一屏多显模式-->
+        <attr name="isClipChildrenModeLessThree" format="boolean"/>
     </declare-styleable>
 </resources>

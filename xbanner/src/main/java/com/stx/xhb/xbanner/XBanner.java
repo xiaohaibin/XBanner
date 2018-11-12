@@ -63,9 +63,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     public static final int LEFT = 0;
     public static final int CENTER = 1;
     public static final int RIGHT = 2;
+
     @IntDef({LEFT, CENTER, RIGHT})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface INDICATOR_GRAVITY { }
+    public @interface INDICATOR_GRAVITY {
+    }
 
     private AutoSwitchTask mAutoSwitchTask;
 
@@ -145,7 +147,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     @IntDef({TOP, BOTTOM})
     @Retention(RetentionPolicy.SOURCE)
-    public @interface INDICATOR_POSITION { }
+    public @interface INDICATOR_POSITION {
+    }
 
     private int mPointContainerPosition = BOTTOM;
     private XBannerAdapter mAdapter;
@@ -185,21 +188,17 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /** 是否开启一屏显示多个模式 */
     private boolean mIsClipChildrenMode = false;
 
-    /**
-     * 一屏显示多个模式左右间距
-     */
+    /** 一屏显示多个模式左右间距 */
     private int mClipChildrenLeftRightMargin;
 
-    /**
-     * 一屏显示多个模式上下间距
-     */
+    /** 一屏显示多个模式上下间距 */
     private int mClipChildrenTopBottomMargin;
 
-    /**
-     * viewpager之间的间距
-     */
+    /** viewpager之间的间距 */
     private int mViewPagerMargin;
 
+    /** 少于三张是否支持一屏多显模式 */
+    private boolean mIsClipChildrenModeLessThree;
 
     /**
      * 请使用 {@link #loadImage} 替换
@@ -274,6 +273,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mClipChildrenLeftRightMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_clipChildrenLeftRightMargin, mClipChildrenLeftRightMargin);
             mClipChildrenTopBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_clipChildrenTopBottomMargin, mClipChildrenTopBottomMargin);
             mViewPagerMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_viewpagerMargin, mViewPagerMargin);
+            mIsClipChildrenModeLessThree = typedArray.getBoolean(R.styleable.XBanner_isClipChildrenModeLessThree, false);
             typedArray.recycle();
         }
 
@@ -407,7 +407,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mIsAutoPlay = false;
         }
 
-        if (views.size() < 3) {
+        if (!mIsClipChildrenMode && views.size() < 3) {
             mIsClipChildrenMode = false;
         }
 
