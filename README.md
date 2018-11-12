@@ -38,13 +38,15 @@
 
 #### 1.添加 Gradle 依赖
 
+## Jcenter 方式
+
 ```
 dependencies {
     compile 'com.xhb:xbanner:latestVersion'//将latestVersion替换成上面 download 后面的版本号
 }
 ```
 
-或者 jitpack 方式引入
+## Jitpack  方式
 
 Add it in your root build.gradle at the end of repositories:
 ```
