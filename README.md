@@ -35,12 +35,31 @@
 
 ## 基本使用
 
-#### 1.添加Gradle依赖
+#### 1.添加 Gradle 依赖
 
 ```
 dependencies {
-    compile 'com.xhb:xbanner:latestVersion'//将latestVersion替换成上面最新的版本号
+    compile 'com.xhb:xbanner:latestVersion'//将latestVersion替换成上面 download 后面的版本号
 }
+```
+
+或者 jitpack 方式引入
+
+Add it in your root build.gradle at the end of repositories:
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+
+```
+Step 2. Add the dependency
+```
+dependencies {
+	        implementation 'com.github.xiaohaibin:XBanner:Tag'
+	}
 ```
 #### 2.在清单文件中添加网络权限
 
@@ -215,6 +234,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | clipChildrenLeftRightMargin|一屏显示多个左右间距| dimension ，默认为30dp|
 | clipChildrenTopBottomMargin|一屏显示多个上下间距| dimension ，默认为30dp|
 | viewpagerMargin|viewpager页面间距| dimension ，默认为10dp|
+| isClipChildrenModeLessThree|少于三张是否支持一屏多显模式|  boolean类型，默认为false 默认不开启 |
 
 ## 混淆配置
 
@@ -236,6 +256,9 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 
 >## 更新说明
 
+>v1.5.0
+
+- 新增支持 少于三张是否支持一屏多显模式
 
 >v1.4.8
 
