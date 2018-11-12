@@ -1,6 +1,7 @@
 ## XBanner
 
 [![latestVersion](https://api.bintray.com/packages/jxnk25/maven/XBanner/images/download.svg) ](https://bintray.com/jxnk25/maven/XBanner/_latestVersion)
+[![Version](https://jitpack.io/v/xiaohaibin/XBanner.svg)](https://jitpack.io/#xiaohaibin/XBanner)
  [![License](https://img.shields.io/badge/License-Apache--2.0-green.svg)](https://github.com/xiaohaibin/XBanner/blob/master/LICENSE)
  
 ![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.png)
@@ -58,7 +59,7 @@ allprojects {
 Step 2. Add the dependency
 ```
 dependencies {
-    implementation 'com.github.xiaohaibin:XBanner:latestVersion'
+    implementation 'com.github.xiaohaibin:XBanner:Version'
 }
 ```
 #### 2.在清单文件中添加网络权限
