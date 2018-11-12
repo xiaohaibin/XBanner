@@ -38,7 +38,7 @@
 
 #### 1.添加 Gradle 依赖
 
-## Jcenter 方式
+## Jcenter
 
 ```
 dependencies {
@@ -46,7 +46,7 @@ dependencies {
 }
 ```
 
-## Jitpack  方式
+## Jitpack
 
 Add it in your root build.gradle at the end of repositories:
 ```
