@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -140,17 +141,14 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /**
      * 正常状态下的指示点
      */
-    private Drawable mPointNoraml;
+    private @DrawableRes
+    int mPointNoraml;
 
     /**
      * 选中状态下的指示点
      */
-    private Drawable mPointSelected;
-
-    /**
-     * 默认指示点资源
-     */
-    private int mPointDrawableResId = R.drawable.selector_banner_point;
+    private @DrawableRes
+    int mPointSelected;
 
     /**
      * 指示容器背景
@@ -336,9 +334,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mPointTopBottomPading = typedArray.getDimensionPixelSize(R.styleable.XBanner_pointTopBottomPadding, mPointTopBottomPading);
             mPointContainerPosition = typedArray.getInt(R.styleable.XBanner_pointContainerPosition, BOTTOM);
             mPointContainerBackgroundDrawable = typedArray.getDrawable(R.styleable.XBanner_pointsContainerBackground);
-            mPointNoraml = typedArray.getDrawable(R.styleable.XBanner_pointNormal);
-            mPointSelected = typedArray.getDrawable(R.styleable.XBanner_pointSelect);
-            mPointDrawableResId = typedArray.getResourceId(R.styleable.XBanner_indicatorDrawable, mPointDrawableResId);
+            mPointNoraml = typedArray.getResourceId(R.styleable.XBanner_pointNormal, R.drawable.shape_point_normal);
+            mPointSelected = typedArray.getResourceId(R.styleable.XBanner_pointSelect, R.drawable.shape_point_select);
             mTipTextColor = typedArray.getColor(R.styleable.XBanner_tipTextColor, mTipTextColor);
             mTipTextSize = typedArray.getDimensionPixelSize(R.styleable.XBanner_tipTextSize, mTipTextSize);
             mIsNumberIndicator = typedArray.getBoolean(R.styleable.XBanner_isShowNumberIndicator, mIsNumberIndicator);
@@ -780,15 +777,14 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             //当图片多于1张时添加指示点
             if (getRealCount() > 0 && (mIsShowIndicatorOnlyOne || !mIsOneImg)) {
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LWC, LWC);
+                lp.gravity = Gravity.CENTER_VERTICAL;
                 lp.setMargins(mPointLeftRightPading, mPointTopBottomPading, mPointLeftRightPading, mPointTopBottomPading);
                 ImageView imageView;
                 for (int i = 0; i < getRealCount(); i++) {
                     imageView = new ImageView(getContext());
                     imageView.setLayoutParams(lp);
-                    if (mPointNoraml != null && mPointSelected != null) {
-                        imageView.setImageDrawable(XBannerUtils.getSelector(mPointNoraml, mPointSelected));
-                    } else {
-                        imageView.setImageResource(mPointDrawableResId);
+                    if (mPointNoraml != 0 && mPointSelected != 0) {
+                        imageView.setImageResource(mPointNoraml);
                     }
                     mPointRealContainerLl.addView(imageView);
                 }
@@ -812,7 +808,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private void switchToPoint(int currentPoint) {
         if (mPointRealContainerLl != null & mDatas != null && getRealCount() > 1) {
             for (int i = 0; i < mPointRealContainerLl.getChildCount(); i++) {
-                mPointRealContainerLl.getChildAt(i).setEnabled(i == currentPoint);
+                if (i == currentPoint) {
+                    ((ImageView) mPointRealContainerLl.getChildAt(i)).setImageResource(mPointSelected);
+                } else {
+                    ((ImageView) mPointRealContainerLl.getChildAt(i)).setImageResource(mPointNoraml);
+                }
                 mPointRealContainerLl.getChildAt(i).requestLayout();
             }
         }

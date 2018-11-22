@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.stx.xhb.demo.CustomViewsActivity">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.stx.xhb.demo.CustomViewsActivity">
 
     <com.stx.xhb.xbanner.XBanner
         android:id="@+id/banner"
@@ -19,5 +19,5 @@
         app:pointSelect="@drawable/shape_selected"
         app:pointsContainerBackground="#442e2e2e"
         app:pointsPosition="CENTER"
-        app:tipTextSize="12sp" />
+        app:tipTextSize="12sp"/>
 </LinearLayout>
