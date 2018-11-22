@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.stx.xhb.demo.ClipChildrenModeActivity">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.stx.xhb.demo.ClipChildrenModeActivity">
 
     <com.stx.xhb.xbanner.XBanner
         android:id="@+id/banner"
@@ -12,12 +13,45 @@
         android:layout_height="wrap_content"
         app:AutoPlayTime="3000"
         app:isAutoPlay="false"
+        app:isClipChildrenMode="true"
         app:isHandLoop="true"
         app:isShowIndicatorOnlyOne="true"
         app:isShowNumberIndicator="false"
         app:pageChangeDuration="800"
-        app:isClipChildrenMode="true"
         app:pointsContainerBackground="@android:color/transparent"
-        app:pointsPosition="CENTER" />
+        app:pointsPosition="CENTER"/>
+
+
+    <com.stx.xhb.xbanner.XBanner
+        android:id="@+id/banner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:AutoPlayTime="3000"
+        app:isAutoPlay="false"
+        app:isClipChildrenMode="true"
+        app:isHandLoop="true"
+        app:isShowIndicatorOnlyOne="true"
+        app:isShowNumberIndicator="false"
+        app:pageChangeDuration="800"
+        app:pointsContainerBackground="@android:color/transparent"
+        app:pointsPosition="CENTER"/>
+
+
+    <com.stx.xhb.xbanner.XBanner
+        android:id="@+id/banner3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:AutoPlayTime="3000"
+        app:clipChildrenLeftRightMargin="80dp"
+        app:isAutoPlay="false"
+        app:isClipChildrenMode="true"
+        app:isHandLoop="true"
+        app:isShowIndicatorOnlyOne="true"
+        app:isShowNumberIndicator="false"
+        app:pageChangeDuration="800"
+        app:pointsContainerBackground="@android:color/transparent"
+        app:pointsPosition="CENTER"/>
 
 </LinearLayout>
