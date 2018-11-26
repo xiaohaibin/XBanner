@@ -279,7 +279,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 
 ![欢迎加入“大话安卓”技术交流群，互相学习提升](http://upload-images.jianshu.io/upload_images/1956769-326c166b86ed8e94.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-### 如果喜欢，还请statr&&follow支持一下，谢谢O(∩_∩)O~。
+### 如果喜欢，还请statr&&follow支持一下，谢谢~~~
 
 License
 --
