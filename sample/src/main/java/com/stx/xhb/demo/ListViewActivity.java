@@ -142,7 +142,7 @@ public class ListViewActivity extends AppCompatActivity {
 
         // 初始化HeaderView
         View headerView = View.inflate(this, R.layout.ad_head, null);
-        mXBanner = (XBanner) headerView.findViewById(R.id.banner);
+        mXBanner = headerView.findViewById(R.id.banner);
         mXBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2));
         mLv.addHeaderView(headerView);
 

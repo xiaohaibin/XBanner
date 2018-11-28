@@ -50,8 +50,7 @@
         app:isHandLoop="true"
         app:isShowIndicatorOnlyOne="true"
         app:isShowNumberIndicator="false"
-        app:pageChangeDuration="800"
-        app:pointsContainerBackground="@android:color/transparent"
-        app:pointsPosition="CENTER"/>
+        app:pointsVisibility="false"
+        app:pageChangeDuration="800" />
 
 </LinearLayout>
