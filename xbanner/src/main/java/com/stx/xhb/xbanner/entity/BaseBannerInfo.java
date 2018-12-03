@@ -1,14 +1,13 @@
-package com.stx.xhb.xbanner;
+package com.stx.xhb.xbanner.entity;
 
 /**
  * @author: xiaohaibin.
- * @time: 2018/11/28
+ * @time: 2018/12/3
  * @mail:xhb_199409@163.com
  * @github:https://github.com/xiaohaibin
- * @describe: CustomBannerInfo
+ * @describe: BaseBannerInfo
  */
-public interface CustomBannerInfo {
-
+public interface BaseBannerInfo {
     Object getBannerUrl();
 
     String getBannerTitle();

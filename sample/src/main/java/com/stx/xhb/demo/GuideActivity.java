@@ -9,9 +9,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.stx.xhb.xbanner.entity.LocalImageInfo;
 import com.stx.xhb.xbanner.XBanner;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * XBanner 使用在引导页控件
@@ -31,13 +33,17 @@ public class GuideActivity extends AppCompatActivity {
 
 
     private void initView() {
-        mXBanner = (XBanner) findViewById(R.id.xbanner);
-        mBtnEnter = (Button) findViewById(R.id.btn);
-        mXBanner.setData(Arrays.asList(R.mipmap.we1, R.mipmap.we2, R.mipmap.we3), null);
+        mXBanner = findViewById(R.id.xbanner);
+        mBtnEnter = findViewById(R.id.btn);
+        List<LocalImageInfo> localImageInfoList=new ArrayList<>();
+        localImageInfoList.add(new LocalImageInfo(R.mipmap.we1));
+        localImageInfoList.add(new LocalImageInfo(R.mipmap.we2));
+        localImageInfoList.add(new LocalImageInfo(R.mipmap.we3));
+        mXBanner.setData(localImageInfoList);
         mXBanner.loadImage(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
-                ((ImageView) view).setImageResource((int) model);
+                ((ImageView) view).setImageResource(((LocalImageInfo) model).getBannerUrl());
             }
         });
         mXBanner.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {

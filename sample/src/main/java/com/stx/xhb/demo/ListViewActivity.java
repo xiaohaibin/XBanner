@@ -117,18 +117,16 @@ public class ListViewActivity extends AppCompatActivity {
                     public void onResponse(String response, int id) {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
-                        List<TuchongEntity.FeedListBean> data=new ArrayList<>();
-                        List<String> tips=new ArrayList<>();
+                        List<TuchongEntity.FeedListBean.EntryBean> data=new ArrayList<>();
                         for (int i = 0; i < others.size(); i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
                             if ("post".equals(feedListBean.getType())){
-                                data.add(feedListBean);
-                                tips.add(feedListBean.getEntry().getTitle());
+                                data.add(feedListBean.getEntry());
                             }
                         }
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mXBanner.setAutoPlayAble(data.size() > 1);
-                        mXBanner.setData(data, tips);
+                        mXBanner.setData(data);
                     }
                 });
     }
@@ -171,7 +169,7 @@ public class ListViewActivity extends AppCompatActivity {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
                 //在此处使用图片加载框架加载图片，demo中使用glide加载，可替换成自己项目中的图片加载框架
-                TuchongEntity.FeedListBean.EntryBean listBean = ((TuchongEntity.FeedListBean) model).getEntry();
+                TuchongEntity.FeedListBean.EntryBean listBean = ((TuchongEntity.FeedListBean.EntryBean) model);
                 String url = "https://photo.tuchong.com/" + listBean.getImages().get(0).getUser_id() + "/f/" + listBean.getImages().get(0).getImg_id() + ".jpg";
                 Glide.with(ListViewActivity.this).load(url).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
             }

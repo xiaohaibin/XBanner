@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.stx.xhb.xbanner.entity.AbstractBannerInfo;
 import com.stx.xhb.xbanner.transformers.BasePageTransformer;
 import com.stx.xhb.xbanner.transformers.Transformer;
 
@@ -86,7 +87,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private int mPointContainerLeftRightPadding;
 
     /** 资源集合 */
-    private List<?> mDatas;
+    private List<? extends AbstractBannerInfo> mDatas;
 
     /*处理少于三页时的无限轮播*/
     private List<View> mLessViews;
@@ -129,9 +130,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /*提示语*/
     private TextView mTipTv;
 
-    /*提示文案数据*/
-    private List<String> mTipData;
-
     /*提示语字体颜色*/
     private int mTipTextColor;
 
@@ -140,6 +138,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /*提示语字体大小*/
     private int mTipTextSize;
+
+    /*是否展示提示语*/
+    private boolean mIsShowTips;
 
     /*指示器容器位置*/
     public static final int TOP = 10;
@@ -273,6 +274,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mClipChildrenTopBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_clipChildrenTopBottomMargin, mClipChildrenTopBottomMargin);
             mViewPagerMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_viewpagerMargin, mViewPagerMargin);
             mIsClipChildrenModeLessThree = typedArray.getBoolean(R.styleable.XBanner_isClipChildrenModeLessThree, false);
+            mIsShowTips = typedArray.getBoolean(R.styleable.XBanner_isShowTips, false);
             typedArray.recycle();
         }
         if (mIsClipChildrenMode) {
@@ -336,19 +338,22 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         /*设置提示语*/
         LayoutParams pointLp = new LayoutParams(RMP, RWC);
         pointLp.addRule(CENTER_VERTICAL);
-        mTipTv = new TextView(getContext());
-        mTipTv.setGravity(Gravity.CENTER_VERTICAL);
-        mTipTv.setSingleLine(true);
-        if (mIsTipsMarquee) {
-            mTipTv.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-            mTipTv.setMarqueeRepeatLimit(3);
-            mTipTv.setSelected(true);
-        } else {
-            mTipTv.setEllipsize(TextUtils.TruncateAt.END);
+
+        if (mIsShowTips) {
+            mTipTv = new TextView(getContext());
+            mTipTv.setGravity(Gravity.CENTER_VERTICAL);
+            mTipTv.setSingleLine(true);
+            if (mIsTipsMarquee) {
+                mTipTv.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                mTipTv.setMarqueeRepeatLimit(3);
+                mTipTv.setSelected(true);
+            } else {
+                mTipTv.setEllipsize(TextUtils.TruncateAt.END);
+            }
+            mTipTv.setTextColor(mTipTextColor);
+            mTipTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTipTextSize);
+            pointContainerRl.addView(mTipTv, pointLp);
         }
-        mTipTv.setTextColor(mTipTextColor);
-        mTipTv.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTipTextSize);
-        pointContainerRl.addView(mTipTv, pointLp);
 
         /*设置指示器布局位置*/
         if (CENTER == mPointPosition) {
@@ -403,7 +408,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 设置bannner数据
      * @param data
      */
-    private void setData(@NonNull List<View> views, @NonNull List<?> data, List<String> tips) {
+    private void setData(@NonNull List<View> views, @NonNull List<? extends AbstractBannerInfo> data) {
 
         if (mIsAutoPlay && views.size() < 3 && mLessViews == null) {
             mIsAutoPlay = false;
@@ -414,7 +419,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
 
         this.mDatas = data;
-        this.mTipData = tips;
         this.mViews = views;
 
         mIsOneImg = data.size() <= 1;
@@ -429,7 +433,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
     }
 
-    public void setData(@LayoutRes int layoutResId, @NonNull List<?> models, List<String> tips) {
+    public void setData(@LayoutRes int layoutResId, @NonNull List<? extends AbstractBannerInfo> models) {
         mViews = new ArrayList<>();
         if (models == null) {
             models = new ArrayList<>();
@@ -448,16 +452,15 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                 mLessViews.add(View.inflate(getContext(), layoutResId, null));
             }
         }
-        setData(mViews, models, tips);
+        setData(mViews, models);
     }
 
     /**
      * 设置数据模型和文案，布局资源默认为ImageView
      * @param models 每一页的数据模型集合
-     * @param tips   每一页的提示文案集合
      */
-    public void setData(@NonNull List<?> models, List<String> tips) {
-        setData(R.layout.xbanner_item_image, models, tips);
+    public void setData(@NonNull List<? extends AbstractBannerInfo> models) {
+        setData(R.layout.xbanner_item_image, models);
     }
 
     /**
@@ -523,7 +526,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (mIsClipChildrenMode) {
             mViewPager.setClipChildren(false);
             /*fix 网络图片只有3张或加载本地资源图片的bug*/
-            if (!(mDatas.get(0) instanceof Integer) && mDatas.size() > 4) {
+            if (!(mDatas.get(0).getBannerUrl() instanceof Integer) && mDatas.size() > 4) {
                 mViewPager.setOffscreenPageLimit(3);
             }
             mViewPager.setPageMargin(mViewPagerMargin);
@@ -569,12 +572,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mPageScrollPosition = position;
         mPageScrollPositionOffset = positionOffset;
 
-        if (mTipTv != null && mTipData != null && !mTipData.isEmpty()) {
+        if (mTipTv != null && mDatas != null && !mDatas.isEmpty()) {
             if (positionOffset > 0.5) {
-                mTipTv.setText(mTipData.get((position + 1) % mTipData.size()));
+                mTipTv.setText(mDatas.get((position + 1) % mDatas.size()).getBannerTitle());
                 ViewCompat.setAlpha(mTipTv, positionOffset);
             } else {
-                mTipTv.setText(mTipData.get(position % mTipData.size()));
+                mTipTv.setText(mDatas.get(position % mDatas.size()).getBannerTitle());
                 ViewCompat.setAlpha(mTipTv, 1 - positionOffset);
             }
         }
@@ -733,8 +736,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             }
         }
 
-        if (mTipTv != null && mTipData != null) {
-            mTipTv.setText(mTipData.get(currentPoint));
+        if (mTipTv != null && mDatas != null && !mDatas.isEmpty()) {
+            mTipTv.setText(mDatas.get(currentPoint).getBannerTitle());
         }
 
         if (mNumberIndicatorTv != null && mViews != null && (mIsShowIndicatorOnlyOne || !mIsOneImg)) {

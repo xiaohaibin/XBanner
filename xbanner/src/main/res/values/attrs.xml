@@ -49,5 +49,7 @@
         <attr name="viewpagerMargin" format="dimension"/>
         <!--少于三张是否支持一屏多显模式-->
         <attr name="isClipChildrenModeLessThree" format="boolean"/>
+        <!--是否展示提示文案-->
+        <attr name="isShowTips" format="boolean"/>
     </declare-styleable>
 </resources>

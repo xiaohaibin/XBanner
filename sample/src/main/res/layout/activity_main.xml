@@ -16,6 +16,7 @@
         app:pointsVisibility="false"
         app:isShowIndicatorOnlyOne="true"
         app:pageChangeDuration="800"
+        app:isShowTips="true"
         app:pointsContainerBackground="#442e2e2e"
         app:pointsPosition="RIGHT"
         app:tipTextSize="12sp" />

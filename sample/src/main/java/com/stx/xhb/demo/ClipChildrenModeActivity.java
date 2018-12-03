@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 import com.stx.xhb.demo.entity.TuchongEntity;
+import com.stx.xhb.xbanner.entity.LocalImageInfo;
 import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.xbanner.transformers.Transformer;
 import com.zhy.http.okhttp.OkHttpUtils;
@@ -73,7 +74,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
             public void loadBanner(XBanner banner, Object model, View view, int position) {
                 //此处适用Fresco加载图片，可自行替换自己的图片加载框架
                 SimpleDraweeView draweeView = (SimpleDraweeView) view;
-                TuchongEntity.FeedListBean.EntryBean listBean = ((TuchongEntity.FeedListBean) model).getEntry();
+                TuchongEntity.FeedListBean.EntryBean listBean = ((TuchongEntity.FeedListBean.EntryBean) model);
                 String url = "https://photo.tuchong.com/" + listBean.getImages().get(0).getUser_id() + "/f/" + listBean.getImages().get(0).getImg_id() + ".jpg";
                 draweeView.setImageURI(Uri.parse(url));
 
@@ -105,28 +106,28 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                     public void onResponse(String response, int id) {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
-                        List<TuchongEntity.FeedListBean> data = new ArrayList<>();
+                        List<TuchongEntity.FeedListBean.EntryBean> data = new ArrayList<>();
                         for (int i = 0; i < others.size(); i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
                             if ("post".equals(feedListBean.getType())) {
-                                data.add(feedListBean);
+                                data.add(feedListBean.getEntry());
                             }
                         }
 
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner.setAutoPlayAble(data.size() > 1);
-                        mBanner.setData(R.layout.layout_fresco_imageview, data, null);
+                        mBanner.setData(R.layout.layout_fresco_imageview, data);
 
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner2.setAutoPlayAble(data.size() > 1);
-                        mBanner2.setData(R.layout.layout_fresco_imageview, data, null);
+                        mBanner2.setData(R.layout.layout_fresco_imageview, data);
 
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner3.setAutoPlayAble(data.size() > 1);
-                        mBanner3.setData(R.layout.layout_fresco_imageview, data, null);
+                        mBanner3.setData(R.layout.layout_fresco_imageview, data);
 
 
                     }
@@ -137,12 +138,12 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
      * 加载本地图片
      */
     private void initLocalImage() {
-        List<Integer> data = new ArrayList<>();
-        data.add(R.drawable.banner_placeholder);
-        data.add(R.drawable.banner_placeholder);
-        data.add(R.drawable.banner_placeholder);
-        data.add(R.drawable.banner_placeholder);
-        mBanner.setData(data, null);
+        List<LocalImageInfo> data = new ArrayList<>();
+        data.add(new LocalImageInfo(R.drawable.banner_placeholder));
+        data.add(new LocalImageInfo(R.drawable.banner_placeholder));
+        data.add(new LocalImageInfo(R.drawable.banner_placeholder));
+        data.add(new LocalImageInfo(R.drawable.banner_placeholder));
+        mBanner.setData(data);
         mBanner.setAutoPlayAble(true);
     }
 }
