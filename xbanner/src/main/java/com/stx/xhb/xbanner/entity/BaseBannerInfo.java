@@ -8,7 +8,7 @@ package com.stx.xhb.xbanner.entity;
  * @describe: BaseBannerInfo
  */
 public interface BaseBannerInfo {
-    Object getBannerUrl();
+    Object getXBannerUrl();
 
-    String getBannerTitle();
+    String getXBannerTitle();
 }

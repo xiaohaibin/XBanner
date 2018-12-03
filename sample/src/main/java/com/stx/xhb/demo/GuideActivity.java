@@ -43,7 +43,7 @@ public class GuideActivity extends AppCompatActivity {
         mXBanner.loadImage(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
-                ((ImageView) view).setImageResource(((LocalImageInfo) model).getBannerUrl());
+                ((ImageView) view).setImageResource(((LocalImageInfo) model).getXBannerUrl());
             }
         });
         mXBanner.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {

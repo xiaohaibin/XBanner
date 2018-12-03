@@ -9,7 +9,8 @@ import android.support.annotation.DrawableRes;
  * @github:https://github.com/xiaohaibin
  * @describe: 本地资源图片
  */
-public class LocalImageInfo extends AbstractBannerInfo {
+public class LocalImageInfo extends SimpleBannerInfo {
+
     @DrawableRes
     private int bannerRes;
 
@@ -18,12 +19,12 @@ public class LocalImageInfo extends AbstractBannerInfo {
     }
 
     @Override
-    public Integer getBannerUrl() {
+    public Integer getXBannerUrl() {
         return bannerRes;
     }
 
     @Override
-    public String getBannerTitle() {
-        return "";
+    public String getXBannerTitle() {
+        return null;
     }
 }

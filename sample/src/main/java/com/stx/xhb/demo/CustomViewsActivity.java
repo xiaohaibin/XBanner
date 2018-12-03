@@ -26,7 +26,7 @@ public class CustomViewsActivity extends AppCompatActivity {
 
     private void initView() {
         XBanner banner = (XBanner) findViewById(R.id.banner);
-        final List<CustomViewsInfo> data = new ArrayList<>();
+        List<CustomViewsInfo> data = new ArrayList<>();
         data.add(new CustomViewsInfo("#FFA54F"));
         data.add(new CustomViewsInfo("#8EE5EE"));
         data.add(new CustomViewsInfo("#00FA9A"));
@@ -37,7 +37,7 @@ public class CustomViewsActivity extends AppCompatActivity {
             public void loadBanner(XBanner banner, Object model, View view, int position) {
                 TextView tvContent = (TextView) view.findViewById(R.id.tv);
                 tvContent.setText(String.valueOf(position + 1));
-                view.setBackgroundColor(Color.parseColor(((CustomViewsInfo) model).getBannerUrl()));
+                view.setBackgroundColor(Color.parseColor(((CustomViewsInfo) model).getXBannerUrl()));
             }
         });
     }

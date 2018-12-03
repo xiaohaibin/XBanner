@@ -1,6 +1,6 @@
 package com.stx.xhb.demo.entity;
 
-import com.stx.xhb.xbanner.entity.AbstractBannerInfo;
+import com.stx.xhb.xbanner.entity.SimpleBannerInfo;
 
 import java.util.List;
 
@@ -72,7 +72,7 @@ public class TuchongEntity {
             this.entry = entry;
         }
 
-        public static class EntryBean extends AbstractBannerInfo {
+        public static class EntryBean extends SimpleBannerInfo {
 
             private String vid;
             private String video_id;
@@ -102,12 +102,12 @@ public class TuchongEntity {
             private List<ImagesBean> images;
 
             @Override
-            public String getBannerUrl() {
+            public String getXBannerUrl() {
                 return "https://photo.tuchong.com/" + getImages().get(0).getUser_id() + "/f/" + getImages().get(0).getImg_id() + ".jpg";
             }
 
             @Override
-            public String getBannerTitle() {
+            public String getXBannerTitle() {
                 return getTitle();
             }
 

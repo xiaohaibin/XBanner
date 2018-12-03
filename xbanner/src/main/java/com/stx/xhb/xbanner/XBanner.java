@@ -25,7 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.stx.xhb.xbanner.entity.AbstractBannerInfo;
+import com.stx.xhb.xbanner.entity.SimpleBannerInfo;
 import com.stx.xhb.xbanner.transformers.BasePageTransformer;
 import com.stx.xhb.xbanner.transformers.Transformer;
 
@@ -87,7 +87,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private int mPointContainerLeftRightPadding;
 
     /** 资源集合 */
-    private List<? extends AbstractBannerInfo> mDatas;
+    private List<? extends SimpleBannerInfo> mDatas;
 
     /*处理少于三页时的无限轮播*/
     private List<View> mLessViews;
@@ -408,7 +408,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 设置bannner数据
      * @param data
      */
-    private void setData(@NonNull List<View> views, @NonNull List<? extends AbstractBannerInfo> data) {
+    private void setData(@NonNull List<View> views, @NonNull List<? extends SimpleBannerInfo> data) {
 
         if (mIsAutoPlay && views.size() < 3 && mLessViews == null) {
             mIsAutoPlay = false;
@@ -433,7 +433,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
     }
 
-    public void setData(@LayoutRes int layoutResId, @NonNull List<? extends AbstractBannerInfo> models) {
+    public void setData(@LayoutRes int layoutResId, @NonNull List<? extends SimpleBannerInfo> models) {
         mViews = new ArrayList<>();
         if (models == null) {
             models = new ArrayList<>();
@@ -459,7 +459,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 设置数据模型和文案，布局资源默认为ImageView
      * @param models 每一页的数据模型集合
      */
-    public void setData(@NonNull List<? extends AbstractBannerInfo> models) {
+    public void setData(@NonNull List<? extends SimpleBannerInfo> models) {
         setData(R.layout.xbanner_item_image, models);
     }
 
@@ -526,7 +526,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (mIsClipChildrenMode) {
             mViewPager.setClipChildren(false);
             /*fix 网络图片只有3张或加载本地资源图片的bug*/
-            if (!(mDatas.get(0).getBannerUrl() instanceof Integer) && mDatas.size() > 4) {
+            if (!(mDatas.get(0).getXBannerUrl() instanceof Integer) && mDatas.size() > 4) {
                 mViewPager.setOffscreenPageLimit(3);
             }
             mViewPager.setPageMargin(mViewPagerMargin);
@@ -574,10 +574,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         if (mTipTv != null && mDatas != null && !mDatas.isEmpty()) {
             if (positionOffset > 0.5) {
-                mTipTv.setText(mDatas.get((position + 1) % mDatas.size()).getBannerTitle());
+                mTipTv.setText(mDatas.get((position + 1) % mDatas.size()).getXBannerTitle());
                 ViewCompat.setAlpha(mTipTv, positionOffset);
             } else {
-                mTipTv.setText(mDatas.get(position % mDatas.size()).getBannerTitle());
+                mTipTv.setText(mDatas.get(position % mDatas.size()).getXBannerTitle());
                 ViewCompat.setAlpha(mTipTv, 1 - positionOffset);
             }
         }
@@ -737,7 +737,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
 
         if (mTipTv != null && mDatas != null && !mDatas.isEmpty()) {
-            mTipTv.setText(mDatas.get(currentPoint).getBannerTitle());
+            mTipTv.setText(mDatas.get(currentPoint).getXBannerTitle());
         }
 
         if (mNumberIndicatorTv != null && mViews != null && (mIsShowIndicatorOnlyOne || !mIsOneImg)) {
