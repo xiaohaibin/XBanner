@@ -5,7 +5,7 @@ import android.view.View;
 
 /**
  * Created by jxnk25 on 2016/10/18.
- *
+ * <p>
  * link https://xiaohaibin.github.io/
  * email： xhb_199409@163.com
  * github: https://github.com/xiaohaibin
@@ -23,7 +23,7 @@ public class StackPageTransformer extends BasePageTransformer {
 
     @Override
     public void handleRightPage(View view, float position) {
-        ViewCompat.setTranslationX(view, -view.getWidth() * position);
+        view.setTranslationX(-view.getWidth() * position);
     }
 
 }

@@ -10,7 +10,6 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 
 /**
- * Created by jxnk25 on 2016/9/13.
  * <p>
  * link https://xiaohaibin.github.io/
  * email： xhb_199409@163.com

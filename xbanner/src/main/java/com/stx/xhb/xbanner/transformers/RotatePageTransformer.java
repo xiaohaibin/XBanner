@@ -23,17 +23,17 @@ public class RotatePageTransformer extends BasePageTransformer {
 
     @Override
     public void handleInvisiblePage(View view, float position) {
-        ViewCompat.setPivotX(view, view.getMeasuredWidth() * 0.5f);
-        ViewCompat.setPivotY(view, view.getMeasuredHeight());
-        ViewCompat.setRotation(view, 0);
+        view.setPivotX(view.getMeasuredWidth() * 0.5f);
+        view.setPivotY(view.getMeasuredHeight());
+        view.setRotation( 0);
     }
 
     @Override
     public void handleLeftPage(View view, float position) {
         float rotation = (mMaxRotation * position);
-        ViewCompat.setPivotX(view, view.getMeasuredWidth() * 0.5f);
-        ViewCompat.setPivotY(view, view.getMeasuredHeight());
-        ViewCompat.setRotation(view, rotation);
+        view.setPivotX( view.getMeasuredWidth() * 0.5f);
+        view.setPivotY(view.getMeasuredHeight());
+        view.setRotation( rotation);
     }
 
     @Override

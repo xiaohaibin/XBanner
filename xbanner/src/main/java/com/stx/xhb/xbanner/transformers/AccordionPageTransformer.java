@@ -5,11 +5,11 @@ import android.view.View;
 
 /**
  * Created by jxnk25 on 2016/10/18.
- *
+ * <p>
  * link https://xiaohaibin.github.io/
  * email： xhb_199409@163.com
  * github: https://github.com/xiaohaibin
- * description：
+ * description：AccordionPageTransformer
  */
 public class AccordionPageTransformer extends BasePageTransformer {
 
@@ -19,15 +19,15 @@ public class AccordionPageTransformer extends BasePageTransformer {
 
     @Override
     public void handleLeftPage(View view, float position) {
-        ViewCompat.setPivotX(view, view.getWidth());
-        ViewCompat.setScaleX(view, 1.0f + position);
+        view.setPivotX(view.getWidth());
+        view.setScaleX(1.0f + position);
     }
 
     @Override
     public void handleRightPage(View view, float position) {
-        ViewCompat.setPivotX(view, 0);
-        ViewCompat.setScaleX(view, 1.0f - position);
-        ViewCompat.setAlpha(view, 1);
+        view.setPivotX(0);
+        view.setScaleX(1.0f - position);
+        view.setAlpha(1);
     }
 
 }

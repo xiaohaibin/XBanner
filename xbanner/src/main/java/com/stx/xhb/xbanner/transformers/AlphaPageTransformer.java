@@ -5,11 +5,11 @@ import android.view.View;
 
 /**
  * Created by jxnk25 on 2016/10/18.
- *
+ * <p>
  * link https://xiaohaibin.github.io/
  * email： xhb_199409@163.com
  * github: https://github.com/xiaohaibin
- * description：
+ * description：AlphaPageTransformer
  */
 public class AlphaPageTransformer extends BasePageTransformer {
     private float mMinScale = 0.4f;
@@ -28,12 +28,12 @@ public class AlphaPageTransformer extends BasePageTransformer {
 
     @Override
     public void handleLeftPage(View view, float position) {
-        ViewCompat.setAlpha(view, mMinScale + (1 - mMinScale) * (1 + position));
+        view.setAlpha(mMinScale + (1 - mMinScale) * (1 + position));
     }
 
     @Override
     public void handleRightPage(View view, float position) {
-        ViewCompat.setAlpha(view, mMinScale + (1 - mMinScale) * (1 - position));
+        view.setAlpha(mMinScale + (1 - mMinScale) * (1 - position));
     }
 
     public void setMinScale(float minScale) {

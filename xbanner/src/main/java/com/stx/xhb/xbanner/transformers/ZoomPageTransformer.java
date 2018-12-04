@@ -33,10 +33,10 @@ public class ZoomPageTransformer extends BasePageTransformer {
         float scale = Math.max(mMinScale, 1 + position);
         float vertMargin = view.getHeight() * (1 - scale) / 2;
         float horzMargin = view.getWidth() * (1 - scale) / 2;
-        ViewCompat.setTranslationX(view, horzMargin - vertMargin / 2);
-        ViewCompat.setScaleX(view, scale);
-        ViewCompat.setScaleY(view, scale);
-        ViewCompat.setAlpha(view, mMinAlpha + (scale - mMinScale) / (1 - mMinScale) * (1 - mMinAlpha));
+        view.setTranslationX(horzMargin - vertMargin / 2);
+        view.setScaleX(scale);
+        view.setScaleY( scale);
+        view.setAlpha( mMinAlpha + (scale - mMinScale) / (1 - mMinScale) * (1 - mMinAlpha));
     }
 
     @Override
@@ -44,10 +44,10 @@ public class ZoomPageTransformer extends BasePageTransformer {
         float scale = Math.max(mMinScale, 1 - position);
         float vertMargin = view.getHeight() * (1 - scale) / 2;
         float horzMargin = view.getWidth() * (1 - scale) / 2;
-        ViewCompat.setTranslationX(view, -horzMargin + vertMargin / 2);
-        ViewCompat.setScaleX(view, scale);
-        ViewCompat.setScaleY(view, scale);
-        ViewCompat.setAlpha(view, mMinAlpha + (scale - mMinScale) / (1 - mMinScale) * (1 - mMinAlpha));
+        view.setTranslationX( -horzMargin + vertMargin / 2);
+        view.setScaleX( scale);
+        view.setScaleY( scale);
+        view.setAlpha( mMinAlpha + (scale - mMinScale) / (1 - mMinScale) * (1 - mMinAlpha));
     }
 
     public void setMinAlpha(float minAlpha) {

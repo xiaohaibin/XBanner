@@ -31,7 +31,7 @@ public class CustomViewsActivity extends AppCompatActivity {
         data.add(new CustomViewsInfo("#8EE5EE"));
         data.add(new CustomViewsInfo("#00FA9A"));
         data.add(new CustomViewsInfo("#CD8162"));
-        banner.setData(R.layout.layout_custom_view,data);
+        banner.setBannerData(R.layout.layout_custom_view,data);
         banner.loadImage(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {

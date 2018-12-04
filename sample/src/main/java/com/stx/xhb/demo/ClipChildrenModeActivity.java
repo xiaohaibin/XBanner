@@ -117,17 +117,17 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner.setAutoPlayAble(data.size() > 1);
-                        mBanner.setData(R.layout.layout_fresco_imageview, data);
+                        mBanner.setBannerData(R.layout.layout_fresco_imageview, data);
 
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner2.setAutoPlayAble(data.size() > 1);
-                        mBanner2.setData(R.layout.layout_fresco_imageview, data);
+                        mBanner2.setBannerData(R.layout.layout_fresco_imageview, data);
 
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner3.setAutoPlayAble(data.size() > 1);
-                        mBanner3.setData(R.layout.layout_fresco_imageview, data);
+                        mBanner3.setBannerData(R.layout.layout_fresco_imageview, data);
 
 
                     }
@@ -143,7 +143,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
         data.add(new LocalImageInfo(R.drawable.banner_placeholder));
         data.add(new LocalImageInfo(R.drawable.banner_placeholder));
         data.add(new LocalImageInfo(R.drawable.banner_placeholder));
-        mBanner.setData(data);
+        mBanner.setBannerData(data);
         mBanner.setAutoPlayAble(true);
     }
 }

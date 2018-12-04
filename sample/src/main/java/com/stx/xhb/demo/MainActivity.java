@@ -17,12 +17,10 @@ import com.stx.xhb.demo.entity.TuchongEntity;
 import com.stx.xhb.xbanner.XBanner;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
-import com.zhy.http.okhttp.utils.L;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import me.relex.circleindicator.CircleIndicator;
 import okhttp3.Call;
 
 public class MainActivity extends AppCompatActivity {
@@ -119,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner.setAutoPlayAble(data.size() > 1);
-                        mBanner.setData(data);
+                        mBanner.setBannerData(data);
                     }
                 });
     }

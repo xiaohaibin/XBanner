@@ -39,7 +39,7 @@ public class GuideActivity extends AppCompatActivity {
         localImageInfoList.add(new LocalImageInfo(R.mipmap.we1));
         localImageInfoList.add(new LocalImageInfo(R.mipmap.we2));
         localImageInfoList.add(new LocalImageInfo(R.mipmap.we3));
-        mXBanner.setData(localImageInfoList);
+        mXBanner.setBannerData(localImageInfoList);
         mXBanner.loadImage(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {

@@ -5,7 +5,7 @@ import android.view.View;
 
 /**
  * Created by jxnk25 on 2016/10/18.
- *
+ * <p>
  * link https://xiaohaibin.github.io/
  * email： xhb_199409@163.com
  * github: https://github.com/xiaohaibin
@@ -20,9 +20,9 @@ public class FlipPageTransformer extends BasePageTransformer {
 
     @Override
     public void handleLeftPage(View view, float position) {
-        ViewCompat.setTranslationX(view, -view.getWidth() * position);
+        view.setTranslationX(-view.getWidth() * position);
         float rotation = (ROTATION * position);
-        ViewCompat.setRotationY(view, rotation);
+        view.setRotationY(rotation);
 
         if (position > -0.5) {
             view.setVisibility(View.VISIBLE);
@@ -33,9 +33,9 @@ public class FlipPageTransformer extends BasePageTransformer {
 
     @Override
     public void handleRightPage(View view, float position) {
-        ViewCompat.setTranslationX(view, -view.getWidth() * position);
+        view.setTranslationX(-view.getWidth() * position);
         float rotation = (ROTATION * position);
-        ViewCompat.setRotationY(view, rotation);
+        view.setRotationY(rotation);
 
         if (position < 0.5) {
             view.setVisibility(View.VISIBLE);

@@ -8,7 +8,7 @@ import android.view.View;
  * link https://xiaohaibin.github.io/
  * email： xhb_199409@163.com
  * github: https://github.com/xiaohaibin
- * description：
+ * description：DefaultPageTransformer
  */
 public class DefaultPageTransformer extends BasePageTransformer {
 

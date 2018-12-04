@@ -9,7 +9,7 @@ import android.view.View;
  * link https://xiaohaibin.github.io/
  * email： xhb_199409@163.com
  * github: https://github.com/xiaohaibin
- * description：
+ * description：CubePageTransformer
  */
 public class CubePageTransformer extends BasePageTransformer {
     private float mMaxRotation = 90.0f;
@@ -23,23 +23,23 @@ public class CubePageTransformer extends BasePageTransformer {
 
     @Override
     public void handleInvisiblePage(View view, float position) {
-        ViewCompat.setPivotX(view, view.getMeasuredWidth());
-        ViewCompat.setPivotY(view, view.getMeasuredHeight() * 0.5f);
-        ViewCompat.setRotationY(view, 0);
+        view.setPivotX(view.getMeasuredWidth());
+        view.setPivotY( view.getMeasuredHeight() * 0.5f);
+        view.setRotationY(0);
     }
 
     @Override
     public void handleLeftPage(View view, float position) {
-        ViewCompat.setPivotX(view, view.getMeasuredWidth());
-        ViewCompat.setPivotY(view, view.getMeasuredHeight() * 0.5f);
-        ViewCompat.setRotationY(view, mMaxRotation * position);
+        view.setPivotX(view.getMeasuredWidth());
+        view.setPivotY( view.getMeasuredHeight() * 0.5f);
+        view.setRotationY(mMaxRotation * position);
     }
 
     @Override
     public void handleRightPage(View view, float position) {
-        ViewCompat.setPivotX(view, 0);
-        ViewCompat.setPivotY(view, view.getMeasuredHeight() * 0.5f);
-        ViewCompat.setRotationY(view, mMaxRotation * position);
+        view.setPivotX( 0);
+        view.setPivotY(view.getMeasuredHeight() * 0.5f);
+        view.setRotationY( mMaxRotation * position);
     }
 
     public void setMaxRotation(float maxRotation) {
