@@ -227,6 +227,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | pointLeftRightPadding| 指示点左右内间距 | dimension，默认为3dp |
 | tipTextColor| 提示文案的文字颜色 | reference|color，默认为white |
 | tipTextSize| 提示文案的文字大小| dimension，默认为10dp |
+| isShowTips|是否展示提示文案|  boolean类型，默认为false 默认不展示 |
 | isShowNumberIndicator| 是否显示数字指示器| boolean,默认为false不显示 |
 | numberIndicatorBacgroud|数字指示器背景| reference |
 | isShowIndicatorOnlyOne|当只有一张图片的时候是否显示指示点| boolean，默认为false，不显示 |
