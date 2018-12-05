@@ -104,7 +104,7 @@ dependencies {
         imgesUrl.add("http://imageprocess.yitos.net/images/public/20160906/1291473163104906.jpg");
 
         //添加轮播图片数据（图片数据不局限于网络图片、本地资源文件、View 都可以）,刷新数据也是调用该方法
-        mXBanner.setData(imgesUrl,null);//第二个参数为提示文字资源集合
+        mXBanner.setBannerData(imgesUrl);//setData（）方法已过时，推荐使用setBannerData（）方法，具体参照demo使用
 
 ```
 
@@ -227,6 +227,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | pointLeftRightPadding| 指示点左右内间距 | dimension，默认为3dp |
 | tipTextColor| 提示文案的文字颜色 | reference|color，默认为white |
 | tipTextSize| 提示文案的文字大小| dimension，默认为10dp |
+| isShowTips|是否展示提示文案|  boolean类型，默认为false 默认不展示 |
 | isShowNumberIndicator| 是否显示数字指示器| boolean,默认为false不显示 |
 | numberIndicatorBacgroud|数字指示器背景| reference |
 | isShowIndicatorOnlyOne|当只有一张图片的时候是否显示指示点| boolean，默认为false，不显示 |
