@@ -19,7 +19,7 @@
         app:isShowNumberIndicator="false"
         app:isShowTips="true"
         app:pageChangeDuration="800"
-        app:pointsContainerBackground="#442e2e2e"
+        app:pointsContainerBackground="@drawable/shape_round_8dp"
         app:pointsPosition="RIGHT"/>
 
 
