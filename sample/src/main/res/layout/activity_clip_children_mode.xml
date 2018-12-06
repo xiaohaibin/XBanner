@@ -17,9 +17,10 @@
         app:isHandLoop="true"
         app:isShowIndicatorOnlyOne="true"
         app:isShowNumberIndicator="false"
+        app:isShowTips="true"
         app:pageChangeDuration="800"
-        app:pointsContainerBackground="@android:color/transparent"
-        app:pointsPosition="CENTER"/>
+        app:pointsContainerBackground="#442e2e2e"
+        app:pointsPosition="RIGHT"/>
 
 
     <com.stx.xhb.xbanner.XBanner

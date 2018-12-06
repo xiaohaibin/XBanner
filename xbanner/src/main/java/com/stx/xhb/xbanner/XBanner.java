@@ -301,6 +301,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         /*设定指示器容器布局及位置*/
         mPointContainerLp = new LayoutParams(RMP, RWC);
         mPointContainerLp.addRule(mPointContainerPosition);
+        if (mIsClipChildrenMode){
+            mPointContainerLp.setMargins(mClipChildrenLeftRightMargin, 0, mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin);
+        }
         addView(pointContainerRl, mPointContainerLp);
         mPointRealContainerLp = new LayoutParams(RWC, RWC);
         /*设置指示器容器*/
@@ -360,22 +363,13 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         /*设置指示器布局位置*/
         if (CENTER == mPointPosition) {
             mPointRealContainerLp.addRule(RelativeLayout.CENTER_HORIZONTAL);
-            if (mIsClipChildrenMode) {
-                mPointRealContainerLp.bottomMargin = mClipChildrenTopBottomMargin;
-            }
             pointLp.addRule(RelativeLayout.LEFT_OF, R.id.xbanner_pointId);
         } else if (LEFT == mPointPosition) {
             mPointRealContainerLp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
             mTipTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
-            if (mIsClipChildrenMode) {
-                mPointRealContainerLp.setMargins(mClipChildrenLeftRightMargin, 0, 0, mClipChildrenTopBottomMargin);
-            }
             pointLp.addRule(RelativeLayout.RIGHT_OF, R.id.xbanner_pointId);
         } else if (RIGHT == mPointPosition) {
             mPointRealContainerLp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-            if (mIsClipChildrenMode) {
-                mPointRealContainerLp.setMargins(0, 0, mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin);
-            }
             pointLp.addRule(RelativeLayout.LEFT_OF, R.id.xbanner_pointId);
         }
 
