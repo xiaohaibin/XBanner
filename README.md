@@ -258,6 +258,12 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
   >1）确认是否实现了 **loadImage（）** 方法，需要使用自己的图片加载框架加载图片！！！
   >2）请把加载图片地址复制到浏览器看看是否打开图片，确认图片地址是否正确！！！
 
+- 4.自定义布局，ItemOnClck监听失效问题，在根布局加上以下两个属性，且子布局不要包含以下两个属性
+ 
+ ```
+ android:clickable="true"
+ android:focusable="true"
+ ```
 
 ## 关于我
 
