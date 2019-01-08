@@ -10,8 +10,8 @@ import android.widget.Toast;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 import com.stx.xhb.demo.entity.TuchongEntity;
-import com.stx.xhb.xbanner.entity.LocalImageInfo;
 import com.stx.xhb.xbanner.XBanner;
+import com.stx.xhb.xbanner.entity.LocalImageInfo;
 import com.stx.xhb.xbanner.transformers.Transformer;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -82,8 +82,6 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
 //                ((ImageView)view).setImageResource((Integer) model);
             }
         });
-
-
     }
 
     /**
@@ -129,7 +127,6 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner3.setAutoPlayAble(data.size() > 1);
                         mBanner3.setBannerData(R.layout.layout_fresco_imageview, data);
-
 
                     }
                 });
