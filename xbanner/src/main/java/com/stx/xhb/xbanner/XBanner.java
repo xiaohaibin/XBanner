@@ -1029,4 +1029,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     public interface XBannerAdapter {
         void loadBanner(XBanner banner, Object model, View view, int position);
     }
+
+    public void setIsClipChildrenMode(boolean mIsClipChildrenMode){
+        this.mIsClipChildrenMode = mIsClipChildrenMode;
+    }
 }
