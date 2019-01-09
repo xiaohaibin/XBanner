@@ -96,9 +96,15 @@ dependencies {
 ```     
         //获取控件
         XBanner mXBanner = (XBanner) findViewById(R.id.xbanner);
+        
+        List<String> imgesUrl = new ArrayList<>();
+        imgesUrl.add("http://img3.fengniao.com/forum/attachpics/913/114/36502745.jpg");
+        imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/99381473502384338.jpg");
+        imgesUrl.add("http://imageprocess.yitos.net/images/public/20160910/77991473496077677.jpg");
+        imgesUrl.add("http://imageprocess.yitos.net/images/public/20160906/1291473163104906.jpg");
 
         //添加轮播图片数据（图片数据不局限于网络图片、本地资源文件、View 都可以）,刷新数据也是调用该方法
-        mXBanner.setBannerData(imgesUrl);//setData（）方法已过时，推荐使用setBannerData（）方法，具体参照 demo 使用
+        mXBanner.setData(imgesUrl,null);//第二个参数为提示文字资源集合
 
 ```
 
@@ -221,7 +227,6 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | pointLeftRightPadding| 指示点左右内间距 | dimension，默认为3dp |
 | tipTextColor| 提示文案的文字颜色 | reference|color，默认为white |
 | tipTextSize| 提示文案的文字大小| dimension，默认为10dp |
-| isShowTips|是否展示提示文案|  boolean类型，默认为false 默认不展示 |
 | isShowNumberIndicator| 是否显示数字指示器| boolean,默认为false不显示 |
 | numberIndicatorBacgroud|数字指示器背景| reference |
 | isShowIndicatorOnlyOne|当只有一张图片的时候是否显示指示点| boolean，默认为false，不显示 |
@@ -252,12 +257,6 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
   >1）确认是否实现了 **loadImage（）** 方法，需要使用自己的图片加载框架加载图片！！！
   >2）请把加载图片地址复制到浏览器看看是否打开图片，确认图片地址是否正确！！！
 
-- 4.自定义布局，ItemOnClck监听失效问题，在根布局加上以下两个属性，且子布局不要包含以下两个属性
- 
- ```
- android:clickable="true"
- android:focusable="true"
- ```
 
 ## 关于我
 
