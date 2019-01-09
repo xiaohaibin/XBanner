@@ -261,11 +261,12 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 * **简书**: <http://www.jianshu.com/users/42aed90cf5af/latest_articles>
 
 ## Thanks
+
 [bingoogolapple](https://github.com/bingoogolapple)
 
-感谢[tanweijiu](https://github.com/tanweijiu)修复版本1.1.2中bug
+感谢[tanweijiu](https://github.com/tanweijiu)修复版本 1.1.2 中bug
 
-感谢[Leoand8](https://github.com/Leoand8)修复版本1.6.1中bug
+感谢[Leoand8](https://github.com/Leoand8)修复版本 1.6.1 中bug
 
 也欢迎各位感兴趣的开发者共同维护该项目。
 
