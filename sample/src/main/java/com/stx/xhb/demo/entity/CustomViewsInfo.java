@@ -21,9 +21,4 @@ public class CustomViewsInfo extends SimpleBannerInfo {
     public String getXBannerUrl() {
         return info;
     }
-
-    @Override
-    public String getXBannerTitle() {
-        return "";
-    }
 }

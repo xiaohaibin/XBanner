@@ -118,9 +118,9 @@ public class ListViewActivity extends AppCompatActivity {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
                         List<TuchongEntity.FeedListBean.EntryBean> data=new ArrayList<>();
-                        for (int i = 0; i < others.size(); i++) {
+                        for (int i = 0; i < 6; i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
-                            if ("post".equals(feedListBean.getType())){
+                            if ("post".equals(feedListBean.getType() )){
                                 data.add(feedListBean.getEntry());
                             }
                         }

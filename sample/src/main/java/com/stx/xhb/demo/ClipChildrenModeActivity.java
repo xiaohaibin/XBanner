@@ -10,8 +10,8 @@ import android.widget.Toast;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 import com.stx.xhb.demo.entity.TuchongEntity;
-import com.stx.xhb.xbanner.entity.LocalImageInfo;
 import com.stx.xhb.xbanner.XBanner;
+import com.stx.xhb.xbanner.entity.LocalImageInfo;
 import com.stx.xhb.xbanner.transformers.Transformer;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -82,8 +82,6 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
 //                ((ImageView)view).setImageResource((Integer) model);
             }
         });
-
-
     }
 
     /**
@@ -117,18 +115,21 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner.setAutoPlayAble(data.size() > 1);
-                        mBanner.setBannerData(R.layout.layout_fresco_imageview, data);
+                        mBanner.setIsClipChildrenMode(true);
+                        //老方法，不推荐使用
+                        mBanner.setData(R.layout.layout_fresco_imageview, data, null);
 
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner2.setAutoPlayAble(data.size() > 1);
+                        mBanner2.setIsClipChildrenMode(true);
                         mBanner2.setBannerData(R.layout.layout_fresco_imageview, data);
 
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner3.setAutoPlayAble(data.size() > 1);
+                        mBanner3.setIsClipChildrenMode(true);
                         mBanner3.setBannerData(R.layout.layout_fresco_imageview, data);
-
 
                     }
                 });

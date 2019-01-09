@@ -6,6 +6,7 @@
               android:focusable="true"
               android:orientation="vertical">
 
+
     <TextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
@@ -17,3 +18,4 @@
         android:textSize="40dp"/>
 
 </LinearLayout>
+

@@ -22,9 +22,4 @@ public class LocalImageInfo extends SimpleBannerInfo {
     public Integer getXBannerUrl() {
         return bannerRes;
     }
-
-    @Override
-    public String getXBannerTitle() {
-        return null;
-    }
 }
