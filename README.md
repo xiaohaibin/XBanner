@@ -264,7 +264,9 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 [bingoogolapple](https://github.com/bingoogolapple)
 
 感谢[tanweijiu](https://github.com/tanweijiu)修复版本1.1.2中bug
+
 感谢[Leoand8](https://github.com/Leoand8)修复版本1.6.1中bug
+
 也欢迎各位感兴趣的开发者共同维护该项目。
 
 
