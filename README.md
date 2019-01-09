@@ -270,12 +270,14 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 
 也欢迎各位感兴趣的开发者共同维护该项目。
 
-### 你的 Statr 是我最大的动力，谢谢~~~
+### Contract
 
-
+[QQ群](http://qm.qq.com/cgi-bin/qm/qr?k=cM-ytK5bbZZZ4v7S1fMrTDzkjlFT0C9K)
 
 ![欢迎关注“大话微信”公众号](http://upload-images.jianshu.io/upload_images/1956769-2f49dcb0dc5195b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400)
-![欢迎加入“大话安卓”技术交流群，互相学习提升](http://upload-images.jianshu.io/upload_images/1956769-326c166b86ed8e94.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/400)
+
+
+### 你的 Statr 是我最大的动力，谢谢~~~
 
 
 License
