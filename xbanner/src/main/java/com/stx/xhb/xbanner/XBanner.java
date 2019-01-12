@@ -1020,7 +1020,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             int offset = position - realCurrentItem;
             if (offset < 0) {
                 for (int i = -1; i >= offset; i--) {
-                    mViewPager.setCurrentItem(currentItem + offset, false);
+                    mViewPager.setCurrentItem(currentItem + i, false);
                 }
             } else if (offset > 0) {
                 for (int i = 1; i <= offset; i++) {
