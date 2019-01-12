@@ -123,6 +123,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        mBanner.setCurrentItem(2);
+        mBanner.setBannerCurrentItem(2);
     }
 }

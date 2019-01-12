@@ -38,6 +38,8 @@ import java.util.List;
  * link https://xiaohaibin.github.io/
  * email： xhb_199409@163.com
  * github: https://github.com/xiaohaibin
+ *
+ * @author Mr.xiao
  * description： 图片轮播控件
  * 1.支持图片无限轮播控件;
  * 2.支持自定义指示器的背景和两种状态指示点;
@@ -98,63 +100,101 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      */
     private List<?> mDatas;
 
-    /*处理少于三页时的无限轮播*/
+    /**
+     * 处理少于三页时的无限轮播
+     */
     private List<View> mLessViews;
 
-    /*视图集合*/
+    /**
+     * 视图集合
+     */
     private List<View> mViews;
 
-    /*是否只有一张图片*/
+    /**
+     * 是否只有一张图片
+     */
     private boolean mIsOneImg = false;
 
-    /*是否开启自动轮播*/
+    /**
+     * 是否开启自动轮播
+     */
     private boolean mIsAutoPlay = true;
 
-    /*自动播放时间 */
+    /**
+     * 自动播放时间
+     */
     private int mAutoPalyTime = 5000;
 
-    /*是否允许用户滑动*/
+    /**
+     * 是否允许用户滑动
+     */
     private boolean mIsAllowUserScroll = true;
 
-    /*viewpager从最后一张到第一张的动画效果*/
+    /**
+     * viewpager从最后一张到第一张的动画效果
+     */
     private int mSlideScrollMode = OVER_SCROLL_ALWAYS;
 
-    /*指示点位置*/
+    /**
+     * 指示点位置
+     */
     private int mPointPosition = CENTER;
 
-    /*正常状态下的指示点*/
+    /**
+     * 正常状态下的指示点
+     */
     private @DrawableRes
     int mPointNoraml;
 
-    /*选中状态下的指示点*/
+    /**
+     * 选中状态下的指示点
+     */
     private @DrawableRes
     int mPointSelected;
 
-    /*指示容器背景*/
+    /**
+     * 指示容器背景
+     */
     private Drawable mPointContainerBackgroundDrawable;
 
-    /*指示容器布局规则*/
+    /**
+     * 指示容器布局规则
+     */
     private LayoutParams mPointRealContainerLp;
 
-    /*提示语*/
+    /**
+     * 提示语
+     */
     private TextView mTipTv;
 
-    /*提示语字体颜色*/
+    /**
+     * 提示语字体颜色
+     */
     private int mTipTextColor;
 
-    /*指示点是否可见*/
+    /**
+     * 指示点是否可见
+     */
     private boolean mPointsIsVisible = true;
 
-    /*提示语字体大小*/
+    /**
+     * 提示语字体大小
+     */
     private int mTipTextSize;
 
-    /*是否展示提示语*/
+    /**
+     * 是否展示提示语
+     */
     private boolean mIsShowTips;
 
-    /*提示文案数据*/
+    /**
+     * 提示文案数据
+     */
     private List<String> mTipData;
 
-    /*指示器容器位置*/
+    /**
+     * 指示器容器位置
+     */
     public static final int TOP = 10;
     public static final int BOTTOM = 12;
 
@@ -1006,11 +1046,33 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     /**
+     * 只有单张banner时是否展示指示器
+     *
+     * @param showIndicatorOnlyOne
+     */
+    public void setShowIndicatorOnlyOne(boolean showIndicatorOnlyOne) {
+        mIsShowIndicatorOnlyOne = showIndicatorOnlyOne;
+    }
+
+    /**
+     * 获取当前位置
+     *
+     * @return
+     */
+    public int getBannerCurrentItem() {
+        if (mViewPager == null || mDatas == null || mDatas.isEmpty()) {
+            return -1;
+        } else {
+            return mViewPager.getCurrentItem() % getRealCount();
+        }
+    }
+
+    /**
      * 切换到指定位置
      *
      * @param position
      */
-    public void setCurrentItem(int position) {
+    public void setBannerCurrentItem(int position) {
         if (mViewPager == null || mDatas == null || position > getRealCount() - 1) {
             return;
         }
@@ -1031,7 +1093,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                 startAutoPlay();
             }
         } else {
-            mViewPager.setCurrentItem(position, true);
+            mViewPager.setCurrentItem(position, false);
         }
     }
 

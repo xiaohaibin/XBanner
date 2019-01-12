@@ -53,7 +53,8 @@ public class ListViewActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
-                    case 0://默认切换动画
+                    //默认切换动画
+                    case 0:
                         mXBanner.setPageTransformer(Transformer.Default);
                         break;
                     case 1:
