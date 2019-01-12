@@ -16,7 +16,6 @@
         app:tipTextSize="12sp"
         app:isAutoPlay="true"
         app:isShowTips="true"
-        app:isClipChildrenMode="true"
         app:isShowNumberIndicator="false"
         app:isShowIndicatorOnlyOne="false"
         app:pageChangeDuration="800"/>

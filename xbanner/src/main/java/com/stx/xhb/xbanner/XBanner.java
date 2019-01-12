@@ -563,7 +563,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param position
      */
-    public void setPoinstPosition(@INDICATOR_GRAVITY int position) {
+    public void setPointPosition(@INDICATOR_GRAVITY int position) {
         //设置指示器布局位置
         if (CENTER == position) {
             mPointRealContainerLp.addRule(RelativeLayout.CENTER_HORIZONTAL);
@@ -996,6 +996,45 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mIsHandLoop = handLoop;
     }
 
+    /**
+     * 是否开启一屏多显模式
+     *
+     * @param mIsClipChildrenMode
+     */
+    public void setIsClipChildrenMode(boolean mIsClipChildrenMode) {
+        this.mIsClipChildrenMode = mIsClipChildrenMode;
+    }
+
+    /**
+     * 切换到指定位置
+     *
+     * @param position
+     */
+    public void setCurrentItem(int position) {
+        if (mViewPager == null || mDatas == null || position > getRealCount() - 1) {
+            return;
+        }
+        if (mIsAutoPlay || mIsHandLoop) {
+            int currentItem = mViewPager.getCurrentItem();
+            int realCurrentItem = currentItem % getRealCount();
+            int offset = position - realCurrentItem;
+            if (offset < 0) {
+                for (int i = -1; i >= offset; i--) {
+                    mViewPager.setCurrentItem(currentItem + offset, false);
+                }
+            } else if (offset > 0) {
+                for (int i = 1; i <= offset; i++) {
+                    mViewPager.setCurrentItem(currentItem + i, false);
+                }
+            }
+            if (mIsAutoPlay) {
+                startAutoPlay();
+            }
+        } else {
+            mViewPager.setCurrentItem(position, true);
+        }
+    }
+
     @Override
     protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
@@ -1058,9 +1097,5 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     public interface XBannerAdapter {
         void loadBanner(XBanner banner, Object model, View view, int position);
-    }
-
-    public void setIsClipChildrenMode(boolean mIsClipChildrenMode) {
-        this.mIsClipChildrenMode = mIsClipChildrenMode;
     }
 }
