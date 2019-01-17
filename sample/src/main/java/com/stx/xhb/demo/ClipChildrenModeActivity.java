@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -79,7 +80,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                 draweeView.setImageURI(Uri.parse(url));
 
 //                加载本地图片展示
-//                ((ImageView)view).setImageResource((Integer) model);
+//                ((ImageView)view).setImageResource(((LocalImageInfo) model).getXBannerUrl());
             }
         });
     }

@@ -3,20 +3,21 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 //提交到仓库中的版本号
-version = "1.6.3"
+version = "1.6.4"
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 28
     }
 }
 
 dependencies {
-    compileOnly 'com.android.support:support-v4:26+'
+    //noinspection GradleDynamicVersion
+    compileOnly 'com.android.support:support-v4:28+'
 }
 ///方法1
 def siteUrl = 'https://github.com/xiaohaibin/XBanner'      // 项目的主页   这个是说明，可随便填
