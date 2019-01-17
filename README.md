@@ -233,6 +233,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | clipChildrenTopBottomMargin|一屏显示多个上下间距| dimension ，默认为30dp|
 | viewpagerMargin|viewpager页面间距| dimension ，默认为10dp|
 | isClipChildrenModeLessThree|少于三张是否支持一屏多显模式|  boolean类型，默认为false 默认不开启 |
+| bannerBottomMargin|banner轮播区域底部margin，可设置指示器距离轮播图的间距| dimension ，默认为0dp|
 
 ## 混淆配置
 
