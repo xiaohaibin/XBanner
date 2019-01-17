@@ -51,5 +51,7 @@
         <attr name="isClipChildrenModeLessThree" format="boolean"/>
         <!--是否展示提示文案-->
         <attr name="isShowTips" format="boolean"/>
+        <!--banner轮播区域底部margin-->
+        <attr name="bannerBottomMargin" format="dimension"/>
     </declare-styleable>
 </resources>

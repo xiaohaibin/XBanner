@@ -31,11 +31,14 @@
         android:layout_marginTop="10dp"
         app:AutoPlayTime="3000"
         app:isAutoPlay="false"
+        app:pointNormal="@drawable/shape_noraml"
+        app:pointSelect="@drawable/shape_selected"
         app:isClipChildrenMode="true"
         app:isHandLoop="true"
         app:isShowIndicatorOnlyOne="true"
         app:isShowNumberIndicator="false"
         app:pageChangeDuration="800"
+        app:bannerBottomMargin="30dp"
         app:pointsContainerBackground="@android:color/transparent"
         app:pointsPosition="CENTER" />
 

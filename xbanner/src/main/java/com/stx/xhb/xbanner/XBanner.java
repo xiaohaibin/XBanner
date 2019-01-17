@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.Dimension;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.LayoutRes;
@@ -204,6 +205,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private boolean mIsClipChildrenModeLessThree;
 
     /**
+     * XBanner图片轮播区域底部Margin
+     */
+    public int mBannerBottomMargin = 0;
+
+    /**
      * 请使用 {@link #loadImage} 替换
      * @param mAdapter
      */
@@ -277,12 +283,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mViewPagerMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_viewpagerMargin, mViewPagerMargin);
             mIsClipChildrenModeLessThree = typedArray.getBoolean(R.styleable.XBanner_isClipChildrenModeLessThree, false);
             mIsShowTips = typedArray.getBoolean(R.styleable.XBanner_isShowTips, false);
+            mBannerBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_bannerBottomMargin, mBannerBottomMargin);
             typedArray.recycle();
         }
         if (mIsClipChildrenMode) {
             mTransformer = Transformer.Scale;
         }
-
     }
 
     private void initView() {
@@ -301,7 +307,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         /*设定指示器容器布局及位置*/
         mPointContainerLp = new LayoutParams(RMP, RWC);
         mPointContainerLp.addRule(mPointContainerPosition);
-        if (mIsClipChildrenMode){
+        if (mIsClipChildrenMode) {
             mPointContainerLp.setMargins(mClipChildrenLeftRightMargin, 0, mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin);
         }
         addView(pointContainerRl, mPointContainerLp);
@@ -578,7 +584,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             removeView(mViewPager);
             mViewPager = null;
         }
-
         mViewPager = new XBannerViewPager(getContext());
         mViewPager.setAdapter(new XBannerPageAdapter());
         mViewPager.addOnPageChangeListener(this);
@@ -587,6 +592,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         setPageTransformer(mTransformer);
         setPageChangeDuration(mPageChangeDuration);
         LayoutParams layoutParams = new LayoutParams(RMP, RMP);
+        layoutParams.setMargins(0, 0, 0, mBannerBottomMargin);
 
         if (mIsClipChildrenMode) {
             mViewPager.setClipChildren(false);
@@ -603,10 +609,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             }
             mViewPager.setPageMargin(mViewPagerMargin);
             setClipChildren(false);
-            layoutParams.leftMargin = mClipChildrenLeftRightMargin;
-            layoutParams.rightMargin = mClipChildrenLeftRightMargin;
-            layoutParams.topMargin = mClipChildrenTopBottomMargin;
-            layoutParams.bottomMargin = mClipChildrenTopBottomMargin;
+            layoutParams.setMargins(mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin, mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin + mBannerBottomMargin);
         }
 
         addView(mViewPager, 0, layoutParams);
@@ -926,7 +929,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 设置viewpager间距
      * @param viewPagerMargin 单位dp
      */
-    public void setViewPagerMargin(int viewPagerMargin) {
+    public void setViewPagerMargin(@Dimension int viewPagerMargin) {
         this.mViewPagerMargin = viewPagerMargin;
         if (mViewPager != null) {
             mViewPager.setPageMargin(XBannerUtils.dp2px(getContext(), viewPagerMargin));
@@ -943,10 +946,21 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
     }
 
-    public void setClipChildrenLeftRightMargin(int clipChildrenLeftRightMargin) {
-        mClipChildrenLeftRightMargin = clipChildrenLeftRightMargin;
+    /**
+     * 设置一屏多显模式左右间距
+     * @param clipChildrenLeftRightMargin 单位/dp
+     */
+    public void setClipChildrenLeftRightMargin(@Dimension int clipChildrenLeftRightMargin) {
+        mClipChildrenLeftRightMargin = XBannerUtils.dp2px(getContext(), clipChildrenLeftRightMargin);
     }
 
+    /**
+     * 设置轮播区域底部间距，可以实现指示器和轮播区域分离
+     * @param bannerBottomMargin 单位/dp
+     */
+    public void setBannerBottomMargin(@Dimension int bannerBottomMargin) {
+        mBannerBottomMargin = XBannerUtils.dp2px(getContext(), bannerBottomMargin);
+    }
 
     /**
      * 设置ViewPager切换速度
