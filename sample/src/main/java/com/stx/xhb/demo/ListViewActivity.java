@@ -53,7 +53,8 @@ public class ListViewActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
-                    case 0://默认切换动画
+                    //默认切换动画
+                    case 0:
                         mXBanner.setPageTransformer(Transformer.Default);
                         break;
                     case 1:
@@ -117,16 +118,16 @@ public class ListViewActivity extends AppCompatActivity {
                     public void onResponse(String response, int id) {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
-                        List<TuchongEntity.FeedListBean.EntryBean> data=new ArrayList<>();
-                        for (int i = 0; i < 6; i++) {
+                        List<TuchongEntity.FeedListBean.EntryBean> data = new ArrayList<>();
+                        for (int i = 0; i < others.size(); i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
-                            if ("post".equals(feedListBean.getType() )){
+                            if ("post".equals(feedListBean.getType())) {
                                 data.add(feedListBean.getEntry());
                             }
                         }
+                        mXBanner.setBannerData(data);
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mXBanner.setAutoPlayAble(data.size() > 1);
-                        mXBanner.setBannerData(data);
                     }
                 });
     }
@@ -160,7 +161,7 @@ public class ListViewActivity extends AppCompatActivity {
         //设置广告图片点击事件
         mXBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
-            public void onItemClick(XBanner banner, Object model,View view, int position) {
+            public void onItemClick(XBanner banner, Object model, View view, int position) {
                 Toast.makeText(ListViewActivity.this, "点击了第" + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
             }
         });

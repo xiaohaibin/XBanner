@@ -108,17 +108,21 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(String response, int id) {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
-                        List<TuchongEntity.FeedListBean.EntryBean> data=new ArrayList<>();
+                        List<TuchongEntity.FeedListBean.EntryBean> data = new ArrayList<>();
                         for (int i = 0; i < others.size(); i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
-                            if ("post".equals(feedListBean.getType())){
+                            if ("post".equals(feedListBean.getType())) {
                                 data.add(feedListBean.getEntry());
                             }
                         }
+                        mBanner.setBannerData(data);
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner.setAutoPlayAble(data.size() > 1);
-                        mBanner.setBannerData(data);
                     }
                 });
+    }
+
+    public void onClick(View view) {
+        mBanner.setBannerCurrentItem(2);
     }
 }

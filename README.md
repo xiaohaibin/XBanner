@@ -16,7 +16,7 @@
 - 支持设置图片轮播间隔
 - 支持指示器背景的修改及隐藏/显示
 - 支持显示提示性文字功能
-- 支持图片切换动画,目前支持10种切换动画，具体可看demo
+- 支持图片切换动画,目前支持10种切换动画，亦可设置自定义动画效果
 - 支持设置图片切换速度
 - 支持设置数字指示器
 - 支持设置图片框架整体占位图
@@ -96,9 +96,9 @@ dependencies {
 ```     
         //获取控件
         XBanner mXBanner = (XBanner) findViewById(R.id.xbanner);
-
-        //添加轮播图片数据（图片数据不局限于网络图片、本地资源文件、View 都可以）,刷新数据也是调用该方法
-        mXBanner.setBannerData(imgesUrl);//setData（）方法已过时，推荐使用setBannerData（）方法，具体参照 demo 使用
+        
+       //添加轮播图片数据（图片数据不局限于网络图片、本地资源文件、View 都可以）,刷新数据也是调用该方法
+        mXBanner.setBannerData(imgesUrl);//setData（）方法已过时，推荐使用setBannerData（）方法，具体参照demo使用
 
 ```
 
@@ -165,7 +165,8 @@ dependencies {
 ```
 2.使用 setData() 方法进行设置
 ```
-   mXBanner.setData(R.layout.image_fresco,“图片资源集合”,"提示文字集合，没有传null");
+  //setData（）方法已过时，推荐使用setBannerData（）方法，具体参照demo使用
+  mXBanner.setBannerData(R.layout.image_fresco,imgesUrl);
    
 ```
 #### 9.自定义布局
@@ -221,7 +222,6 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | pointLeftRightPadding| 指示点左右内间距 | dimension，默认为3dp |
 | tipTextColor| 提示文案的文字颜色 | reference|color，默认为white |
 | tipTextSize| 提示文案的文字大小| dimension，默认为10dp |
-| isShowTips|是否展示提示文案|  boolean类型，默认为false 默认不展示 |
 | isShowNumberIndicator| 是否显示数字指示器| boolean,默认为false不显示 |
 | numberIndicatorBacgroud|数字指示器背景| reference |
 | isShowIndicatorOnlyOne|当只有一张图片的时候是否显示指示点| boolean，默认为false，不显示 |
@@ -252,12 +252,6 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
   >1）确认是否实现了 **loadImage（）** 方法，需要使用自己的图片加载框架加载图片！！！
   >2）请把加载图片地址复制到浏览器看看是否打开图片，确认图片地址是否正确！！！
 
-- 4.自定义布局，ItemOnClck监听失效问题，在根布局加上以下两个属性，且子布局不要包含以下两个属性
- 
- ```
- android:clickable="true"
- android:focusable="true"
- ```
 
 ## 关于我
 
@@ -267,20 +261,24 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 * **简书**: <http://www.jianshu.com/users/42aed90cf5af/latest_articles>
 
 ## Thanks
+
 [bingoogolapple](https://github.com/bingoogolapple)
 
-感谢[tanweijiu](https://github.com/tanweijiu)修复版本1.1.2中bug，也欢迎各位感兴趣的开发者共同维护该项目。
+感谢[tanweijiu](https://github.com/tanweijiu)修复版本 1.1.2 中bug
+
+感谢[Leoand8](https://github.com/Leoand8)修复版本 1.6.1 中bug
+
+也欢迎各位感兴趣的开发者共同维护该项目。
+
+### Contract
+
+[QQ群:271127803](http://qm.qq.com/cgi-bin/qm/qr?k=cM-ytK5bbZZZ4v7S1fMrTDzkjlFT0C9K)
+
+![欢迎关注“大话微信”公众号](http://upload-images.jianshu.io/upload_images/1956769-2f49dcb0dc5195b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400)
 
 
-### 如果觉得文章帮到你，可以关注我的微信公众号，将会定期推送优质技术文章，求关注~~~##
+### 你的 Statr 是我最大的动力，谢谢~~~
 
-![欢迎关注“大话微信”公众号](http://upload-images.jianshu.io/upload_images/1956769-2f49dcb0dc5195b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-### 欢迎加入“大话安卓”技术交流群，一起分享，共同进步##
-
-![欢迎加入“大话安卓”技术交流群，互相学习提升](http://upload-images.jianshu.io/upload_images/1956769-326c166b86ed8e94.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-### 如果喜欢，还请statr&&follow支持一下，谢谢~~~
 
 License
 --
