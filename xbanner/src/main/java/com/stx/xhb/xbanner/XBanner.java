@@ -1015,22 +1015,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     /**
-     * 设置一屏多显模式左右间距
-     * @param clipChildrenLeftRightMargin 单位/dp
-     */
-    public void setClipChildrenLeftRightMargin(@Dimension int clipChildrenLeftRightMargin) {
-        mClipChildrenLeftRightMargin = XBannerUtils.dp2px(getContext(), clipChildrenLeftRightMargin);
-    }
-
-    /**
-     * 设置轮播区域底部间距，可以实现指示器和轮播区域分离
-     * @param bannerBottomMargin 单位/dp
-     */
-    public void setBannerBottomMargin(@Dimension int bannerBottomMargin) {
-        mBannerBottomMargin = XBannerUtils.dp2px(getContext(), bannerBottomMargin);
-    }
-
-    /**
      * 设置ViewPager切换速度
      *
      * @param duration
