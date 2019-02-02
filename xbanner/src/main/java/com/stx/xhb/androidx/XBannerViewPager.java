@@ -1,15 +1,16 @@
-package com.stx.xhb.xbanner;
+package com.stx.xhb.androidx;
 
 import android.content.Context;
-import android.support.v4.view.VelocityTrackerCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+
+import androidx.core.view.VelocityTrackerCompat;
+import androidx.core.view.ViewCompat;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * author：jxnk25

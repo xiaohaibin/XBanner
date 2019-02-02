@@ -1,15 +1,15 @@
 package com.stx.xhb.demo.entity;
 
-import com.stx.xhb.xbanner.entity.SimpleBannerInfo;
+import com.stx.xhb.androidx.entity.SimpleBannerInfo;
 
 import java.util.List;
 
 /**
- * @author: xiaohaibin.
- * @time: 2018/10/19
- * @mail:xhb_199409@163.com
- * @github:https://github.com/xiaohaibin
- * @describe:
+ * author: xiaohaibin.
+ * time: 2018/10/19
+ * mail:xhb_199409@163.com
+ * github:https://github.com/xiaohaibin
+ * describe:
  */
 public class TuchongEntity {
 

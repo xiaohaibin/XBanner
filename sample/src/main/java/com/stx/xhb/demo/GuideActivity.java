@@ -2,18 +2,19 @@ package com.stx.xhb.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.stx.xhb.xbanner.entity.LocalImageInfo;
-import com.stx.xhb.xbanner.XBanner;
+import com.stx.xhb.androidx.XBanner;
+import com.stx.xhb.androidx.entity.LocalImageInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * XBanner 使用在引导页控件

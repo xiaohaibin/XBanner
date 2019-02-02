@@ -7,7 +7,7 @@
               android:orientation="vertical"
               tools:context="com.stx.xhb.demo.MainActivity">
 
-    <com.stx.xhb.xbanner.XBanner
+    <com.stx.xhb.androidx.XBanner
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

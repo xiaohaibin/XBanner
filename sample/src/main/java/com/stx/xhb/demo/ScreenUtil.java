@@ -6,6 +6,9 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
+/**
+ * @author Mr.xiao
+ */
 public class ScreenUtil {
 
     private static final int[] APPCOMPAT_CHECK_ATTRS = {R.attr.colorPrimary};

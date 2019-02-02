@@ -1,4 +1,4 @@
-package com.stx.xhb.xbanner;
+package com.stx.xhb.androidx;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -6,13 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.Dimension;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IntDef;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -25,15 +18,23 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.stx.xhb.xbanner.entity.SimpleBannerInfo;
-import com.stx.xhb.xbanner.transformers.BasePageTransformer;
-import com.stx.xhb.xbanner.transformers.Transformer;
+import com.stx.xhb.androidx.entity.SimpleBannerInfo;
+import com.stx.xhb.androidx.transformers.BasePageTransformer;
+import com.stx.xhb.androidx.transformers.Transformer;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Dimension;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * link https://xiaohaibin.github.io/

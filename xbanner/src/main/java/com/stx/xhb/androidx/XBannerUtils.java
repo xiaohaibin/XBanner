@@ -1,13 +1,14 @@
-package com.stx.xhb.xbanner;
+package com.stx.xhb.androidx;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
-import android.support.annotation.DrawableRes;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+
+import androidx.annotation.DrawableRes;
 
 /**
  * <p>
