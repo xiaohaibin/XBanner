@@ -225,6 +225,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | isShowNumberIndicator| 是否显示数字指示器| boolean,默认为false不显示 |
 | numberIndicatorBacgroud|数字指示器背景| reference |
 | isShowIndicatorOnlyOne|当只有一张图片的时候是否显示指示点| boolean，默认为false，不显示 |
+| isShowTips|是否展示文字| boolean，默认为false，不显示 |
 | pageChangeDuration|图片切换速度| int值，默认为1000ms |
 | isHandLoop|是否支持手动无限循环切换图片| boolean类型，默认为false |
 | placeholderDrawable|设置整体轮播框架占位图| reference |
