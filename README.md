@@ -1,6 +1,5 @@
 ## XBanner
 
-[![latestVersion](https://api.bintray.com/packages/jxnk25/maven/XBanner/images/download.svg) ](https://bintray.com/jxnk25/maven/XBanner/_latestVersion)
 [![Version](https://jitpack.io/v/xiaohaibin/XBanner.svg)](https://jitpack.io/#xiaohaibin/XBanner)
  [![License](https://img.shields.io/badge/License-Apache--2.0-green.svg)](https://github.com/xiaohaibin/XBanner/blob/master/LICENSE)
  
@@ -36,15 +35,7 @@
 
 ## 基本使用
 
-#### 1.添加 Gradle 依赖(两种方式二选一) 有时Jcenter出现版本更新不上去，会出现版本延后的问题，建议使用Jitpack方式
-
-## Jcenter
-
-```
-dependencies {
-    compile 'com.xhb:xbanner:latestVersion'//将latestVersion替换成上面 download 后面的版本号
-}
-```
+#### 1.添加 Gradle 
 
 ## Jitpack
 
