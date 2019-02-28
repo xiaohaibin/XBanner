@@ -35,7 +35,7 @@
 
 ## 基本使用
 
-#### 1.添加 Gradle 
+#### 1.添加 Gradle （以前是有的是Jecenter方式引入，由于国内被墙了，切换成JitPack方式引入，使用方式不变）
 
 ## Jitpack
 
