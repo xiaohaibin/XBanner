@@ -55,6 +55,13 @@ dependencies {
     implementation 'com.github.xiaohaibin:XBanner:latestVersion'//将latestVersion替换成上面 jitpack 后面的版本号
 }
 ```
+
+#### 适配 androidX
+
+```
+ implementation 'com.github.xiaohaibin:XBanner:androidx_v1.0.0'
+ ```
+ 
 #### 2.在清单文件中添加网络权限
 
 ```
