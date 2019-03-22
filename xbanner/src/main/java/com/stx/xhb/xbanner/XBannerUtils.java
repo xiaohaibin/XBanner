@@ -51,9 +51,7 @@ public class XBannerUtils {
     public static int getScreenWidth(Context context) {
         Resources resources = context.getResources();
         DisplayMetrics dm = resources.getDisplayMetrics();
-        int width = dm.widthPixels;
-        return width;
+        return dm.widthPixels;
     }
-
 
 }

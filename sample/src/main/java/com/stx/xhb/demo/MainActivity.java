@@ -3,6 +3,7 @@ package com.stx.xhb.demo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -115,9 +116,9 @@ public class MainActivity extends AppCompatActivity {
                                 data.add(feedListBean.getEntry());
                             }
                         }
-                        mBanner.setBannerData(data);
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner.setAutoPlayAble(data.size() > 1);
+                        mBanner.setBannerData(data);
                     }
                 });
     }
