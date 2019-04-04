@@ -36,7 +36,7 @@ public class ListViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listview);
-        requsetData();
+        requsetData(false);
         initView();
         setAdapter();
         setListener();
@@ -101,7 +101,7 @@ public class ListViewActivity extends AppCompatActivity {
     /**
      * 加载网络数据
      */
-    private void requsetData() {
+    private void requsetData(final boolean refresh) {
         //加载网络图片资源
         String url = "https://api.tuchong.com/2/wall-paper/app";
         OkHttpUtils
@@ -119,15 +119,16 @@ public class ListViewActivity extends AppCompatActivity {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
                         List<TuchongEntity.FeedListBean.EntryBean> data = new ArrayList<>();
-                        for (int i = 0; i < others.size(); i++) {
+//                        int size = refresh ? 4 : others;
+                        for (int i = 0; i <others.size(); i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
                             if ("post".equals(feedListBean.getType())) {
                                 data.add(feedListBean.getEntry());
                             }
                         }
-                        mXBanner.setBannerData(data);
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mXBanner.setAutoPlayAble(data.size() > 1);
+                        mXBanner.setBannerData(data);
                     }
                 });
     }
@@ -148,7 +149,7 @@ public class ListViewActivity extends AppCompatActivity {
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                requsetData();
+                requsetData(true);
                 mRefreshLayout.setRefreshing(false);
             }
         });

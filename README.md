@@ -1,6 +1,5 @@
 ## XBanner
 
-[![latestVersion](https://api.bintray.com/packages/jxnk25/maven/XBanner/images/download.svg) ](https://bintray.com/jxnk25/maven/XBanner/_latestVersion)
 [![Version](https://jitpack.io/v/xiaohaibin/XBanner.svg)](https://jitpack.io/#xiaohaibin/XBanner)
  [![License](https://img.shields.io/badge/License-Apache--2.0-green.svg)](https://github.com/xiaohaibin/XBanner/blob/master/LICENSE)
  
@@ -22,7 +21,7 @@
 - 支持设置图片框架整体占位图
 - 支持Glide/Fresco等主流图片加载框架加载图片
 - 支持自定义布局
-
+- 支持androidX
 ## 效果图
 
 |模式|效果图
@@ -36,15 +35,7 @@
 
 ## 基本使用
 
-#### 1.添加 Gradle 依赖(两种方式二选一) 有时Jcenter出现版本更新不上去，会出现版本延后的问题，建议使用Jitpack方式
-
-## Jcenter
-
-```
-dependencies {
-    compile 'com.xhb:xbanner:latestVersion'//将latestVersion替换成上面 download 后面的版本号
-}
-```
+#### 1.添加 Gradle （以前是有的是Jecenter方式引入，由于国内被墙了，切换成JitPack方式引入，使用方式不变）
 
 ## Jitpack
 
@@ -61,9 +52,15 @@ allprojects {
 Step 2. Add the dependency
 ```
 dependencies {
+
+    //普通版本依赖
     implementation 'com.github.xiaohaibin:XBanner:latestVersion'//将latestVersion替换成上面 jitpack 后面的版本号
+    
+    //androidX 版本使用下面的依赖
+    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.0.0'
 }
 ```
+ 
 #### 2.在清单文件中添加网络权限
 
 ```
@@ -225,6 +222,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | isShowNumberIndicator| 是否显示数字指示器| boolean,默认为false不显示 |
 | numberIndicatorBacgroud|数字指示器背景| reference |
 | isShowIndicatorOnlyOne|当只有一张图片的时候是否显示指示点| boolean，默认为false，不显示 |
+| isShowTips|是否展示文字| boolean，默认为false，不显示 |
 | pageChangeDuration|图片切换速度| int值，默认为1000ms |
 | isHandLoop|是否支持手动无限循环切换图片| boolean类型，默认为false |
 | placeholderDrawable|设置整体轮播框架占位图| reference |

@@ -116,9 +116,9 @@ public class MainActivity extends AppCompatActivity {
                                 data.add(feedListBean.getEntry());
                             }
                         }
-                        mBanner.setBannerData(data);
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner.setAutoPlayAble(data.size() > 1);
+                        mBanner.setBannerData(data);
                     }
                 });
     }
