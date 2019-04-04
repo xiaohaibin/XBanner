@@ -20,6 +20,7 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -504,7 +505,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mIsAutoPlay = false;
             mIsClipChildrenMode = false;
         }
-        if (mIsAutoPlay && mViews.size() < 3) {
+        if (mIsAutoPlay && mViews.size() < 3 || (mIsHandLoop && mViews.size() < 3)) {
             mLessViews = new ArrayList<>(mViews);
             mLessViews.add(View.inflate(getContext(), layoutResId, null));
             if (mLessViews.size() == 2) {
@@ -565,7 +566,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mIsAutoPlay = false;
             mIsClipChildrenMode = false;
         }
-        if (mIsAutoPlay && mViews.size() < 3) {
+        if (mIsAutoPlay && mViews.size() < 3 || (mIsHandLoop && mViews.size() < 3)) {
             mLessViews = new ArrayList<>(mViews);
             mLessViews.add(View.inflate(getContext(), layoutResId, null));
             if (mLessViews.size() == 2) {
@@ -638,7 +639,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setOverScrollMode(mSlideScrollMode);
         mViewPager.setIsAllowUserScroll(mIsAllowUserScroll);
-        setPageTransformer(mTransformer);
+        mViewPager.setPageTransformer(true, BasePageTransformer.getPageTransformer(mTransformer));
         setPageChangeDuration(mPageChangeDuration);
         LayoutParams layoutParams = new LayoutParams(RMP, RMP);
         layoutParams.setMargins(0, 0, 0, mBannerBottomMargin);
@@ -646,16 +647,16 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (mIsClipChildrenMode) {
             mViewPager.setClipChildren(false);
             /*fix 网络图片只有3张或加载本地资源图片的bug*/
-            Object data = mDatas.get(0);
-            if (data instanceof SimpleBannerInfo) {
-                if (!(((SimpleBannerInfo) data).getXBannerUrl() instanceof Integer) && mDatas.size() > 4) {
-                    mViewPager.setOffscreenPageLimit(3);
-                }
-            } else {
-                if (!(data instanceof Integer) && mDatas.size() > 4) {
-                    mViewPager.setOffscreenPageLimit(3);
-                }
-            }
+//            Object data = mDatas.get(0);
+//            if (data instanceof SimpleBannerInfo) {
+//                if (!(((SimpleBannerInfo) data).getXBannerUrl() instanceof Integer) && mDatas.size() > 4) {
+//                    mViewPager.setOffscreenPageLimit(3);
+//                }
+//            } else {
+//                if (!(data instanceof Integer) && mDatas.size() > 4) {
+//                    mViewPager.setOffscreenPageLimit(3);
+//                }
+//            }
             mViewPager.setPageMargin(mViewPagerMargin);
             setClipChildren(false);
             layoutParams.setMargins(mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin, mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin + mBannerBottomMargin);
@@ -804,7 +805,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             if (null != mAdapter && !mDatas.isEmpty()) {
                 mAdapter.loadBanner(XBanner.this, mDatas.get(realPosition), view, realPosition);
             }
-
+            ViewParent parent = view.getParent();
+            if (parent != null) {
+                ((ViewGroup) parent).removeView(view);
+            }
             container.addView(view);
 
             return view;
@@ -974,8 +978,13 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      */
     public void setPageTransformer(Transformer transformer) {
         mTransformer = transformer;
-        if (mViewPager != null && transformer != null) {
-            mViewPager.setPageTransformer(true, BasePageTransformer.getPageTransformer(transformer));
+        if (mViewPager != null) {
+            initViewPager();
+            if (mLessViews==null){
+                XBannerUtils.resetPageTransformer(mViews);
+            }else {
+                XBannerUtils.resetPageTransformer(mLessViews);
+            }
         }
     }
 

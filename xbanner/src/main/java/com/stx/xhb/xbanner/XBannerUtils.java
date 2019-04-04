@@ -6,8 +6,12 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.support.annotation.DrawableRes;
+import android.support.v4.view.ViewCompat;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.View;
+
+import java.util.List;
 
 /**
  * <p>
@@ -53,5 +57,25 @@ public class XBannerUtils {
         DisplayMetrics dm = resources.getDisplayMetrics();
         return dm.widthPixels;
     }
+
+    public static void resetPageTransformer(List<? extends View> views) {
+        if (views == null) {
+            return;
+        }
+        for (View view : views) {
+            view.setVisibility(View.VISIBLE);
+            ViewCompat.setAlpha(view, 1);
+            ViewCompat.setPivotX(view, view.getMeasuredWidth() * 0.5f);
+            ViewCompat.setPivotY(view, view.getMeasuredHeight() * 0.5f);
+            ViewCompat.setTranslationX(view, 0);
+            ViewCompat.setTranslationY(view, 0);
+            ViewCompat.setScaleX(view, 1);
+            ViewCompat.setScaleY(view, 1);
+            ViewCompat.setRotationX(view, 0);
+            ViewCompat.setRotationY(view, 0);
+            ViewCompat.setRotation(view, 0);
+        }
+    }
+
 
 }
