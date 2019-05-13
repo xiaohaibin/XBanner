@@ -7,55 +7,66 @@
     android:orientation="vertical"
     tools:context="com.stx.xhb.demo.ClipChildrenModeActivity">
 
-
-    <com.stx.xhb.xbanner.XBanner
-        android:id="@+id/banner"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:AutoPlayTime="3000"
-        app:isAutoPlay="false"
-        app:isClipChildrenMode="true"
-        app:isHandLoop="true"
-        app:isShowIndicatorOnlyOne="true"
-        app:isShowNumberIndicator="false"
-        app:isShowTips="true"
-        app:pageChangeDuration="800"
-        app:pointsContainerBackground="@drawable/shape_round_8dp"
-        app:pointsPosition="RIGHT" />
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.stx.xhb.xbanner.XBanner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:AutoPlayTime="3000"
+                app:isAutoPlay="false"
+                app:isClipChildrenMode="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="false"
+                app:isShowTips="true"
+                app:pageChangeDuration="800"
+                app:pointsContainerBackground="@drawable/shape_round_8dp"
+                app:pointsPosition="RIGHT" />
 
 
-    <com.stx.xhb.xbanner.XBanner
-        android:id="@+id/banner2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:AutoPlayTime="3000"
-        app:isAutoPlay="false"
-        app:pointNormal="@drawable/shape_noraml"
-        app:pointSelect="@drawable/shape_selected"
-        app:isClipChildrenMode="true"
-        app:isHandLoop="true"
-        app:isShowIndicatorOnlyOne="true"
-        app:isShowNumberIndicator="false"
-        app:pageChangeDuration="800"
-        app:bannerBottomMargin="30dp"
-        app:pointsContainerBackground="@android:color/transparent"
-        app:pointsPosition="CENTER" />
+            <com.stx.xhb.xbanner.XBanner
+                android:id="@+id/banner2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:AutoPlayTime="3000"
+                app:bannerBottomMargin="30dp"
+                app:isAutoPlay="false"
+                app:isClipChildrenMode="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="false"
+                app:pageChangeDuration="800"
+                app:pointNormal="@drawable/shape_noraml"
+                app:pointSelect="@drawable/shape_selected"
+                app:pointsContainerBackground="@android:color/transparent"
+                app:pointsPosition="CENTER" />
 
 
-    <com.stx.xhb.xbanner.XBanner
-        android:id="@+id/banner3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:AutoPlayTime="3000"
-        app:clipChildrenLeftRightMargin="80dp"
-        app:isAutoPlay="false"
-        app:isClipChildrenMode="true"
-        app:isHandLoop="true"
-        app:isShowIndicatorOnlyOne="true"
-        app:isShowNumberIndicator="false"
-        app:pageChangeDuration="800"
-        app:pointsVisibility="false" />
+            <com.stx.xhb.xbanner.XBanner
+                android:id="@+id/banner3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:AutoPlayTime="3000"
+                app:clipChildrenLeftRightMargin="80dp"
+                app:isAutoPlay="false"
+                app:isClipChildrenMode="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="false"
+                app:pageChangeDuration="800"
+                app:pointsVisibility="false" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

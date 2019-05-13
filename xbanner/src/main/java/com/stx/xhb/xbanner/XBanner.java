@@ -697,7 +697,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mPageScrollPosition = position;
         mPageScrollPositionOffset = positionOffset;
 
-        if (mTipTv != null && mDatas != null && !mDatas.isEmpty() && mDatas.get(0) instanceof SimpleBannerInfo) {
+        if (mTipTv != null && mDatas != null && mDatas.size()!=0 && mDatas.get(0) instanceof SimpleBannerInfo) {
             if (positionOffset > 0.5) {
                 mTipTv.setText(((SimpleBannerInfo) mDatas.get((position + 1) % mDatas.size())).getXBannerTitle());
                 mTipTv.setAlpha(positionOffset);
@@ -793,7 +793,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                 container.removeView(view);
             }
 
-            if (mOnItemClickListener != null && !mDatas.isEmpty()) {
+            if (mOnItemClickListener != null && mDatas.size() != 0) {
                 view.setOnClickListener(new OnDoubleClickListener() {
                     @Override
                     public void onNoDoubleClick(View v) {
@@ -802,7 +802,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                 });
             }
 
-            if (null != mAdapter && !mDatas.isEmpty()) {
+            if (null != mAdapter && mDatas.size() != 0) {
                 mAdapter.loadBanner(XBanner.this, mDatas.get(realPosition), view, realPosition);
             }
             ViewParent parent = view.getParent();
@@ -873,7 +873,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             }
         }
 
-        if (mTipTv != null && mDatas != null && !mDatas.isEmpty() && mDatas.get(0) instanceof SimpleBannerInfo) {
+        if (mTipTv != null && mDatas != null && mDatas.size()!=0 && mDatas.get(0) instanceof SimpleBannerInfo) {
             mTipTv.setText(((SimpleBannerInfo) mDatas.get(currentPoint)).getXBannerTitle());
         } else if (mTipTv != null && mTipData != null && !mTipData.isEmpty()) {
             mTipTv.setText(mTipData.get(currentPoint));
@@ -980,9 +980,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mTransformer = transformer;
         if (mViewPager != null) {
             initViewPager();
-            if (mLessViews==null){
+            if (mLessViews == null) {
                 XBannerUtils.resetPageTransformer(mViews);
-            }else {
+            } else {
                 XBannerUtils.resetPageTransformer(mLessViews);
             }
         }
@@ -1048,7 +1048,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @return
      */
     public int getBannerCurrentItem() {
-        if (mViewPager == null || mDatas == null || mDatas.isEmpty()) {
+        if (mViewPager == null || mDatas == null || mDatas.size()==0) {
             return -1;
         } else {
             return mViewPager.getCurrentItem() % getRealCount();
