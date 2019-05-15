@@ -30,6 +30,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
     private XBanner mBanner;
     private XBanner mBanner2;
     private XBanner mBanner3;
+    private XBanner mBanner4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
         mBanner = findViewById(R.id.banner);
         mBanner2 = findViewById(R.id.banner2);
         mBanner3 = findViewById(R.id.banner3);
+        mBanner4 = findViewById(R.id.banner4);
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2);
 
@@ -49,9 +51,12 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
 
         mBanner3.setLayoutParams(layoutParams);
 
+        mBanner4.setLayoutParams(layoutParams);
+
         initBanner(mBanner);
         initBanner(mBanner2);
         initBanner(mBanner3);
+        initBanner(mBanner4);
 
         initData();
 //        initLocalImage();
@@ -130,6 +135,11 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                         mBanner3.setAutoPlayAble(data.size() > 1);
                         mBanner3.setIsClipChildrenMode(true);
                         mBanner3.setBannerData(R.layout.layout_fresco_imageview, data);
+
+                        //刷新数据之后，需要重新设置是否支持自动轮播
+                        mBanner4.setAutoPlayAble(data.size() > 1);
+                        mBanner4.setIsClipChildrenMode(true);
+                        mBanner4.setBannerData(R.layout.layout_fresco_imageview, data);
 
                     }
                 });

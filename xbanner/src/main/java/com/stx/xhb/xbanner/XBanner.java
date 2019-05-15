@@ -69,6 +69,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     public static final int LEFT = 0;
     public static final int CENTER = 1;
     public static final int RIGHT = 2;
+    /**
+     * mViewPagerClipChildren
+     */
+    private boolean mViewPagerClipChildren;
 
     @IntDef({LEFT, CENTER, RIGHT})
     @Retention(RetentionPolicy.SOURCE)
@@ -334,6 +338,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mIsClipChildrenModeLessThree = typedArray.getBoolean(R.styleable.XBanner_isClipChildrenModeLessThree, false);
             mIsShowTips = typedArray.getBoolean(R.styleable.XBanner_isShowTips, false);
             mBannerBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_bannerBottomMargin, mBannerBottomMargin);
+            mViewPagerClipChildren = typedArray.getBoolean(R.styleable.XBanner_viewPagerClipChildren, false);
             typedArray.recycle();
         }
         if (mIsClipChildrenMode) {
@@ -431,6 +436,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         setBannerPlaceholderDrawable();
 
+//        setPadding(20,0,20,0);
     }
 
     /**
@@ -643,9 +649,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         setPageChangeDuration(mPageChangeDuration);
         LayoutParams layoutParams = new LayoutParams(RMP, RMP);
         layoutParams.setMargins(0, 0, 0, mBannerBottomMargin);
-
         if (mIsClipChildrenMode) {
-            mViewPager.setClipChildren(false);
             /*fix 网络图片只有3张或加载本地资源图片的bug*/
 //            Object data = mDatas.get(0);
 //            if (data instanceof SimpleBannerInfo) {
@@ -658,7 +662,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 //                }
 //            }
             mViewPager.setPageMargin(mViewPagerMargin);
-            setClipChildren(false);
+            mViewPager.setClipChildren(mViewPagerClipChildren);
+            this.setClipChildren(false);
             layoutParams.setMargins(mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin, mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin + mBannerBottomMargin);
         }
 
@@ -697,7 +702,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mPageScrollPosition = position;
         mPageScrollPositionOffset = positionOffset;
 
-        if (mTipTv != null && mDatas != null && mDatas.size()!=0 && mDatas.get(0) instanceof SimpleBannerInfo) {
+        if (mTipTv != null && mDatas != null && mDatas.size() != 0 && mDatas.get(0) instanceof SimpleBannerInfo) {
             if (positionOffset > 0.5) {
                 mTipTv.setText(((SimpleBannerInfo) mDatas.get((position + 1) % mDatas.size())).getXBannerTitle());
                 mTipTv.setAlpha(positionOffset);
@@ -873,7 +878,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             }
         }
 
-        if (mTipTv != null && mDatas != null && mDatas.size()!=0 && mDatas.get(0) instanceof SimpleBannerInfo) {
+        if (mTipTv != null && mDatas != null && mDatas.size() != 0 && mDatas.get(0) instanceof SimpleBannerInfo) {
             mTipTv.setText(((SimpleBannerInfo) mDatas.get(currentPoint)).getXBannerTitle());
         } else if (mTipTv != null && mTipData != null && !mTipData.isEmpty()) {
             mTipTv.setText(mTipData.get(currentPoint));
@@ -1048,10 +1053,17 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @return
      */
     public int getBannerCurrentItem() {
-        if (mViewPager == null || mDatas == null || mDatas.size()==0) {
+        if (mViewPager == null || mDatas == null || mDatas.size() == 0) {
             return -1;
         } else {
             return mViewPager.getCurrentItem() % getRealCount();
+        }
+    }
+
+    public void setViewPagerClipChildren(boolean viewPagerClipChildren) {
+        mViewPagerClipChildren = viewPagerClipChildren;
+        if (mViewPager != null) {
+            mViewPager.setClipChildren(viewPagerClipChildren);
         }
     }
 

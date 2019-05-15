@@ -53,6 +53,26 @@
 
 
             <com.stx.xhb.xbanner.XBanner
+                android:id="@+id/banner4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:AutoPlayTime="3000"
+                app:bannerBottomMargin="30dp"
+                app:isAutoPlay="false"
+                app:isClipChildrenMode="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="false"
+                app:pageChangeDuration="800"
+                app:viewpagerMargin="50dp"
+                app:pointNormal="@drawable/shape_noraml"
+                app:pointSelect="@drawable/shape_selected"
+                app:pointsContainerBackground="@android:color/transparent"
+                app:pointsPosition="CENTER" />
+
+
+            <com.stx.xhb.xbanner.XBanner
                 android:id="@+id/banner3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,6 +86,8 @@
                 app:isShowNumberIndicator="false"
                 app:pageChangeDuration="800"
                 app:pointsVisibility="false" />
+
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
