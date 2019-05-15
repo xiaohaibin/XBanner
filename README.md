@@ -251,6 +251,8 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
   >1）确认是否实现了 **loadImage（）** 方法，需要使用自己的图片加载框架加载图片！！！
   >2）请把加载图片地址复制到浏览器看看是否打开图片，确认图片地址是否正确！！！
 
+- 4.AndroidX模式配置问题
+https://blog.csdn.net/qq_17766199/article/details/81433706
 
 ## 关于我
 
