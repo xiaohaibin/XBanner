@@ -15,6 +15,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -433,10 +434,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mPointRealContainerLp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             pointLp.addRule(RelativeLayout.LEFT_OF, R.id.xbanner_pointId);
         }
-
         setBannerPlaceholderDrawable();
-
-//        setPadding(20,0,20,0);
     }
 
     /**
@@ -540,14 +538,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (mIsAutoPlay && views.size() < 3 && mLessViews == null) {
             mIsAutoPlay = false;
         }
-
         if (!mIsClipChildrenModeLessThree && views.size() < 3) {
             mIsClipChildrenMode = false;
         }
-
-        this.mDatas = data;
-        this.mViews = views;
-
+        mDatas = data;
+        mViews = views;
         mIsOneImg = data.size() <= 1;
 
         initPoints();
@@ -637,7 +632,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private void initViewPager() {
 
         if (mViewPager != null && this.equals(mViewPager.getParent())) {
-            removeView(mViewPager);
+            this.removeView(mViewPager);
             mViewPager = null;
         }
         mViewPager = new XBannerViewPager(getContext());
@@ -754,13 +749,15 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             } else {
                 mViewPager.setBannerCurrentItemInternal(mPageScrollPosition + 1, true);
             }
-        } else {
+        } else if (mPageScrollPosition == mViewPager.getCurrentItem()) {
             // 往左滑
             if (xVelocity < -VEL_THRESHOLD || (mPageScrollPositionOffset > 0.3f && xVelocity < VEL_THRESHOLD)) {
                 mViewPager.setBannerCurrentItemInternal(mPageScrollPosition + 1, true);
             } else {
                 mViewPager.setBannerCurrentItemInternal(mPageScrollPosition, true);
             }
+        } else {
+            mViewPager.setBannerCurrentItemInternal(mPageScrollPosition, true);
         }
     }
 
@@ -788,10 +785,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             final int realPosition = position % getRealCount();
 
             View view;
-            if (mLessViews == null) {
-                view = mViews.get(realPosition);
-            } else {
+            //fix #109 修复初始设置空集合之后刷新数据之后，页面空白文体
+            if (mViews.size() < 3 && mLessViews != null) {
                 view = mLessViews.get(position % mLessViews.size());
+            } else {
+                view = mViews.get(realPosition);
             }
 
             if (container.equals(view.getParent())) {

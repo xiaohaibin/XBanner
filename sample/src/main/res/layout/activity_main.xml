@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         app:AutoPlayTime="3000"
         app:isAutoPlay="false"
+        app:placeholderDrawable="@mipmap/xbanner_logo"
         app:isShowIndicatorOnlyOne="true"
         app:isShowTips="true"
         app:isHandLoop="true"

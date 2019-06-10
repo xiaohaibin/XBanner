@@ -132,7 +132,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
 
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
-                        mBanner3.setAutoPlayAble(data.size() > 1);
+//                        mBanner3.setAutoPlayAble(data.size() > 1);
                         mBanner3.setIsClipChildrenMode(true);
                         mBanner3.setBannerData(R.layout.layout_fresco_imageview, data);
 
