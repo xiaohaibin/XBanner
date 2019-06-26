@@ -264,6 +264,19 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      */
     public int mBannerBottomMargin = 0;
 
+    private ImageView.ScaleType mScaleType = ImageView.ScaleType.FIT_XY;
+
+    private static final ImageView.ScaleType[] sScaleTypeArray = {
+            ImageView.ScaleType.MATRIX,
+            ImageView.ScaleType.FIT_XY,
+            ImageView.ScaleType.FIT_START,
+            ImageView.ScaleType.FIT_CENTER,
+            ImageView.ScaleType.FIT_END,
+            ImageView.ScaleType.CENTER,
+            ImageView.ScaleType.CENTER_CROP,
+            ImageView.ScaleType.CENTER_INSIDE
+    };
+
     /**
      * 请使用 {@link #loadImage} 替换
      * @param mAdapter
@@ -340,6 +353,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mIsShowTips = typedArray.getBoolean(R.styleable.XBanner_isShowTips, false);
             mBannerBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_bannerBottomMargin, mBannerBottomMargin);
             mViewPagerClipChildren = typedArray.getBoolean(R.styleable.XBanner_viewPagerClipChildren, false);
+            int scaleTypeIndex = typedArray.getInt(R.styleable.XBanner_android_scaleType, -1);
+            if (scaleTypeIndex>=0&&scaleTypeIndex<sScaleTypeArray.length){
+                mScaleType=sScaleTypeArray[scaleTypeIndex];
+            }
             typedArray.recycle();
         }
         if (mIsClipChildrenMode) {
@@ -443,7 +460,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private void setBannerPlaceholderDrawable() {
         if (mPlaceholderDrawableResId != NO_PLACE_HOLDER && mPlaceholderImg == null) {
             mPlaceholderImg = new ImageView(getContext());
-            mPlaceholderImg.setScaleType(ImageView.ScaleType.FIT_XY);
+            mPlaceholderImg.setScaleType(mScaleType);
             mPlaceholderImg.setImageResource(mPlaceholderDrawableResId);
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RMP, RMP);
             addView(mPlaceholderImg, layoutParams);

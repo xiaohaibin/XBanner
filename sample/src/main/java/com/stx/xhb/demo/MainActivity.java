@@ -23,6 +23,9 @@ import java.util.List;
 
 import okhttp3.Call;
 
+/**
+ * @author xiao.haibin
+ */
 public class MainActivity extends AppCompatActivity {
 
     private XBanner mBanner;

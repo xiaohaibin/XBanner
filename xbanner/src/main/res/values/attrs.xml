@@ -55,5 +55,7 @@
         <attr name="bannerBottomMargin" format="dimension" />
         <!--设置viewPager ClipChildren-->
         <attr name="viewPagerClipChildren" format="boolean" />
+        <!-- 占位图缩放模式 -->
+        <attr name="android:scaleType" />
     </declare-styleable>
 </resources>
