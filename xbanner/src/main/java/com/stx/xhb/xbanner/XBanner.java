@@ -1,5 +1,6 @@
 package com.stx.xhb.xbanner;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -354,8 +355,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mBannerBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_bannerBottomMargin, mBannerBottomMargin);
             mViewPagerClipChildren = typedArray.getBoolean(R.styleable.XBanner_viewPagerClipChildren, false);
             int scaleTypeIndex = typedArray.getInt(R.styleable.XBanner_android_scaleType, -1);
-            if (scaleTypeIndex>=0&&scaleTypeIndex<sScaleTypeArray.length){
-                mScaleType=sScaleTypeArray[scaleTypeIndex];
+            if (scaleTypeIndex >= 0 && scaleTypeIndex < sScaleTypeArray.length) {
+                mScaleType = sScaleTypeArray[scaleTypeIndex];
             }
             typedArray.recycle();
         }
@@ -675,8 +676,15 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 //            }
             mViewPager.setPageMargin(mViewPagerMargin);
             mViewPager.setClipChildren(mViewPagerClipChildren);
-            this.setClipChildren(false);
+            setClipChildren(false);
             layoutParams.setMargins(mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin, mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin + mBannerBottomMargin);
+            setOnTouchListener(new OnTouchListener() {
+                @SuppressLint("ClickableViewAccessibility")
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return mViewPager.dispatchTouchEvent(event);
+                }
+            });
         }
 
         addView(mViewPager, 0, layoutParams);
