@@ -3,6 +3,7 @@ package com.stx.xhb.demo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -132,7 +133,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
 
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
-//                        mBanner3.setAutoPlayAble(data.size() > 1);
+                        mBanner3.setAutoPlayAble(data.size() > 1);
                         mBanner3.setIsClipChildrenMode(true);
                         mBanner3.setBannerData(R.layout.layout_fresco_imageview, data);
 
