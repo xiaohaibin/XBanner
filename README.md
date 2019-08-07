@@ -243,7 +243,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 
 ## Q&A
 
-- 1.一屏显示多个模式默认使用ScalePageTransformer切换动画，也可以自定义；
+- 1.一屏显示多个模式默认使用ScalePageTransformer切换动画，也可以自定义；自定义动画添加方法setCustomPageTransformer（自定义动画效果）；
 
 - 2.一屏显示多个模式默认是会缩放左右两个页面，若想左右页面与中间页面保持一致，把切换动画设置成自己自定义的就可以；
 
