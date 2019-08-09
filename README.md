@@ -54,7 +54,7 @@ Step 2. Add the dependency
 dependencies {
 
     //普通版本依赖
-    implementation 'com.github.xiaohaibin:XBanner:latestVersion'//将latestVersion替换成上面 jitpack 后面的版本号
+    implementation 'com.github.xiaohaibin:XBanner:1.7.0'
     
     //androidX 版本使用下面的依赖
     implementation 'com.github.xiaohaibin:XBanner:androidx_v1.0.1'
