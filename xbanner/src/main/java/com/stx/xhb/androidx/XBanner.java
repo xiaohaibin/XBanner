@@ -1,5 +1,6 @@
 package com.stx.xhb.androidx;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -8,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -19,6 +21,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Dimension;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IntDef;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.stx.xhb.androidx.entity.SimpleBannerInfo;
 import com.stx.xhb.androidx.transformers.BasePageTransformer;
 import com.stx.xhb.androidx.transformers.Transformer;
@@ -28,14 +38,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.Dimension;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.IntDef;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 /**
  * link https://xiaohaibin.github.io/
@@ -70,6 +72,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     public static final int LEFT = 0;
     public static final int CENTER = 1;
     public static final int RIGHT = 2;
+    /**
+     * mViewPagerClipChildren
+     */
+    private boolean mViewPagerClipChildren;
 
     @IntDef({LEFT, CENTER, RIGHT})
     @Retention(RetentionPolicy.SOURCE)
@@ -260,6 +266,19 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      */
     public int mBannerBottomMargin = 0;
 
+    private ImageView.ScaleType mScaleType = ImageView.ScaleType.FIT_XY;
+
+    private static final ImageView.ScaleType[] sScaleTypeArray = {
+            ImageView.ScaleType.MATRIX,
+            ImageView.ScaleType.FIT_XY,
+            ImageView.ScaleType.FIT_START,
+            ImageView.ScaleType.FIT_CENTER,
+            ImageView.ScaleType.FIT_END,
+            ImageView.ScaleType.CENTER,
+            ImageView.ScaleType.CENTER_CROP,
+            ImageView.ScaleType.CENTER_INSIDE
+    };
+
     /**
      * 请使用 {@link #loadImage} 替换
      * @param mAdapter
@@ -335,6 +354,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mIsClipChildrenModeLessThree = typedArray.getBoolean(R.styleable.XBanner_isClipChildrenModeLessThree, false);
             mIsShowTips = typedArray.getBoolean(R.styleable.XBanner_isShowTips, false);
             mBannerBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_bannerBottomMargin, mBannerBottomMargin);
+            mViewPagerClipChildren = typedArray.getBoolean(R.styleable.XBanner_viewPagerClipChildren, false);
+            int scaleTypeIndex = typedArray.getInt(R.styleable.XBanner_android_scaleType, -1);
+            if (scaleTypeIndex >= 0 && scaleTypeIndex < sScaleTypeArray.length) {
+                mScaleType = sScaleTypeArray[scaleTypeIndex];
+            }
             typedArray.recycle();
         }
         if (mIsClipChildrenMode) {
@@ -429,9 +453,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mPointRealContainerLp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             pointLp.addRule(RelativeLayout.LEFT_OF, R.id.xbanner_pointId);
         }
-
         setBannerPlaceholderDrawable();
-
     }
 
     /**
@@ -440,9 +462,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private void setBannerPlaceholderDrawable() {
         if (mPlaceholderDrawableResId != NO_PLACE_HOLDER && mPlaceholderImg == null) {
             mPlaceholderImg = new ImageView(getContext());
-            mPlaceholderImg.setScaleType(ImageView.ScaleType.FIT_XY);
+            mPlaceholderImg.setScaleType(mScaleType);
             mPlaceholderImg.setImageResource(mPlaceholderDrawableResId);
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RMP, RMP);
+            LayoutParams layoutParams = new LayoutParams(RMP, RMP);
             addView(mPlaceholderImg, layoutParams);
         }
     }
@@ -535,14 +557,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (mIsAutoPlay && views.size() < 3 && mLessViews == null) {
             mIsAutoPlay = false;
         }
-
         if (!mIsClipChildrenModeLessThree && views.size() < 3) {
             mIsClipChildrenMode = false;
         }
-
-        this.mDatas = data;
-        this.mViews = views;
-
+        mDatas = data;
+        mViews = views;
         mIsOneImg = data.size() <= 1;
 
         initPoints();
@@ -632,7 +651,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private void initViewPager() {
 
         if (mViewPager != null && this.equals(mViewPager.getParent())) {
-            removeView(mViewPager);
+            this.removeView(mViewPager);
             mViewPager = null;
         }
         mViewPager = new XBannerViewPager(getContext());
@@ -644,9 +663,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         setPageChangeDuration(mPageChangeDuration);
         LayoutParams layoutParams = new LayoutParams(RMP, RMP);
         layoutParams.setMargins(0, 0, 0, mBannerBottomMargin);
-
         if (mIsClipChildrenMode) {
-            mViewPager.setClipChildren(false);
             /*fix 网络图片只有3张或加载本地资源图片的bug*/
 //            Object data = mDatas.get(0);
 //            if (data instanceof SimpleBannerInfo) {
@@ -659,8 +676,16 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 //                }
 //            }
             mViewPager.setPageMargin(mViewPagerMargin);
+            mViewPager.setClipChildren(mViewPagerClipChildren);
             setClipChildren(false);
             layoutParams.setMargins(mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin, mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin + mBannerBottomMargin);
+            setOnTouchListener(new OnTouchListener() {
+                @SuppressLint("ClickableViewAccessibility")
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return mViewPager.dispatchTouchEvent(event);
+                }
+            });
         }
 
         addView(mViewPager, 0, layoutParams);
@@ -698,7 +723,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mPageScrollPosition = position;
         mPageScrollPositionOffset = positionOffset;
 
-        if (mTipTv != null && mDatas != null && !mDatas.isEmpty() && mDatas.get(0) instanceof SimpleBannerInfo) {
+        if (mTipTv != null && mDatas != null && mDatas.size() != 0 && mDatas.get(0) instanceof SimpleBannerInfo) {
             if (positionOffset > 0.5) {
                 mTipTv.setText(((SimpleBannerInfo) mDatas.get((position + 1) % mDatas.size())).getXBannerTitle());
                 mTipTv.setAlpha(positionOffset);
@@ -750,13 +775,15 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             } else {
                 mViewPager.setBannerCurrentItemInternal(mPageScrollPosition + 1, true);
             }
-        } else {
+        } else if (mPageScrollPosition == mViewPager.getCurrentItem()) {
             // 往左滑
             if (xVelocity < -VEL_THRESHOLD || (mPageScrollPositionOffset > 0.3f && xVelocity < VEL_THRESHOLD)) {
                 mViewPager.setBannerCurrentItemInternal(mPageScrollPosition + 1, true);
             } else {
                 mViewPager.setBannerCurrentItemInternal(mPageScrollPosition, true);
             }
+        } else {
+            mViewPager.setBannerCurrentItemInternal(mPageScrollPosition, true);
         }
     }
 
@@ -784,17 +811,16 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             final int realPosition = position % getRealCount();
 
             View view;
-            if (mLessViews == null) {
-                view = mViews.get(realPosition);
-            } else {
+            //fix #109 修复初始设置空集合之后刷新数据之后，页面空白文体
+            if (mViews.size() < 3 && mLessViews != null) {
                 view = mLessViews.get(position % mLessViews.size());
+            } else {
+                view = mViews.get(realPosition);
             }
-
             if (container.equals(view.getParent())) {
                 container.removeView(view);
             }
-
-            if (mOnItemClickListener != null && !mDatas.isEmpty()) {
+            if (mOnItemClickListener != null && mDatas.size() != 0) {
                 view.setOnClickListener(new OnDoubleClickListener() {
                     @Override
                     public void onNoDoubleClick(View v) {
@@ -803,7 +829,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                 });
             }
 
-            if (null != mAdapter && !mDatas.isEmpty()) {
+            if (null != mAdapter && mDatas.size() != 0) {
                 mAdapter.loadBanner(XBanner.this, mDatas.get(realPosition), view, realPosition);
             }
             ViewParent parent = view.getParent();
@@ -817,6 +843,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         @Override
         public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+
         }
 
         @Override
@@ -874,7 +901,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             }
         }
 
-        if (mTipTv != null && mDatas != null && !mDatas.isEmpty() && mDatas.get(0) instanceof SimpleBannerInfo) {
+        if (mTipTv != null && mDatas != null && mDatas.size() != 0 && mDatas.get(0) instanceof SimpleBannerInfo) {
             mTipTv.setText(((SimpleBannerInfo) mDatas.get(currentPoint)).getXBannerTitle());
         } else if (mTipTv != null && mTipData != null && !mTipData.isEmpty()) {
             mTipTv.setText(mTipData.get(currentPoint));
@@ -892,6 +919,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             switch (ev.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     float touchX = ev.getRawX();
+                    Log.i("===>touchX","touchX:"+touchX);
                     int paddingLeft = mViewPager.getLeft();
                     if (touchX >= paddingLeft && touchX < XBannerUtils.getScreenWidth(getContext()) - paddingLeft) {
                         stopAutoPlay();
@@ -981,9 +1009,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mTransformer = transformer;
         if (mViewPager != null) {
             initViewPager();
-            if (mLessViews==null){
+            if (mLessViews == null) {
                 XBannerUtils.resetPageTransformer(mViews);
-            }else {
+            } else {
                 XBannerUtils.resetPageTransformer(mLessViews);
             }
         }
@@ -1049,10 +1077,17 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @return
      */
     public int getBannerCurrentItem() {
-        if (mViewPager == null || mDatas == null || mDatas.isEmpty()) {
+        if (mViewPager == null || mDatas == null || mDatas.size() == 0) {
             return -1;
         } else {
             return mViewPager.getCurrentItem() % getRealCount();
+        }
+    }
+
+    public void setViewPagerClipChildren(boolean viewPagerClipChildren) {
+        mViewPagerClipChildren = viewPagerClipChildren;
+        if (mViewPager != null) {
+            mViewPager.setClipChildren(viewPagerClipChildren);
         }
     }
 

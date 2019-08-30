@@ -7,14 +7,15 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.stx.xhb.androidx.XBanner;
-import com.stx.xhb.androidx.entity.LocalImageInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+
+import com.stx.xhb.androidx.XBanner;
+import com.stx.xhb.androidx.entity.LocalImageInfo;
 
 /**
  * XBanner 使用在引导页控件

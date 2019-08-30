@@ -9,11 +9,10 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
-import java.util.List;
-
 import androidx.annotation.DrawableRes;
 import androidx.core.view.ViewCompat;
 
+import java.util.List;
 
 /**
  * <p>

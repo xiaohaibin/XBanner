@@ -1,5 +1,7 @@
 package com.stx.xhb.demo.entity;
 
+
+
 import com.stx.xhb.androidx.entity.SimpleBannerInfo;
 
 import java.util.List;

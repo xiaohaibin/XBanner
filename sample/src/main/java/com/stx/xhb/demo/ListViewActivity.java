@@ -10,9 +10,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.stx.xhb.demo.entity.TuchongEntity;
 import com.stx.xhb.androidx.XBanner;
 import com.stx.xhb.androidx.transformers.Transformer;
+import com.stx.xhb.demo.entity.TuchongEntity;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
