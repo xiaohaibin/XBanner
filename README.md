@@ -49,7 +49,9 @@ allprojects {
 
 ```
 Step 2. Add the dependency
+
 [![Version](https://jitpack.io/v/xiaohaibin/XBanner.svg)](https://jitpack.io/#xiaohaibin/XBanner)
+
 ```
 dependencies {
 
@@ -57,7 +59,7 @@ dependencies {
     implementation 'com.github.xiaohaibin:XBanner:1.7.0'
     
     //androidX 版本使用下面的依赖
-    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.0.1'
+    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.0.2'
 }
 ```
  
