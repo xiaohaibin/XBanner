@@ -1,7 +1,6 @@
 ## XBanner
 
-[![Version](https://jitpack.io/v/xiaohaibin/XBanner.svg)](https://jitpack.io/#xiaohaibin/XBanner)
- [![License](https://img.shields.io/badge/License-Apache--2.0-green.svg)](https://github.com/xiaohaibin/XBanner/blob/master/LICENSE)
+[![License](https://img.shields.io/badge/License-Apache--2.0-green.svg)](https://github.com/xiaohaibin/XBanner/blob/master/LICENSE)
  
 ![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.png)
 
@@ -50,6 +49,7 @@ allprojects {
 
 ```
 Step 2. Add the dependency
+[![Version](https://jitpack.io/v/xiaohaibin/XBanner.svg)](https://jitpack.io/#xiaohaibin/XBanner)
 ```
 dependencies {
 
