@@ -816,11 +816,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             } else {
                 view = mViews.get(realPosition);
             }
-
             if (container.equals(view.getParent())) {
                 container.removeView(view);
             }
-
             if (mOnItemClickListener != null && mDatas.size() != 0) {
                 view.setOnClickListener(new OnDoubleClickListener() {
                     @Override
@@ -844,6 +842,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         @Override
         public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+
         }
 
         @Override
@@ -919,6 +918,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             switch (ev.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     float touchX = ev.getRawX();
+                    Log.i("===>touchX","touchX:"+touchX);
                     int paddingLeft = mViewPager.getLeft();
                     if (touchX >= paddingLeft && touchX < XBannerUtils.getScreenWidth(getContext()) - paddingLeft) {
                         stopAutoPlay();
