@@ -32,6 +32,11 @@
 |标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot2.png)|
 |一屏显示模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot4.png)|
 
+## Demo Apk
+
+![demo](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/apk_code.png)
+
+
 ## 基本使用
 
 #### 1.添加 Gradle （以前是有的是Jecenter方式引入，由于国内被墙了，切换成JitPack方式引入，使用方式不变）
