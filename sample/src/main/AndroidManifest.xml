@@ -36,6 +36,7 @@
         <activity
             android:name=".ClipChildrenModeActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".UserInFragmentActivity" />
     </application>
 
 </manifest>

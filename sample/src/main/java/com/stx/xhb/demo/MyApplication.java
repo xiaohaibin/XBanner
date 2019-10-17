@@ -2,6 +2,7 @@ package com.stx.xhb.demo;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.log.LoggerInterceptor;
@@ -26,6 +27,7 @@ public class MyApplication extends Application{
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
                 .build();
         OkHttpUtils.initClient(okHttpClient);
+        Utils.init(this);
 
     }
 }

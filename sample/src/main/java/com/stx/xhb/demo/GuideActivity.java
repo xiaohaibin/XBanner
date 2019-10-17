@@ -9,8 +9,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.stx.xhb.xbanner.entity.LocalImageInfo;
+
 import com.stx.xhb.xbanner.XBanner;
+import com.stx.xhb.xbanner.entity.LocalImageInfo;
 
 import java.util.ArrayList;
 import java.util.List;
