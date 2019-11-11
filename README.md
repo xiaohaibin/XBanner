@@ -138,25 +138,7 @@ dependencies {
         });
 ```
 
-#### 7.为了更好的体验，建议添加以下代码
-
-```
-  /** 为了更好的体验效果建议在下面两个生命周期中调用下面的方法 **/
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mXBanner.startAutoPlay();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mXBanner.stopAutoPlay();
-    }
-
-```
-
-#### 8.使用 Fresco 加载图片时，需要自定义布局文件
+#### 7.使用 Fresco 加载图片时，需要自定义布局文件
 
 1.自定义布局文件 R.layout.image_fresco
 ```
@@ -167,13 +149,13 @@ dependencies {
     android:layout_height="match_parent"
   />
 ```
-2.使用 setData() 方法进行设置
+2.使用 setBannerData() 方法进行设置
 ```
   //setData（）方法已过时，推荐使用setBannerData（）方法，具体参照demo使用
-  mXBanner.setBannerData(R.layout.image_fresco,imgesUrl);
+  mXBanner.setBannerData(R.layout.image_fresco,“加载数据集合”);
    
 ```
-#### 9.自定义布局
+#### 8.自定义布局
 
 1.自定义自己需要展示的Banner显示布局，如：R.layout.customelayout
 
@@ -190,9 +172,9 @@ dependencies {
     android:background="@color/colorYellow"/>
 ```
 
-2.使用 setData() 方法进行设置
+2.使用 setBannerData() 方法进行设置
 ```
-   mXBanner.setData(R.layout.customelayout,“图片资源集合”,"提示文字集合，没有传null");
+   mXBanner.setBannerData(R.layout.customelayout,“加载数据集合”);
 ```
 
 3.设置数据，通过 loadImage() 方法回传的 View 根据自定义布局设置的Id找到相应的控件进行数据设置，具体请看 [CustomViewsActivity](https://github.com/xiaohaibin/XBanner/blob/master/sample/src/main/java/com/stx/xhb/demo/CustomViewsActivity.java)
