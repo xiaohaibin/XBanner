@@ -446,7 +446,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             pointLp.addRule(RelativeLayout.LEFT_OF, R.id.xbanner_pointId);
         } else if (LEFT == mPointPosition) {
             mPointRealContainerLp.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-            mTipTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+            if (mTipTv != null) {
+                mTipTv.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+            }
             pointLp.addRule(RelativeLayout.RIGHT_OF, R.id.xbanner_pointId);
         } else if (RIGHT == mPointPosition) {
             mPointRealContainerLp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
@@ -709,7 +711,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @return
      */
     public int getRealCount() {
-        return mDatas == null ? 0 : mDatas.size();
+        return mViews == null ? 0 : mViews.size();
     }
 
     public XBannerViewPager getViewPager() {
@@ -918,7 +920,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             switch (ev.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     float touchX = ev.getRawX();
-                    Log.i("===>touchX","touchX:"+touchX);
+                    Log.i("===>touchX", "touchX:" + touchX);
                     int paddingLeft = mViewPager.getLeft();
                     if (touchX >= paddingLeft && touchX < XBannerUtils.getScreenWidth(getContext()) - paddingLeft) {
                         stopAutoPlay();
