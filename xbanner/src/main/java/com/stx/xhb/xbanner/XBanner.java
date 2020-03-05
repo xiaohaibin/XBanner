@@ -681,7 +681,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 //                    mViewPager.setOffscreenPageLimit(3);
 //                }
 //            }
-            mViewPager.setOffscreenPageLimit(0);
             mViewPager.setPageMargin(mViewPagerMargin);
             mViewPager.setClipChildren(mViewPagerClipChildren);
             setClipChildren(false);
