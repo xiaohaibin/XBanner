@@ -22,7 +22,7 @@
         app:pointsContainerBackground="#442e2e2e"
         app:pointsPosition="RIGHT"
         app:pointsVisibility="true"
-        app:tipTextSize="12sp"/>
+        app:tipTextSize="10sp"/>
 
     <ListView
         android:id="@+id/lv"

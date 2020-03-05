@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.stx.xhb.demo.entity.TuchongEntity;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         mBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
-                Toast.makeText(MainActivity.this, "点击了第" + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
+                ToastUtils.showShort("点击了第" + (position + 1) + "图片");
             }
         });
         //加载广告图片
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        Toast.makeText(MainActivity.this, "加载广告数据失败", Toast.LENGTH_SHORT).show();
+                        ToastUtils.showShort("加载广告数据失败");
                     }
 
                     @Override
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
                         List<TuchongEntity.FeedListBean.EntryBean> data = new ArrayList<>();
-                        for (int i = 0; i <others.size(); i++) {
+                        for (int i = 0; i < others.size(); i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
                             if ("post".equals(feedListBean.getType())) {
                                 data.add(feedListBean.getEntry());

@@ -24,6 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:button="@null"
             android:gravity="center"
             android:text="Tab1" />
 
@@ -32,6 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:button="@null"
             android:gravity="center"
             android:text="Tab2" />
 
@@ -40,6 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:button="@null"
             android:gravity="center"
             android:text="Tab3" />
 
@@ -48,6 +51,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:button="@null"
             android:gravity="center"
             android:text="Tab4" />
     </RadioGroup>
