@@ -21,7 +21,6 @@ public class MyApplication extends Application{
         super.onCreate();
         //Fresco初始化
         Fresco.initialize(this);
-        ViewTarget.setTagId(R.id.glide_tag);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                     .addInterceptor(new LoggerInterceptor("Xbanner"))
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
@@ -29,6 +28,5 @@ public class MyApplication extends Application{
                 .build();
         OkHttpUtils.initClient(okHttpClient);
         Utils.init(this);
-
     }
 }

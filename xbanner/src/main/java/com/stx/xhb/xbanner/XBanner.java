@@ -1,6 +1,5 @@
 package com.stx.xhb.xbanner;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -16,7 +15,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -28,7 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.stx.xhb.xbanner.entity.SimpleBannerInfo;
+import com.stx.xhb.xbanner.entity.BaseBannerInfo;
 import com.stx.xhb.xbanner.transformers.BasePageTransformer;
 import com.stx.xhb.xbanner.transformers.Transformer;
 
@@ -557,8 +555,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 设置bannner数据
+     * data 数据需要实现BaseBannerInfo接口
      */
-    private void setBannerData(@NonNull List<View> views, @NonNull List<? extends SimpleBannerInfo> data) {
+    private void setBannerData(@NonNull List<View> views, @NonNull List<?> data) {
 
         if (mIsAutoPlay && views.size() < 3 && mLessViews == null) {
             mIsAutoPlay = false;
@@ -580,7 +579,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
     }
 
-    public void setBannerData(@LayoutRes int layoutResId, @NonNull List<? extends SimpleBannerInfo> models) {
+    public void setBannerData(@LayoutRes int layoutResId, @NonNull List<?> models) {
         mViews = new ArrayList<>();
         if (models == null) {
             models = new ArrayList<>();
@@ -606,7 +605,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 设置数据模型和文案，布局资源默认为ImageView
      * @param models 每一页的数据模型集合
      */
-    public void setBannerData(@NonNull List<? extends SimpleBannerInfo> models) {
+    public void setBannerData(@NonNull List<?> models) {
         setBannerData(R.layout.xbanner_item_image, models);
     }
 
@@ -672,8 +671,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (mIsClipChildrenMode) {
             /*fix 网络图片只有3张或加载本地资源图片的bug*/
 //            Object data = mDatas.get(0);
-//            if (data instanceof SimpleBannerInfo) {
-//                if (!(((SimpleBannerInfo) data).getXBannerUrl() instanceof Integer) && mDatas.size() > 4) {
+//            if (data instanceof BaseBannerInfo) {
+//                if (!(((BaseBannerInfo) data).getXBannerUrl() instanceof Integer) && mDatas.size() > 4) {
 //                    mViewPager.setOffscreenPageLimit(3);
 //                }
 //            } else {
@@ -728,12 +727,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mPageScrollPosition = position;
         mPageScrollPositionOffset = positionOffset;
 
-        if (mTipTv != null && mDatas != null && mDatas.size() != 0 && mDatas.get(0) instanceof SimpleBannerInfo) {
+        if (mTipTv != null && mDatas != null && !mDatas.isEmpty()&& mDatas.get(0) instanceof BaseBannerInfo) {
             if (positionOffset > 0.5) {
-                mTipTv.setText(((SimpleBannerInfo) mDatas.get((position + 1) % mDatas.size())).getXBannerTitle());
+                mTipTv.setText(((BaseBannerInfo) mDatas.get((position + 1) % mDatas.size())).getXBannerTitle());
                 mTipTv.setAlpha(positionOffset);
             } else {
-                mTipTv.setText(((SimpleBannerInfo) mDatas.get(position % mDatas.size())).getXBannerTitle());
+                mTipTv.setText(((BaseBannerInfo) mDatas.get(position % mDatas.size())).getXBannerTitle());
                 mTipTv.setAlpha(1 - positionOffset);
             }
         } else if (mTipTv != null && mTipData != null && !mTipData.isEmpty()) {
@@ -821,7 +820,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             } else {
                 view = mViews.get(realPosition);
             }
-            view.setTag(position);
             if (container.equals(view.getParent())) {
                 container.removeView(view);
             }
@@ -929,8 +927,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             }
         }
 
-        if (mTipTv != null && mDatas != null && mDatas.size() != 0 && mDatas.get(0) instanceof SimpleBannerInfo) {
-            mTipTv.setText(((SimpleBannerInfo) mDatas.get(currentPoint)).getXBannerTitle());
+        if (mTipTv != null && mDatas != null && mDatas.size() != 0 && mDatas.get(0) instanceof BaseBannerInfo) {
+            mTipTv.setText(((BaseBannerInfo) mDatas.get(currentPoint)).getXBannerTitle());
         } else if (mTipTv != null && mTipData != null && !mTipData.isEmpty()) {
             mTipTv.setText(mTipData.get(currentPoint));
         }
