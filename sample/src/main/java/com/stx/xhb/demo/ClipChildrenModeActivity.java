@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 import com.stx.xhb.demo.entity.TuchongEntity;
@@ -71,7 +73,8 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
         banner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
-                Toast.makeText(ClipChildrenModeActivity.this, "点击了第" + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
+                LogUtils.i("click pos:"+position);
+                ToastUtils.showShort("点击了第" + (position + 1) + "图片");
             }
         });
         //加载广告图片

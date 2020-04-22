@@ -1,6 +1,7 @@
 package com.stx.xhb.demo;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         mBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
+                LogUtils.i("click pos:"+position);
                 ToastUtils.showShort("点击了第" + (position + 1) + "图片");
             }
         });

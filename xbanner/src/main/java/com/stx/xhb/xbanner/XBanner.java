@@ -15,6 +15,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -62,7 +63,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     private ViewPager.OnPageChangeListener mOnPageChangeListener;
     private OnItemClickListener mOnItemClickListener;
-
     /**
      * 指示点位置
      */
@@ -326,7 +326,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     private void initCustomAttrs(Context context, AttributeSet attrs) {
-
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.XBanner);
         if (typedArray != null) {
             mIsAutoPlay = typedArray.getBoolean(R.styleable.XBanner_isAutoPlay, true);
@@ -727,7 +726,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mPageScrollPosition = position;
         mPageScrollPositionOffset = positionOffset;
 
-        if (mTipTv != null && mDatas != null && !mDatas.isEmpty()&& mDatas.get(0) instanceof BaseBannerInfo) {
+        if (mTipTv != null && mDatas != null && !mDatas.isEmpty() && mDatas.get(0) instanceof BaseBannerInfo) {
             if (positionOffset > 0.5) {
                 mTipTv.setText(((BaseBannerInfo) mDatas.get((position + 1) % mDatas.size())).getXBannerTitle());
                 mTipTv.setAlpha(positionOffset);
@@ -847,6 +846,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         @Override
         public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+
         }
 
         @Override
@@ -871,8 +871,19 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (currentPos != getBannerCurrentItem()) {
             if (currentPos == 0 && getBannerCurrentItem() == getRealCount() - 1) {
                 setBannerCurrentItem(currentPos);
-            } else {
+            } else if (currentPos == 0 && getBannerCurrentItem() > 1) {
+                currentPos = getBannerCurrentItem() + 1;
                 setBannerCurrentItem(currentPos, true);
+            } else {
+                if (getBannerCurrentItem() == getRealCount() - 1) {
+                    currentPos = currentPos - 1;
+                    setBannerCurrentItem(currentPos, false);
+                } else if (currentPos - getBannerCurrentItem() > 1) {
+                    currentPos = currentPos - 1;
+                    setBannerCurrentItem(currentPos, true);
+                } else {
+                    setBannerCurrentItem(currentPos, true);
+                }
             }
         }
         return currentPos;
