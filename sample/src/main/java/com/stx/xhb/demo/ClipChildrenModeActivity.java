@@ -143,7 +143,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                         mBanner4.setAutoPlayAble(data.size() > 1);
                         mBanner4.setIsClipChildrenMode(true);
                         mBanner4.setBannerData(R.layout.layout_fresco_imageview, data);
-
+                        mBanner4.getViewPager().setOffscreenPageLimit(5);
                     }
                 });
     }

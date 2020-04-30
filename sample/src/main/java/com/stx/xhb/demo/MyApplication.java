@@ -19,6 +19,7 @@ public class MyApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
+        ViewTarget.setTagId(R.id.glide_tag);
         //Fresco初始化
         Fresco.initialize(this);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()

@@ -57,5 +57,7 @@
         <attr name="viewPagerClipChildren" format="boolean" />
         <!-- 占位图缩放模式 -->
         <attr name="android:scaleType" />
+        <!--一屏多显模式是否支持点击侧边切换-->
+        <attr name="isClickSide" format="boolean"/>
     </declare-styleable>
 </resources>

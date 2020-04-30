@@ -268,6 +268,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      */
     private int clickPosition = -1;
 
+    /**
+     * 一屏多显模式是否支持点击侧边切换
+     */
+    private boolean isClickSide = false;
+
     private ImageView.ScaleType mScaleType = ImageView.ScaleType.FIT_XY;
 
     private static final ImageView.ScaleType[] sScaleTypeArray = {
@@ -356,6 +361,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mIsShowTips = typedArray.getBoolean(R.styleable.XBanner_isShowTips, false);
             mBannerBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_bannerBottomMargin, mBannerBottomMargin);
             mViewPagerClipChildren = typedArray.getBoolean(R.styleable.XBanner_viewPagerClipChildren, false);
+            isClickSide = typedArray.getBoolean(R.styleable.XBanner_isClickSide, true);
             int scaleTypeIndex = typedArray.getInt(R.styleable.XBanner_android_scaleType, -1);
             if (scaleTypeIndex >= 0 && scaleTypeIndex < sScaleTypeArray.length) {
                 mScaleType = sScaleTypeArray[scaleTypeIndex];
@@ -668,27 +674,18 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         LayoutParams layoutParams = new LayoutParams(RMP, RMP);
         layoutParams.setMargins(0, 0, 0, mBannerBottomMargin);
         if (mIsClipChildrenMode) {
-            /*fix 网络图片只有3张或加载本地资源图片的bug*/
-//            Object data = mDatas.get(0);
-//            if (data instanceof BaseBannerInfo) {
-//                if (!(((BaseBannerInfo) data).getXBannerUrl() instanceof Integer) && mDatas.size() > 4) {
-//                    mViewPager.setOffscreenPageLimit(3);
-//                }
-//            } else {
-//                if (!(data instanceof Integer) && mDatas.size() > 4) {
-//                    mViewPager.setOffscreenPageLimit(3);
-//                }
-//            }
             mViewPager.setPageMargin(mViewPagerMargin);
             mViewPager.setClipChildren(mViewPagerClipChildren);
             setClipChildren(false);
             layoutParams.setMargins(mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin, mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin + mBannerBottomMargin);
-            this.setOnTouchListener(new OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    return mViewPager.dispatchTouchEvent(event);
-                }
-            });
+            if (isClickSide) {
+                this.setOnTouchListener(new OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        return mViewPager.dispatchTouchEvent(event);
+                    }
+                });
+            }
         }
 
         addView(mViewPager, 0, layoutParams);
@@ -863,6 +860,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      */
     private int getCurrentPos(int realPosition) {
         int currentPos = realPosition;
+        Log.i("currentPos:" + currentPos, "getBannerCurrentItem:" + getBannerCurrentItem());
         if (clickPosition == 0 && realPosition > getBannerCurrentItem()) {
             currentPos = currentPos - 1;
         } else if (clickPosition == 0 && getBannerCurrentItem() == getRealCount() - 1) {
@@ -970,6 +968,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                     if (mIsClipChildrenMode) {
                         //点击banner左侧
                         if (clickPosition == 0) {
+                            Log.i("clickPosition:" + clickPosition, "getBannerCurrentItem():" + getBannerCurrentItem());
                             setBannerCurrentItem(getBannerCurrentItem() - 1, true);
                         }
                     }
@@ -1177,6 +1176,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
     }
 
+    public void setClickSide(boolean clickSide) {
+        isClickSide = clickSide;
+    }
+
     @Override
     protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
@@ -1227,6 +1230,33 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mViewPager.setCurrentItem(mViewPager.getCurrentItem() + 1, false);
         }
         mIsFirstInvisible = false;
+    }
+
+    /**
+     * @param ev
+     * @return
+     */
+    private View viewOfClickOnScreen(MotionEvent ev) {
+        int childCount = getChildCount();
+        int[] location = new int[2];
+        for (int i = 0; i < childCount; i++) {
+            View v = getChildAt(i);
+            v.getLocationOnScreen(location);
+
+            int minX = location[0];
+            int minY = getTop();
+
+            int maxX = location[0] + v.getWidth();
+            int maxY = getBottom();
+
+            float x = ev.getX();
+            float y = ev.getY();
+
+            if ((x > minX && x < maxX) && (y > minY && y < maxY)) {
+                return v;
+            }
+        }
+        return null;
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
