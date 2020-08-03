@@ -41,6 +41,7 @@ import java.util.List;
  * link https://xiaohaibin.github.io/
  * email： xhb_199409@163.com
  * github: https://github.com/xiaohaibin
+ *
  * @author Mr.xiao
  * description： 图片轮播控件
  * 1.支持图片无限轮播控件;
@@ -288,6 +289,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 请使用 {@link #loadImage} 替换
+     *
      * @param mAdapter
      */
     @Deprecated
@@ -490,6 +492,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 已被{@link #setBannerData} 替换
+     *
      * @param data
      */
     @Deprecated
@@ -522,6 +525,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /**
      * 设置bannner数据
      * 请使用 {@link #setBannerData} 替换
+     *
      * @param models
      */
     @Deprecated
@@ -550,6 +554,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /**
      * 设置数据模型和文案，布局资源默认为ImageView
      * 请使用 {@link #setBannerData} 替换
+     *
      * @param models 每一页的数据模型集合
      */
     @Deprecated
@@ -608,6 +613,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 设置数据模型和文案，布局资源默认为ImageView
+     *
      * @param models 每一页的数据模型集合
      */
     public void setBannerData(@NonNull List<?> models) {
@@ -616,6 +622,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 设置指示点是否可见
+     *
      * @param isVisible
      */
     public void setPointsIsVisible(boolean isVisible) {
@@ -630,6 +637,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 对应三个位置 CENTER,RIGHT,LEFT
+     *
      * @param position
      */
     public void setPointPosition(@INDICATOR_GRAVITY int position) {
@@ -645,6 +653,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 设置指示器容器的位置  TOP,BOTTOM
+     *
      * @param position
      */
     public void setPointContainerPosition(@INDICATOR_POSITION int position) {
@@ -707,6 +716,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 获取广告页面数量
+     *
      * @return
      */
     public int getRealCount() {
@@ -855,12 +865,13 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 处理一屏多显模式下左侧点击pos不正确情况
+     *
      * @param realPosition
      * @return
      */
     private int getCurrentPos(int realPosition) {
         int currentPos = realPosition;
-        Log.i("currentPos:" + currentPos, "getBannerCurrentItem:" + getBannerCurrentItem());
+//        Log.d("currentPos:" + currentPos, "getBannerCurrentItem:" + getBannerCurrentItem());
         if (clickPosition == 0 && realPosition > getBannerCurrentItem()) {
             currentPos = currentPos - 1;
         } else if (clickPosition == 0 && getBannerCurrentItem() == getRealCount() - 1) {
@@ -922,6 +933,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 切换指示器
+     *
      * @param currentPoint
      */
     private void switchToPoint(int currentPoint) {
@@ -950,7 +962,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (mIsAutoPlay && !mIsOneImg & mViewPager != null) {
+        if (!mIsOneImg & mViewPager != null) {
             switch (ev.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     if (ev.getX() < mViewPager.getX()) {
@@ -968,7 +980,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                     if (mIsClipChildrenMode) {
                         //点击banner左侧
                         if (clickPosition == 0) {
-                            Log.i("clickPosition:" + clickPosition, "getBannerCurrentItem():" + getBannerCurrentItem());
+//                            Log.d("clickPosition:" + clickPosition, "getBannerCurrentItem():" + getBannerCurrentItem());
                             setBannerCurrentItem(getBannerCurrentItem() - 1, true);
                         }
                     }
@@ -1000,6 +1012,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 添加ViewPager滚动监听器
+     *
      * @param onPageChangeListener
      */
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener onPageChangeListener) {
@@ -1008,6 +1021,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 设置图片从最后一张滚动到第一张的动画效果
+     *
      * @param slideScrollMode
      */
     public void setSlideScrollMode(int slideScrollMode) {
@@ -1019,6 +1033,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 设置是否允许用户手指滑动
+     *
      * @param allowUserScrollable true表示允许跟随用户触摸滑动，false反之
      */
     public void setAllowUserScrollable(boolean allowUserScrollable) {
@@ -1030,6 +1045,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 设置是否自动轮播
+     *
      * @param mAutoPlayAble
      */
     public void setAutoPlayAble(boolean mAutoPlayAble) {
@@ -1042,6 +1058,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 设置自动轮播时间间隔
+     *
      * @param mAutoPalyTime
      */
     public void setAutoPalyTime(int mAutoPalyTime) {
@@ -1050,6 +1067,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 设置翻页动画效果
+     *
      * @param transformer
      */
     public void setPageTransformer(Transformer transformer) {
@@ -1066,6 +1084,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 设置viewpager间距
+     *
      * @param viewPagerMargin 单位dp
      */
     public void setViewPagerMargin(@Dimension int viewPagerMargin) {
@@ -1077,6 +1096,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 自定义翻页动画效果
+     *
      * @param transformer
      */
     public void setCustomPageTransformer(ViewPager.PageTransformer transformer) {
@@ -1087,6 +1107,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 设置ViewPager切换速度
+     *
      * @param duration
      */
     public void setPageChangeDuration(int duration) {
@@ -1097,6 +1118,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 设置非自动轮播状态下是否可以循环切换
+     *
      * @param handLoop
      */
     public void setHandLoop(boolean handLoop) {
@@ -1105,6 +1127,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 是否开启一屏多显模式
+     *
      * @param mIsClipChildrenMode
      */
     public void setIsClipChildrenMode(boolean mIsClipChildrenMode) {
@@ -1113,6 +1136,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 只有单张banner时是否展示指示器
+     *
      * @param showIndicatorOnlyOne
      */
     public void setShowIndicatorOnlyOne(boolean showIndicatorOnlyOne) {
@@ -1121,6 +1145,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 获取当前位置
+     *
      * @return
      */
     public int getBannerCurrentItem() {
@@ -1141,6 +1166,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 切换到指定位置
+     *
      * @param position
      */
     public void setBannerCurrentItem(int position) {
@@ -1149,6 +1175,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 切换到指定位置
+     *
      * @param position
      */
     public void setBannerCurrentItem(int position, boolean smoothScroll) {
