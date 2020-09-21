@@ -21,6 +21,7 @@ import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import okhttp3.Call;
 
 /**
@@ -36,7 +37,7 @@ public class ListViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listview);
-        requsetData(false);
+        requsetData();
         initView();
         setAdapter();
         setListener();
@@ -101,7 +102,7 @@ public class ListViewActivity extends AppCompatActivity {
     /**
      * 加载网络数据
      */
-    private void requsetData(final boolean refresh) {
+    private void requsetData() {
         //加载网络图片资源
         String url = "https://api.tuchong.com/2/wall-paper/app";
         OkHttpUtils
@@ -119,8 +120,7 @@ public class ListViewActivity extends AppCompatActivity {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
                         List<TuchongEntity.FeedListBean.EntryBean> data = new ArrayList<>();
-//                        int size = refresh ? 4 : others;
-                        for (int i = 0; i <others.size(); i++) {
+                        for (int i = 0; i < others.size(); i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
                             if ("post".equals(feedListBean.getType())) {
                                 data.add(feedListBean.getEntry());
@@ -149,7 +149,7 @@ public class ListViewActivity extends AppCompatActivity {
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                requsetData(true);
+                requsetData();
                 mRefreshLayout.setRefreshing(false);
             }
         });
@@ -176,20 +176,5 @@ public class ListViewActivity extends AppCompatActivity {
                 Glide.with(ListViewActivity.this).load(url).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
             }
         });
-    }
-
-    /**
-     * 为了更好的体验效果建议在下面两个生命周期中调用下面的方法
-     **/
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mXBanner.startAutoPlay();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mXBanner.stopAutoPlay();
     }
 }

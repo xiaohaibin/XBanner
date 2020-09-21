@@ -20,5 +20,6 @@
         <item>GuideActivity</item>
         <item>CustomViews</item>
         <item>ClipChildrenMode</item>
+        <item>UseInRecyclerView</item>
     </string-array>
 </resources>
