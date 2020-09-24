@@ -273,6 +273,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 一屏多显模式是否支持点击侧边切换
      */
     private boolean isClickSide = false;
+    /**
+     * 一屏多显模式下指示器是否显示在中间图片位置上，默认开启
+     */
+    private boolean mShowIndicatorInCenter;
 
     private ImageView.ScaleType mScaleType = ImageView.ScaleType.FIT_XY;
 
@@ -364,6 +368,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mBannerBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_bannerBottomMargin, mBannerBottomMargin);
             mViewPagerClipChildren = typedArray.getBoolean(R.styleable.XBanner_viewPagerClipChildren, false);
             isClickSide = typedArray.getBoolean(R.styleable.XBanner_isClickSide, true);
+            mShowIndicatorInCenter = typedArray.getBoolean(R.styleable.XBanner_showIndicatorInCenter, true);
             int scaleTypeIndex = typedArray.getInt(R.styleable.XBanner_android_scaleType, -1);
             if (scaleTypeIndex >= 0 && scaleTypeIndex < sScaleTypeArray.length) {
                 mScaleType = sScaleTypeArray[scaleTypeIndex];
@@ -391,7 +396,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         /*设定指示器容器布局及位置*/
         mPointContainerLp = new LayoutParams(RMP, RWC);
         mPointContainerLp.addRule(mPointContainerPosition);
-        if (mIsClipChildrenMode) {
+        if (mIsClipChildrenMode && mShowIndicatorInCenter) {
             mPointContainerLp.setMargins(mClipChildrenLeftRightMargin, 0, mClipChildrenLeftRightMargin, mClipChildrenTopBottomMargin);
         }
         addView(pointContainerRl, mPointContainerLp);

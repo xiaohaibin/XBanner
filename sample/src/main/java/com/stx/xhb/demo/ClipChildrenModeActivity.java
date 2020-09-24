@@ -2,6 +2,7 @@ package com.stx.xhb.demo;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -73,7 +74,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
         banner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
-                LogUtils.i("click pos:"+position);
+                LogUtils.i("click pos:" + position);
                 ToastUtils.showShort("点击了第" + (position + 1) + "图片");
             }
         });
@@ -89,6 +90,22 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
 
 //                加载本地图片展示
 //                ((ImageView)view).setImageResource(((LocalImageInfo) model).getXBannerUrl());
+            }
+        });
+        banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                LogUtils.i("onPageSelected pos:" + i);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
             }
         });
     }
