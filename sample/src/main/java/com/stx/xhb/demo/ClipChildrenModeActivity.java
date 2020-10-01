@@ -2,6 +2,7 @@ package com.stx.xhb.demo;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
 import okhttp3.Call;
 
 /**
@@ -29,6 +32,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
     private XBanner mBanner;
     private XBanner mBanner2;
     private XBanner mBanner3;
+    private XBanner mBanner4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
         mBanner = findViewById(R.id.banner);
         mBanner2 = findViewById(R.id.banner2);
         mBanner3 = findViewById(R.id.banner3);
+        mBanner4 = findViewById(R.id.banner4);
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2);
 
@@ -48,9 +53,12 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
 
         mBanner3.setLayoutParams(layoutParams);
 
+        mBanner4.setLayoutParams(layoutParams);
+
         initBanner(mBanner);
         initBanner(mBanner2);
         initBanner(mBanner3);
+        initBanner(mBanner4);
 
         initData();
 //        initLocalImage();
@@ -65,7 +73,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
         banner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
-                Toast.makeText(ClipChildrenModeActivity.this, "点击了第" + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ClipChildrenModeActivity.this, getString(R.string.string_click) + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
             }
         });
         //加载广告图片
@@ -112,7 +120,6 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                             }
                         }
 
-
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner.setAutoPlayAble(data.size() > 1);
                         mBanner.setIsClipChildrenMode(true);
@@ -124,12 +131,17 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                         mBanner2.setIsClipChildrenMode(true);
                         mBanner2.setBannerData(R.layout.layout_fresco_imageview, data);
 
-
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner3.setAutoPlayAble(data.size() > 1);
                         mBanner3.setIsClipChildrenMode(true);
                         mBanner3.setBannerData(R.layout.layout_fresco_imageview, data);
+                        mBanner3.setPageTransformer(Transformer.Default);
+                        mBanner3.getViewPager().setOffscreenPageLimit(3);
 
+                        //刷新数据之后，需要重新设置是否支持自动轮播
+                        mBanner4.setAutoPlayAble(data.size() > 1);
+                        mBanner4.setIsClipChildrenMode(true);
+                        mBanner4.setBannerData(R.layout.layout_fresco_imageview, data);
                     }
                 });
     }

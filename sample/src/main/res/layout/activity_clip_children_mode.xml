@@ -8,59 +8,92 @@
     tools:context="com.stx.xhb.demo.ClipChildrenModeActivity">
 
 
-    <com.stx.xhb.androidx.XBanner
-        android:id="@+id/banner"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:AutoPlayTime="3000"
-        app:isAutoPlay="false"
-        app:isClipChildrenMode="true"
-        app:isHandLoop="true"
-        app:isShowIndicatorOnlyOne="true"
-        app:isShowNumberIndicator="false"
-        app:isShowTips="true"
-        app:pageChangeDuration="800"
-        app:pointsContainerBackground="@drawable/shape_round_8dp"
-        app:pointsPosition="RIGHT" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.stx.xhb.androidx.XBanner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:AutoPlayTime="3000"
+                app:isAutoPlay="false"
+                app:isClipChildrenMode="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="false"
+                app:isShowTips="true"
+                app:pageChangeDuration="800"
+                app:pointsContainerBackground="@drawable/shape_round_8dp"
+                app:pointsPosition="RIGHT" />
 
 
-    <com.stx.xhb.androidx.XBanner
-        android:id="@+id/banner2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:AutoPlayTime="3000"
-        app:isAutoPlay="false"
-        app:pointNormal="@drawable/shape_noraml"
-        app:pointSelect="@drawable/shape_selected"
-        app:isClipChildrenMode="true"
-        app:isHandLoop="true"
-        app:isShowIndicatorOnlyOne="true"
-        app:isShowNumberIndicator="false"
-        app:pageChangeDuration="800"
-        app:bannerBottomMargin="30dp"
-        app:pointsContainerBackground="@android:color/transparent"
-        app:pointsPosition="CENTER" />
+            <com.stx.xhb.androidx.XBanner
+                android:id="@+id/banner2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:AutoPlayTime="3000"
+                app:bannerBottomMargin="20dp"
+                app:clipChildrenLeftMargin="@dimen/dp_10"
+                app:clipChildrenRightMargin="@dimen/dp_10"
+                app:isAutoPlay="false"
+                app:isClipChildrenMode="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="false"
+                app:pageChangeDuration="800"
+                app:pointNormal="@drawable/shape_noraml"
+                app:pointSelect="@drawable/shape_selected"
+                app:pointsContainerBackground="@android:color/transparent"
+                app:pointsPosition="CENTER" />
 
 
-    <com.stx.xhb.androidx.XBanner
-        android:id="@+id/banner3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:AutoPlayTime="3000"
-        app:clipChildrenLeftRightMargin="120dp"
-        app:isAutoPlay="false"
-        app:isClipChildrenMode="true"
-        app:isHandLoop="true"
-        app:viewPagerClipChildren="true"
-        app:isShowIndicatorOnlyOne="true"
-        app:isShowNumberIndicator="false"
-        app:pageChangeDuration="800"
-        app:bannerBottomMargin="30dp"
-        app:showIndicatorInCenter="false"
-        app:isClipChildrenModeLessThree="true"
-        app:pointNormal="@drawable/shape_noraml"
-        app:pointSelect="@drawable/shape_selected" />
+            <com.stx.xhb.androidx.XBanner
+                android:id="@+id/banner3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:AutoPlayTime="3000"
+                app:bannerBottomMargin="20dp"
+                app:isAutoPlay="false"
+                app:isClipChildrenMode="true"
+                app:isClipChildrenModeLessThree="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="false"
+                app:pageChangeDuration="800"
+                app:pointNormal="@drawable/shape_noraml"
+                app:pointSelect="@drawable/shape_selected"
+                app:showIndicatorInCenter="false"
+                app:viewPagerClipChildren="true" />
+
+
+            <com.stx.xhb.androidx.XBanner
+                android:id="@+id/banner4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:AutoPlayTime="3000"
+                app:bannerBottomMargin="20dp"
+                app:clipChildrenLeftMargin="@dimen/dp_10"
+                app:isAutoPlay="false"
+                app:isClipChildrenMode="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="false"
+                app:pageChangeDuration="800"
+                app:pointNormal="@drawable/shape_noraml"
+                app:pointSelect="@drawable/shape_selected"
+                app:pointsContainerBackground="@android:color/transparent"
+                app:pointsPosition="CENTER" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

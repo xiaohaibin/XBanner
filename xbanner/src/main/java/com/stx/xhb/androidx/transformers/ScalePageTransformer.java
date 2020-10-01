@@ -10,7 +10,7 @@ import android.view.View;
  * describe: 适用于一屏显示多个模式
  */
 public class ScalePageTransformer extends BasePageTransformer {
-    private static final float MIN_SCALE = 0.9F;
+    private static final float MIN_SCALE = 0.8F;
 
     @Override
     public void handleInvisiblePage(View view, float position) {
@@ -19,13 +19,13 @@ public class ScalePageTransformer extends BasePageTransformer {
 
     @Override
     public void handleLeftPage(View view, float position) {
-        float scale = Math.max(MIN_SCALE,1 - Math.abs(position));
+        float scale = Math.max(MIN_SCALE, 1 - Math.abs(position));
         view.setScaleY(scale);
     }
 
     @Override
     public void handleRightPage(View view, float position) {
-        float scale = Math.max(MIN_SCALE,1 - Math.abs(position));
+        float scale = Math.max(MIN_SCALE, 1 - Math.abs(position));
         view.setScaleY(scale);
     }
 }

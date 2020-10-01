@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">XBanner</string>
+    <string name="string_click">点击了第</string>
     <string-array name="transforms">
         <item>Default</item>
         <item>Alpha</item>
