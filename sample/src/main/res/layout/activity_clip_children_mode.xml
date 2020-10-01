@@ -40,6 +40,8 @@
                 android:layout_marginTop="10dp"
                 app:AutoPlayTime="3000"
                 app:bannerBottomMargin="30dp"
+                app:clipChildrenLeftMargin="10dp"
+                app:clipChildrenRightMargin="10dp"
                 app:isAutoPlay="false"
                 app:isClipChildrenMode="true"
                 app:isHandLoop="true"
@@ -59,7 +61,7 @@
                 android:layout_marginTop="10dp"
                 app:AutoPlayTime="3000"
                 app:bannerBottomMargin="30dp"
-                app:clipChildrenLeftRightMargin="10dp"
+                app:clipChildrenLeftMargin="10dp"
                 app:isAutoPlay="false"
                 app:isClipChildrenMode="true"
                 app:isHandLoop="true"
@@ -80,17 +82,18 @@
                 android:layout_marginTop="10dp"
                 app:AutoPlayTime="3000"
                 app:bannerBottomMargin="30dp"
-                app:clipChildrenLeftRightMargin="130dp"
+                app:clipChildrenLeftMargin="130dp"
+                app:clipChildrenRightMargin="130dp"
                 app:isAutoPlay="false"
                 app:isClipChildrenMode="true"
                 app:isHandLoop="false"
                 app:isShowIndicatorOnlyOne="true"
                 app:isShowNumberIndicator="false"
                 app:pageChangeDuration="800"
-                app:showIndicatorInCenter="false"
                 app:pointNormal="@drawable/shape_noraml"
                 app:pointSelect="@drawable/shape_selected"
-                app:pointsVisibility="true" />
+                app:pointsVisibility="true"
+                app:showIndicatorInCenter="false" />
 
 
         </LinearLayout>

@@ -41,8 +41,10 @@
         <attr name="placeholderDrawable" format="reference" />
         <!--是否开启一屏显示多个模式 默认不开启-->
         <attr name="isClipChildrenMode" format="boolean" />
-        <!--一屏显示多个左右间距-->
-        <attr name="clipChildrenLeftRightMargin" format="dimension" />
+        <!--一屏显示多个左间距-->
+        <attr name="clipChildrenLeftMargin" format="dimension" />
+        <!--一屏显示多个右间距-->
+        <attr name="clipChildrenRightMargin" format="dimension" />
         <!--一屏显示多个上下间距-->
         <attr name="clipChildrenTopBottomMargin" format="dimension" />
         <!--设置viewpager间距-->
@@ -58,7 +60,7 @@
         <!-- 占位图缩放模式 -->
         <attr name="android:scaleType" />
         <!--一屏多显模式是否支持点击侧边切换-->
-        <attr name="isClickSide" format="boolean"/>
+        <attr name="isClickSide" format="boolean" />
         <!--一屏多显模式下 指示器是否显示在中间图片位置，默认显示中间-->
         <attr name="showIndicatorInCenter" format="boolean" />
     </declare-styleable>

@@ -155,12 +155,14 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                         mBanner3.setAutoPlayAble(data.size() > 1);
                         mBanner3.setIsClipChildrenMode(true);
                         mBanner3.setBannerData(R.layout.layout_fresco_imageview, data);
+                        mBanner3.setPageTransformer(Transformer.Default);
+                        mBanner3.getViewPager().setOffscreenPageLimit(3);
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner4.setAutoPlayAble(data.size() > 1);
                         mBanner4.setIsClipChildrenMode(true);
                         mBanner4.setBannerData(R.layout.layout_fresco_imageview, data);
-                        mBanner4.getViewPager().setOffscreenPageLimit(5);
+                        mBanner4.setPageTransformer(Transformer.Default);
                     }
                 });
     }
