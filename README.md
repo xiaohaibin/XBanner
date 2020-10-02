@@ -61,10 +61,10 @@ Step 2. Add the dependency
 dependencies {
 
     //普通版本依赖
-    implementation 'com.github.xiaohaibin:XBanner:1.7.8'
+    implementation 'com.github.xiaohaibin:XBanner:1.7.9'
     
     //androidX 版本使用下面的依赖
-    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.1.1'
+    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.1.2'
 }
 ```
  
@@ -216,13 +216,16 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | isHandLoop|是否支持手动无限循环切换图片| boolean类型，默认为false |
 | placeholderDrawable|设置整体轮播框架占位图| reference |
 | isClipChildrenMode|是否开启一屏显示多个模式|  boolean类型，默认为false 默认不开启 |
-| clipChildrenLeftRightMargin|一屏显示多个左右间距| dimension ，默认为30dp|
+| clipChildrenLefttMargin|一屏显示多个左间距| dimension ，默认为30dp|
+| clipChildrenRightMargin|一屏显示多个右间距| dimension ，默认为30dp|
 | clipChildrenTopBottomMargin|一屏显示多个上下间距| dimension ，默认为30dp|
 | viewpagerMargin|viewpager页面间距| dimension ，默认为10dp|
 | isClipChildrenModeLessThree|少于三张是否支持一屏多显模式|  boolean类型，默认为false 默认不开启 |
 | bannerBottomMargin|banner轮播区域底部margin，可设置指示器距离轮播图的间距| dimension ，默认为0dp|
 | viewPagerClipChildren|设置 viewpager clipChildren 属性，是否显示多个 |boolean类型| 
 | scaleType|设置占位图缩放类型 |scaleType类型| 
+| showIndicatorInCenter|设一屏多显模式下 指示器是否显示在中间图片位置，默认显示中间 |boolean类型| 
+
 ## 混淆配置
 
 ```
