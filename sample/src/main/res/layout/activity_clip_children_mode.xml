@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:AutoPlayTime="3000"
-                app:bannerBottomMargin="30dp"
+                app:bannerBottomMargin="20dp"
                 app:clipChildrenLeftMargin="10dp"
                 app:clipChildrenRightMargin="10dp"
                 app:isAutoPlay="false"

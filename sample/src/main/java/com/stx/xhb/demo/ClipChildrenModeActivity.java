@@ -87,25 +87,8 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                 TuchongEntity.FeedListBean.EntryBean listBean = ((TuchongEntity.FeedListBean.EntryBean) model);
                 String url = "https://photo.tuchong.com/" + listBean.getImages().get(0).getUser_id() + "/f/" + listBean.getImages().get(0).getImg_id() + ".jpg";
                 draweeView.setImageURI(Uri.parse(url));
-
 //                加载本地图片展示
 //                ((ImageView)view).setImageResource(((LocalImageInfo) model).getXBannerUrl());
-            }
-        });
-        banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                LogUtils.i("onPageSelected pos:" + i);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
             }
         });
     }
@@ -149,7 +132,6 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                         mBanner2.setAutoPlayAble(data.size() > 1);
                         mBanner2.setIsClipChildrenMode(true);
                         mBanner2.setBannerData(R.layout.layout_fresco_imageview, data);
-
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner3.setAutoPlayAble(data.size() > 1);
