@@ -223,7 +223,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | isClipChildrenModeLessThree|少于三张是否支持一屏多显模式|  boolean类型，默认为false 默认不开启 |
 | bannerBottomMargin|banner轮播区域底部margin，可设置指示器距离轮播图的间距| dimension ，默认为0dp|
 | viewPagerClipChildren|设置 viewpager clipChildren 属性，是否显示多个 |boolean类型| 
-| scaleType|设置占位图缩放类型 |scaleType类型| 
+| scaleType|设置占位图缩放类型，非图片缩放类型，图片缩放类型传自定义布局进去即可轻松实现 |scaleType类型| 
 | showIndicatorInCenter|设一屏多显模式下 指示器是否显示在中间图片位置，默认显示中间 |boolean类型| 
 
 ## 混淆配置
