@@ -154,7 +154,6 @@ dependencies {
   mXBanner.setBannerData(R.layout.image_fresco,“加载数据集合”);
    
 ```
-
 3. setBannerData 使用
 
 > setBannerData方法中的数据集合中的轮播实体类需要实现 BaseBannerInfo 接口，示例如下：
