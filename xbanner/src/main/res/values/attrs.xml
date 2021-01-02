@@ -55,8 +55,6 @@
         <attr name="isShowTips" format="boolean" />
         <!--banner轮播区域底部margin-->
         <attr name="bannerBottomMargin" format="dimension" />
-        <!--设置viewPager ClipChildren-->
-        <attr name="viewPagerClipChildren" format="boolean" />
         <!-- 占位图缩放模式 -->
         <attr name="android:scaleType" />
         <!--一屏多显模式是否支持点击侧边切换-->

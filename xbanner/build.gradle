@@ -16,7 +16,6 @@ android {
 }
 
 dependencies {
-    //noinspection GradleDynamicVersion
     compileOnly 'com.android.support:support-v4:28+'
 }
 ///方法1

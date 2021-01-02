@@ -2,6 +2,7 @@ package com.stx.xhb.demo.entity;
 
 
 import com.stx.xhb.xbanner.entity.BaseBannerInfo;
+import com.stx.xhb.xbanner.entity.SimpleBannerInfo;
 
 /**
  * @author: xiaohaibin.

@@ -10,7 +10,7 @@
 - 支持大于等于1页时的无限循环自动轮播、手指按下暂停轮播、抬起手指开始轮播
 - 支持自定义状态指示点位置  左 、中 、右
 - 支持自定义状态指示点
-- 支持监听 item 点击事件
+- 支持监听页面点击事件
 - 支持设置图片轮播间隔
 - 支持指示器背景的修改及隐藏/显示
 - 支持显示提示性文字功能
@@ -80,7 +80,7 @@ dependencies {
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/xbanner"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="高度自定义"
         app:AutoPlayTime="3000"
         app:pointsContainerBackground="#44aaaaaa"
         app:pointNormal="@drawable/shape_noraml"
@@ -102,7 +102,7 @@ dependencies {
         XBanner mXBanner = (XBanner) findViewById(R.id.xbanner);
         
        //添加轮播图片数据（图片数据不局限于网络图片、本地资源文件、View 都可以）,刷新数据也是调用该方法
-        mXBanner.setBannerData(imgesUrl);//setData（）方法已过时，推荐使用setBannerData（）方法，具体参照demo使用
+        mXBanner.setBannerData("轮播数据集合");//setData（）方法已过时，推荐使用setBannerData（）方法，具体参照demo使用
 
 ```
 
@@ -129,7 +129,6 @@ dependencies {
 #### 6.监听广告 item 的单击事件
 
 ```
-
  mXBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model,View view, int position) {
@@ -155,6 +154,33 @@ dependencies {
   mXBanner.setBannerData(R.layout.image_fresco,“加载数据集合”);
    
 ```
+
+3. setBannerData 使用
+
+> setBannerData方法中的数据集合中的轮播实体类需要实现 BaseBannerInfo 接口，示例如下：
+
+```
+    public class CustomViewsInfo implements BaseBannerInfo {
+
+        private String info;
+
+        public CustomViewsInfo(String info) {
+            this.info = info;
+        }
+
+        //轮播图片地址，本地图片就传本地资源的id，返回Int类型
+        @Override
+        public String getXBannerUrl() {
+            return info;
+        }
+
+       //指示器文案
+        @Override
+        public String getXBannerTitle() {
+            return "我是文案";
+        }
+    }
+```
 #### 8.自定义布局
 
 1.自定义自己需要展示的Banner显示布局，如：R.layout.customelayout
@@ -174,7 +200,7 @@ dependencies {
 
 2.使用 setBannerData() 方法进行设置
 ```
-   mXBanner.setBannerData(R.layout.customelayout,“加载数据集合”);
+   mXBanner.setBannerData("自定义布局文件",“加载数据集合”);
 ```
 
 3.设置数据，通过 loadImage() 方法回传的 View 根据自定义布局设置的Id找到相应的控件进行数据设置，具体请看 [CustomViewsActivity](https://github.com/xiaohaibin/XBanner/blob/master/sample/src/main/java/com/stx/xhb/demo/CustomViewsActivity.java)
@@ -188,7 +214,6 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
                }
            });
 ```
-
 
 ## 自定义属性说明
 
@@ -222,8 +247,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | viewpagerMargin|viewpager页面间距| dimension ，默认为10dp|
 | isClipChildrenModeLessThree|少于三张是否支持一屏多显模式|  boolean类型，默认为false 默认不开启 |
 | bannerBottomMargin|banner轮播区域底部margin，可设置指示器距离轮播图的间距| dimension ，默认为0dp|
-| viewPagerClipChildren|设置 viewpager clipChildren 属性，是否显示多个 |boolean类型| 
-| scaleType|设置占位图缩放类型 |scaleType类型| 
+| scaleType|设置占位图缩放类型 |scaleType类型|
 | showIndicatorInCenter|设一屏多显模式下 指示器是否显示在中间图片位置，默认显示中间 |boolean类型| 
 
 ## 混淆配置

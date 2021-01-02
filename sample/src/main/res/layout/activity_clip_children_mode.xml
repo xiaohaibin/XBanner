@@ -29,6 +29,7 @@
                 app:isShowNumberIndicator="false"
                 app:isShowTips="true"
                 app:pageChangeDuration="800"
+                android:layout_marginTop="10dp"
                 app:pointsContainerBackground="@drawable/shape_round_8dp"
                 app:pointsPosition="RIGHT" />
 
@@ -37,9 +38,9 @@
                 android:id="@+id/banner2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 app:AutoPlayTime="3000"
-                app:bannerBottomMargin="20dp"
+                app:bannerBottomMargin="30dp"
                 app:clipChildrenLeftMargin="10dp"
                 app:clipChildrenRightMargin="10dp"
                 app:isAutoPlay="false"
@@ -71,8 +72,7 @@
                 app:pointNormal="@drawable/shape_noraml"
                 app:pointSelect="@drawable/shape_selected"
                 app:pointsContainerBackground="@android:color/transparent"
-                app:pointsPosition="CENTER"
-                app:viewPagerClipChildren="true" />
+                app:pointsPosition="CENTER" />
 
 
             <com.stx.xhb.xbanner.XBanner
@@ -82,8 +82,8 @@
                 android:layout_marginTop="10dp"
                 app:AutoPlayTime="3000"
                 app:bannerBottomMargin="30dp"
-                app:clipChildrenLeftMargin="130dp"
-                app:clipChildrenRightMargin="130dp"
+                app:clipChildrenLeftMargin="100dp"
+                app:clipChildrenRightMargin="100dp"
                 app:isAutoPlay="false"
                 app:isClipChildrenMode="true"
                 app:isHandLoop="false"
