@@ -154,7 +154,7 @@ dependencies {
   mXBanner.setBannerData(R.layout.image_fresco,“加载数据集合”);
    
 ```
-3.setBannerData 使用
+3. setBannerData 使用
 
 > setBannerData方法中的数据集合中的轮播实体类需要实现 BaseBannerInfo 接口，示例如下：
 
@@ -248,6 +248,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | bannerBottomMargin|banner轮播区域底部margin，可设置指示器距离轮播图的间距| dimension ，默认为0dp|
 | scaleType|设置占位图缩放类型 |scaleType类型|
 | showIndicatorInCenter|设一屏多显模式下 指示器是否显示在中间图片位置，默认显示中间 |boolean类型| 
+| isClickSide|一屏多显模式下 是否支持点击侧边切换图片，默认开启 |boolean类型|
 
 ## 混淆配置
 

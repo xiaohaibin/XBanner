@@ -367,6 +367,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mIsShowTips = typedArray.getBoolean(R.styleable.XBanner_isShowTips, false);
             mBannerBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_bannerBottomMargin, mBannerBottomMargin);
             mShowIndicatorInCenter = typedArray.getBoolean(R.styleable.XBanner_showIndicatorInCenter, true);
+            isCanClickSide = typedArray.getBoolean(R.styleable.XBanner_isClickSide, true);
             int scaleTypeIndex = typedArray.getInt(R.styleable.XBanner_android_scaleType, -1);
             if (scaleTypeIndex >= 0 && scaleTypeIndex < sScaleTypeArray.length) {
                 mScaleType = sScaleTypeArray[scaleTypeIndex];
@@ -773,7 +774,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                 view.setOnClickListener(new OnDoubleClickListener() {
                     @Override
                     public void onNoDoubleClick(View v) {
-                        setBannerCurrentItem(realPosition, true);
+                        if (isCanClickSide) {
+                            setBannerCurrentItem(realPosition, true);
+                        }
                         mOnItemClickListener.onItemClick(XBanner.this, mDatas.get(realPosition), v, realPosition);
                     }
                 });
