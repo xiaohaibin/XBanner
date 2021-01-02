@@ -45,7 +45,6 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
         mBanner2 = findViewById(R.id.banner2);
         mBanner3 = findViewById(R.id.banner3);
         mBanner4 = findViewById(R.id.banner4);
-        LogUtils.i("ScreenUtil.getScreenWidth:" + ScreenUtil.getScreenWidth(this));
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2);
 
         mBanner.setLayoutParams(layoutParams);
