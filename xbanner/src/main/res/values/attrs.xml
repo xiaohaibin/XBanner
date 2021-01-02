@@ -55,10 +55,10 @@
         <attr name="isShowTips" format="boolean" />
         <!--banner轮播区域底部margin-->
         <attr name="bannerBottomMargin" format="dimension" />
-        <!--设置viewPager ClipChildren-->
-        <attr name="viewPagerClipChildren" format="boolean" />
-        <!-- 占位图缩放模式，非图片缩放 -->
+        <!-- 占位图缩放模式 -->
         <attr name="android:scaleType" />
+        <!--一屏多显模式是否支持点击侧边切换-->
+        <attr name="isClickSide" format="boolean" />
         <!--一屏多显模式下 指示器是否显示在中间图片位置，默认显示中间-->
         <attr name="showIndicatorInCenter" format="boolean" />
     </declare-styleable>

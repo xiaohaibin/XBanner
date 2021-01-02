@@ -3,6 +3,7 @@ package com.stx.xhb.demo.entity;
 
 
 
+import com.stx.xhb.androidx.entity.BaseBannerInfo;
 import com.stx.xhb.androidx.entity.SimpleBannerInfo;
 
 import java.util.List;
@@ -75,7 +76,7 @@ public class TuchongEntity {
             this.entry = entry;
         }
 
-        public static class EntryBean extends SimpleBannerInfo {
+        public static class EntryBean implements BaseBannerInfo {
 
             private String vid;
             private String video_id;

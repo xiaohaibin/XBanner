@@ -85,9 +85,24 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                 TuchongEntity.FeedListBean.EntryBean listBean = ((TuchongEntity.FeedListBean.EntryBean) model);
                 String url = "https://photo.tuchong.com/" + listBean.getImages().get(0).getUser_id() + "/f/" + listBean.getImages().get(0).getImg_id() + ".jpg";
                 draweeView.setImageURI(Uri.parse(url));
-
 //                加载本地图片展示
 //                ((ImageView)view).setImageResource(((LocalImageInfo) model).getXBannerUrl());
+            }
+        });
+        banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                Log.i("onPageSelected===>", i + "");
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
             }
         });
     }

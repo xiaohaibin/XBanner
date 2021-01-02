@@ -16,6 +16,13 @@ public abstract class BasePageTransformer implements ViewPager.PageTransformer {
 
     @Override
     public void transformPage(View view, float position) {
+        ViewPager viewPager;
+        if (view.getParent() instanceof ViewPager) {
+            viewPager = (ViewPager) view.getParent();
+        } else {
+            return;
+        }
+        position = getRealPosition(viewPager, view);
         if (position < -1.0f) {
             handleInvisiblePage(view, position);
         } else if (position <= 0.0f) {
@@ -25,6 +32,18 @@ public abstract class BasePageTransformer implements ViewPager.PageTransformer {
         } else {
             handleInvisiblePage(view, position);
         }
+    }
+
+    /**
+     * 重新计算position
+     *
+     * @param viewPager
+     * @param page
+     * @return
+     */
+    private float getRealPosition(ViewPager viewPager, View page) {
+        int width = viewPager.getMeasuredWidth() - viewPager.getPaddingLeft() - viewPager.getPaddingRight();
+        return (float) (page.getLeft() - viewPager.getScrollX() - viewPager.getPaddingLeft()) / width;
     }
 
     public abstract void handleInvisiblePage(View view, float position);
