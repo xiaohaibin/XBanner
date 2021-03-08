@@ -224,9 +224,9 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | pointNormal| 指示器未选中时状态点 | drawable，不设置的话为默认状态点 |
 | pointSelect| 指示器选中时状态点 | drawable，不设置的话为默认状态点 |
 | pointsVisibility| 是否显示指示器 | boolean类型，默认为true |
-| pointsPosition| 指示点显示位置 | LEFT、CENTER、RIGHT类型，默认为CENTER |
+| pointsPosition| 指示器显示位置 | LEFT、CENTER、RIGHT类型，默认为CENTER |
 | pointsContainerBackground| 指示器背景 | 可自定义设置指示器背景 |
-| pointContainerPosition| 指示器显示位置 | TOP、BOTTOM类型，默认为BOTTOM |
+| pointContainerPosition| 指示器容器显示位置 | TOP、BOTTOM类型，默认为BOTTOM |
 | pointContainerLeftRightPadding| 指示点容器左右内间距 | dimension，默认为10dp |
 | pointTopBottomPadding| 指示点上下内间距 | dimension，默认为6dp |
 | pointLeftRightPadding| 指示点左右内间距 | dimension，默认为3dp |
