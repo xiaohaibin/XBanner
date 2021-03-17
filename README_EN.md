@@ -6,42 +6,41 @@
 
 ## English | [中文](https://github.com/xiaohaibin/XBanner/edit/master/README.md)
 
-## 主要功能：
-- 支持一屏显示多个
-- 支持根据服务端返回的数据动态设置广告条的总页数
-- 支持大于等于1页时的无限循环自动轮播、手指按下暂停轮播、抬起手指开始轮播
-- 支持自定义状态指示点位置  左 、中 、右
-- 支持自定义状态指示点
-- 支持监听页面点击事件
-- 支持设置图片轮播间隔
-- 支持指示器背景的修改及隐藏/显示
-- 支持显示提示性文字功能
-- 支持图片切换动画,目前支持10种切换动画，亦可设置自定义动画效果
-- 支持设置图片切换速度
-- 支持设置数字指示器
-- 支持设置图片框架整体占位图
-- 支持Glide/Fresco等主流图片加载框架加载图片
-- 支持自定义布局
-- 支持AndroidX
-## 效果图
+## The main function：
+- Support multiple display on one screen
+- Support dynamic setting data
+- Support loop auto play
+- Support set indicator position left, center, right
+- Support custom indicator
+- Support Page OnClickListener
+- Support setting the playback interval
+- Support tip text
+- Support picture switching animation or customize
+- Support setting picture switching speed
+- Support setting digital indicator
+- Support setting imageplaceholder
+- Support Glide/Fresco
+- Support Custom layout
+- Support AndroidX
+## Effect picture
 
-|模式|效果图
+|mode|picture
 | :-: | :-: |
-|指示器模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot3.png)|
-|数字模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot6.png)|
-|数字加标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot5.png)|
-|指示器加标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot1.png)|
-|标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot2.png)|
-|一屏多页模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot4.png)|
-|一屏多页模式支持多种效果自定义|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot7.png)|
+|normal indicator|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot3.png)|
+|number indicator|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot6.png)|
+|number indicator and title|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot5.png)|
+|normal indicator and title|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot1.png)|
+|title|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot2.png)|
+|multiple page|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot4.png)|
+|multiple page|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot7.png)|
 ## Demo Apk
 
 ![demo](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/apk_code.png)
 
 
-## 基本使用
+## Usage
 
-#### 1.添加 Gradle （以前是有的是Jecenter方式引入，由于国内被墙了，切换成JitPack方式引入，使用方式不变）
+#### 1.Add Gradle
 
 ## Jitpack
 
@@ -62,21 +61,21 @@ Step 2. Add the dependency
 ```
 dependencies {
 
-    //普通版本依赖
+    //Normal
     implementation 'com.github.xiaohaibin:XBanner:1.8.0'
     
-    //androidX 版本使用下面的依赖
+    //androidX
     implementation 'com.github.xiaohaibin:XBanner:androidx_v1.1.3'
 }
 ```
  
-#### 2.在清单文件中添加网络权限
+#### 2.Add network permissions to the manifest file
 
 ```
 <uses-permission android:name="android.permission.INTERNET" />
 ```
 
-#### 3.在布局文件中添加 XBanner
+#### 3.Add XBanner in the layout file
 ```
     <com.stx.xhb.xbanner.XBanner
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -95,32 +94,30 @@ dependencies {
 ```
 
 
-#### 4.在 Activity 或者 Fragment 中配置
+#### 4.Use in Activity or Fragment
 
-> 初始化:直接传入视图集合进行初始化
+> initialization:set banner data
 
 ```     
-        //获取控件
-        XBanner mXBanner = (XBanner) findViewById(R.id.xbanner);
+        //get xbanner
+        XBanner mXBanner = (XBanner) findViewById(R.id.xbanner);
         
-       //添加轮播图片数据（图片数据不局限于网络图片、本地资源文件、View 都可以）,刷新数据也是调用该方法
-        mXBanner.setBannerData("轮播数据集合");//setData（）方法已过时，推荐使用setBannerData（）方法，具体参照demo使用
+       //add data（network data、local file、View）,refresh data also use this method
+        mXBanner.setBannerData("data");
 
 ```
 
 
-#### 5.图片加载
+#### 5.load image
 
-> 可根据自己项目需要使用相应的图片加载工具进行**加载图片**，此处使用 Glide ，进行加载
+> according your project choose imageload framework，this use Glide load image
 
 ```
-      //加载广告图片
+      //load image
       mXBanner.loadImage(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
             
-       //1、此处使用的Glide加载图片，可自行替换自己项目中的图片加载框架
-       //2、返回的图片路径为Object类型，你只需要强转成你传输的类型就行，切记不要胡乱强转！
        Glide.with(MainActivity.this).load(((AdvertiseEntity.OthersBean)
       model).getThumbnail()).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
             }
@@ -128,7 +125,7 @@ dependencies {
 
 ```
 
-#### 6.监听广告 item 的单击事件
+#### 6.setOnItemClickListener
 
 ```
  mXBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
@@ -139,9 +136,9 @@ dependencies {
         });
 ```
 
-#### 7.使用 Fresco 加载图片时，需要自定义布局文件
+#### 7.Use Fresco load image
 
-1.自定义布局文件 R.layout.image_fresco
+1.custom layout R.layout.image_fresco
 ```
  <?xml version="1.0" encoding="utf-8"?>
  <com.facebook.drawee.view.SimpleDraweeView
@@ -150,15 +147,14 @@ dependencies {
     android:layout_height="match_parent"
   />
 ```
-2.使用 setBannerData() 方法进行设置
+2.use setBannerData() method
 ```
-  //setData（）方法已过时，推荐使用setBannerData（）方法，具体参照demo使用
-  mXBanner.setBannerData(R.layout.image_fresco,“加载数据集合”);
+  mXBanner.setBannerData(R.layout.image_fresco,“banner data”);
    
 ```
-3.setBannerData 使用
+3.setBannerData
 
-> setBannerData方法中的数据集合中的轮播实体类需要实现 BaseBannerInfo 接口，示例如下：
+> Before you use setBannerData，you should let banner eneity implement the interface,eg：
 
 ```
     public class CustomViewsInfo implements BaseBannerInfo {
@@ -169,22 +165,22 @@ dependencies {
             this.info = info;
         }
 
-        //轮播图片地址，本地图片就传本地资源的id，返回Int类型
+        //image  url
         @Override
         public String getXBannerUrl() {
             return info;
         }
 
-       //指示器文案
+       //tips
         @Override
         public String getXBannerTitle() {
-            return "我是文案";
+            return "tips";
         }
     }
 ```
-#### 8.自定义布局
+#### 8.Custom layout
 
-1.自定义自己需要展示的Banner显示布局，如：R.layout.customelayout
+1.Custom layout，eg：R.layout.customelayout
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -199,12 +195,12 @@ dependencies {
     android:background="@color/colorYellow"/>
 ```
 
-2.使用 setBannerData() 方法进行设置
+2.Use setBannerData() method
 ```
-   mXBanner.setBannerData("自定义布局文件",“加载数据集合”);
+   mXBanner.setBannerData("custom latout",“data”);
 ```
 
-3.设置数据，通过 loadImage() 方法回传的 View 根据自定义布局设置的Id找到相应的控件进行数据设置，具体请看 [CustomViewsActivity](https://github.com/xiaohaibin/XBanner/blob/master/sample/src/main/java/com/stx/xhb/demo/CustomViewsActivity.java)
+3.loadimage，see [CustomViewsActivity](https://github.com/xiaohaibin/XBanner/blob/master/sample/src/main/java/com/stx/xhb/demo/CustomViewsActivity.java)
 ```
 mBanner.loadImage(new XBanner.XBannerAdapter() {
                @Override
@@ -216,46 +212,46 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
            });
 ```
 
-## 自定义属性说明
+## Attributes in xml
 
-| 属性名 | 属性说明 | 属性值 | 
+| Attributes | description | format | 
 | ------------ | ------------- | ------------ |
-| isAutoPlay| 是否支持自动轮播 | boolean类型，默认为true |
-| isTipsMarquee| 是否支持提示性文字跑马灯效果 | boolean类型，默认为false|
-| AutoPlayTime| 图片轮播时间间隔 | int值，默认为5s |
-| pointNormal| 指示器未选中时状态点 | drawable，不设置的话为默认状态点 |
-| pointSelect| 指示器选中时状态点 | drawable，不设置的话为默认状态点 |
-| pointsVisibility| 是否显示指示器 | boolean类型，默认为true |
-| pointsPosition| 指示器显示位置 | LEFT、CENTER、RIGHT类型，默认为CENTER |
-| pointsContainerBackground| 指示器背景 | 可自定义设置指示器背景 |
-| pointContainerPosition| 指示器容器显示位置 | TOP、BOTTOM类型，默认为BOTTOM |
-| pointContainerLeftRightPadding| 指示点容器左右内间距 | dimension，默认为10dp |
-| pointTopBottomPadding| 指示点上下内间距 | dimension，默认为6dp |
-| pointLeftRightPadding| 指示点左右内间距 | dimension，默认为3dp |
-| tipTextColor| 提示文案的文字颜色 | reference|color，默认为white |
-| tipTextSize| 提示文案的文字大小| dimension，默认为10dp |
-| isShowNumberIndicator| 是否显示数字指示器| boolean,默认为false不显示 |
+| isAutoPlay| set isAutoPlay | boolean，default true |
+| isTipsMarquee| set isTipsMarquee | boolean，default false|
+| AutoPlayTime| set AutoPlayTime | integer，default 5s |
+| pointNormal| set indicator pointNormal | drawable|
+| pointSelect| set indicator pointSelect | drawable |
+| pointsVisibility| set indicator isVisible | boolean，default true |
+| pointsPosition| set indicator postion | LEFT、CENTER、RIGHT，default CENTER |
+| pointsContainerBackground| set indicator baground | drawable |
+| pointContainerPosition| set pointContainerPosition | TOP、BOTTOM，default BOTTOM |
+| pointContainerLeftRightPadding| set pointContainerLeftRightPadding | dimension，default 10dp |
+| pointTopBottomPadding| set pointTopBottomPadding | dimension，default 6dp |
+| pointLeftRightPadding| set pointLeftRightPadding | dimension，default 3dp |
+| tipTextColor| 提示文案的文字颜色 | reference|color，default white |
+| tipTextSize| 提示文案的文字大小| dimension，default 10dp |
+| isShowNumberIndicator| 是否显示数字指示器| boolean,default false |
 | numberIndicatorBacgroud|数字指示器背景| reference |
-| isShowIndicatorOnlyOne|当只有一张图片的时候是否显示指示点| boolean，默认为false，不显示 |
-| isShowTips|是否展示文字| boolean，默认为false，不显示 |
-| pageChangeDuration|图片切换速度| int值，默认为1000ms |
-| isHandLoop|是否支持手动无限循环切换图片| boolean类型，默认为false |
+| isShowIndicatorOnlyOne|当只有一张图片的时候是否显示指示点| boolean，default false |
+| isShowTips|是否展示文字| boolean，default false |
+| pageChangeDuration|图片切换速度| integer，default 1000ms |
+| isHandLoop|是否支持手动无限循环切换图片| boolean，default false |
 | placeholderDrawable|设置整体轮播框架占位图| reference |
-| isClipChildrenMode|是否开启一屏显示多个模式|  boolean类型，默认为false 默认不开启 |
-| clipChildrenLefttMargin|一屏显示多个左间距| dimension ，默认为30dp|
-| clipChildrenRightMargin|一屏显示多个右间距| dimension ，默认为30dp|
-| clipChildrenTopBottomMargin|一屏显示多个上下间距| dimension ，默认为30dp|
-| viewpagerMargin|viewpager页面间距| dimension ，默认为10dp|
-| isClipChildrenModeLessThree|少于三张是否支持一屏多显模式|  boolean类型，默认为false 默认不开启 |
-| bannerBottomMargin|banner轮播区域底部margin，可设置指示器距离轮播图的间距| dimension ，默认为0dp|
+| isClipChildrenMode|是否开启一屏显示多个模式|  boolean，default false  |
+| clipChildrenLefttMargin|一屏显示多个左间距| dimension ，default 30dp|
+| clipChildrenRightMargin|一屏显示多个右间距| dimension ，default 30dp|
+| clipChildrenTopBottomMargin|一屏显示多个上下间距| dimension ，default 30dp|
+| viewpagerMargin|viewpager页面间距| dimension ，default 10dp|
+| isClipChildrenModeLessThree|少于三张是否支持一屏多显模式|  boolean，default false  |
+| bannerBottomMargin|banner轮播区域底部margin，可设置指示器距离轮播图的间距| dimension ，default 0dp|
 | scaleType|设置占位图缩放类型 |scaleType类型|
-| showIndicatorInCenter|设一屏多显模式下 指示器是否显示在中间图片位置，默认显示中间 |boolean类型| 
-| isClickSide|一屏多显模式下 是否支持点击侧边切换图片，默认开启 |boolean类型|
+| showIndicatorInCenter|设一屏多显模式下 指示器是否显示在中间图片位置，默认显示中间 |boolean| 
+| isClickSide|一屏多显模式下 是否支持点击侧边切换图片，默认开启 |boolean|
 
-## 混淆配置
+## Progard
 
 ```
-##XBanner 图片轮播混淆配置
+##XBanner Progard
 -keep class com.stx.xhb.xbanner.**{*;}
 ```
 
@@ -273,7 +269,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 - 4.AndroidX模式配置问题
 https://blog.csdn.net/qq_17766199/article/details/81433706
 
-## 关于我
+## About
 
 * **Email**: <xhb_199409@163.com>
 * **Home**: <http://www.jxnk25.club>
@@ -284,20 +280,12 @@ https://blog.csdn.net/qq_17766199/article/details/81433706
 
 [bingoogolapple](https://github.com/bingoogolapple)
 
-感谢[tanweijiu](https://github.com/tanweijiu)修复版本 1.1.2 中bug
+Thanks[tanweijiu](https://github.com/tanweijiu)fix 1.1.2 中bug
 
-感谢[Leoand8](https://github.com/Leoand8)修复版本 1.6.1 中bug
-
-也欢迎各位感兴趣的开发者共同维护该项目。
-
-### Contract
-
-[QQ群:271127803](http://qm.qq.com/cgi-bin/qm/qr?k=cM-ytK5bbZZZ4v7S1fMrTDzkjlFT0C9K)
-
-![欢迎关注“大话微信”公众号](http://upload-images.jianshu.io/upload_images/1956769-2f49dcb0dc5195b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/400)
+Thanks[Leoand8](https://github.com/Leoand8)fix 1.6.1 中bug
 
 
-### 你的 Statr 是我最大的动力，谢谢~~~
+### Your Star is my biggest motivation，Thanks~~~
 
 
 License
