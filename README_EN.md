@@ -255,20 +255,6 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 -keep class com.stx.xhb.xbanner.**{*;}
 ```
 
-## Q&A
-
-- 1.一屏显示多个模式默认使用ScalePageTransformer切换动画，也可以自定义；自定义动画添加方法setCustomPageTransformer（自定义动画效果）；
-
-- 2.一屏显示多个模式默认是会缩放左右两个页面，若想左右页面与中间页面保持一致，把切换动画设置成自己自定义的就可以；
-
-- 3.图片不显示问题
-
-  >1）确认是否实现了 **loadImage（）** 方法，需要使用自己的图片加载框架加载图片！！！
-  >2）请把加载图片地址复制到浏览器看看是否打开图片，确认图片地址是否正确！！！
-
-- 4.AndroidX模式配置问题
-https://blog.csdn.net/qq_17766199/article/details/81433706
-
 ## About
 
 * **Email**: <xhb_199409@163.com>
