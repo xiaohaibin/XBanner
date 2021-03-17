@@ -6,7 +6,7 @@
 
 ## English | [中文](https://github.com/xiaohaibin/XBanner/blob/master/README.md)
 
-## The main function：
+## Functions：
 - Support multiple display on one screen
 - Support dynamic setting data
 - Support loop auto play
@@ -22,7 +22,8 @@
 - Support Glide/Fresco
 - Support Custom layout
 - Support AndroidX
-## Effect picture
+
+## Styles
 
 |mode|picture
 | :-: | :-: |
@@ -42,7 +43,7 @@
 
 #### 1.Add Gradle
 
-## Jitpack
+#### Jitpack
 
 Add it in your root build.gradle at the end of repositories:
 ```
