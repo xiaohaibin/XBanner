@@ -4,7 +4,7 @@
  
 ![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.png)
 
-## [English](https://github.com/xiaohaibin/XBanner/edit/master/README_EN.md) | 中文
+## [English](https://github.com/xiaohaibin/XBanner/blob/master/README_EN.md) | 中文
 
 ## 主要功能：
 - 支持一屏显示多个
