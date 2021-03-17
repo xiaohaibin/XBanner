@@ -4,7 +4,7 @@
  
 ![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.png)
 
-## English | [中文](https://github.com/xiaohaibin/XBanner/edit/master/README.md)
+## English | [中文](https://github.com/xiaohaibin/XBanner/blob/master/README.md)
 
 ## The main function：
 - Support multiple display on one screen
