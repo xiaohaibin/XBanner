@@ -4,6 +4,8 @@
  
 ![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.png)
 
+## [English](https://github.com/xiaohaibin/XBanner/edit/master/README_EN.md) | 中文
+
 ## 主要功能：
 - 支持一屏显示多个
 - 支持根据服务端返回的数据动态设置广告条的总页数
