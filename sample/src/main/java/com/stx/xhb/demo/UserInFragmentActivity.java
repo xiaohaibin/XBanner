@@ -9,6 +9,7 @@ import android.widget.RadioGroup;
 
 import com.blankj.utilcode.util.FragmentUtils;
 import com.stx.xhb.demo.fragment.BannerFragment;
+import com.stx.xhb.demo.fragment.NumberIndicatorFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class UserInFragmentActivity extends AppCompatActivity {
         radioButton.setChecked(true);
         mFragmentList=new ArrayList<>();
         mFragmentList.add(BannerFragment.newInstance());
-        mFragmentList.add(BannerFragment.newInstance());
+        mFragmentList.add(NumberIndicatorFragment.newInstance());
         mFragmentList.add(BannerFragment.newInstance());
         mFragmentList.add(BannerFragment.newInstance());
         FragmentUtils.add(getSupportFragmentManager(),mFragmentList,R.id.fragment_content,0);
