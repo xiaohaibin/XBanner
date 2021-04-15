@@ -61,7 +61,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
         mXBanner = headerView.findViewById(R.id.banner);
         mXBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2));
         rvListAdapter.addHeaderView(headerView);
-
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
