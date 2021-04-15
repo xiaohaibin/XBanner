@@ -678,28 +678,28 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     @Override
     public void onPageScrolled(int position, float positionOffset,
                                int positionOffsetPixels) {
-        mPageScrollPosition = position;
+        mPageScrollPosition = getRealPosition(position);
         mPageScrollPositionOffset = positionOffset;
         if (mTipTv != null && mDatas != null && mDatas.size() != 0 && mDatas.get(0) instanceof BaseBannerInfo) {
             if (positionOffset > 0.5) {
-                mTipTv.setText(((BaseBannerInfo) mDatas.get((position + 1) % mDatas.size())).getXBannerTitle());
+                mTipTv.setText(((BaseBannerInfo) mDatas.get((mPageScrollPosition + 1) % mDatas.size())).getXBannerTitle());
                 mTipTv.setAlpha(positionOffset);
             } else {
-                mTipTv.setText(((BaseBannerInfo) mDatas.get(position % mDatas.size())).getXBannerTitle());
+                mTipTv.setText(((BaseBannerInfo) mDatas.get(mPageScrollPosition % mDatas.size())).getXBannerTitle());
                 mTipTv.setAlpha(1 - positionOffset);
             }
         } else if (mTipTv != null && mTipData != null && !mTipData.isEmpty()) {
             if (positionOffset > 0.5) {
-                mTipTv.setText(mTipData.get((position + 1) % mTipData.size()));
+                mTipTv.setText(mTipData.get((mPageScrollPosition + 1) % mTipData.size()));
                 mTipTv.setAlpha(positionOffset);
             } else {
-                mTipTv.setText(mTipData.get(position % mTipData.size()));
+                mTipTv.setText(mTipData.get(mPageScrollPosition % mTipData.size()));
                 mTipTv.setAlpha(1 - positionOffset);
             }
         }
 
         if (null != mOnPageChangeListener && getRealCount() != 0) {
-            mOnPageChangeListener.onPageScrolled(position % getRealCount(), positionOffset, positionOffsetPixels);
+            mOnPageChangeListener.onPageScrolled(mPageScrollPosition, positionOffset, positionOffsetPixels);
         }
     }
 
@@ -800,6 +800,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     private int getRealPosition(int position) {
+        if (getRealCount() == 0) {
+            return 0;
+        }
         if (mIsAutoPlay || mIsHandLoop) {
             return (position - 1 + getRealCount()) % getRealCount();
         } else {
