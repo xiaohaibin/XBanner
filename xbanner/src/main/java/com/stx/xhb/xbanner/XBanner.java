@@ -678,28 +678,28 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     @Override
     public void onPageScrolled(int position, float positionOffset,
                                int positionOffsetPixels) {
-        mPageScrollPosition = getRealPosition(position);
+        mPageScrollPosition = position;
         mPageScrollPositionOffset = positionOffset;
+        int realPosition = getRealPosition(position);
         if (mTipTv != null && mDatas != null && mDatas.size() != 0 && mDatas.get(0) instanceof BaseBannerInfo) {
             if (positionOffset > 0.5) {
-                mTipTv.setText(((BaseBannerInfo) mDatas.get((mPageScrollPosition + 1) % mDatas.size())).getXBannerTitle());
+                mTipTv.setText(((BaseBannerInfo) mDatas.get((realPosition + 1) % mDatas.size())).getXBannerTitle());
                 mTipTv.setAlpha(positionOffset);
             } else {
-                mTipTv.setText(((BaseBannerInfo) mDatas.get(mPageScrollPosition % mDatas.size())).getXBannerTitle());
+                mTipTv.setText(((BaseBannerInfo) mDatas.get(realPosition % mDatas.size())).getXBannerTitle());
                 mTipTv.setAlpha(1 - positionOffset);
             }
         } else if (mTipTv != null && mTipData != null && !mTipData.isEmpty()) {
             if (positionOffset > 0.5) {
-                mTipTv.setText(mTipData.get((mPageScrollPosition + 1) % mTipData.size()));
+                mTipTv.setText(mTipData.get((realPosition + 1) % mTipData.size()));
                 mTipTv.setAlpha(positionOffset);
             } else {
-                mTipTv.setText(mTipData.get(mPageScrollPosition % mTipData.size()));
+                mTipTv.setText(mTipData.get(realPosition % mTipData.size()));
                 mTipTv.setAlpha(1 - positionOffset);
             }
         }
-
         if (null != mOnPageChangeListener && getRealCount() != 0) {
-            mOnPageChangeListener.onPageScrolled(mPageScrollPosition, positionOffset, positionOffsetPixels);
+            mOnPageChangeListener.onPageScrolled(realPosition, positionOffset, positionOffsetPixels);
         }
     }
 
