@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         mBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
-                LogUtils.i("click pos:"+position);
+                LogUtils.i("click pos:" + position);
                 ToastUtils.showShort("点击了第" + (position + 1) + "图片");
             }
         });

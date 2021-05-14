@@ -177,19 +177,4 @@ public class ListViewActivity extends AppCompatActivity {
             }
         });
     }
-
-    /**
-     * 为了更好的体验效果建议在下面两个生命周期中调用下面的方法
-     **/
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mXBanner.startAutoPlay();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mXBanner.stopAutoPlay();
-    }
 }
