@@ -60,7 +60,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     private static final int VEL_THRESHOLD = 400;
     public static final int NO_PLACE_HOLDER = -1;
-    public static final int MAX_VALUE = 800;
+    public static final int MAX_VALUE = 500;
     private int mPageScrollPosition;
     private float mPageScrollPositionOffset;
 
