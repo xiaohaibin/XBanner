@@ -15,14 +15,12 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -60,7 +58,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     private static final int VEL_THRESHOLD = 400;
     public static final int NO_PLACE_HOLDER = -1;
-    public static final int MAX_VALUE = 500;
+    public static final int MAX_VALUE = Integer.MAX_VALUE;
     private int mPageScrollPosition;
     private float mPageScrollPositionOffset;
 
@@ -367,7 +365,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mIsShowTips = typedArray.getBoolean(R.styleable.XBanner_isShowTips, false);
             mBannerBottomMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_bannerBottomMargin, mBannerBottomMargin);
             mShowIndicatorInCenter = typedArray.getBoolean(R.styleable.XBanner_showIndicatorInCenter, true);
-            isCanClickSide = typedArray.getBoolean(R.styleable.XBanner_isClickSide, true);
             int scaleTypeIndex = typedArray.getInt(R.styleable.XBanner_android_scaleType, -1);
             if (scaleTypeIndex >= 0 && scaleTypeIndex < sScaleTypeArray.length) {
                 mScaleType = sScaleTypeArray[scaleTypeIndex];
@@ -649,13 +646,13 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         addView(mViewPager, 0, layoutParams);
         /*当图片多于1张时开始轮播*/
         if (!mIsOneImg && mIsAutoPlay && getRealCount() != 0) {
-            currentPos = (MAX_VALUE / 2 - (MAX_VALUE / 2) % getRealCount()) + 1;
+            currentPos = MAX_VALUE / 2 - (MAX_VALUE / 2) % getRealCount();
             mViewPager.setCurrentItem(currentPos);
             mViewPager.setAutoPlayDelegate(this);
             startAutoPlay();
         } else {
             if (mIsHandLoop && getRealCount() != 0) {
-                currentPos = (MAX_VALUE / 2 - (MAX_VALUE / 2) % getRealCount()) + 1;
+                currentPos = MAX_VALUE / 2 - (MAX_VALUE / 2) % getRealCount();
                 mViewPager.setCurrentItem(currentPos);
             }
             switchToPoint(0);
@@ -709,9 +706,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             return;
         }
         currentPos = getRealPosition(position);
-        if (getRealCount() > 0 && mIsAutoPlay && position == 0 || position == MAX_VALUE - 1) {
-            setBannerCurrentItem(currentPos, false);
-        }
         switchToPoint(currentPos);
         if (mOnPageChangeListener != null) {
             mOnPageChangeListener.onPageSelected(currentPos);
@@ -765,24 +759,21 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            if (getRealCount() == 0) {
-                return null;
-            }
-            final int realPosition = getRealPosition(position);
             final View view = LayoutInflater.from(getContext()).inflate(layoutResId, container, false);
-            if (mOnItemClickListener != null && !mDatas.isEmpty()) {
-                view.setOnClickListener(new OnDoubleClickListener() {
-                    @Override
-                    public void onNoDoubleClick(View v) {
-                        if (isCanClickSide) {
+            if (getRealCount() > 0) {
+                final int realPosition = getRealPosition(position);
+                if (mOnItemClickListener != null && !mDatas.isEmpty()) {
+                    view.setOnClickListener(new OnDoubleClickListener() {
+                        @Override
+                        public void onNoDoubleClick(View v) {
                             setBannerCurrentItem(realPosition, true);
+                            mOnItemClickListener.onItemClick(XBanner.this, mDatas.get(realPosition), v, realPosition);
                         }
-                        mOnItemClickListener.onItemClick(XBanner.this, mDatas.get(realPosition), v, realPosition);
-                    }
-                });
-            }
-            if (null != mAdapter && !mDatas.isEmpty()) {
-                mAdapter.loadBanner(XBanner.this, mDatas.get(realPosition), view, realPosition);
+                    });
+                }
+                if (null != mAdapter && !mDatas.isEmpty()) {
+                    mAdapter.loadBanner(XBanner.this, mDatas.get(realPosition), view, realPosition);
+                }
             }
             container.addView(view);
             return view;
@@ -800,14 +791,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     private int getRealPosition(int position) {
-        if (getRealCount() == 0) {
-            return 0;
-        }
-        if (mIsAutoPlay || mIsHandLoop) {
-            return (position - 1 + getRealCount()) % getRealCount();
-        } else {
-            return (position + getRealCount()) % getRealCount();
-        }
+        return position % getRealCount();
     }
 
     /**
@@ -1047,7 +1031,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (mViewPager == null || mDatas == null || mDatas.size() == 0) {
             return -1;
         } else {
-            return currentPos;
+            return mViewPager.getCurrentItem() % getRealCount();
         }
     }
 
