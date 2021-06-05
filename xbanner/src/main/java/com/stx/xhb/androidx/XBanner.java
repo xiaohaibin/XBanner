@@ -59,7 +59,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     private static final int VEL_THRESHOLD = 400;
     public static final int NO_PLACE_HOLDER = -1;
-    public static final int MAX_VALUE = 800;
+    public static final int MAX_VALUE = Integer.MAX_VALUE;
     private int mPageScrollPosition;
     private float mPageScrollPositionOffset;
 
@@ -647,13 +647,13 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         addView(mViewPager, 0, layoutParams);
         /*当图片多于1张时开始轮播*/
         if (!mIsOneImg && mIsAutoPlay && getRealCount() != 0) {
-            currentPos = (MAX_VALUE / 2 - (MAX_VALUE / 2) % getRealCount()) + 1;
+            currentPos = MAX_VALUE / 2 - (MAX_VALUE / 2) % getRealCount();
             mViewPager.setCurrentItem(currentPos);
             mViewPager.setAutoPlayDelegate(this);
             startAutoPlay();
         } else {
             if (mIsHandLoop && getRealCount() != 0) {
-                currentPos = (MAX_VALUE / 2 - (MAX_VALUE / 2) % getRealCount()) + 1;
+                currentPos = MAX_VALUE / 2 - (MAX_VALUE / 2) % getRealCount();
                 mViewPager.setCurrentItem(currentPos);
             }
             switchToPoint(0);
@@ -707,9 +707,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             return;
         }
         currentPos = getRealPosition(position);
-        if (getRealCount() > 0 && mIsAutoPlay && position == 0 || position == MAX_VALUE - 1) {
-            setBannerCurrentItem(currentPos, false);
-        }
         switchToPoint(currentPos);
         if (mOnPageChangeListener != null) {
             mOnPageChangeListener.onPageSelected(currentPos);
@@ -763,22 +760,21 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            if (getRealCount() == 0) {
-                return null;
-            }
-            final int realPosition = getRealPosition(position);
             final View view = LayoutInflater.from(getContext()).inflate(layoutResId, container, false);
-            if (mOnItemClickListener != null && !mDatas.isEmpty()) {
-                view.setOnClickListener(new OnDoubleClickListener() {
-                    @Override
-                    public void onNoDoubleClick(View v) {
-                        setBannerCurrentItem(realPosition, true);
-                        mOnItemClickListener.onItemClick(XBanner.this, mDatas.get(realPosition), v, realPosition);
-                    }
-                });
-            }
-            if (null != mAdapter && !mDatas.isEmpty()) {
-                mAdapter.loadBanner(XBanner.this, mDatas.get(realPosition), view, realPosition);
+            if (getRealCount() > 0) {
+                final int realPosition = getRealPosition(position);
+                if (mOnItemClickListener != null && !mDatas.isEmpty()) {
+                    view.setOnClickListener(new OnDoubleClickListener() {
+                        @Override
+                        public void onNoDoubleClick(View v) {
+                            setBannerCurrentItem(realPosition, true);
+                            mOnItemClickListener.onItemClick(XBanner.this, mDatas.get(realPosition), v, realPosition);
+                        }
+                    });
+                }
+                if (null != mAdapter && !mDatas.isEmpty()) {
+                    mAdapter.loadBanner(XBanner.this, mDatas.get(realPosition), view, realPosition);
+                }
             }
             container.addView(view);
             return view;
@@ -796,11 +792,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     private int getRealPosition(int position) {
-        if (mIsAutoPlay || mIsHandLoop) {
-            return (position - 1 + getRealCount()) % getRealCount();
-        } else {
-            return (position + getRealCount()) % getRealCount();
-        }
+        return position % getRealCount();
     }
 
     /**

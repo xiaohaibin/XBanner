@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import okhttp3.Call;
 
 public class MainActivity extends AppCompatActivity {
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
                         List<TuchongEntity.FeedListBean.EntryBean> data = new ArrayList<>();
-                        for (int i = 0; i <others.size(); i++) {
+                        for (int i = 0; i < others.size(); i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
                             if ("post".equals(feedListBean.getType())) {
                                 data.add(feedListBean.getEntry());
