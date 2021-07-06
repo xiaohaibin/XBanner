@@ -239,7 +239,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | isHandLoop|是否支持手动无限循环切换图片| boolean，default false |
 | placeholderDrawable|设置整体轮播框架占位图| reference |
 | isClipChildrenMode|是否开启一屏显示多个模式|  boolean，default false  |
-| clipChildrenLefttMargin|一屏显示多个左间距| dimension ，default 30dp|
+| clipChildrenLeftMargin|一屏显示多个左间距| dimension ，default 30dp|
 | clipChildrenRightMargin|一屏显示多个右间距| dimension ，default 30dp|
 | clipChildrenTopBottomMargin|一屏显示多个上下间距| dimension ，default 30dp|
 | viewpagerMargin|viewpager页面间距| dimension ，default 10dp|
