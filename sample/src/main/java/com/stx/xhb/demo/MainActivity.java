@@ -2,6 +2,7 @@ package com.stx.xhb.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,19 +20,22 @@ import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import okhttp3.Call;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private XBanner mBanner;
+    List<TuchongEntity.FeedListBean.EntryBean> tempData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findViewById(R.id.btn).setOnClickListener(this);
         initView();
         initBanner();
         initData();
@@ -120,14 +124,22 @@ public class MainActivity extends AppCompatActivity {
                                 data.add(feedListBean.getEntry());
                             }
                         }
-                        //刷新数据之后，需要重新设置是否支持自动轮播
-                        mBanner.setAutoPlayAble(data.size() > 1);
+                        tempData = data;
                         mBanner.setBannerData(data);
+                        //刷新数据之后，需要重新设置是否支持自动轮播
+                        mBanner.setAutoPlayAble(false);
                     }
                 });
     }
 
+    @Override
     public void onClick(View view) {
-        mBanner.setBannerCurrentItem(2);
+        int nextInt = new Random().nextInt(5);
+        for (int i = 0; i < nextInt; i++) {
+            tempData.remove(i);
+        }
+        Log.i("tempData===>", tempData.size() + "");
+        mBanner.setBannerData(tempData);
+        mBanner.setAutoPlayAble(false);
     }
 }

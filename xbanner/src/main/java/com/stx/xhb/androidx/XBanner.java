@@ -776,13 +776,18 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                     mAdapter.loadBanner(XBanner.this, mDatas.get(realPosition), view, realPosition);
                 }
             }
-            container.addView(view);
+            container.addView(view, 0);
             return view;
         }
 
         @Override
         public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             container.removeView((View) object);
+        }
+
+        @Override
+        public int getItemPosition(@NonNull Object object) {
+            return POSITION_NONE;
         }
 
         @Override
