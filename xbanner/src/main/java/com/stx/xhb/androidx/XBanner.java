@@ -274,6 +274,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      */
     private boolean isCanClickSide = true;
 
+    private boolean doNotifyDataSetChangedOnce = false;
+
     private ImageView.ScaleType mScaleType = ImageView.ScaleType.FIT_XY;
 
     private static final ImageView.ScaleType[] sScaleTypeArray = {
@@ -574,6 +576,16 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     /**
+     * 更新数据
+     *
+     * @param models 轮播数据集合
+     */
+    public void updateData(@NonNull List<? extends BaseBannerInfo> models) {
+        doNotifyDataSetChangedOnce = true;
+        setBannerData(R.layout.xbanner_item_image, models);
+    }
+
+    /**
      * 设置指示点是否可见
      *
      * @param isVisible
@@ -745,6 +757,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private class XBannerPageAdapter extends PagerAdapter {
         @Override
         public int getCount() {
+            if (doNotifyDataSetChangedOnce) {
+                doNotifyDataSetChangedOnce = false;
+                notifyDataSetChanged();
+            }
             /*当只有一张图片时返回1*/
             if (mIsOneImg) {
                 return 1;
@@ -783,11 +799,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         @Override
         public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
             container.removeView((View) object);
-        }
-
-        @Override
-        public int getItemPosition(@NonNull Object object) {
-            return POSITION_NONE;
         }
 
         @Override
