@@ -2,6 +2,7 @@ package com.stx.xhb.demo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import okhttp3.Call;
 
@@ -117,14 +119,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onResponse(String response, int id) {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
-                        List<TuchongEntity.FeedListBean.EntryBean> data = new ArrayList<>();
+                        final List<TuchongEntity.FeedListBean.EntryBean> data = new ArrayList<>();
                         for (int i = 0; i < others.size(); i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
                             if ("post".equals(feedListBean.getType())) {
                                 data.add(feedListBean.getEntry());
                             }
                         }
-                        tempData = data;
+//                        tempData = data;
                         mBanner.setBannerData(data);
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner.setAutoPlayAble(false);
@@ -134,12 +136,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        int nextInt = new Random().nextInt(5);
-        for (int i = 0; i < nextInt; i++) {
-            tempData.remove(i);
-        }
-        Log.i("tempData===>", tempData.size() + "");
-        mBanner.setBannerData(tempData);
-        mBanner.setAutoPlayAble(false);
+        mBanner.setBannerCurrentItem(2);
     }
 }
