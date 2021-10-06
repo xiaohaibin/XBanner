@@ -393,7 +393,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mPointContainerLp = new LayoutParams(RMP, RWC);
         mPointContainerLp.addRule(mPointContainerPosition);
         if (mIsClipChildrenMode && mShowIndicatorInCenter) {
-            mPointContainerLp.setMargins(mClipChildrenLeftMargin, 0, mClipChildrenRightMargin, 0);
+            if (mIsShowTips) {
+                mPointContainerLp.setMargins(mClipChildrenLeftMargin, 0, mClipChildrenRightMargin, 0);
+            } else {
+                mPointContainerLp.setMargins(0, 0, 0, 0);
+            }
         }
         addView(pointContainerRl, mPointContainerLp);
         mPointRealContainerLp = new LayoutParams(RWC, RWC);
@@ -721,23 +725,32 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     @Override
     public void handleAutoPlayActionUpOrCancel(float xVelocity) {
-        assert mViewPager != null;
-        if (mPageScrollPosition < mViewPager.getCurrentItem()) {
-            // 往右滑
-            if (xVelocity > VEL_THRESHOLD || (mPageScrollPositionOffset < 0.7f && xVelocity > -VEL_THRESHOLD)) {
-                mViewPager.setBannerCurrentItemInternal(mPageScrollPosition, true);
+        if (mViewPager != null) {
+            if (mPageScrollPosition < mViewPager.getCurrentItem()) {
+                // 往右滑
+                if (xVelocity > VEL_THRESHOLD || (mPageScrollPositionOffset < 0.7f && xVelocity > -VEL_THRESHOLD)) {
+                    if (mIsClipChildrenMode) {
+                        int realPosition = getRealPosition(mPageScrollPosition);
+                        setBannerCurrentItem(realPosition, true);
+                    } else {
+                        mViewPager.setBannerCurrentItemInternal(mPageScrollPosition, true);
+                    }
+                } else {
+                    mViewPager.setBannerCurrentItemInternal(mPageScrollPosition + 1, true);
+                }
+            } else if (mPageScrollPosition == mViewPager.getCurrentItem()) {
+                // 往左滑
+                if (xVelocity < -VEL_THRESHOLD || (mPageScrollPositionOffset > 0.3f && xVelocity < VEL_THRESHOLD)) {
+                    mViewPager.setBannerCurrentItemInternal(mPageScrollPosition + 1, true);
+                } else {
+                    mViewPager.setBannerCurrentItemInternal(mPageScrollPosition, true);
+                }
+            } else if (mIsClipChildrenMode) {
+                int realPosition = getRealPosition(mPageScrollPosition);
+                setBannerCurrentItem(realPosition, true);
             } else {
-                mViewPager.setBannerCurrentItemInternal(mPageScrollPosition + 1, true);
-            }
-        } else if (mPageScrollPosition == mViewPager.getCurrentItem()) {
-            // 往左滑
-            if (xVelocity < -VEL_THRESHOLD || (mPageScrollPositionOffset > 0.3f && xVelocity < VEL_THRESHOLD)) {
-                mViewPager.setBannerCurrentItemInternal(mPageScrollPosition + 1, true);
-            } else {
                 mViewPager.setBannerCurrentItemInternal(mPageScrollPosition, true);
             }
-        } else {
-            mViewPager.setBannerCurrentItemInternal(mPageScrollPosition, true);
         }
     }
 
@@ -766,7 +779,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                     view.setOnClickListener(new OnDoubleClickListener() {
                         @Override
                         public void onNoDoubleClick(View v) {
-                            setBannerCurrentItem(realPosition, true);
+                            if (isCanClickSide) {
+                                setBannerCurrentItem(realPosition, true);
+                            }
                             mOnItemClickListener.onItemClick(XBanner.this, mDatas.get(realPosition), v, realPosition);
                         }
                     });
@@ -775,7 +790,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                     mAdapter.loadBanner(XBanner.this, mDatas.get(realPosition), view, realPosition);
                 }
             }
-            container.addView(view);
+            container.addView(view, 0);
             return view;
         }
 
@@ -788,6 +803,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         public void finishUpdate(@NonNull ViewGroup container) {
             super.finishUpdate(container);
         }
+
     }
 
     private int getRealPosition(int position) {
