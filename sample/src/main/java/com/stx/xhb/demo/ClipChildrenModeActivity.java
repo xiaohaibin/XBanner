@@ -145,6 +145,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                         mBanner2.setAutoPlayAble(data.size() > 1);
                         mBanner2.setIsClipChildrenMode(true);
                         mBanner2.setBannerData(R.layout.layout_fresco_imageview, data);
+                        mBanner2.getViewPager().setOffscreenPageLimit(4);
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner3.setAutoPlayAble(data.size() > 1);
