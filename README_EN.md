@@ -63,10 +63,10 @@ Step 2. Add the dependency
 dependencies {
 
     //Normal
-    implementation 'com.github.xiaohaibin:XBanner:1.8.2'
+    implementation 'com.github.xiaohaibin:XBanner:1.8.4'
     
     //androidX
-    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.1.6'
+    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.2.5'
 }
 ```
  
