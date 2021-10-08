@@ -66,7 +66,7 @@ dependencies {
     implementation 'com.github.xiaohaibin:XBanner:1.8.4'
     
     //androidX 版本使用下面的依赖
-    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.2.5'
+    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.2.1'
 }
 ```
  
