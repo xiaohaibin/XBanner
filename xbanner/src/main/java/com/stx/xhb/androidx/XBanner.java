@@ -731,12 +731,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             if (mPageScrollPosition < mViewPager.getCurrentItem()) {
                 // 往右滑
                 if (xVelocity > VEL_THRESHOLD || (mPageScrollPositionOffset < 0.7f && xVelocity > -VEL_THRESHOLD)) {
-                    if (mIsClipChildrenMode) {
-                        int realPosition = getRealPosition(mPageScrollPosition);
-                        setBannerCurrentItem(realPosition, true);
-                    } else {
-                        mViewPager.setBannerCurrentItemInternal(mPageScrollPosition, true);
-                    }
+                    mViewPager.setBannerCurrentItemInternal(mPageScrollPosition, true);
                 } else {
                     mViewPager.setBannerCurrentItemInternal(mPageScrollPosition + 1, true);
                 }
