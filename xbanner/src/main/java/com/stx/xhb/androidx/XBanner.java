@@ -373,9 +373,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             }
             typedArray.recycle();
         }
-        if (mIsClipChildrenMode) {
-            mTransformer = Transformer.Scale;
-        }
     }
 
     private void initView() {
@@ -626,7 +623,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 初始化ViewPager
      */
     private void initViewPager() {
-
+        if (mIsClipChildrenMode) {
+            mTransformer = Transformer.Scale;
+        }
         if (mViewPager != null && this.equals(mViewPager.getParent())) {
             this.removeView(mViewPager);
             mViewPager = null;
@@ -651,7 +650,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
         addView(mViewPager, 0, layoutParams);
         /*当图片多于1张时开始轮播*/
-        if (!mIsOneImg && mIsAutoPlay && getRealCount() != 0) {
+        if (mIsAutoPlay && getRealCount() != 0) {
             currentPos = MAX_VALUE / 2 - (MAX_VALUE / 2) % getRealCount();
             mViewPager.setCurrentItem(currentPos);
             mViewPager.setAutoPlayDelegate(this);
@@ -754,10 +753,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private class XBannerPageAdapter extends PagerAdapter {
         @Override
         public int getCount() {
-            /*当只有一张图片时返回1*/
-            if (mIsOneImg) {
-                return 1;
-            }
             return mIsAutoPlay ? MAX_VALUE : (mIsHandLoop ? MAX_VALUE : getRealCount());
         }
 
@@ -845,7 +840,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param currentPoint
      */
     private void switchToPoint(int currentPoint) {
-        if (mPointRealContainerLl != null & mDatas != null && getRealCount() > 1) {
+        if (mPointRealContainerLl != null & mDatas != null) {
             for (int i = 0; i < mPointRealContainerLl.getChildCount(); i++) {
                 if (i == currentPoint) {
                     ((ImageView) mPointRealContainerLl.getChildAt(i)).setImageResource(mPointSelected);
@@ -870,7 +865,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (!mIsOneImg & mViewPager != null) {
+        if (mViewPager != null) {
             switch (ev.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     float touchX = ev.getRawX();

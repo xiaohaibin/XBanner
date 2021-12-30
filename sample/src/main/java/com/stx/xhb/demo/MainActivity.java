@@ -124,10 +124,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 data.add(feedListBean.getEntry());
                             }
                         }
-//                        tempData = data;
-                        mBanner.setBannerData(data);
                         //刷新数据之后，需要重新设置是否支持自动轮播
-                        mBanner.setAutoPlayAble(false);
+                        mBanner.setAutoPlayAble(true);
+                        mBanner.setBannerData(data);
                     }
                 });
     }
