@@ -102,6 +102,9 @@ dependencies {
 ```     
         //获取控件
         XBanner mXBanner = (XBanner) findViewById(R.id.xbanner);
+	
+	//代码设置框架占位图，也可在布局中设置
+        mBanner.setBannerPlaceholderImg(R.mipmap.xbanner_logo, ImageView.ScaleType.CENTER_CROP);
         
        //添加轮播图片数据（图片数据不局限于网络图片、本地资源文件、View 都可以）,刷新数据也是调用该方法
         mXBanner.setBannerData("轮播数据集合");//setData（）方法已过时，推荐使用setBannerData（）方法，具体参照demo使用
