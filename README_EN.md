@@ -102,6 +102,9 @@ dependencies {
 ```     
         //get xbanner
         XBanner mXBanner = (XBanner) findViewById(R.id.xbanner);
+	
+	//setBannerPlaceholderImg 
+        mBanner.setBannerPlaceholderImg(R.mipmap.xbanner_logo, ImageView.ScaleType.CENTER_CROP);
         
        //add data（network data、local file、View）,refresh data also use this method
         mXBanner.setBannerData("data");
