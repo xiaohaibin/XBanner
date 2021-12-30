@@ -63,10 +63,10 @@ Step 2. Add the dependency
 dependencies {
 
     //普通版本依赖
-    implementation 'com.github.xiaohaibin:XBanner:1.8.5'
+    implementation 'com.github.xiaohaibin:XBanner:1.8.6'
     
     //androidX 版本使用下面的依赖
-    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.2.2'
+    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.2.3'
 }
 ```
  
