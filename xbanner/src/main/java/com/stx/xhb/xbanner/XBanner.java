@@ -2,12 +2,15 @@ package com.stx.xhb.xbanner;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.Dimension;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.IdRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -57,8 +60,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private static final int LWC = LinearLayout.LayoutParams.WRAP_CONTENT;
 
     private static final int VEL_THRESHOLD = 400;
-    public static final int NO_PLACE_HOLDER = -1;
-    public static final int MAX_VALUE = Integer.MAX_VALUE;
+    private static final int NO_PLACE_HOLDER = -1;
+    private static final int MAX_VALUE = Integer.MAX_VALUE;
     private int mPageScrollPosition;
     private float mPageScrollPositionOffset;
 
@@ -68,9 +71,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /**
      * 指示点位置
      */
-    public static final int LEFT = 0;
-    public static final int CENTER = 1;
-    public static final int RIGHT = 2;
+    private static final int LEFT = 0;
+    private static final int CENTER = 1;
+    private static final int RIGHT = 2;
 
     @IntDef({LEFT, CENTER, RIGHT})
     @Retention(RetentionPolicy.SOURCE)
@@ -188,8 +191,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /**
      * 指示器容器位置
      */
-    public static final int TOP = 10;
-    public static final int BOTTOM = 12;
+    private static final int TOP = 10;
+    private static final int BOTTOM = 12;
 
     @IntDef({TOP, BOTTOM})
     @Retention(RetentionPolicy.SOURCE)
@@ -226,8 +229,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     private Transformer mTransformer;
 
-    /*轮播框架占位图资源Id*/
-    private int mPlaceholderDrawableResId = -1;
+    /*轮播框架占位图*/
+    private Bitmap mPlaceholderBitmap=null;
+    @DrawableRes
+    private int mPlaceholderDrawableResId;
 
     private ImageView mPlaceholderImg;
 
@@ -252,12 +257,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /**
      * XBanner图片轮播区域底部Margin
      */
-    public int mBannerBottomMargin = 0;
+    private int mBannerBottomMargin = 0;
 
     /**
      * 当前下标
      */
-    public int currentPos = 0;
+    private int currentPos = 0;
 
     /**
      * 一屏多显模式下指示器是否显示在中间图片位置上，默认开启
@@ -333,7 +338,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     private void initCustomAttrs(Context context, AttributeSet attrs) {
-
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.XBanner);
         if (typedArray != null) {
             mIsAutoPlay = typedArray.getBoolean(R.styleable.XBanner_isAutoPlay, true);
@@ -355,7 +359,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mNumberIndicatorBackground = typedArray.getDrawable(R.styleable.XBanner_numberIndicatorBacgroud);
             mIsShowIndicatorOnlyOne = typedArray.getBoolean(R.styleable.XBanner_isShowIndicatorOnlyOne, mIsShowIndicatorOnlyOne);
             mPageChangeDuration = typedArray.getInt(R.styleable.XBanner_pageChangeDuration, mPageChangeDuration);
-            mPlaceholderDrawableResId = typedArray.getResourceId(R.styleable.XBanner_placeholderDrawable, mPlaceholderDrawableResId);
+            mPlaceholderDrawableResId = typedArray.getResourceId(R.styleable.XBanner_placeholderDrawable,NO_PLACE_HOLDER);
             mIsClipChildrenMode = typedArray.getBoolean(R.styleable.XBanner_isClipChildrenMode, false);
             mClipChildrenLeftMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_clipChildrenLeftMargin, mClipChildrenLeftMargin);
             mClipChildrenRightMargin = typedArray.getDimensionPixelSize(R.styleable.XBanner_clipChildrenRightMargin, mClipChildrenRightMargin);
@@ -370,9 +374,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                 mScaleType = sScaleTypeArray[scaleTypeIndex];
             }
             typedArray.recycle();
-        }
-        if (mIsClipChildrenMode) {
-            mTransformer = Transformer.Scale;
         }
     }
 
@@ -476,10 +477,13 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 设置图片轮播框架占位图
      */
     private void setBannerPlaceholderDrawable() {
-        if (mPlaceholderDrawableResId != NO_PLACE_HOLDER && mPlaceholderImg == null) {
+        if (mPlaceholderDrawableResId !=NO_PLACE_HOLDER){
+            mPlaceholderBitmap=BitmapFactory.decodeResource(getResources(), mPlaceholderDrawableResId);
+        }
+        if (mPlaceholderBitmap != null && mPlaceholderImg == null) {
             mPlaceholderImg = new ImageView(getContext());
             mPlaceholderImg.setScaleType(mScaleType);
-            mPlaceholderImg.setImageResource(mPlaceholderDrawableResId);
+            mPlaceholderImg.setImageBitmap(mPlaceholderBitmap);
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RMP, RMP);
             addView(mPlaceholderImg, layoutParams);
         }
@@ -521,10 +525,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
         initPoints();
         initViewPager();
-        removeBannerPlaceHolderDrawable();
         if (!models.isEmpty()) {
             removeBannerPlaceHolderDrawable();
-        } else {
+        }else {
             setBannerPlaceholderDrawable();
         }
     }
@@ -559,10 +562,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mIsOneImg = models.size() == 1;
         initPoints();
         initViewPager();
-        removeBannerPlaceHolderDrawable();
         if (!models.isEmpty()) {
             removeBannerPlaceHolderDrawable();
-        } else {
+        }else {
             setBannerPlaceholderDrawable();
         }
     }
@@ -624,7 +626,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 初始化ViewPager
      */
     private void initViewPager() {
-
+        if (mIsClipChildrenMode) {
+            mTransformer = Transformer.Scale;
+        }
         if (mViewPager != null && this.equals(mViewPager.getParent())) {
             this.removeView(mViewPager);
             mViewPager = null;
@@ -649,7 +653,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
         addView(mViewPager, 0, layoutParams);
         /*当图片多于1张时开始轮播*/
-        if (!mIsOneImg && mIsAutoPlay && getRealCount() != 0) {
+        if (mIsAutoPlay && getRealCount() != 0) {
             currentPos = MAX_VALUE / 2 - (MAX_VALUE / 2) % getRealCount();
             mViewPager.setCurrentItem(currentPos);
             mViewPager.setAutoPlayDelegate(this);
@@ -752,10 +756,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     private class XBannerPageAdapter extends PagerAdapter {
         @Override
         public int getCount() {
-            /*当只有一张图片时返回1*/
-            if (mIsOneImg) {
-                return 1;
-            }
             return mIsAutoPlay ? MAX_VALUE : (mIsHandLoop ? MAX_VALUE : getRealCount());
         }
 
@@ -843,7 +843,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param currentPoint
      */
     private void switchToPoint(int currentPoint) {
-        if (mPointRealContainerLl != null & mDatas != null && getRealCount() > 1) {
+        if (mPointRealContainerLl != null & mDatas != null) {
             for (int i = 0; i < mPointRealContainerLl.getChildCount(); i++) {
                 if (i == currentPoint) {
                     ((ImageView) mPointRealContainerLl.getChildAt(i)).setImageResource(mPointSelected);
@@ -868,7 +868,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (!mIsOneImg & mViewPager != null) {
+        if (mViewPager != null) {
             switch (ev.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     float touchX = ev.getRawX();
@@ -1090,6 +1090,28 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      */
     public void setCanClickSide(boolean canClickSide) {
         isCanClickSide = canClickSide;
+    }
+
+    /**
+     * 设置轮播框架占位图
+     * @param mPlaceholderDrawableResId 占位图资源id
+     * @param scaleType 占位图缩放类型
+     */
+    public void setBannerPlaceholderImg(@DrawableRes int mPlaceholderDrawableResId, ImageView.ScaleType scaleType) {
+        this.mScaleType=scaleType;
+        this.mPlaceholderDrawableResId = mPlaceholderDrawableResId;
+        setBannerPlaceholderDrawable();
+    }
+
+    /**
+     * 设置轮播框架占位图
+     * @param mPlaceholderBitmap 占位图bitmap
+     * @param scaleType 占位图缩放类型
+     */
+    public void setBannerPlaceholderImg( Bitmap mPlaceholderBitmap, ImageView.ScaleType scaleType) {
+        this.mScaleType=scaleType;
+        this.mPlaceholderBitmap = mPlaceholderBitmap;
+        setBannerPlaceholderDrawable();
     }
 
     @Override

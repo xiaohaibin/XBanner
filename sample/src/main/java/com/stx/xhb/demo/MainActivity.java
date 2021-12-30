@@ -97,8 +97,8 @@ public class MainActivity extends AppCompatActivity {
                 Glide.with(MainActivity.this).load(url).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
             }
         });
-        List<TuchongEntity.FeedListBean.EntryBean> data = new ArrayList<>();
-        mBanner.setBannerData(data);
+        //代码设置框架占位图，也可在布局中设置
+        mBanner.setBannerPlaceholderImg(R.mipmap.xbanner_logo, ImageView.ScaleType.CENTER_CROP);
     }
 
     /**
