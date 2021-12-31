@@ -54,8 +54,6 @@ public abstract class BasePageTransformer implements ViewPager.PageTransformer {
 
     public static BasePageTransformer getPageTransformer(Transformer effect) {
         switch (effect) {
-            case Default:
-                return new DefaultPageTransformer();
             case Alpha:
                 return new AlphaPageTransformer();
             case Rotate:
@@ -80,6 +78,8 @@ public abstract class BasePageTransformer implements ViewPager.PageTransformer {
                 return new ZoomPageTransformer();
             case Scale:
                 return new ScalePageTransformer();
+            case OverLap:
+                return new OverLapPageTransformer();
             default:
                 return new DefaultPageTransformer();
         }

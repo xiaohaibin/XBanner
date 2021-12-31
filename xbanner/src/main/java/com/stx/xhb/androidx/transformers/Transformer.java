@@ -20,5 +20,6 @@ public enum Transformer {
     Stack,
     Depth,
     Zoom,
-    Scale
+    Scale,
+    OverLap
 }

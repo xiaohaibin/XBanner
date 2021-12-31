@@ -28,6 +28,22 @@
                 app:isShowIndicatorOnlyOne="true"
                 app:isShowNumberIndicator="false"
                 app:isShowTips="true"
+                app:viewpagerMargin="50dp"
+                app:pageChangeDuration="800"
+                app:pointsContainerBackground="@drawable/shape_round_8dp"
+                app:pointsPosition="RIGHT" />
+
+            <com.stx.xhb.androidx.XBanner
+                android:id="@+id/banner5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:AutoPlayTime="3000"
+                app:isAutoPlay="false"
+                app:isClipChildrenMode="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="false"
+                app:isShowTips="true"
                 app:pageChangeDuration="800"
                 app:pointsContainerBackground="@drawable/shape_round_8dp"
                 app:pointsPosition="RIGHT" />
