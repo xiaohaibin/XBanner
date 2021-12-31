@@ -65,10 +65,10 @@ Step 2. Add the dependency
 dependencies {
 
     //Normal
-    implementation 'com.github.xiaohaibin:XBanner:1.8.5'
+    implementation 'com.github.xiaohaibin:XBanner:1.8.6'
     
     //androidX
-    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.2.2'
+    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.2.3'
 }
 ```
  
@@ -104,6 +104,9 @@ dependencies {
 ```     
         //get xbanner
         XBanner mXBanner = (XBanner) findViewById(R.id.xbanner);
+	
+	//setBannerPlaceholderImg 
+        mBanner.setBannerPlaceholderImg(R.mipmap.xbanner_logo, ImageView.ScaleType.CENTER_CROP);
         
        //add data（network data、local file、View）,refresh data also use this method
         mXBanner.setBannerData("data");
