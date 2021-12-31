@@ -1,15 +1,16 @@
-package com.stx.xhb.xbanner;
+package com.stx.xhb.androidx;
 
 import android.content.Context;
-import android.support.v4.view.VelocityTrackerCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+
+import androidx.core.view.VelocityTrackerCompat;
+import androidx.core.view.ViewCompat;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * author：jxnk25
@@ -20,6 +21,7 @@ import java.lang.reflect.Method;
  */
 public class XBannerViewPager extends ViewPager {
 
+    private boolean overlapStyle = false;
     private boolean mIsAllowUserScroll = true;
     private AutoPlayDelegate mAutoPlayDelegate;
 
@@ -135,6 +137,19 @@ public class XBannerViewPager extends ViewPager {
         }
     }
 
+    @Override
+    protected int getChildDrawingOrder(int childCount, int i) {
+        if (overlapStyle) {
+            if(i == childCount - 1) {
+                return getCurrentItem();
+            } else {
+                return i >= getCurrentItem()? i + 1 : i;
+            }
+        } else {
+            return super.getChildDrawingOrder(childCount, i);
+        }
+    }
+
     private float getXVelocity() {
         float xVelocity = 0;
         Class viewpagerClass = ViewPager.class;
@@ -155,6 +170,10 @@ public class XBannerViewPager extends ViewPager {
         } catch (Exception ignored) {
         }
         return xVelocity;
+    }
+
+    public void setOverlapStyle(boolean overlapStyle) {
+        this.overlapStyle = overlapStyle;
     }
 
     public void setAutoPlayDelegate(AutoPlayDelegate autoPlayDelegate) {

@@ -1,6 +1,5 @@
-package com.stx.xhb.xbanner.transformers;
+package com.stx.xhb.androidx.transformers;
 
-import android.support.v4.view.ViewCompat;
 import android.view.View;
 
 /**
@@ -11,7 +10,7 @@ import android.view.View;
  * github: https://github.com/xiaohaibin
  * description：
  */
-public class ZoomCenterPageTransformer extends BasePageTransformer {
+public class ZoomStackPageTransformer extends BasePageTransformer {
 
     @Override
     public void handleInvisiblePage(View view, float position) {
@@ -37,12 +36,13 @@ public class ZoomCenterPageTransformer extends BasePageTransformer {
         view.setTranslationX(-view.getWidth() * position);
         view.setPivotX(view.getWidth() * 0.5f);
         view.setPivotY(view.getHeight() * 0.5f);
-        view.setScaleX(1 - position);
-        view.setScaleY(1 - position);
+        view.setScaleX(1 + position);
+        view.setScaleY(1 + position);
+
         if (position > 0.95f) {
-            ViewCompat.setAlpha(view, 0);
+            view.setAlpha(0);
         } else {
-            ViewCompat.setAlpha(view, 1);
+            view.setAlpha(1);
         }
     }
 

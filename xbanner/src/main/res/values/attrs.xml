@@ -40,7 +40,7 @@
         <!--图片轮播框架展占位图-->
         <attr name="placeholderDrawable" format="reference" />
         <!--是否开启一屏显示多个模式 默认不开启-->
-        <attr name="isClipChildrenMode" format="boolean" />
+        <attr name="isClipChildrenMode" format="boolean"/>
         <!--一屏显示多个左间距-->
         <attr name="clipChildrenLeftMargin" format="dimension" />
         <!--一屏显示多个右间距-->

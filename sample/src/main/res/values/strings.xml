@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">XBanner</string>
+    <string name="string_click">点击了第</string>
     <string-array name="transforms">
         <item>Default</item>
         <item>Alpha</item>
@@ -20,9 +21,7 @@
         <item>GuideActivity</item>
         <item>CustomViews</item>
         <item>ClipChildrenMode</item>
+        <item>UseInRecyclerView</item>
         <item>UseInFragment</item>
     </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

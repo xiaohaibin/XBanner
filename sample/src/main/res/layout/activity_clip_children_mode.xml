@@ -7,23 +7,38 @@
     android:orientation="vertical"
     tools:context="com.stx.xhb.demo.ClipChildrenModeActivity">
 
-    <android.support.v4.widget.NestedScrollView
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.stx.xhb.xbanner.XBanner
+            <com.stx.xhb.androidx.XBanner
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 app:AutoPlayTime="3000"
-                app:isAutoPlay="true"
+                app:isAutoPlay="false"
+                app:isClipChildrenMode="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="false"
+                app:isShowTips="true"
+                app:viewpagerMargin="50dp"
+                app:pageChangeDuration="800"
+                app:pointsContainerBackground="@drawable/shape_round_8dp"
+                app:pointsPosition="RIGHT" />
+
+            <com.stx.xhb.androidx.XBanner
+                android:id="@+id/banner5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:AutoPlayTime="3000"
+                app:isAutoPlay="false"
                 app:isClipChildrenMode="true"
                 app:isHandLoop="true"
                 app:isShowIndicatorOnlyOne="true"
@@ -34,35 +49,15 @@
                 app:pointsPosition="RIGHT" />
 
 
-            <com.stx.xhb.xbanner.XBanner
+            <com.stx.xhb.androidx.XBanner
                 android:id="@+id/banner2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:AutoPlayTime="3000"
-                app:bannerBottomMargin="30dp"
-                app:clipChildrenLeftMargin="10dp"
-                app:clipChildrenRightMargin="10dp"
-                app:isAutoPlay="false"
-                app:isClipChildrenMode="true"
-                app:isHandLoop="true"
-                app:isShowIndicatorOnlyOne="true"
-                app:isShowNumberIndicator="false"
-                app:pageChangeDuration="800"
-                app:pointNormal="@drawable/shape_noraml"
-                app:pointSelect="@drawable/shape_selected"
-                app:pointsContainerBackground="@android:color/transparent"
-                app:pointsPosition="CENTER" />
-
-
-            <com.stx.xhb.xbanner.XBanner
-                android:id="@+id/banner4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:AutoPlayTime="3000"
-                app:bannerBottomMargin="30dp"
-                app:clipChildrenLeftMargin="10dp"
+                app:bannerBottomMargin="20dp"
+                app:clipChildrenLeftMargin="100dp"
+                app:clipChildrenRightMargin="100dp"
                 app:isAutoPlay="false"
                 app:isClipChildrenMode="true"
                 app:isHandLoop="true"
@@ -75,28 +70,45 @@
                 app:pointsPosition="CENTER" />
 
 
-            <com.stx.xhb.xbanner.XBanner
+            <com.stx.xhb.androidx.XBanner
                 android:id="@+id/banner3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:AutoPlayTime="3000"
-                app:bannerBottomMargin="30dp"
-                app:clipChildrenLeftMargin="100dp"
-                app:clipChildrenRightMargin="100dp"
+                app:bannerBottomMargin="20dp"
                 app:isAutoPlay="false"
                 app:isClipChildrenMode="true"
-                app:isHandLoop="false"
+                app:isClipChildrenModeLessThree="true"
+                app:isHandLoop="true"
                 app:isShowIndicatorOnlyOne="true"
                 app:isShowNumberIndicator="false"
                 app:pageChangeDuration="800"
                 app:pointNormal="@drawable/shape_noraml"
                 app:pointSelect="@drawable/shape_selected"
-                app:pointsVisibility="true"
                 app:showIndicatorInCenter="false" />
 
 
+            <com.stx.xhb.androidx.XBanner
+                android:id="@+id/banner4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:AutoPlayTime="3000"
+                app:bannerBottomMargin="20dp"
+                app:clipChildrenLeftMargin="@dimen/dp_10"
+                app:isAutoPlay="false"
+                app:isClipChildrenMode="true"
+                app:isHandLoop="true"
+                app:isShowIndicatorOnlyOne="true"
+                app:isShowNumberIndicator="false"
+                app:pageChangeDuration="800"
+                app:pointNormal="@drawable/shape_noraml"
+                app:pointSelect="@drawable/shape_selected"
+                app:pointsContainerBackground="@android:color/transparent"
+                app:pointsPosition="CENTER" />
+
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </ScrollView>
 
 </LinearLayout>

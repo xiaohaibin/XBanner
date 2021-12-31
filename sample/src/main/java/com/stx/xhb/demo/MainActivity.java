@@ -3,7 +3,7 @@ package com.stx.xhb.demo;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -26,27 +26,25 @@ import java.util.List;
 
 import okhttp3.Call;
 
-/**
- * @author xiao.haibin
- * demo
- */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private XBanner mBanner;
+    List<TuchongEntity.FeedListBean.EntryBean> tempData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findViewById(R.id.btn).setOnClickListener(this);
         initView();
         initBanner();
         initData();
     }
 
     private void initView() {
-        mBanner = findViewById(R.id.banner);
+        mBanner = (XBanner) findViewById(R.id.banner);
         mBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2));
-        ListView listView = findViewById(R.id.lv);
+        ListView listView = (ListView) findViewById(R.id.lv);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.pages));
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -66,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, ClipChildrenModeActivity.class));
                         break;
                     case 4:
-                        startActivity(new Intent(MainActivity.this, UserInFragmentActivity.class));
+                        startActivity(new Intent(MainActivity.this, RecyclerViewActivity.class));
                         break;
                     default:
                         break;
@@ -83,8 +81,7 @@ public class MainActivity extends AppCompatActivity {
         mBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
-                LogUtils.i("click pos:" + position);
-                ToastUtils.showShort("点击了第" + (position + 1) + "图片");
+                Toast.makeText(MainActivity.this, "点击了第" + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
             }
         });
         //加载广告图片
@@ -114,14 +111,15 @@ public class MainActivity extends AppCompatActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-                        ToastUtils.showShort("加载广告数据失败");
+
+                        Toast.makeText(MainActivity.this, "加载广告数据失败", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
-                        List<TuchongEntity.FeedListBean.EntryBean> data = new ArrayList<>();
+                        final List<TuchongEntity.FeedListBean.EntryBean> data = new ArrayList<>();
                         for (int i = 0; i < others.size(); i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
                             if ("post".equals(feedListBean.getType())) {
@@ -129,12 +127,13 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                         //刷新数据之后，需要重新设置是否支持自动轮播
-                        mBanner.setAutoPlayAble(data.size() > 1);
+                        mBanner.setAutoPlayAble(true);
                         mBanner.setBannerData(data);
                     }
                 });
     }
 
+    @Override
     public void onClick(View view) {
         mBanner.setBannerCurrentItem(2);
     }

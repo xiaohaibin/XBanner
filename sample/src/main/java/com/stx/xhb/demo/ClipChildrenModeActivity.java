@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -15,10 +15,11 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
+import com.stx.xhb.androidx.XBanner;
+import com.stx.xhb.androidx.entity.LocalImageInfo;
+import com.stx.xhb.androidx.transformers.OverLapPageTransformer;
+import com.stx.xhb.androidx.transformers.Transformer;
 import com.stx.xhb.demo.entity.TuchongEntity;
-import com.stx.xhb.xbanner.XBanner;
-import com.stx.xhb.xbanner.entity.LocalImageInfo;
-import com.stx.xhb.xbanner.transformers.Transformer;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
@@ -36,6 +37,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
     private XBanner mBanner2;
     private XBanner mBanner3;
     private XBanner mBanner4;
+    private XBanner mBanner5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,22 +47,25 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
         mBanner2 = findViewById(R.id.banner2);
         mBanner3 = findViewById(R.id.banner3);
         mBanner4 = findViewById(R.id.banner4);
+        mBanner5 = findViewById(R.id.banner5);
+
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2);
 
         mBanner.setLayoutParams(layoutParams);
 
         mBanner2.setLayoutParams(layoutParams);
-        //修改切换动画
-        mBanner2.setPageTransformer(Transformer.Default);
 
         mBanner3.setLayoutParams(layoutParams);
 
         mBanner4.setLayoutParams(layoutParams);
 
+        mBanner5.setLayoutParams(layoutParams);
+
         initBanner(mBanner);
         initBanner(mBanner2);
         initBanner(mBanner3);
         initBanner(mBanner4);
+        initBanner(mBanner5);
 
         initData();
 //        initLocalImage();
@@ -75,8 +80,7 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
         banner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
-                LogUtils.i("click pos:" + position);
-                ToastUtils.showShort("点击了第" + (position + 1) + "图片");
+                Toast.makeText(ClipChildrenModeActivity.this, getString(R.string.string_click) + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
             }
         });
         //加载广告图片
@@ -89,13 +93,12 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                 String url = "https://photo.tuchong.com/" + listBean.getImages().get(0).getUser_id() + "/f/" + listBean.getImages().get(0).getImg_id() + ".jpg";
                 draweeView.setImageURI(Uri.parse(url));
 //                加载本地图片展示
-//                ((ImageView) view).setImageResource(((LocalImageInfo) model).getXBannerUrl());
+//                ((ImageView)view).setImageResource(((LocalImageInfo) model).getXBannerUrl());
             }
         });
         banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-
             }
 
             @Override
@@ -141,25 +144,32 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner.setAutoPlayAble(data.size() > 1);
                         mBanner.setIsClipChildrenMode(true);
-                        //老方法，不推荐使用
-                        mBanner.setData(R.layout.layout_fresco_imageview, data, null);
+                        mBanner.setOverlapStyle(true);
+                        mBanner.setBannerData(R.layout.layout_fresco_imageview, data);
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner2.setAutoPlayAble(data.size() > 1);
                         mBanner2.setIsClipChildrenMode(true);
                         mBanner2.setBannerData(R.layout.layout_fresco_imageview, data);
+                        mBanner2.getViewPager().setOffscreenPageLimit(4);
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner3.setAutoPlayAble(data.size() > 1);
                         mBanner3.setIsClipChildrenMode(true);
                         mBanner3.setBannerData(R.layout.layout_fresco_imageview, data);
+                        mBanner3.setPageTransformer(Transformer.Default);
+                        mBanner3.getViewPager().setOffscreenPageLimit(3);
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner4.setAutoPlayAble(data.size() > 1);
                         mBanner4.setIsClipChildrenMode(true);
                         mBanner4.setBannerData(R.layout.layout_fresco_imageview, data);
-                        mBanner4.getViewPager().setOffscreenPageLimit(1);
 
+                        //刷新数据之后，需要重新设置是否支持自动轮播
+                        mBanner5.setAutoPlayAble(data.size() > 1);
+                        mBanner5.setIsClipChildrenMode(true);
+                        mBanner5.setBannerData(R.layout.layout_fresco_imageview, data);
+                        mBanner5.setPageTransformer(Transformer.Scale);
                     }
                 });
     }

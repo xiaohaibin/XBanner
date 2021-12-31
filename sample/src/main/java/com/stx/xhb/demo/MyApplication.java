@@ -13,9 +13,10 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 
 /**
- * Created by Mr.xiao on 16/9/23.
+ * @author Mr.xiao
+ * @date 16/9/23
  */
-public class MyApplication extends Application{
+public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
@@ -23,7 +24,7 @@ public class MyApplication extends Application{
         //Fresco初始化
         Fresco.initialize(this);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                    .addInterceptor(new LoggerInterceptor("Xbanner"))
+                .addInterceptor(new LoggerInterceptor("Xbanner"))
                 .connectTimeout(10000L, TimeUnit.MILLISECONDS)
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
                 .build();

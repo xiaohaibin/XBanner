@@ -79,11 +79,5 @@ lint/outputs/
 lint/tmp/
 # lint/reports/
 
-.gitignore
-.idea/XBanner.iml
-.idea/caches/
-.idea/encodings.xml
-.idea/inspectionProfiles/
-.idea/misc.xml
-.idea/runConfigurations.xml
-.idea/vcs.xml
+XBanner.iml
+xbanner/build/

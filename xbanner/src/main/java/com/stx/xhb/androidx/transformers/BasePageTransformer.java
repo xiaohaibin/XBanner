@@ -1,7 +1,8 @@
-package com.stx.xhb.xbanner.transformers;
+package com.stx.xhb.androidx.transformers;
 
-import android.support.v4.view.ViewPager;
 import android.view.View;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by jxnk25 on 2016/10/18.
@@ -53,8 +54,6 @@ public abstract class BasePageTransformer implements ViewPager.PageTransformer {
 
     public static BasePageTransformer getPageTransformer(Transformer effect) {
         switch (effect) {
-            case Default:
-                return new DefaultPageTransformer();
             case Alpha:
                 return new AlphaPageTransformer();
             case Rotate:
@@ -79,6 +78,8 @@ public abstract class BasePageTransformer implements ViewPager.PageTransformer {
                 return new ZoomPageTransformer();
             case Scale:
                 return new ScalePageTransformer();
+            case OverLap:
+                return new OverLapPageTransformer();
             default:
                 return new DefaultPageTransformer();
         }

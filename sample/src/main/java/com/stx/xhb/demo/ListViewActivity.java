@@ -1,8 +1,6 @@
 package com.stx.xhb.demo;
 
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,14 +10,17 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.stx.xhb.androidx.XBanner;
+import com.stx.xhb.androidx.transformers.Transformer;
 import com.stx.xhb.demo.entity.TuchongEntity;
-import com.stx.xhb.xbanner.XBanner;
-import com.stx.xhb.xbanner.transformers.Transformer;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import okhttp3.Call;
 
@@ -36,7 +37,7 @@ public class ListViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listview);
-        requsetData(false);
+        requsetData();
         initView();
         setAdapter();
         setListener();
@@ -101,7 +102,7 @@ public class ListViewActivity extends AppCompatActivity {
     /**
      * 加载网络数据
      */
-    private void requsetData(final boolean refresh) {
+    private void requsetData() {
         //加载网络图片资源
         String url = "https://api.tuchong.com/2/wall-paper/app";
         OkHttpUtils
@@ -119,8 +120,7 @@ public class ListViewActivity extends AppCompatActivity {
                         TuchongEntity advertiseEntity = new Gson().fromJson(response, TuchongEntity.class);
                         List<TuchongEntity.FeedListBean> others = advertiseEntity.getFeedList();
                         List<TuchongEntity.FeedListBean.EntryBean> data = new ArrayList<>();
-//                        int size = refresh ? 4 : others;
-                        for (int i = 0; i <others.size(); i++) {
+                        for (int i = 0; i < others.size(); i++) {
                             TuchongEntity.FeedListBean feedListBean = others.get(i);
                             if ("post".equals(feedListBean.getType())) {
                                 data.add(feedListBean.getEntry());
@@ -149,7 +149,7 @@ public class ListViewActivity extends AppCompatActivity {
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                requsetData(true);
+                requsetData();
                 mRefreshLayout.setRefreshing(false);
             }
         });

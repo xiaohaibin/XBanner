@@ -1,4 +1,4 @@
-package com.stx.xhb.xbanner.transformers;
+package com.stx.xhb.androidx.transformers;
 
 /**
  * Created by jxnk25 on 2016/10/18.
@@ -20,5 +20,6 @@ public enum Transformer {
     Stack,
     Depth,
     Zoom,
-    Scale
+    Scale,
+    OverLap
 }

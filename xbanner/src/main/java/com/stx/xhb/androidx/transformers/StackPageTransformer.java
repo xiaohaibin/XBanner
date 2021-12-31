@@ -1,6 +1,5 @@
-package com.stx.xhb.xbanner.transformers;
+package com.stx.xhb.androidx.transformers;
 
-import android.support.v4.view.ViewCompat;
 import android.view.View;
 
 /**
@@ -9,9 +8,9 @@ import android.view.View;
  * link https://xiaohaibin.github.io/
  * email： xhb_199409@163.com
  * github: https://github.com/xiaohaibin
- * description：AccordionPageTransformer
+ * description：
  */
-public class AccordionPageTransformer extends BasePageTransformer {
+public class StackPageTransformer extends BasePageTransformer {
 
     @Override
     public void handleInvisiblePage(View view, float position) {
@@ -19,15 +18,11 @@ public class AccordionPageTransformer extends BasePageTransformer {
 
     @Override
     public void handleLeftPage(View view, float position) {
-        view.setPivotX(view.getWidth());
-        view.setScaleX(1.0f + position);
     }
 
     @Override
     public void handleRightPage(View view, float position) {
-        view.setPivotX(0);
-        view.setScaleX(1.0f - position);
-        view.setAlpha(1);
+        view.setTranslationX(-view.getWidth() * position);
     }
 
 }

@@ -1,7 +1,7 @@
 ## XBanner
 
 [![License](https://img.shields.io/badge/License-Apache--2.0-green.svg)](https://github.com/xiaohaibin/XBanner/blob/master/LICENSE)
- 
+
 ![1](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/xbanner.png)
 
 ## [English](https://github.com/xiaohaibin/XBanner/blob/master/README_EN.md) | 中文
@@ -34,6 +34,7 @@
 |标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot2.png)|
 |一屏多页模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot4.png)|
 |一屏多页模式支持多种效果自定义|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot7.png)|
+|一屏多页叠加模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/overlap.png)|
 ## Demo Apk
 
 ![demo](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/apk_code.png)
@@ -64,12 +65,12 @@ dependencies {
 
     //普通版本依赖
     implementation 'com.github.xiaohaibin:XBanner:1.8.5'
-    
+
     //androidX 版本使用下面的依赖
     implementation 'com.github.xiaohaibin:XBanner:androidx_v1.2.2'
 }
 ```
- 
+
 #### 2.在清单文件中添加网络权限
 
 ```
@@ -99,10 +100,10 @@ dependencies {
 
 > 初始化:直接传入视图集合进行初始化
 
-```     
+```
         //获取控件
         XBanner mXBanner = (XBanner) findViewById(R.id.xbanner);
-        
+
        //添加轮播图片数据（图片数据不局限于网络图片、本地资源文件、View 都可以）,刷新数据也是调用该方法
         mXBanner.setBannerData("轮播数据集合");//setData（）方法已过时，推荐使用setBannerData（）方法，具体参照demo使用
 
@@ -118,7 +119,7 @@ dependencies {
       mXBanner.loadImage(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
-            
+
        //1、此处使用的Glide加载图片，可自行替换自己项目中的图片加载框架
        //2、返回的图片路径为Object类型，你只需要强转成你传输的类型就行，切记不要胡乱强转！
        Glide.with(MainActivity.this).load(((AdvertiseEntity.OthersBean)
@@ -154,9 +155,9 @@ dependencies {
 ```
   //setData（）方法已过时，推荐使用setBannerData（）方法，具体参照demo使用
   mXBanner.setBannerData(R.layout.image_fresco,“加载数据集合”);
-   
+
 ```
-3.setBannerData 使用
+3. setBannerData 使用
 
 > setBannerData方法中的数据集合中的轮播实体类需要实现 BaseBannerInfo 接口，示例如下：
 
@@ -218,7 +219,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 
 ## 自定义属性说明
 
-| 属性名 | 属性说明 | 属性值 | 
+| 属性名 | 属性说明 | 属性值 |
 | ------------ | ------------- | ------------ |
 | isAutoPlay| 是否支持自动轮播 | boolean类型，默认为true |
 | isTipsMarquee| 是否支持提示性文字跑马灯效果 | boolean类型，默认为false|
@@ -242,14 +243,14 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
 | isHandLoop|是否支持手动无限循环切换图片| boolean类型，默认为false |
 | placeholderDrawable|设置整体轮播框架占位图| reference |
 | isClipChildrenMode|是否开启一屏显示多个模式|  boolean类型，默认为false 默认不开启 |
-| clipChildrenLeftMargin|一屏显示多个左间距| dimension ，默认为30dp|
+| clipChildrenLefttMargin|一屏显示多个左间距| dimension ，默认为30dp|
 | clipChildrenRightMargin|一屏显示多个右间距| dimension ，默认为30dp|
 | clipChildrenTopBottomMargin|一屏显示多个上下间距| dimension ，默认为30dp|
 | viewpagerMargin|viewpager页面间距| dimension ，默认为10dp|
 | isClipChildrenModeLessThree|少于三张是否支持一屏多显模式|  boolean类型，默认为false 默认不开启 |
 | bannerBottomMargin|banner轮播区域底部margin，可设置指示器距离轮播图的间距| dimension ，默认为0dp|
 | scaleType|设置占位图缩放类型 |scaleType类型|
-| showIndicatorInCenter|设一屏多显模式下 指示器是否显示在中间图片位置，默认显示中间 |boolean类型| 
+| showIndicatorInCenter|设一屏多显模式下 指示器是否显示在中间图片位置，默认显示中间 |boolean类型|
 | isClickSide|一屏多显模式下 是否支持点击侧边切换图片，默认开启 |boolean类型|
 
 ## 混淆配置
