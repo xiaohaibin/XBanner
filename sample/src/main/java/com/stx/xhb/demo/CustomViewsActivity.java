@@ -2,17 +2,17 @@ package com.stx.xhb.demo;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.stx.xhb.androidx.XBanner;
+import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.demo.entity.CustomViewsInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 自定义布局

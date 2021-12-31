@@ -7,7 +7,7 @@
     android:scrollbars="none"
     tools:context="com.stx.xhb.demo.GuideActivity">
 
-    <com.stx.xhb.androidx.XBanner
+    <com.stx.xhb.xbanner.XBanner
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/xbanner"
         android:layout_width="match_parent"

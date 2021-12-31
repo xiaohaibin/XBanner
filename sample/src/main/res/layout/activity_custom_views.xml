@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="com.stx.xhb.demo.CustomViewsActivity">
 
-    <com.stx.xhb.androidx.XBanner
+    <com.stx.xhb.xbanner.XBanner
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="200dp"

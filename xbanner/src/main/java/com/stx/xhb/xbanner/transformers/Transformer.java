@@ -1,4 +1,4 @@
-package com.stx.xhb.androidx.transformers;
+package com.stx.xhb.xbanner.transformers;
 
 /**
  * Created by jxnk25 on 2016/10/18.

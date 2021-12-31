@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.stx.xhb.androidx.XBanner
+            <com.stx.xhb.xbanner.XBanner
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 app:pointsContainerBackground="@drawable/shape_round_8dp"
                 app:pointsPosition="RIGHT" />
 
-            <com.stx.xhb.androidx.XBanner
+            <com.stx.xhb.xbanner.XBanner
                 android:id="@+id/banner5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
                 app:pointsPosition="RIGHT" />
 
 
-            <com.stx.xhb.androidx.XBanner
+            <com.stx.xhb.xbanner.XBanner
                 android:id="@+id/banner2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                 app:pointsPosition="CENTER" />
 
 
-            <com.stx.xhb.androidx.XBanner
+            <com.stx.xhb.xbanner.XBanner
                 android:id="@+id/banner3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,14 +89,14 @@
                 app:showIndicatorInCenter="false" />
 
 
-            <com.stx.xhb.androidx.XBanner
+            <com.stx.xhb.xbanner.XBanner
                 android:id="@+id/banner4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:AutoPlayTime="3000"
                 app:bannerBottomMargin="20dp"
-                app:clipChildrenLeftMargin="@dimen/dp_10"
+                app:clipChildrenLeftMargin="10dp"
                 app:isAutoPlay="false"
                 app:isClipChildrenMode="true"
                 app:isHandLoop="true"

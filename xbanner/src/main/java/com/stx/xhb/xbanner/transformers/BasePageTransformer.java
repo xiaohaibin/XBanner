@@ -1,8 +1,8 @@
-package com.stx.xhb.androidx.transformers;
+package com.stx.xhb.xbanner.transformers;
 
+import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by jxnk25 on 2016/10/18.

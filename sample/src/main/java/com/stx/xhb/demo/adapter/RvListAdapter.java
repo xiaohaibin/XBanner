@@ -1,11 +1,13 @@
 package com.stx.xhb.demo.adapter;
 
+import android.support.annotation.Nullable;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.stx.xhb.demo.R;
 
+
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 

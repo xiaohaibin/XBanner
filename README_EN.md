@@ -34,6 +34,8 @@
 |title|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot2.png)|
 |multiple page|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot4.png)|
 |multiple page|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot7.png)|
+|overlap|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/overlap.png)|
+
 ## Demo Apk
 
 ![demo](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/apk_code.png)

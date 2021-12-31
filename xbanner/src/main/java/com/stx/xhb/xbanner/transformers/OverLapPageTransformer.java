@@ -1,8 +1,7 @@
-package com.stx.xhb.androidx.transformers;
+package com.stx.xhb.xbanner.transformers;
 
+import android.support.v4.view.ViewCompat;
 import android.view.View;
-
-import androidx.core.view.ViewCompat;
 
 /**
  * author: xiaohaibin.

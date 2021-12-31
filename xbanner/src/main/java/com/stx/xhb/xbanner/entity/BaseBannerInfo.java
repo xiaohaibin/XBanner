@@ -1,4 +1,4 @@
-package com.stx.xhb.androidx.entity;
+package com.stx.xhb.xbanner.entity;
 
 /**
  * author: xiaohaibin.

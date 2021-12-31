@@ -32,7 +32,11 @@ dependencies {
     implementation 'me.relex:circleindicator:2.1.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation "com.android.support:recyclerview-v7:28+"
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
     implementation 'com.blankj:utilcode:1.23.7'
     implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:swiperefreshlayout:28.0.0'
+    implementation 'org.jetbrains:annotations-java5:15.0'
 
 }

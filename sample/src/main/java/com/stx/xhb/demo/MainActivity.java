@@ -1,19 +1,17 @@
 package com.stx.xhb.demo;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
-import com.blankj.utilcode.util.LogUtils;
-import com.blankj.utilcode.util.ToastUtils;
+
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.stx.xhb.demo.entity.TuchongEntity;
@@ -65,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                     case 4:
                         startActivity(new Intent(MainActivity.this, RecyclerViewActivity.class));
+                        break;
+                    case 5:
+                        startActivity(new Intent(MainActivity.this, UserInFragmentActivity.class));
                         break;
                     default:
                         break;

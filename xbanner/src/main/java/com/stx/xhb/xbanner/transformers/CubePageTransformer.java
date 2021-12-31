@@ -1,4 +1,4 @@
-package com.stx.xhb.androidx.transformers;
+package com.stx.xhb.xbanner.transformers;
 
 import android.view.View;
 
