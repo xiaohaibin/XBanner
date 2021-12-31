@@ -34,6 +34,7 @@
 |标题模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot2.png)|
 |一屏多页模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot4.png)|
 |一屏多页模式支持多种效果自定义|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/screenshot7.png)|
+|一屏多页叠加模式|![效果示例](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/overlap.png)|
 ## Demo Apk
 
 ![demo](https://github.com/xiaohaibin/XBanner/blob/master/sceenshots/apk_code.png)
