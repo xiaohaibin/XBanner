@@ -89,12 +89,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /**
      * 指示点左右内间距
      */
-    private int mPointLeftRightPading;
+    private int mPointLeftRightPadding;
 
     /**
      * 指示点上下内间距
      */
-    private int mPointTopBottomPading;
+    private int mPointTopBottomPadding;
 
     /**
      * 指示点容器左右内间距
@@ -119,7 +119,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /**
      * 自动播放时间
      */
-    private int mAutoPalyTime = 5000;
+    private int mAutoPlayTime = 5000;
 
     /**
      * 是否允许用户滑动
@@ -239,10 +239,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /*是否开启一屏显示多个模式*/
     private boolean mIsClipChildrenMode;
 
-    /*一屏显示多个模式左右间距*/
+    /*一屏显示多个模式左间距*/
     private int mClipChildrenLeftMargin;
 
-    /*一屏显示多个模式左右间距*/
+    /*一屏显示多个模式右间距*/
     private int mClipChildrenRightMargin;
 
     /*一屏显示多个模式上下间距*/
@@ -327,8 +327,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     private void init(Context context) {
         mAutoSwitchTask = new AutoSwitchTask(this);
-        mPointLeftRightPading = XBannerUtils.dp2px(context, 3);
-        mPointTopBottomPading = XBannerUtils.dp2px(context, 6);
+        mPointLeftRightPadding = XBannerUtils.dp2px(context, 3);
+        mPointTopBottomPadding = XBannerUtils.dp2px(context, 6);
         mPointContainerLeftRightPadding = XBannerUtils.dp2px(context, 10);
         mClipChildrenLeftMargin = XBannerUtils.dp2px(context, 30);
         mClipChildrenRightMargin = XBannerUtils.dp2px(context, 30);
@@ -348,12 +348,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mIsAutoPlay = typedArray.getBoolean(R.styleable.XBanner_isAutoPlay, true);
             mIsHandLoop = typedArray.getBoolean(R.styleable.XBanner_isHandLoop, false);
             mIsTipsMarquee = typedArray.getBoolean(R.styleable.XBanner_isTipsMarquee, false);
-            mAutoPalyTime = typedArray.getInteger(R.styleable.XBanner_AutoPlayTime, 5000);
+            mAutoPlayTime = typedArray.getInteger(R.styleable.XBanner_AutoPlayTime, 5000);
             mPointsIsVisible = typedArray.getBoolean(R.styleable.XBanner_pointsVisibility, true);
             mPointPosition = typedArray.getInt(R.styleable.XBanner_pointsPosition, CENTER);
             mPointContainerLeftRightPadding = typedArray.getDimensionPixelSize(R.styleable.XBanner_pointContainerLeftRightPadding, mPointContainerLeftRightPadding);
-            mPointLeftRightPading = typedArray.getDimensionPixelSize(R.styleable.XBanner_pointLeftRightPadding, mPointLeftRightPading);
-            mPointTopBottomPading = typedArray.getDimensionPixelSize(R.styleable.XBanner_pointTopBottomPadding, mPointTopBottomPading);
+            mPointLeftRightPadding = typedArray.getDimensionPixelSize(R.styleable.XBanner_pointLeftRightPadding, mPointLeftRightPadding);
+            mPointTopBottomPadding = typedArray.getDimensionPixelSize(R.styleable.XBanner_pointTopBottomPadding, mPointTopBottomPadding);
             mPointContainerPosition = typedArray.getInt(R.styleable.XBanner_pointContainerPosition, BOTTOM);
             mPointContainerBackgroundDrawable = typedArray.getDrawable(R.styleable.XBanner_pointsContainerBackground);
             mPointNormal = typedArray.getResourceId(R.styleable.XBanner_pointNormal, R.drawable.shape_point_normal);
@@ -393,7 +393,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
 
         /*设置内边距*/
-        pointContainerRl.setPadding(mPointContainerLeftRightPadding, mPointTopBottomPading, mPointContainerLeftRightPadding, mPointTopBottomPading);
+        pointContainerRl.setPadding(mPointContainerLeftRightPadding, mPointTopBottomPadding, mPointContainerLeftRightPadding, mPointTopBottomPadding);
 
         /*设定指示器容器布局及位置*/
         mPointContainerLp = new LayoutParams(RMP, RWC);
@@ -819,7 +819,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             if (getRealCount() > 0 && (mIsShowIndicatorOnlyOne || !mIsOneImg)) {
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LWC, LWC);
                 lp.gravity = Gravity.CENTER_VERTICAL;
-                lp.setMargins(mPointLeftRightPading, mPointTopBottomPading, mPointLeftRightPading, mPointTopBottomPading);
+                lp.setMargins(mPointLeftRightPadding, mPointTopBottomPadding, mPointLeftRightPadding, mPointTopBottomPadding);
                 ImageView imageView;
                 for (int i = 0; i < getRealCount(); i++) {
                     imageView = new ImageView(getContext());
@@ -899,7 +899,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     public void startAutoPlay() {
         stopAutoPlay();
         if (mIsAutoPlay) {
-            postDelayed(mAutoSwitchTask, mAutoPalyTime);
+            postDelayed(mAutoSwitchTask, mAutoPlayTime);
         }
     }
 
@@ -961,7 +961,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param mAutoPalyTime
      */
     public void setAutoPalyTime(int mAutoPalyTime) {
-        this.mAutoPalyTime = mAutoPalyTime;
+        this.mAutoPlayTime = mAutoPalyTime;
     }
 
     /**
@@ -1131,6 +1131,18 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         if (this.overlapStyle) {
             this.mTransformer = Transformer.OverLap;
         }
+    }
+
+    /**
+     * 修改一屏多显模式左右间距
+     * 需要在setBannerData方法之前调用
+     *
+     * @param mClipChildrenLeftMargin
+     * @param mClipChildrenRightMargin
+     */
+    public void setClipChildrenLeftRightMargin(@Dimension int mClipChildrenLeftMargin, @Dimension int mClipChildrenRightMargin) {
+        this.mClipChildrenLeftMargin = mClipChildrenLeftMargin;
+        this.mClipChildrenRightMargin = mClipChildrenRightMargin;
     }
 
     @Override
