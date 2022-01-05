@@ -104,7 +104,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 资源集合
      */
     private List<?> mData;
-
+    /**
+     * 视图集合
+     */
+    private List<View> mViews;
     /**
      * 是否只有一张图片
      */
@@ -238,10 +241,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /*是否开启一屏显示多个模式*/
     private boolean mIsClipChildrenMode;
 
-    /*一屏显示多个模式左右间距*/
+    /*一屏显示多个模式左间距*/
     private int mClipChildrenLeftMargin;
 
-    /*一屏显示多个模式左右间距*/
+    /*一屏显示多个模式右间距*/
     private int mClipChildrenRightMargin;
 
     /*一屏显示多个模式上下间距*/
@@ -548,7 +551,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     /**
-     * 设置bannner数据
+     * 设置banner数据
      */
     public void setBannerData(@LayoutRes int layoutResId, @NonNull List<? extends BaseBannerInfo> models) {
         if (models == null) {
@@ -567,6 +570,37 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         initPoints();
         initViewPager();
         if (!models.isEmpty()) {
+            removeBannerPlaceHolderDrawable();
+        } else {
+            setBannerPlaceholderDrawable();
+        }
+    }
+
+    /**
+     * 设置banner数据
+     */
+    public void setBannerData(@NonNull List<View> views, @NonNull List<? extends BaseBannerInfo> data) {
+        if (views == null) {
+            views = new ArrayList<>();
+        }
+        if (data == null) {
+            data = new ArrayList<>();
+        }
+        if (mViews.isEmpty()) {
+            mIsAutoPlay = false;
+            mIsClipChildrenMode = false;
+        }
+        if (!mIsClipChildrenModeLessThree && views.size() < 3) {
+            mIsClipChildrenMode = false;
+        }
+
+        this.mData = data;
+        this.mViews = views;
+        mIsOneImg = data.size() == 1;
+
+        initPoints();
+        initViewPager();
+        if (!data.isEmpty()) {
             removeBannerPlaceHolderDrawable();
         } else {
             setBannerPlaceholderDrawable();
@@ -676,7 +710,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @return
      */
     public int getRealCount() {
-        return mData == null ? 0 : mData.size();
+        if (mViews == null) {
+            return mData == null ? 0 : mData.size();
+        } else {
+            return mViews.size();
+        }
     }
 
     public XBannerViewPager getViewPager() {
@@ -770,9 +808,14 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            final View view = LayoutInflater.from(getContext()).inflate(layoutResId, container, false);
+            final int realPosition = getRealPosition(position);
+            View view;
+            if (mViews == null) {
+                view = LayoutInflater.from(getContext()).inflate(layoutResId, container, false);
+            } else {
+                view = mViews.get(realPosition);
+            }
             if (getRealCount() > 0) {
-                final int realPosition = getRealPosition(position);
                 if (mOnItemClickListener != null && !mData.isEmpty()) {
                     view.setOnClickListener(new OnDoubleClickListener() {
                         @Override
@@ -957,10 +1000,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /**
      * 设置自动轮播时间间隔
      *
-     * @param mAutoPalyTime
+     * @param mAutoPlayTime
      */
-    public void setAutoPalyTime(int mAutoPalyTime) {
-        this.mAutoPlayTime = mAutoPalyTime;
+    public void setAutoPlayTime(int mAutoPlayTime) {
+        this.mAutoPlayTime = mAutoPlayTime;
     }
 
     /**
