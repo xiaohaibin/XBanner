@@ -220,7 +220,7 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
            });
 ```
 
-#### 9.多布局使用
+#### 9.多布局使用（具体请看 [VideoViewActivity](https://github.com/xiaohaibin/XBanner/blob/master/sample/src/main/java/com/stx/xhb/demo/VideoViewActivity.java)）
 
 ```
 //创建轮播item 的ViewHolder
