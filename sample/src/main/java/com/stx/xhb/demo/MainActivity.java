@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case 4:
                         startActivity(new Intent(MainActivity.this, RecyclerViewActivity.class));
                         break;
+                    case 5:
+                        startActivity(new Intent(MainActivity.this, VideoViewActivity.class));
+                        break;
                     default:
                         break;
                 }

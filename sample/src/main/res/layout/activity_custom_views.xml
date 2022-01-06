@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:AutoPlayTime="3000"
-        app:isAutoPlay="true"
+        app:isAutoPlay="false"
         app:isShowIndicatorOnlyOne="true"
         app:pageChangeDuration="800"
         app:pointNormal="@drawable/shape_noraml"

@@ -30,6 +30,9 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.stx.xhb.androidx.entity.BaseBannerInfo;
+import com.stx.xhb.androidx.holder.HolderCreator;
+import com.stx.xhb.androidx.holder.ViewHolder;
+import com.stx.xhb.androidx.listener.OnDoubleClickListener;
 import com.stx.xhb.androidx.transformers.BasePageTransformer;
 import com.stx.xhb.androidx.transformers.Transformer;
 
@@ -105,7 +108,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 资源集合
      */
     private List<?> mData;
-
     /**
      * 是否只有一张图片
      */
@@ -282,6 +284,8 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * 一屏多页叠加模式,默认为false
      */
     private boolean overlapStyle = false;
+
+    private HolderCreator holderCreator;
 
     private ImageView.ScaleType mScaleType = ImageView.ScaleType.FIT_XY;
 
@@ -549,7 +553,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     /**
-     * 设置bannner数据
+     * 设置banner数据
      */
     public void setBannerData(@LayoutRes int layoutResId, @NonNull List<? extends BaseBannerInfo> models) {
         if (models == null) {
@@ -563,6 +567,33 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             mIsClipChildrenMode = false;
         }
         this.layoutResId = layoutResId;
+        mData = models;
+        mIsOneImg = models.size() == 1;
+        initPoints();
+        initViewPager();
+        if (!models.isEmpty()) {
+            removeBannerPlaceHolderDrawable();
+        } else {
+            setBannerPlaceholderDrawable();
+        }
+    }
+
+    /**
+     * 设置banner数据
+     * 适配器模式，该方式可支持多布局需求，例如：视频、图片混合轮播形式
+     */
+    public void setBannerData(@NonNull List<? extends BaseBannerInfo> models, HolderCreator holderCreator) {
+        this.holderCreator = holderCreator;
+        if (models == null) {
+            models = new ArrayList<>();
+        }
+        if (models.isEmpty()) {
+            mIsAutoPlay = false;
+            mIsClipChildrenMode = false;
+        }
+        if (!mIsClipChildrenModeLessThree && models.size() < 3) {
+            mIsClipChildrenMode = false;
+        }
         mData = models;
         mIsOneImg = models.size() == 1;
         initPoints();
@@ -757,54 +788,6 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         }
     }
 
-    private class XBannerPageAdapter extends PagerAdapter {
-        @Override
-        public int getCount() {
-            return mIsAutoPlay ? MAX_VALUE : (mIsHandLoop ? MAX_VALUE : getRealCount());
-        }
-
-        @Override
-        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-            return view == object;
-        }
-
-        @NonNull
-        @Override
-        public Object instantiateItem(@NonNull ViewGroup container, int position) {
-            final View view = LayoutInflater.from(getContext()).inflate(layoutResId, container, false);
-            if (getRealCount() > 0) {
-                final int realPosition = getRealPosition(position);
-                if (mOnItemClickListener != null && !mData.isEmpty()) {
-                    view.setOnClickListener(new OnDoubleClickListener() {
-                        @Override
-                        public void onNoDoubleClick(View v) {
-                            if (isCanClickSide) {
-                                setBannerCurrentItem(realPosition, true);
-                            }
-                            mOnItemClickListener.onItemClick(XBanner.this, mData.get(realPosition), v, realPosition);
-                        }
-                    });
-                }
-                if (null != mAdapter && !mData.isEmpty()) {
-                    mAdapter.loadBanner(XBanner.this, mData.get(realPosition), view, realPosition);
-                }
-            }
-            container.addView(view, 0);
-            return view;
-        }
-
-        @Override
-        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-            container.removeView((View) object);
-        }
-
-        @Override
-        public void finishUpdate(@NonNull ViewGroup container) {
-            super.finishUpdate(container);
-        }
-
-    }
-
     private int getRealPosition(int position) {
         return position % getRealCount();
     }
@@ -958,10 +941,10 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     /**
      * 设置自动轮播时间间隔
      *
-     * @param mAutoPalyTime
+     * @param mAutoPlayTime
      */
-    public void setAutoPalyTime(int mAutoPalyTime) {
-        this.mAutoPlayTime = mAutoPalyTime;
+    public void setAutoPlayTime(int mAutoPlayTime) {
+        this.mAutoPlayTime = mAutoPlayTime;
     }
 
     /**
@@ -1207,5 +1190,84 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     public interface XBannerAdapter {
         void loadBanner(XBanner banner, Object model, View view, int position);
+    }
+
+    private class XBannerPageAdapter extends PagerAdapter {
+        @Override
+        public int getCount() {
+            return mIsAutoPlay ? MAX_VALUE : (mIsHandLoop ? MAX_VALUE : getRealCount());
+        }
+
+        @Override
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+            return view == object;
+        }
+
+        @NonNull
+        @Override
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
+            final int realPosition = getRealPosition(position);
+            View itemView;
+            if (holderCreator == null) {
+                itemView = LayoutInflater.from(getContext()).inflate(layoutResId, container, false);
+                if (mOnItemClickListener != null && !mData.isEmpty()) {
+                    itemView.setOnClickListener(new OnDoubleClickListener() {
+                        @Override
+                        public void onNoDoubleClick(View v) {
+                            if (isCanClickSide) {
+                                setBannerCurrentItem(realPosition, true);
+                            }
+                            mOnItemClickListener.onItemClick(XBanner.this, mData.get(realPosition), v, realPosition);
+                        }
+                    });
+                }
+                if (null != mAdapter && !mData.isEmpty()) {
+                    mAdapter.loadBanner(XBanner.this, mData.get(realPosition), itemView, realPosition);
+                }
+            } else {
+                itemView = getView(container, realPosition);
+            }
+            container.addView(itemView);
+            return itemView;
+        }
+
+        @Override
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+            container.removeView((View) object);
+        }
+
+        @Override
+        public void finishUpdate(@NonNull ViewGroup container) {
+            super.finishUpdate(container);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private View getView(ViewGroup container, final int position) {
+        ViewHolder holder = holderCreator.createViewHolder(holderCreator.getViewType(position));
+        if (holder == null) {
+            throw new NullPointerException("Can not return a null holder");
+        }
+        return createView(holder, position, container);
+    }
+
+    private View createView(ViewHolder holder, int position, ViewGroup container) {
+        View itemView = LayoutInflater.from(container.getContext()).inflate(holder.getLayoutId(), container, false);
+        if (mData != null && mData.size() > 0) {
+            setViewListener(itemView, position);
+            holder.onBind(itemView, mData.get(position), position);
+        }
+        return itemView;
+    }
+
+    private void setViewListener(View view, final int position) {
+        if (view != null)
+            view.setOnClickListener(new OnDoubleClickListener() {
+                @Override
+                public void onNoDoubleClick(View v) {
+                    if (null != mOnItemClickListener)
+                        mOnItemClickListener.onItemClick(XBanner.this, mData.get(position), v, position);
+                }
+            });
     }
 }

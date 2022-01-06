@@ -22,5 +22,6 @@
         <item>CustomViews</item>
         <item>ClipChildrenMode</item>
         <item>UseInRecyclerView</item>
+        <item>VideoAndImage</item>
     </string-array>
 </resources>

@@ -9,6 +9,9 @@ import com.zhy.http.okhttp.log.LoggerInterceptor;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import xyz.doikki.videoplayer.ijk.IjkPlayerFactory;
+import xyz.doikki.videoplayer.player.VideoViewConfig;
+import xyz.doikki.videoplayer.player.VideoViewManager;
 
 /**
  * @author Mr.xiao
@@ -27,6 +30,9 @@ public class MyApplication extends Application {
                 .readTimeout(10000L, TimeUnit.MILLISECONDS)
                 .build();
         OkHttpUtils.initClient(okHttpClient);
-
+        VideoViewManager.setConfig(VideoViewConfig.newBuilder()
+                //使用使用IjkPlayer解码
+                .setPlayerFactory(IjkPlayerFactory.create())
+                .build());
     }
 }
