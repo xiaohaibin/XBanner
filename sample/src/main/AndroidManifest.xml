@@ -36,8 +36,15 @@
         <activity
             android:name=".ClipChildrenModeActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".UserInFragmentActivity" />
-        <activity android:name=".RecyclerViewActivity" />
+        <activity
+            android:name=".UserInFragmentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RecyclerViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".VideoViewActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

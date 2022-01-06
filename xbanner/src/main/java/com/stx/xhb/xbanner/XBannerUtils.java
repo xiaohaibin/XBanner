@@ -78,5 +78,7 @@ public class XBannerUtils {
         }
     }
 
-
+    public static int getRealPosition(int position,int dataSize) {
+        return position % dataSize;
+    }
 }

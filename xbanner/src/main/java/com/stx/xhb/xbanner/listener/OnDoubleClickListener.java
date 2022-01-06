@@ -1,4 +1,4 @@
-package com.stx.xhb.xbanner;
+package com.stx.xhb.xbanner.listener;
 
 import android.view.View;
 

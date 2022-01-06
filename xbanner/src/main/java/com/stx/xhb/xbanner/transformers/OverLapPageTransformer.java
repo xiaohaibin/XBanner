@@ -26,22 +26,25 @@ public class OverLapPageTransformer extends BasePageTransformer {
     @Override
     public void handleInvisiblePage(View view, float position) {
         view.setAlpha(1);
+        view.setScaleX(scaleValue);
         view.setScaleY(scaleValue);
     }
 
     @Override
     public void handleLeftPage(View view, float position) {
         view.setAlpha(1 + position * (1 - alphaValue));
-        ViewCompat.setTranslationZ(view, position);
         float scale = Math.max(scaleValue, 1 - Math.abs(position));
+        view.setScaleX(scale);
         view.setScaleY(scale);
+        ViewCompat.setTranslationZ(view, position);
     }
 
     @Override
     public void handleRightPage(View view, float position) {
         view.setAlpha(1 - position * (1 - alphaValue));
-        ViewCompat.setTranslationZ(view, -position);
         float scale = Math.max(scaleValue, 1 - Math.abs(position));
+        view.setScaleX(scale);
         view.setScaleY(scale);
+        ViewCompat.setTranslationZ(view, -position);
     }
 }

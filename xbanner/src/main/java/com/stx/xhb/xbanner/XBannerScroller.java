@@ -12,7 +12,9 @@ import android.widget.Scroller;
  */
 public class XBannerScroller extends Scroller {
 
-    //值越大，滑动越慢
+    /**
+     * 值越大，滑动越慢
+     */
     private int mDuration = 800;
 
     XBannerScroller(Context context, int duration) {

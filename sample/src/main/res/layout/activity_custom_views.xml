@@ -15,7 +15,6 @@
         app:isAutoPlay="false"
         app:isHandLoop="true"
         app:isShowIndicatorOnlyOne="true"
-        app:pageChangeDuration="800"
         app:pointNormal="@drawable/shape_noraml"
         app:pointSelect="@drawable/shape_selected"
         app:pointsContainerBackground="#442e2e2e"

@@ -23,5 +23,6 @@
         <item>ClipChildrenMode</item>
         <item>UseInRecyclerView</item>
         <item>UseInFragment</item>
+        <item>VideoAndImage</item>
     </string-array>
 </resources>

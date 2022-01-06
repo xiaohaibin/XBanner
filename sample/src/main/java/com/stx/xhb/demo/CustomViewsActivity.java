@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.demo.entity.CustomViewsInfo;
 
@@ -45,7 +46,7 @@ public class CustomViewsActivity extends AppCompatActivity {
         banner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
-                Toast.makeText(CustomViewsActivity.this, "点击了" + position, Toast.LENGTH_SHORT).show();
+                ToastUtils.showShort("点击了" + position);
             }
         });
     }

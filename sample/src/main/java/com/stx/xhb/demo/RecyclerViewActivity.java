@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.stx.xhb.xbanner.XBanner;
@@ -76,7 +78,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         mXBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
-                Toast.makeText(RecyclerViewActivity.this, "点击了第" + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
+                ToastUtils.showShort("点击了第" + (position + 1) + "图片");
             }
         });
         //加载广告图片

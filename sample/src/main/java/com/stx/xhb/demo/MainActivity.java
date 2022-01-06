@@ -3,6 +3,7 @@ package com.stx.xhb.demo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +13,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 
+import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.stx.xhb.demo.entity.TuchongEntity;
@@ -67,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case 5:
                         startActivity(new Intent(MainActivity.this, UserInFragmentActivity.class));
                         break;
+                    case 6:
+                        startActivity(new Intent(MainActivity.this, VideoViewActivity.class));
+                        break;
                     default:
                         break;
                 }
@@ -82,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
-                Toast.makeText(MainActivity.this, "点击了第" + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
+                ToastUtils.showShort("点击了第" + (position + 1) + "图片");
             }
         });
         //加载广告图片
@@ -92,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //在此处使用图片加载框架加载图片，demo中使用glide加载，可替换成自己项目中的图片加载框架
                 TuchongEntity.FeedListBean.EntryBean listBean = ((TuchongEntity.FeedListBean.EntryBean) model);
                 String url = "https://photo.tuchong.com/" + listBean.getImages().get(0).getUser_id() + "/f/" + listBean.getImages().get(0).getImg_id() + ".jpg";
+                LogUtils.i("url:"+url);
                 Glide.with(MainActivity.this).load(url).placeholder(R.drawable.default_image).error(R.drawable.default_image).into((ImageView) view);
             }
         });

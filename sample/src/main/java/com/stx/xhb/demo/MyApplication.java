@@ -11,6 +11,10 @@ import com.zhy.http.okhttp.log.LoggerInterceptor;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
+import xyz.doikki.videoplayer.ijk.IjkPlayerFactory;
+import xyz.doikki.videoplayer.player.AndroidMediaPlayerFactory;
+import xyz.doikki.videoplayer.player.VideoViewConfig;
+import xyz.doikki.videoplayer.player.VideoViewManager;
 
 /**
  * @author Mr.xiao
@@ -30,5 +34,12 @@ public class MyApplication extends Application {
                 .build();
         OkHttpUtils.initClient(okHttpClient);
         Utils.init(this);
+
+        VideoViewManager.setConfig(VideoViewConfig.newBuilder()
+                //使用使用IjkPlayer解码
+                .setPlayerFactory(IjkPlayerFactory.create())
+                //使用MediaPlayer解码
+                .setPlayerFactory(AndroidMediaPlayerFactory.create())
+                .build());
     }
 }
