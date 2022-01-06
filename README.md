@@ -220,6 +220,50 @@ mBanner.loadImage(new XBanner.XBannerAdapter() {
            });
 ```
 
+#### 9.多布局使用
+
+```
+//创建轮播item 的ViewHolder
+public class ImageViewHolder implements ViewHolder<CustomViewsInfo> {
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.layout_image_view;
+    }
+
+    @Override
+    public void onBind(View itemView, CustomViewsInfo data, int position) {
+        ImageView imageView = itemView.findViewById(R.id.iv);
+        Glide.with(itemView.getContext()).load(data.getXBannerUrl()).placeholder(R.drawable.default_image).error(R.drawable.default_image).into(imageView);
+    }
+}
+```
+
+```
+//创建 HolderCreator 在里面根据viewType实现多布局的逻辑
+public class BannerHolderCreator implements HolderCreator<ViewHolder> {
+
+    @Override
+    public ViewHolder createViewHolder(int viewType) {
+        if (viewType==0){
+            return new VideoViewHolder();
+        }
+        return new ImageViewHolder();
+    }
+
+    @Override
+    public int getViewType(int position) {
+        return position;
+    }
+}
+```
+
+```
+ //传 HolderCreator
+ banner.setBannerData(“加载数据集合”, new BannerHolderCreator());
+```
+
+
 ## 自定义属性说明
 
 | 属性名 | 属性说明 | 属性值 |
