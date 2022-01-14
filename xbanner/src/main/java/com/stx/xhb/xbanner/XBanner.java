@@ -1131,6 +1131,22 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         this.mClipChildrenRightMargin = mClipChildrenRightMargin;
     }
 
+    /**
+     * 是否显示提示文案
+     * @param mIsShowTips
+     */
+    public void setIsShowTips(boolean mIsShowTips) {
+        this.mIsShowTips = mIsShowTips;
+    }
+
+    /**
+     * 低于三张图片是否展示一屏多显模式
+     * @param mIsClipChildrenModeLessThree
+     */
+    public void setIsClipChildrenModeLessThree(boolean mIsClipChildrenModeLessThree) {
+        this.mIsClipChildrenModeLessThree = mIsClipChildrenModeLessThree;
+    }
+
     @Override
     protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
