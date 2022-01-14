@@ -788,7 +788,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
     }
 
     private int getRealPosition(int position) {
-        return position % getRealCount();
+        int realCount = getRealCount();
+        if (realCount != 0) {
+            return position % realCount;
+        }
+        return position;
     }
 
     /**
@@ -1205,6 +1209,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
+            if (getRealCount() == 0) {
+                return null;
+            }
             final int realPosition = getRealPosition(position);
             View itemView;
             if (holderCreator == null) {
