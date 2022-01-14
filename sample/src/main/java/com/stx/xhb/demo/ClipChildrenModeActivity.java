@@ -73,15 +73,13 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
      * 初始化XBanner
      */
     private void initBanner(XBanner banner) {
-        //设置广告图片点击事件
-        banner.setOnItemClickListener(new XBanner.OnItemClickListener() {
+        banner.setIsClipChildrenMode(true)
+                .setOnItemClickListener(new XBanner.OnItemClickListener() { //设置广告图片点击事件
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
                 Toast.makeText(ClipChildrenModeActivity.this, getString(R.string.string_click) + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
             }
-        });
-        //加载广告图片
-        banner.loadImage(new XBanner.XBannerAdapter() {
+        }).loadImage(new XBanner.XBannerAdapter() { //加载广告图片
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
                 //此处适用Fresco加载图片，可自行替换自己的图片加载框架
@@ -92,20 +90,10 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
 //                加载本地图片展示
 //                ((ImageView)view).setImageResource(((LocalImageInfo) model).getXBannerUrl());
             }
-        });
-        banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        }).setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
-            public void onPageScrolled(int i, float v, int i1) {
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                Log.i("onPageSelected===>", i + "");
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
+            public void onPageSelected(int position) {
+                Log.i("onPageSelected===>", position + "");
             }
         });
     }
@@ -140,31 +128,26 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner.setAutoPlayAble(data.size() > 1);
-                        mBanner.setIsClipChildrenMode(true);
                         mBanner.setOverlapStyle(true);
                         mBanner.setBannerData(R.layout.layout_fresco_imageview, data);
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner2.setAutoPlayAble(data.size() > 1);
-                        mBanner2.setIsClipChildrenMode(true);
                         mBanner2.setBannerData(R.layout.layout_fresco_imageview, data);
                         mBanner2.getViewPager().setOffscreenPageLimit(4);
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner3.setAutoPlayAble(data.size() > 1);
-                        mBanner3.setIsClipChildrenMode(true);
                         mBanner3.setBannerData(R.layout.layout_fresco_imageview, data);
                         mBanner3.setPageTransformer(Transformer.Default);
                         mBanner3.getViewPager().setOffscreenPageLimit(3);
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner4.setAutoPlayAble(data.size() > 1);
-                        mBanner4.setIsClipChildrenMode(true);
                         mBanner4.setBannerData(R.layout.layout_fresco_imageview, data);
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner5.setAutoPlayAble(data.size() > 1);
-                        mBanner5.setIsClipChildrenMode(true);
                         mBanner5.setBannerData(R.layout.layout_fresco_imageview, data);
                         mBanner5.setPageTransformer(Transformer.Scale);
                     }

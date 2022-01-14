@@ -80,15 +80,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 初始化XBanner
      */
     private void initBanner() {
-        //设置广告图片点击事件
-        mBanner.setOnItemClickListener(new XBanner.OnItemClickListener() {
+        mBanner.setAutoPlayAble(true)
+                .setOnItemClickListener(new XBanner.OnItemClickListener() { //设置广告图片点击事件
             @Override
             public void onItemClick(XBanner banner, Object model, View view, int position) {
                 Toast.makeText(MainActivity.this, "点击了第" + (position + 1) + "图片", Toast.LENGTH_SHORT).show();
             }
-        });
-        //加载广告图片
-        mBanner.loadImage(new XBanner.XBannerAdapter() {
+        })
+                .loadImage(new XBanner.XBannerAdapter() {  //加载广告图片
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
                 //在此处使用图片加载框架加载图片，demo中使用glide加载，可替换成自己项目中的图片加载框架
@@ -112,7 +111,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .execute(new StringCallback() {
                     @Override
                     public void onError(Call call, Exception e, int id) {
-
                         Toast.makeText(MainActivity.this, "加载广告数据失败", Toast.LENGTH_SHORT).show();
                     }
 
@@ -127,8 +125,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 data.add(feedListBean.getEntry());
                             }
                         }
-                        //刷新数据之后，需要重新设置是否支持自动轮播
-                        mBanner.setAutoPlayAble(true);
                         mBanner.setBannerData(data);
                     }
                 });

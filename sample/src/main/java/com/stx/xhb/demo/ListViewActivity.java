@@ -139,13 +139,11 @@ public class ListViewActivity extends AppCompatActivity {
     private void initView() {
         mLv = findViewById(R.id.lv);
         mRefreshLayout = findViewById(R.id.refresh_layout);
-
         // 初始化HeaderView
         View headerView = View.inflate(this, R.layout.ad_head, null);
         mXBanner = headerView.findViewById(R.id.banner);
         mXBanner.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, ScreenUtil.getScreenWidth(this) / 2));
         mLv.addHeaderView(headerView);
-
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

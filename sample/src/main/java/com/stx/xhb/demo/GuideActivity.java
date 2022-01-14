@@ -41,14 +41,12 @@ public class GuideActivity extends AppCompatActivity {
         localImageInfoList.add(new LocalImageInfo(R.mipmap.we1));
         localImageInfoList.add(new LocalImageInfo(R.mipmap.we2));
         localImageInfoList.add(new LocalImageInfo(R.mipmap.we3));
-        mXBanner.setBannerData(localImageInfoList);
         mXBanner.loadImage(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, Object model, View view, int position) {
                 ((ImageView) view).setImageResource(((LocalImageInfo) model).getXBannerUrl());
             }
-        });
-        mXBanner.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        }).setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if (position == mXBanner.getRealCount() - 1) {
@@ -57,7 +55,7 @@ public class GuideActivity extends AppCompatActivity {
                     mBtnEnter.setVisibility(View.GONE);
                 }
             }
-        });
+        }).setBannerData(localImageInfoList);
         mBtnEnter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

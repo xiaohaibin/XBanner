@@ -41,7 +41,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recyclerview);
         initView();
         setListener();
-        requsetData();
+        requestData();
     }
 
 
@@ -64,7 +64,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
         mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                requsetData();
+                requestData();
                 mRefreshLayout.setRefreshing(false);
             }
         });
@@ -96,7 +96,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
     /**
      * 加载网络数据
      */
-    private void requsetData() {
+    private void requestData() {
         //加载网络图片资源
         String url = "https://api.tuchong.com/2/wall-paper/app";
         OkHttpUtils

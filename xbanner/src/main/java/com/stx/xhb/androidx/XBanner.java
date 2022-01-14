@@ -310,8 +310,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         this.mAdapter = mAdapter;
     }
 
-    public void loadImage(XBannerAdapter mAdapter) {
+    public XBanner loadImage(XBannerAdapter mAdapter) {
         this.mAdapter = mAdapter;
+        return this;
     }
 
     public XBanner(Context context) {
@@ -619,7 +620,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param isVisible
      */
-    public void setPointsIsVisible(boolean isVisible) {
+    public XBanner setPointsIsVisible(boolean isVisible) {
         if (null != mPointRealContainerLl) {
             if (isVisible) {
                 mPointRealContainerLl.setVisibility(View.VISIBLE);
@@ -627,6 +628,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
                 mPointRealContainerLl.setVisibility(View.GONE);
             }
         }
+        return this;
     }
 
     /**
@@ -634,7 +636,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param position
      */
-    public void setPointPosition(@INDICATOR_GRAVITY int position) {
+    public XBanner setPointPosition(@INDICATOR_GRAVITY int position) {
         //设置指示器布局位置
         if (CENTER == position) {
             mPointRealContainerLp.addRule(RelativeLayout.CENTER_HORIZONTAL);
@@ -643,6 +645,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         } else if (RIGHT == position) {
             mPointRealContainerLp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         }
+        return this;
     }
 
     /**
@@ -650,12 +653,13 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param position
      */
-    public void setPointContainerPosition(@INDICATOR_POSITION int position) {
+    public XBanner setPointContainerPosition(@INDICATOR_POSITION int position) {
         if (BOTTOM == position) {
             mPointContainerLp.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         } else if (TOP == position) {
             mPointContainerLp.addRule(RelativeLayout.ALIGN_PARENT_TOP);
         }
+        return this;
     }
 
     /**
@@ -901,8 +905,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param onPageChangeListener
      */
-    public void setOnPageChangeListener(ViewPager.OnPageChangeListener onPageChangeListener) {
+    public XBanner setOnPageChangeListener(ViewPager.OnPageChangeListener onPageChangeListener) {
         mOnPageChangeListener = onPageChangeListener;
+        return this;
     }
 
     /**
@@ -910,11 +915,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param slideScrollMode
      */
-    public void setSlideScrollMode(int slideScrollMode) {
+    public XBanner setSlideScrollMode(int slideScrollMode) {
         mSlideScrollMode = slideScrollMode;
         if (null != mViewPager) {
             mViewPager.setOverScrollMode(slideScrollMode);
         }
+        return this;
     }
 
     /**
@@ -922,11 +928,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param allowUserScrollable true表示允许跟随用户触摸滑动，false反之
      */
-    public void setAllowUserScrollable(boolean allowUserScrollable) {
+    public XBanner setAllowUserScrollable(boolean allowUserScrollable) {
         mIsAllowUserScroll = allowUserScrollable;
         if (null != mViewPager) {
             mViewPager.setIsAllowUserScroll(allowUserScrollable);
         }
+        return this;
     }
 
     /**
@@ -934,12 +941,13 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param mAutoPlayAble
      */
-    public void setAutoPlayAble(boolean mAutoPlayAble) {
+    public XBanner setAutoPlayAble(boolean mAutoPlayAble) {
         this.mIsAutoPlay = mAutoPlayAble;
         stopAutoPlay();
         if (mViewPager != null && mViewPager.getAdapter() != null) {
             mViewPager.getAdapter().notifyDataSetChanged();
         }
+        return this;
     }
 
     /**
@@ -947,8 +955,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param mAutoPlayTime
      */
-    public void setAutoPlayTime(int mAutoPlayTime) {
+    public XBanner setAutoPlayTime(int mAutoPlayTime) {
         this.mAutoPlayTime = mAutoPlayTime;
+        return this;
     }
 
     /**
@@ -956,11 +965,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param transformer
      */
-    public void setPageTransformer(Transformer transformer) {
+    public XBanner setPageTransformer(Transformer transformer) {
         this.mTransformer = transformer;
         if (mViewPager != null && this.mTransformer != null) {
             initViewPager();
         }
+        return this;
     }
 
     /**
@@ -968,11 +978,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param viewPagerMargin 单位dp
      */
-    public void setViewPagerMargin(@Dimension int viewPagerMargin) {
+    public XBanner setViewPagerMargin(@Dimension int viewPagerMargin) {
         this.mViewPagerMargin = viewPagerMargin;
         if (mViewPager != null) {
             mViewPager.setPageMargin(XBannerUtils.dp2px(getContext(), viewPagerMargin));
         }
+        return this;
     }
 
     /**
@@ -980,10 +991,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param transformer
      */
-    public void setCustomPageTransformer(ViewPager.PageTransformer transformer) {
+    public XBanner setCustomPageTransformer(ViewPager.PageTransformer transformer) {
         if (transformer != null && mViewPager != null) {
             mViewPager.setPageTransformer(true, transformer);
         }
+        return this;
     }
 
     /**
@@ -991,10 +1003,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param duration
      */
-    public void setPageChangeDuration(int duration) {
+    public XBanner setPageChangeDuration(int duration) {
         if (mViewPager != null) {
             mViewPager.setScrollDuration(duration);
         }
+        return this;
     }
 
     /**
@@ -1002,8 +1015,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param handLoop
      */
-    public void setHandLoop(boolean handLoop) {
+    public XBanner setHandLoop(boolean handLoop) {
         mIsHandLoop = handLoop;
+        return this;
     }
 
     /**
@@ -1011,8 +1025,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param mIsClipChildrenMode
      */
-    public void setIsClipChildrenMode(boolean mIsClipChildrenMode) {
+    public XBanner setIsClipChildrenMode(boolean mIsClipChildrenMode) {
         this.mIsClipChildrenMode = mIsClipChildrenMode;
+        return this;
     }
 
     /**
@@ -1020,8 +1035,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param showIndicatorOnlyOne
      */
-    public void setShowIndicatorOnlyOne(boolean showIndicatorOnlyOne) {
+    public XBanner setShowIndicatorOnlyOne(boolean showIndicatorOnlyOne) {
         mIsShowIndicatorOnlyOne = showIndicatorOnlyOne;
+        return this;
     }
 
     /**
@@ -1079,8 +1095,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param canClickSide
      */
-    public void setCanClickSide(boolean canClickSide) {
+    public XBanner setCanClickSide(boolean canClickSide) {
         isCanClickSide = canClickSide;
+        return this;
     }
 
     /**
@@ -1089,10 +1106,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param mPlaceholderDrawableResId 占位图资源id
      * @param scaleType                 占位图缩放类型
      */
-    public void setBannerPlaceholderImg(@DrawableRes int mPlaceholderDrawableResId, ImageView.ScaleType scaleType) {
+    public XBanner setBannerPlaceholderImg(@DrawableRes int mPlaceholderDrawableResId, ImageView.ScaleType scaleType) {
         this.mScaleType = scaleType;
         this.mPlaceholderDrawableResId = mPlaceholderDrawableResId;
         setBannerPlaceholderDrawable();
+        return this;
     }
 
     /**
@@ -1101,10 +1119,11 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param mPlaceholderBitmap 占位图bitmap
      * @param scaleType          占位图缩放类型
      */
-    public void setBannerPlaceholderImg(Bitmap mPlaceholderBitmap, ImageView.ScaleType scaleType) {
+    public XBanner setBannerPlaceholderImg(Bitmap mPlaceholderBitmap, ImageView.ScaleType scaleType) {
         this.mScaleType = scaleType;
         this.mPlaceholderBitmap = mPlaceholderBitmap;
         setBannerPlaceholderDrawable();
+        return this;
     }
 
     /**
@@ -1113,11 +1132,12 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      *
      * @param overlapStyle
      */
-    public void setOverlapStyle(boolean overlapStyle) {
+    public XBanner setOverlapStyle(boolean overlapStyle) {
         this.overlapStyle = overlapStyle;
         if (this.overlapStyle) {
             this.mTransformer = Transformer.OverLap;
         }
+        return this;
     }
 
     /**
@@ -1127,25 +1147,28 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
      * @param mClipChildrenLeftMargin
      * @param mClipChildrenRightMargin
      */
-    public void setClipChildrenLeftRightMargin(@Dimension int mClipChildrenLeftMargin, @Dimension int mClipChildrenRightMargin) {
+    public XBanner setClipChildrenLeftRightMargin(@Dimension int mClipChildrenLeftMargin, @Dimension int mClipChildrenRightMargin) {
         this.mClipChildrenLeftMargin = mClipChildrenLeftMargin;
         this.mClipChildrenRightMargin = mClipChildrenRightMargin;
+        return this;
     }
 
     /**
      * 是否显示提示文案
      * @param mIsShowTips
      */
-    public void setIsShowTips(boolean mIsShowTips) {
+    public XBanner setIsShowTips(boolean mIsShowTips) {
         this.mIsShowTips = mIsShowTips;
+        return this;
     }
 
     /**
      * 低于三张图片是否展示一屏多显模式
      * @param mIsClipChildrenModeLessThree
      */
-    public void setIsClipChildrenModeLessThree(boolean mIsClipChildrenModeLessThree) {
+    public XBanner setIsClipChildrenModeLessThree(boolean mIsClipChildrenModeLessThree) {
         this.mIsClipChildrenModeLessThree = mIsClipChildrenModeLessThree;
+        return this;
     }
 
     @Override
@@ -1200,8 +1223,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
         mIsFirstInvisible = false;
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    public XBanner setOnItemClickListener(OnItemClickListener listener) {
         mOnItemClickListener = listener;
+        return this;
     }
 
     public interface OnItemClickListener {
