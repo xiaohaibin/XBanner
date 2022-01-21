@@ -148,8 +148,8 @@ public class ClipChildrenModeActivity extends AppCompatActivity {
 
                         //刷新数据之后，需要重新设置是否支持自动轮播
                         mBanner5.setAutoPlayAble(data.size() > 1);
+                        mBanner5.setIsClipChildrenMode(true);
                         mBanner5.setBannerData(R.layout.layout_fresco_imageview, data);
-                        mBanner5.setPageTransformer(Transformer.Scale);
                     }
                 });
     }

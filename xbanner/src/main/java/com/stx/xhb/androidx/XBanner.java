@@ -670,6 +670,9 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
             this.removeView(mViewPager);
             mViewPager = null;
         }
+        if (mIsClipChildrenMode && !this.overlapStyle) {
+            this.mTransformer = Transformer.Scale;
+        }
         currentPos = 0;
         mViewPager = new XBannerViewPager(getContext());
         mViewPager.setAdapter(new XBannerPageAdapter());
@@ -1155,6 +1158,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 是否显示提示文案
+     *
      * @param mIsShowTips
      */
     public XBanner setIsShowTips(boolean mIsShowTips) {
@@ -1164,6 +1168,7 @@ public class XBanner extends RelativeLayout implements XBannerViewPager.AutoPlay
 
     /**
      * 低于三张图片是否展示一屏多显模式
+     *
      * @param mIsClipChildrenModeLessThree
      */
     public XBanner setIsClipChildrenModeLessThree(boolean mIsClipChildrenModeLessThree) {
