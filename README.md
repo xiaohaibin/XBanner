@@ -104,7 +104,7 @@ dependencies {
         //获取控件
         XBanner mXBanner = (XBanner) findViewById(R.id.xbanner);
 	
-	   //代码设置框架占位图，也可在布局中设置
+	//代码设置框架占位图，也可在布局中设置
         mBanner.setBannerPlaceholderImg(R.mipmap.xbanner_logo, ImageView.ScaleType.CENTER_CROP);
 
        //添加轮播图片数据（图片数据不局限于网络图片、本地资源文件、View 都可以）,刷新数据也是调用该方法
@@ -320,6 +320,8 @@ public class BannerHolderCreator implements HolderCreator<ViewHolder> {
 
 - 4.AndroidX模式配置问题
 https://blog.csdn.net/qq_17766199/article/details/81433706
+
+- 5.一屏显示多个模式开启没效果，请确认图片资源是否少于三张，如果少于三张依然需要一屏多显模式可通过 isClipChildrenModeLessThree 属性设置，该属性默认为false；
 
 ## 关于我
 
