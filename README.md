@@ -78,6 +78,7 @@ dependencies {
 ```
 
 #### 3.在布局文件中添加 XBanner
+> 注意：Androidx版本，包路径为：com.stx.xhb.androidx.XBanner
 ```
     <com.stx.xhb.xbanner.XBanner
         xmlns:app="http://schemas.android.com/apk/res-auto"
